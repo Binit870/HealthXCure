@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
 import { motion } from "framer-motion";
 import loginBg from "../assets/bg.png";
 import { useAuth } from "../context/AuthContext.jsx";
@@ -39,8 +38,8 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative bg-[radial-gradient(circle_at_center,_#414D85,_#191F40)] text-white">
-      <Navbar />
+    <div className="min-h-screen flex items-center justify-center relative  text-white">
+      
       <img
         src={loginBg}
         alt="abstract background"

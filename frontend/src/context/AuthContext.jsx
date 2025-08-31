@@ -9,17 +9,21 @@ const API_URL = "http://localhost:5000/api/auth";
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("token") || null);
+
+  // Sanitize token from localStorage
+  const rawToken = localStorage.getItem("token");
+  const initialToken =
+    rawToken && rawToken !== "null" && rawToken !== "undefined" ? rawToken : null;
+  const [token, setToken] = useState(initialToken);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-    // Corrected logic: Check if storedUser exists AND is not the string 'undefined'
-    if (storedUser && storedUser !== 'undefined') {
+    if (storedUser && storedUser !== "undefined" && storedUser !== "null") {
       try {
         setUser(JSON.parse(storedUser));
       } catch (error) {
-        console.error('Failed to parse user data from localStorage', error);
-        localStorage.removeItem('user');
+        console.error("Failed to parse user data from localStorage", error);
+        localStorage.removeItem("user");
         setUser(null);
       }
     }
@@ -42,17 +46,32 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("user", JSON.stringify(res.data.user));
       setToken(res.data.token);
       setUser(res.data.user);
+
+      // Optional: Set global Axios header
+      axios.defaults.headers.common["Authorization"] = `Bearer ${res.data.token}`;
     } catch (err) {
       throw new Error(err.response?.data?.message || "Login failed");
     }
   };
 
+  // Logout
   const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    setToken(null);
-    setUser(null);
-  };
+  // Clear everything related to auth
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+  sessionStorage.clear(); // just in case anything is stored there
+
+  // Clear Axios headers
+  delete axios.defaults.headers.common["Authorization"];
+
+  // Reset state
+  setToken(null);
+  setUser(null);
+
+  // Force reload to reset all components
+  window.location.href = "/login"; // redirect to login instead of reload
+};
+
 
   return (
     <AuthContext.Provider value={{ user, token, signup, login, logout }}>

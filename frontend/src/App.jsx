@@ -14,27 +14,34 @@ import BookAppointment from './pages/BookAppointment';
 import DietPlanner from './pages/DietPlanner';
 import Community from './pages/Community';
 import About from './pages/About';
+import Dashboard from './components/Dashboard';
 
 function App() {
   const location = useLocation();
 
-  // Define which paths should hide the navbar and footer
-  const pathsWithoutNavbar = ['/login', '/signup'];
-  const pathsWithoutFooter = ['/login', '/signup', '/chat'];
+  // Define which paths should hide the navbar and footer.
+  // Use a Set for efficient lookup and include a check for trailing slashes.
+  const pathsWithoutNavbar = new Set(['/login', '/signup']);
+  const pathsWithoutFooter = new Set(['/login', '/signup', '/chat']);
 
-  const hideNavbar = pathsWithoutNavbar.includes(location.pathname);
-  const hideFooter = pathsWithoutFooter.includes(location.pathname);
+  // Normalize the current path for a reliable check.
+  const normalizedPathname = location.pathname.endsWith('/') 
+    ? location.pathname.slice(0, -1) // Remove trailing slash
+    : location.pathname;
+
+  const hideNavbar = pathsWithoutNavbar.has(normalizedPathname.toLowerCase());
+  const hideFooter = pathsWithoutFooter.has(normalizedPathname.toLowerCase());
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-cyan-900 to-blue-900 font-inter">
       {!hideNavbar && <Navbar />}
 
-      <div className="flex-grow flex flex-col pt-16">
+      <div className={`flex-grow flex flex-col ${!hideNavbar ? 'pt-16' : ''}`}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path='/community' element={<Community/>}></Route>
+          
           <Route path='/about' element={<About/>}></Route>
 
           {/* Protected routes */}
@@ -43,6 +50,22 @@ function App() {
             element={
               <ProtectedRoute>
                 <ChatWithAssistant />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/community"
+            element={
+              <ProtectedRoute>
+                <Community />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
               </ProtectedRoute>
             }
           />
@@ -67,7 +90,6 @@ function App() {
           <Route path="/find-doctors" element={<ProtectedRoute><FindDoctors /></ProtectedRoute>}></Route>
           <Route path="/book-appointment" element={<ProtectedRoute><BookAppointment /></ProtectedRoute>}></Route>
         </Routes>
-
       </div>
 
       {!hideFooter && <Footer />}

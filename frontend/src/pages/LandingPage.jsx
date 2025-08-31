@@ -70,7 +70,7 @@ const LandingPage = () => {
     <div className="bg-gradient-to-br from-cyan-900 to-blue-900 min-h-screen pt-8 text-white">
 
 
-      <main className="container mx-auto px-4 py-12 ">
+      <main className="container mx-auto px-4  ">
         {/* HERO */}
         <section
           id="hero"
@@ -102,9 +102,6 @@ const LandingPage = () => {
             </a>
           </div>
         </section>
-
-
-
 
         {/* SERVICES (cards: now gradients + bright text) */}
         <section
@@ -225,79 +222,89 @@ const LandingPage = () => {
           </div>
         </section>
 
-
         {/* DASHBOARD (cards: gradients + white text) */}
-        <section id="dashboard" className="py-12 bg-gradient-to-br from-gray-800 to-gray-600 rounded-3xl shadow-lg mb-16 p-8 md:p-12 text-center text-white fade-in-on-scroll">
-          <h3 className="text-4xl font-extrabold text-white mb-6">Your Personal Health Dashboard</h3>
-          <p className="text-gray-300 max-w-2xl mx-auto mb-8">
-            Track your health metrics, appointments, and progress all in one place.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+       <section id="dashboard" className="py-12 bg-gradient-to-br from-gray-800 to-gray-600 rounded-3xl shadow-lg mb-16 p-8 md:p-12 text-center text-white fade-in-on-scroll">
+    <h3 className="text-4xl font-extrabold text-white mb-6">Your Personal Health Dashboard</h3>
+    <p className="text-gray-300 max-w-2xl mx-auto mb-8">
+        Track your health metrics, appointments, and progress all in one place.
+    </p>
+    {/* Flex container to organize the grid and the button vertically */}
+    <div className="flex flex-col items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
             <div className="rounded-3xl p-6 shadow-md flex flex-col items-center text-center bg-gradient-to-br from-blue-600 to-blue-800">
-              <FaHeartbeat className="text-white text-4xl mb-3" />
-              <h4 className="text-xl font-bold mb-1 text-white">Heart Rate</h4>
-              <p className="text-white text-2xl font-bold">72 bpm</p>
+                <FaHeartbeat className="text-white text-4xl mb-3" />
+                <h4 className="text-xl font-bold mb-1 text-white">Heart Rate</h4>
+                <p className="text-white text-2xl font-bold">72 bpm</p>
             </div>
             <div className="rounded-3xl p-6 shadow-md flex flex-col items-center text-center bg-gradient-to-br from-emerald-600 to-teal-700">
-              <FaRunning className="text-white text-4xl mb-3" />
-              <h4 className="text-xl font-bold mb-1 text-white">Steps Today</h4>
-              <p className="text-white text-2xl font-bold">8,500</p>
+                <FaRunning className="text-white text-4xl mb-3" />
+                <h4 className="text-xl font-bold mb-1 text-white">Steps Today</h4>
+                <p className="text-white text-2xl font-bold">8,500</p>
             </div>
             <div className="rounded-3xl p-6 shadow-md flex flex-col items-center text-center bg-gradient-to-br from-purple-600 to-indigo-700">
-              <FaBed className="text-white text-4xl mb-3" />
-              <h4 className="text-xl font-bold mb-1 text-white">Sleep Score</h4>
-              <p className="text-white text-2xl font-bold">92%</p>
+                <FaBed className="text-white text-4xl mb-3" />
+                <h4 className="text-xl font-bold mb-1 text-white">Sleep Score</h4>
+                <p className="text-white text-2xl font-bold">92%</p>
             </div>
-          </div>
-          <button className="mt-8 bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105">
+        </div>
+        {/* The Link is now properly spaced below the grid with mt-8 */}
+        <Link 
+            to="/dashboard" 
+            className="mt-8 bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105"
+        >
             Go to Dashboard
-          </button>
-        </section>
+        </Link>
+    </div>
+</section>
 
         {/* COMMUNITY (cards: dark surfaces) */}
         <section id="community" className="py-12 rounded-3xl shadow-lg p-8 md:p-12 mb-16 fade-in-on-scroll bg-white/10 backdrop-blur-xl border border-white/10">
-          <h3 className="text-4xl font-extrabold text-white text-center mb-8">Join the Community</h3>
-          <p className="text-gray-200 max-w-2xl mx-auto mb-8 text-center">
-            Connect with others, ask questions, and share your health journey.
-          </p>
-          <div className="space-y-6">
-            <div className="flex items-center space-x-4 bg-white/10 p-4 rounded-xl shadow-sm hover:shadow-md transition duration-300 border border-white/10">
-              <div className="flex-shrink-0 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white text-2xl">
-                <i className="fas fa-heart"></i>
-              </div>
-              <div className="flex-grow">
-                <h4 className="text-xl font-bold text-white">Cardiology & Heart Health</h4>
-                <p className="text-gray-200">Discussions about heart conditions, fitness, and diet.</p>
-              </div>
-              <span className="text-sm font-semibold text-gray-200">1.2k Posts</span>
-            </div>
-
-            <div className="flex items-center space-x-4 bg-white/10 p-4 rounded-xl shadow-sm hover:shadow-md transition duration-300 border border-white/10">
-              <div className="flex-shrink-0 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white text-2xl">
-                <i className="fas fa-apple-alt"></i>
-              </div>
-              <div className="flex-grow">
-                <h4 className="text-xl font-bold text-white">Nutrition & Diet</h4>
-                <p className="text-gray-200">Share recipes, meal plans, and tips for healthy eating.</p>
-              </div>
-              <span className="text-sm font-semibold text-gray-200">850 Posts</span>
-            </div>
-
-            <div className="flex items-center space-x-4 bg-white/10 p-4 rounded-xl shadow-sm hover:shadow-md transition duration-300 border border-white/10">
-              <div className="flex-shrink-0 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white text-2xl">
-                <i className="fas fa-running"></i>
-              </div>
-              <div className="flex-grow">
-                <h4 className="text-xl font-bold text-white">Fitness & Exercise</h4>
-                <p className="text-gray-200">Talk about workout routines, motivation, and fitness goals.</p>
-              </div>
-              <span className="text-sm font-semibold text-gray-200">2.1k Posts</span>
-            </div>
+      <h3 className="text-4xl font-extrabold text-white text-center mb-8">Join the Community</h3>
+      <p className="text-gray-200 max-w-2xl mx-auto mb-8 text-center">
+        Connect with others, ask questions, and share your health journey.
+      </p>
+      <div className="space-y-6">
+        <div className="flex items-center space-x-4 bg-white/10 p-4 rounded-xl shadow-sm hover:shadow-md transition duration-300 border border-white/10">
+          <div className="flex-shrink-0 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white text-2xl">
+            <i className="fas fa-heart"></i>
           </div>
-          <button className="mt-8 bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105 mx-auto block">
-            Join the Discussion
-          </button>
-        </section>
+          <div className="flex-grow">
+            <h4 className="text-xl font-bold text-white">Cardiology & Heart Health</h4>
+            <p className="text-gray-200">Discussions about heart conditions, fitness, and diet.</p>
+          </div>
+          <span className="text-sm font-semibold text-gray-200">1.2k Posts</span>
+        </div>
+
+        <div className="flex items-center space-x-4 bg-white/10 p-4 rounded-xl shadow-sm hover:shadow-md transition duration-300 border border-white/10">
+          <div className="flex-shrink-0 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white text-2xl">
+            <i className="fas fa-apple-alt"></i>
+          </div>
+          <div className="flex-grow">
+            <h4 className="text-xl font-bold text-white">Nutrition & Diet</h4>
+            <p className="text-gray-200">Share recipes, meal plans, and tips for healthy eating.</p>
+          </div>
+          <span className="text-sm font-semibold text-gray-200">850 Posts</span>
+        </div>
+
+        <div className="flex items-center space-x-4 bg-white/10 p-4 rounded-xl shadow-sm hover:shadow-md transition duration-300 border border-white/10">
+          <div className="flex-shrink-0 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white text-2xl">
+            <i className="fas fa-running"></i>
+          </div>
+          <div className="flex-grow">
+            <h4 className="text-xl font-bold text-white">Fitness & Exercise</h4>
+            <p className="text-gray-200">Talk about workout routines, motivation, and fitness goals.</p>
+          </div>
+          <span className="text-sm font-semibold text-gray-200">2.1k Posts</span>
+        </div>
+      </div>
+      {/* Changed button to Link for routing */}
+      <Link 
+        to="/community"
+        className="mt-8 bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105 mx-auto block text-center"
+      >
+        Join the Discussion
+      </Link>
+    </section>
 
         {/* REPORTS (dropzone on dark surface) */}
         <section id="reports" className="py-12 rounded-3xl shadow-lg mb-16 p-8 md:p-12 text-center fade-in-on-scroll bg-white/10 backdrop-blur-xl border border-white/10">

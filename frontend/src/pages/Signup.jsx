@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
 import { motion } from "framer-motion";
 import signupBg from "../assets/bg.png";
 import { useAuth } from "../context/AuthContext.jsx";
@@ -8,11 +7,11 @@ import { useAuth } from "../context/AuthContext.jsx";
 const Signup = () => {
   const { signup } = useAuth();
   const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({ type: "", text: "" });
 
@@ -23,6 +22,7 @@ const Signup = () => {
 
     try {
       await signup(name, username, email, password);
+
       setMessage({ type: "success", text: "Signup successful! Redirecting to login..." });
 
       setTimeout(() => {
@@ -42,9 +42,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative bg-[radial-gradient(circle_at_center,_#E287EA,_#971BA2)] text-white">
-      <Navbar />
-
+    <div className="min-h-screen flex items-center justify-center relative text-white">
       {/* Background Image */}
       <img
         src={signupBg}
@@ -57,7 +55,8 @@ const Signup = () => {
         variants={formVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 backdrop-blur-xl bg-white/10 p-10 rounded-3xl shadow-2xl border border-white/20 w-96 mt-12 min-h-[620px] flex flex-col justify-center"
+        // Removed fixed min-height for better responsiveness
+        className="relative z-10 backdrop-blur-xl bg-white/10 p-10 rounded-3xl shadow-2xl border border-white/20 w-96 flex flex-col justify-center"
       >
         <h2 className="text-4xl font-extrabold mb-6 text-center tracking-wide drop-shadow-lg">
           Create an Account
@@ -76,7 +75,6 @@ const Signup = () => {
             onChange={(e) => setName(e.target.value)}
             required
           />
-
           <input
             type="text"
             placeholder="Username"
@@ -86,7 +84,6 @@ const Signup = () => {
             onChange={(e) => setUsername(e.target.value)}
             required
           />
-
           <input
             type="email"
             placeholder="Email"
@@ -96,7 +93,6 @@ const Signup = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-
           <input
             type="password"
             placeholder="Password"
@@ -106,26 +102,30 @@ const Signup = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-
           <button
             type="submit"
             className="px-6 py-3 rounded-xl bg-white/20 border border-white/30 
                       hover:bg-white/30 text-white font-semibold text-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={isLoading}
           >
-            {isLoading ? "Signing up..." : "Signup"}
+            {isLoading ? (
+              <div className="flex items-center justify-center">
+                {/* Simple loading spinner */}
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                Signing up...
+              </div>
+            ) : "Signup"}
           </button>
         </form>
 
         {/* Display the message here */}
         {message.text && (
-          <p className={`mt-6 text-center text-sm font-medium ${
-            message.type === 'success' ? 'text-green-400' : 'text-red-400'
-          }`}>
+          <p className={`mt-6 text-center text-sm font-medium ${message.type === 'success' ? 'text-green-400' : 'text-red-400'
+            }`}>
             {message.text}
           </p>
         )}
-        
+
         {/* Login Link */}
         <p className="mt-8 text-center text-white/80 text-sm">
           Already have an account?{" "}
