@@ -7,7 +7,6 @@ import {
     FaFileAlt, 
     FaCalendarCheck, 
     FaSignOutAlt, 
-    FaNotesMedical, 
     FaUserMd, 
     FaStethoscope, 
     FaChartBar, 
@@ -15,6 +14,7 @@ import {
     FaComments,
     FaHome
 } from 'react-icons/fa';
+import { IoFitnessOutline } from 'react-icons/io5';
 
 const Navbar = () => {
     // State to simulate user login status
@@ -44,7 +44,6 @@ const Navbar = () => {
     // Function to handle link clicks that should close the sidebar
     const handleLinkClick = () => {
         setIsSidebarOpen(false);
-        // This is a good practice for `Link` components in the sidebar
     };
 
     // Handler for search input changes
@@ -68,15 +67,13 @@ const Navbar = () => {
                 setIsSidebarOpen(false);
             }
         };
-
+3
         if (isSidebarOpen) {
             document.addEventListener("mousedown", handleClickOutside);
         } else {
-            // Clean up the event listener when sidebar is not open
             document.removeEventListener("mousedown", handleClickOutside);
         }
 
-        // Clean up on component unmount
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
@@ -94,23 +91,22 @@ const Navbar = () => {
                             </button>
                         )}
                         <Link to="/" className="flex items-center space-x-2 text-2xl font-bold text-gradient cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                            <FaNotesMedical className="text-pink-500" />
+                            <IoFitnessOutline className="text-cyan-400"/>
                             <span>HealthCure</span>
                         </Link>
                     </div>
 
-                    {/* Links */}
+                    {/* Links for desktop/tablet (hidden on small screens) */}
                     <div className="hidden md:flex space-x-12 text-white font-medium">
                         <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Home</Link>
-                        {/* Using <Link> for internal routes is better than <a> */}
                         <Link to="/services">Services</Link>
-                        <Link to="/doctors">Doctors</Link>
+                        <Link to="/find-doctors">Doctors</Link>
                         <Link to="/about">About</Link>
                         <Link to="/community">Community</Link>
                     </div>
 
-                    {/* Buttons or Search Bar (Conditional Rendering) */}
-                    <div className="flex space-x-4 items-center">
+                    {/* Buttons or Search Bar for desktop/tablet */}
+                    <div className="hidden md:flex space-x-4 items-center">
                         {isLoggedIn ? (
                             <div className="relative">
                                 <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -143,10 +139,10 @@ const Navbar = () => {
                 </div>
             </nav>
 
-            {/* Sidebar component (conditionally rendered) */}
+            {/* Sidebar component */}
             {isLoggedIn && (
                 <>
-                    {/* Overlay to handle clicks */}
+                    {/* Overlay to handle clicks outside */}
                     <div 
                         className={`fixed inset-0 bg-black/50 z-30 transition-opacity duration-300 ${isSidebarOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`} 
                         onClick={() => setIsSidebarOpen(false)}
@@ -164,6 +160,20 @@ const Navbar = () => {
                                     <FaTimes />
                                 </button>
                             </div>
+                            
+                            {/* Search bar inside the sidebar */}
+                            <div className="relative w-full mb-6">
+                                <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                                <input
+                                    type="text"
+                                    placeholder="Search..."
+                                    value={searchQuery}
+                                    onChange={handleSearchChange}
+                                    onKeyDown={handleKeyPress}
+                                    className="px-4 py-2 pl-10 rounded-2xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-white/50 transition w-full"
+                                />
+                            </div>
+                            
                             <ul className="space-y-4">
                                 <li>
                                     <Link to="/" className="flex items-center space-x-2 py-2 hover:bg-gray-800 rounded" onClick={handleLinkClick}>

@@ -15,7 +15,12 @@ import DietPlanner from './pages/DietPlanner';
 import Community from './pages/Community';
 import About from './pages/About';
 import Dashboard from './components/Dashboard';
-
+import FAQ from './pages/FAQ.JSX';
+import TermsAndCondition from './pages/TermsAndConditions';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import Help from './pages/Help';
+import Reports from './pages/Reports';
+import Services from './components/Services';
 function App() {
   const location = useLocation();
 
@@ -25,7 +30,7 @@ function App() {
   const pathsWithoutFooter = new Set(['/login', '/signup', '/chat']);
 
   // Normalize the current path for a reliable check.
-  const normalizedPathname = location.pathname.endsWith('/') 
+  const normalizedPathname = location.pathname.endsWith('/')
     ? location.pathname.slice(0, -1) // Remove trailing slash
     : location.pathname;
 
@@ -41,8 +46,12 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          
-          <Route path='/about' element={<About/>}></Route>
+          <Route path='/services' element={<Services />}></Route>
+          <Route path='/about' element={<About />}></Route>
+          <Route path='/faq' element={<FAQ />}></Route>
+          <Route path='/terms' element={<TermsAndCondition />}></Route>
+          <Route path='/privacy-policy' element={<PrivacyPolicy />}></Route>
+          <Route path='/help' element={<Help />}></Route>
 
           {/* Protected routes */}
           <Route
@@ -50,6 +59,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <ChatWithAssistant />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/reports"
+            element={
+              <ProtectedRoute>
+                <Reports />
               </ProtectedRoute>
             }
           />
@@ -79,7 +96,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-           <Route
+          <Route
             path="/diet-planner"
             element={
               <ProtectedRoute>
