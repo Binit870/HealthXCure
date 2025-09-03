@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import LandingPage from './pages/LandingPage';
+import LandingPage from './components/LandingPage/LandingPage';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import SearchResults from './components/SearchResults';
@@ -21,6 +21,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import Help from './pages/Help';
 import Reports from './pages/Reports';
 import Services from './components/Services';
+import NotFound from './components/NotFound';
 function App() {
   const location = useLocation();
 
@@ -106,6 +107,7 @@ function App() {
           />
           <Route path="/find-doctors" element={<ProtectedRoute><FindDoctors /></ProtectedRoute>}></Route>
           <Route path="/book-appointment" element={<ProtectedRoute><BookAppointment /></ProtectedRoute>}></Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
 

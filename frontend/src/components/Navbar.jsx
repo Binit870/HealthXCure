@@ -51,12 +51,49 @@ const Navbar = () => {
         setSearchQuery(event.target.value);
     };
 
+    // Function to handle the search and redirect
+    const handleSearch = (query) => {
+        const normalizedQuery = query.toLowerCase().trim();
+
+        // A map of keywords to their corresponding routes
+        const pageMappings = {
+            
+            'find doctors': '/find-doctors',
+            'doctors': '/find-doctors',
+            'diagnosis': '/symptom-checker',
+            'symptom checker': '/symptom-checker',
+            'reports': '/reports',
+            'my appointments': '/book-appointment',
+            'appointments': '/book-appointment',
+            'book appointment': '/book-appointment',
+            'chat with assistant': '/chat',
+            'chat': '/chat',
+            'assistant': '/chat',
+            'diet planner': '/diet-planner',
+            'diet': '/diet-planner',
+            'services': '/services',
+            'about': '/about',
+            'community': '/community'
+        };
+
+        const destination = pageMappings[normalizedQuery];
+
+        if (destination) {
+            // If a match is found, navigate to that page
+            navigate(destination);
+        } else {
+            // If no direct match, navigate to a 'not found' page.
+            // You must have this route configured in your App.jsx
+            navigate('/not-found');
+        }
+    };
+
     // Handler for key presses in the search input
     const handleKeyPress = (event) => {
         if (event.key === 'Enter' && searchQuery.trim() !== "") {
-            navigate(`/search?query=${searchQuery}`);
-            setSearchQuery("");
-            setIsSidebarOpen(false);
+            handleSearch(searchQuery); // Call the new search handler
+            setSearchQuery(""); // Clear the input after searching
+            setIsSidebarOpen(false); // Close sidebar on search
         }
     };
 
@@ -67,7 +104,7 @@ const Navbar = () => {
                 setIsSidebarOpen(false);
             }
         };
-3
+        
         if (isSidebarOpen) {
             document.addEventListener("mousedown", handleClickOutside);
         } else {
