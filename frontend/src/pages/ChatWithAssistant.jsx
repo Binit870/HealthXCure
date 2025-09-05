@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
+import API from "../utils/Api";
 
 const ChatWithAssistant = () => {
   const [messages, setMessages] = useState([
@@ -24,7 +24,7 @@ const ChatWithAssistant = () => {
     setMessages((prev) => [...prev, { sender: "user", text: input }]);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/ai/chat", {
+      const res = await API.post("/ai/chat", {
         message: input,
       });
 
@@ -65,8 +65,8 @@ const ChatWithAssistant = () => {
       const formData = new FormData();
       formData.append("file", file);
 
-      const res = await axios.post(
-        "http://localhost:5000/api/ai/upload",
+      const res = await API.post(
+        "/ai/upload",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

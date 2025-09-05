@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { FaHeartbeat, FaRunning, FaBed, FaUtensils, FaTired, FaFileAlt, FaUserCircle, FaEdit } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext'; 
-import axios from 'axios'; 
+
+import API from '../utils/Api';
 
 const Dashboard = () => {
     const { user, token, updateUser } = useAuth();
@@ -66,7 +67,7 @@ const Dashboard = () => {
             formData.append('profileImage', file);
 
             try {
-                const response = await axios.post(`/api/user/${user.id}/profile-image`, formData, {
+                const response = await API.post(`/user/${user.id}/profile-image`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         Authorization: `Bearer ${token}`, 
