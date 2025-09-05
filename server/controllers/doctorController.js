@@ -61,47 +61,77 @@ export const searchDoctors = async (req, res) => {
     }
 };
 
-
-
 const cityCoordinates = {
-  mumbai: "19.0760,72.8777,100",
-  delhi: "28.6139,77.2090,100",
-  bangalore: "12.9716,77.5946,100",
-  kolkata: "22.5726,88.3639,100",
-  chennai: "13.0827,80.2707,100",
+    mumbai: "19.0760,72.8777,100",
+    delhi: "28.6139,77.2090,100",
+    bangalore: "12.9716,77.5946,100",
+    kolkata: "22.5726,88.3639,100",
+    chennai: "13.0827,80.2707,100",
 };
 
 export const getDoctors = async (req, res) => {
-  try {
-    const { city } = req.query;
-    const location =
-      cityCoordinates[city?.toLowerCase()] || cityCoordinates["mumbai"];
+    try {
+        const { city } = req.query;
+        const location =
+            cityCoordinates[city?.toLowerCase()] || cityCoordinates["mumbai"];
 
-    const response = await axios.get(
-      "https://betterdoctor.p.rapidapi.com/practice_search",
-      {
-        headers: {
-          "x-rapidapi-key": process.env.BETTER_DOCTOR_RAPID_API_KEY,
-          "x-rapidapi-host": "betterdoctor.p.rapidapi.com",
-        },
-        params: {
-          location,
-          user_location: location.split(",").slice(0, 2).join(","), // lat,lng
-          skip: 0,
-          limit: 10,
-        },
-      }
-    );
+        const response = await axios.get(
+            "https://betterdoctor.p.rapidapi.com/practice_search",
+            {
+                headers: {
+                    "x-rapidapi-key": process.env.BETTER_DOCTOR_RAPID_API_KEY,
+                    "x-rapidapi-host": "betterdoctor.p.rapidapi.com",
+                },
+                params: {
+                    location,
+                    user_location: location.split(",").slice(0, 2).join(","), // lat,lng
+                    skip: 0,
+                    limit: 10,
+                },
+            }
+        );
 
-    res.json({ doctors: response.data.data || [] });
-  } catch (error) {
-    console.error("❌ Error in getDoctors:");
-    if (error.response) {
-      console.error("Status:", error.response.status);
-      console.error("Data:", error.response.data);
-    } else {
-      console.error("Message:", error.message);
+        res.json({ doctors: response.data.data || [] });
+    } catch (error) {
+        console.error("❌ Error in getDoctors:");
+        if (error.response) {
+            console.error("Status:", error.response.status);
+            console.error("Data:", error.response.data);
+        } else {
+            console.error("Message:", error.message);
+        }
+        res.status(500).json({ error: "Failed to fetch doctors" });
     }
-    res.status(500).json({ error: "Failed to fetch doctors" });
-  }
+};
+export const getDirections = async (req, res) => {
+    const { originLat, originLng, destLat, destLng } = req.query;
+
+    if (!originLat || !originLng || !destLat || !destLng) {
+        return res.status(400).json({ message: 'Missing required location parameters.' });
+    }
+
+    try {
+        const directionsResponse = await axios.get(
+            `https://maps.googleapis.com/maps/api/directions/json?origin=${originLat},${originLng}&destination=${destLat},${destLng}&key=${GOOGLE_API_KEY}`
+        );
+
+        const route = directionsResponse.data.routes[0];
+
+        if (!route) {
+            return res.status(404).json({ message: 'No route found between these locations.' });
+        }
+
+        const leg = route.legs[0];
+
+        const directionsData = {
+            distance: leg.distance.text,
+            duration: leg.duration.text,
+            url: `https://www.google.com/maps/dir/?api=1&origin=${originLat},${originLng}&destination=${destLat},${destLng}&travelmode=driving`
+        };
+
+        res.status(200).json(directionsData);
+    } catch (error) {
+        console.error('Error fetching directions:', error.message);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
 };

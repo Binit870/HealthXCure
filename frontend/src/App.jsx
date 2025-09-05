@@ -15,7 +15,7 @@ import DietPlanner from './pages/DietPlanner';
 import Community from './pages/Community';
 import About from './pages/About';
 import Dashboard from './components/Dashboard';
-import FAQ from './pages/FAQ.JSX';
+import FAQ from './pages/FAQ';
 import TermsAndCondition from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Help from './pages/Help';

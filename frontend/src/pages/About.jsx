@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaHeartbeat,FaUtensils, FaUserMd, FaNotesMedical,FaStethoscope, FaRobot, FaCalendarCheck, FaChartLine, FaShieldAlt } from "react-icons/fa";
+import { FaHeartbeat,FaUtensils, FaUserMd, FaNotesMedical,FaStethoscope, FaRobot, FaShieldAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const About = () => {
