@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { motion } from "framer-motion";
 import { FaStethoscope } from "react-icons/fa";
 import { MdHealthAndSafety } from "react-icons/md";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import ReactMarkdown from "react-markdown"; // ✅ for markdown parsing
-
+import API from "../utils/Api";
 const SymptomChecker = () => {
   const [symptoms, setSymptoms] = useState("");
   const [results, setResults] = useState([]);
@@ -22,8 +21,8 @@ const SymptomChecker = () => {
     setResults([]);
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/ai/diagnosis/check",
+      const res = await API.post(
+        "/ai/diagnosis/check",
         {
           symptoms: symptoms.split(",").map((s) => s.trim()),
         }

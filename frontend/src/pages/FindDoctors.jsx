@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { GoogleMap, useJsApiLoader, MarkerF, InfoWindowF } from '@react-google-maps/api';
 import { FaMapMarkerAlt, FaSearch } from 'react-icons/fa';
 import axios from 'axios';
-
+import API from '../utils/Api';
 const containerStyle = {
   width: '100%',
   height: '500px',
@@ -55,7 +55,7 @@ const FindDoctors = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get('http://localhost:5000/api/search/doctors', {
+      const response = await API.get('/search/doctors', {
         params: {
           query: query,
           lat: location.lat,
@@ -94,7 +94,7 @@ const FindDoctors = () => {
     try {
       // You will need to create a new backend endpoint for directions.
       // The URL below is an example.
-      const response = await axios.get('http://localhost:5000/api/directions', {
+      const response = await API.get('/directions', {
         params: {
           originLat: userLocation.lat,
           originLng: userLocation.lng,

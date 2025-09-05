@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+
+import API from "../utils/Api";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   AiOutlineUpload,
@@ -24,7 +25,7 @@ const Reports = () => {
 
   const fetchHistory = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/reports/history");
+      const res = await API.get("/reports/history");
       setHistory(res.data);
     } catch (err) {
       console.error("Error fetching history:", err);
@@ -55,8 +56,8 @@ const Reports = () => {
     try {
       setLoading(true);
       setSelectedHistoryItem(null); // Clear previous selection
-      const res = await axios.post(
-        "http://localhost:5000/api/reports/analyze",
+      const res = await API.post(
+        "/reports/analyze",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -80,7 +81,7 @@ const Reports = () => {
     if (!confirmed) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/reports/delete/${id}`);
+      await API.delete(`/reports/delete/${id}`);
       setHistory((prev) => prev.filter((item) => item._id !== id));
       if (selectedHistoryItem && selectedHistoryItem._id === id) {
         clearCurrentView(); // Clear the displayed result if the deleted item was being viewed
