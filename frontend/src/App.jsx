@@ -1,27 +1,29 @@
 import React from 'react';
+
 import { Routes, Route, useLocation } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer';
 import LandingPage from './components/LandingPage/LandingPage';
+import ProtectedRoute from './components/ProtectedRoute';
+import Dashboard from './components/Dashboard/Dashboard';
+import Reports from './components/Reports/Reports';
+import NotFound from './components/NotFound';
+import Services from './components/Services';
+
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import SearchResults from './components/SearchResults';
 import ChatWithAssistant from './pages/ChatWithAssistant';
-import ProtectedRoute from './components/ProtectedRoute';
 import SymptomChecker from './pages/SymptomChecker';
 import FindDoctors from './pages/FindDoctors';
 import BookAppointment from './pages/BookAppointment';
 import DietPlanner from './pages/DietPlanner';
 import Community from './pages/Community';
 import About from './pages/About';
-import Dashboard from './components/Dashboard';
 import FAQ from './pages/FAQ';
 import TermsAndCondition from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Help from './pages/Help';
-import Reports from './pages/Reports';
-import Services from './components/Services';
-import NotFound from './components/NotFound';
+import FitnessPlanner from './pages/FitnessPlanner';
 function App() {
   const location = useLocation();
 
@@ -64,6 +66,14 @@ function App() {
             }
           />
           <Route
+            path="/fitness"
+            element={
+              <ProtectedRoute>
+                <FitnessPlanner />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/reports"
             element={
               <ProtectedRoute>
@@ -89,14 +99,7 @@ function App() {
           />
           <Route path="/symptom-checker" element={<ProtectedRoute><SymptomChecker /></ProtectedRoute>} />
 
-          <Route
-            path="/search"
-            element={
-              <ProtectedRoute>
-                <SearchResults />
-              </ProtectedRoute>
-            }
-          />
+          
           <Route
             path="/diet-planner"
             element={
