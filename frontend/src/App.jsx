@@ -15,24 +15,25 @@ import DietPlanner from './pages/DietPlanner';
 import Community from './pages/Community';
 import About from './pages/About';
 import Dashboard from './components/Dashboard';
-import FAQ from './pages/FAQ.JSX';
+import FAQ from './pages/FAQ';
 import TermsAndCondition from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Help from './pages/Help';
 import Reports from './pages/Reports';
 import Services from './components/Services';
 import NotFound from './components/NotFound';
+import ContactSection from './pages/ContactSection';
+import DoctorProfile from './pages/DoctorProfile'; // <-- Add this import
+
 function App() {
   const location = useLocation();
 
-  // Define which paths should hide the navbar and footer.
-  // Use a Set for efficient lookup and include a check for trailing slashes.
+  // Hide Navbar/Footer on specific routes
   const pathsWithoutNavbar = new Set(['/login', '/signup']);
   const pathsWithoutFooter = new Set(['/login', '/signup', '/chat']);
 
-  // Normalize the current path for a reliable check.
   const normalizedPathname = location.pathname.endsWith('/')
-    ? location.pathname.slice(0, -1) // Remove trailing slash
+    ? location.pathname.slice(0, -1)
     : location.pathname;
 
   const hideNavbar = pathsWithoutNavbar.has(normalizedPathname.toLowerCase());
@@ -44,17 +45,22 @@ function App() {
 
       <div className={`flex-grow flex flex-col ${!hideNavbar ? 'pt-16' : ''}`}>
         <Routes>
+          {/* Public Pages */}
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path='/services' element={<Services />}></Route>
-          <Route path='/about' element={<About />}></Route>
-          <Route path='/faq' element={<FAQ />}></Route>
-          <Route path='/terms' element={<TermsAndCondition />}></Route>
-          <Route path='/privacy-policy' element={<PrivacyPolicy />}></Route>
-          <Route path='/help' element={<Help />}></Route>
+          <Route path="/services" element={<Services />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/terms" element={<TermsAndCondition />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/help" element={<Help />} />
+          <Route path="/contact" element={<ContactSection />} />
 
-          {/* Protected routes */}
+          {/* Doctor Profile Route */}
+          <Route path="/doctor/:id" element={<DoctorProfile />} /> {/* <-- Added */}
+
+          {/* Protected Pages */}
           <Route
             path="/chat"
             element={
@@ -87,8 +93,14 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/symptom-checker" element={<ProtectedRoute><SymptomChecker /></ProtectedRoute>} />
-
+          <Route
+            path="/symptom-checker"
+            element={
+              <ProtectedRoute>
+                <SymptomChecker />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/search"
             element={
@@ -105,8 +117,24 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/find-doctors" element={<ProtectedRoute><FindDoctors /></ProtectedRoute>}></Route>
-          <Route path="/book-appointment" element={<ProtectedRoute><BookAppointment /></ProtectedRoute>}></Route>
+          <Route
+            path="/find-doctors"
+            element={
+              <ProtectedRoute>
+                <FindDoctors />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/book-appointment"
+            element={
+              <ProtectedRoute>
+                <BookAppointment />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* 404 Fallback */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

@@ -6,7 +6,7 @@ const Help = () => {
       <h1 className="text-4xl font-bold text-center mb-6 text-teal-600">
         Help & Support
       </h1>
-      <p className="text-gray-600 text-lg text-center mb-10">
+       <p className="text-white text-lg text-center mb-10">
         Need assistance? We’re here to help you make the most of HealthCure.
       </p>
 
