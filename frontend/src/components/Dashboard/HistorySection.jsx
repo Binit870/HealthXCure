@@ -6,9 +6,11 @@ const HistorySection = ({ title, icon: Icon, historyData, emptyMessage }) => {
       case 'Diet History':
         return (
           <div key={index}>
-            <p className="text-sm font-semibold">{item.date}:</p>
-            <p className="text-lg">
-              {item.foodItem} - <span className="font-bold text-yellow-300">{item.calories} kcal</span>
+            <p className="text-sm font-semibold">
+              {new Date(item.createdAt).toLocaleDateString()}:
+            </p>
+            <p className="text-lg text-yellow-300 whitespace-pre-line">
+              {item.plan}
             </p>
           </div>
         );
@@ -17,7 +19,8 @@ const HistorySection = ({ title, icon: Icon, historyData, emptyMessage }) => {
           <div key={index}>
             <p className="text-sm font-semibold">{item.date}:</p>
             <p className="text-lg">
-              {item.symptom} - Severity: <span className="font-bold text-red-400">{item.severity}</span>
+              {item.symptom} - Severity:{" "}
+              <span className="font-bold text-red-400">{item.severity}</span>
             </p>
           </div>
         );
@@ -57,7 +60,10 @@ const HistorySection = ({ title, icon: Icon, historyData, emptyMessage }) => {
       {historyData.length > 0 ? (
         <ul className="space-y-4 text-gray-200">
           {historyData.map((item, index) => (
-            <li key={index} className="border-t border-gray-600 pt-4 flex justify-between items-center hover:bg-gray-800 p-2 rounded-lg transition-colors duration-200">
+            <li
+              key={index}
+              className="border-t border-gray-600 pt-4 flex justify-between items-center hover:bg-gray-800 p-2 rounded-lg transition-colors duration-200"
+            >
               {renderHistoryItem(item, index)}
               {renderActionLink(item)}
             </li>
@@ -69,5 +75,6 @@ const HistorySection = ({ title, icon: Icon, historyData, emptyMessage }) => {
     </div>
   );
 };
+
 
 export default HistorySection;

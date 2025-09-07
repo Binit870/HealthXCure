@@ -58,10 +58,8 @@ export const uploadFileToAI = async (req, res) => {
     const filePath = file.path;
 
     if (file.mimetype === "application/pdf") {
-      // ✅ Handle PDF with pdf2json
       extractedText = await extractTextFromPDF(filePath);
     } else if (file.mimetype.startsWith("image/")) {
-      // ✅ Handle Image with Gemini Vision
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
       const result = await model.generateContent([
@@ -74,14 +72,13 @@ export const uploadFileToAI = async (req, res) => {
         },
       ]);
 
-      fs.unlinkSync(filePath); // cleanup
+      fs.unlinkSync(filePath);
       return res.json({ reply: result.response.text() });
     } else {
       fs.unlinkSync(filePath);
       return res.json({ reply: `Unsupported file type: ${file.mimetype}` });
     }
 
-    // ✅ If text extracted (PDF), send to Gemini
     if (extractedText) {
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
@@ -92,7 +89,7 @@ ${extractedText}
 
       const result = await model.generateContent(prompt);
 
-      fs.unlinkSync(filePath); // cleanup
+      fs.unlinkSync(filePath);
       return res.json({ reply: result.response.text() });
     }
 
@@ -107,7 +104,7 @@ ${extractedText}
 // 📌 Symptom Checker with Gemini
 export const checkSymptoms = async (req, res) => {
   try {
-    const { symptoms } = req.body;
+    const { symptoms, age, gender } = req.body;
 
     if (!symptoms || symptoms.length === 0) {
       return res.status(400).json({ error: "Please provide symptoms" });
@@ -117,19 +114,56 @@ export const checkSymptoms = async (req, res) => {
 
     const prompt = `
 You are a medical assistant AI.
-The user has the following symptoms: ${symptoms.join(", ")}.
-List the top 5 most likely possible health conditions in simple language.
-Also, suggest whether the user should see a doctor urgently or monitor symptoms at home.
-    `;
+The user is a ${age}-year-old ${gender}. They have the following symptoms: ${symptoms.join(", ")}.
+Based on this, provide a list of the top 3 most likely health conditions.
+For each condition, include:
+- A brief name.
+- A simple, one-sentence description.
+- An urgency level: "Non-Urgent," "Urgent Care," or "Emergency."
+- A call to action (CTA) in the form of simple, actionable advice.
+
+Format the response as a single JSON object with a key "conditions" that contains an array of these objects.
+Example JSON response:
+{
+  "conditions": [
+    {
+      "name": "Common Cold",
+      "description": "A viral infection of the nose and throat, causing sneezing and a stuffy nose.",
+      "urgency_level": "Non-Urgent",
+      "cta": "Rest and drink plenty of fluids. Symptoms usually resolve within a week."
+    }
+  ]
+}
+`;
 
     const result = await model.generateContent(prompt);
+    const textResponse = result.response.text();
 
-    res.json({
-      input: symptoms,
-      conditions: result.response.text(),
-    });
+    // ✅ NEW AND IMPROVED FIX: Extract the JSON string from the response
+    const jsonStartIndex = textResponse.indexOf('{');
+    const jsonEndIndex = textResponse.lastIndexOf('}');
+    
+    // Check if both start and end characters were found
+    if (jsonStartIndex !== -1 && jsonEndIndex !== -1) {
+        const jsonString = textResponse.substring(jsonStartIndex, jsonEndIndex + 1);
+        const parsedData = JSON.parse(jsonString);
+        return res.json(parsedData);
+    } else {
+        // Handle cases where no valid JSON is found
+        return res.status(200).json({
+            error: "AI did not return a valid JSON object. Please try again.",
+            rawResponse: textResponse
+        });
+    }
+
   } catch (error) {
-    console.error("Error checking symptoms:", error.message);
-    res.status(500).json({ error: "Failed to check symptoms" });
+    console.error("Error checking symptoms:", error);
+    if (error instanceof SyntaxError) {
+      return res.status(200).json({
+        error: "AI response was not in the expected format. Please try again.",
+        rawResponse: error.message
+      });
+    }
+    res.status(500).json({ error: "Failed to check symptoms due to a server error." });
   }
 };

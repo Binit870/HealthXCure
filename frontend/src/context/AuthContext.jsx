@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
 import API from "../utils/Api";
+import { jwtDecode } from "jwt-decode"; // 👈 Import jwt-decode
 
 const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
@@ -35,6 +36,28 @@ export const AuthProvider = ({ children }) => {
       }
     }
   }, [token]);
+
+  // ⭐️ This is the new code block to check token expiration
+  useEffect(() => {
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        const currentTime = Date.now() / 1000; // in seconds
+
+        if (decodedToken.exp < currentTime) {
+          console.log("Token expired. Logging out.");
+          logout();
+        } else {
+          console.log("Token is still valid.");
+        }
+      } catch (error) {
+        // Handle invalid token (e.g., malformed)
+        console.error("Invalid token detected. Logging out.", error);
+        logout();
+      }
+    }
+  }, [token]);
+  // ⭐️ End of new code block
 
   const login = async (email, password) => {
     try {
