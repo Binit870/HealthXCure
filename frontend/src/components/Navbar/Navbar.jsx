@@ -4,22 +4,17 @@ import { FaBars } from "react-icons/fa";
 import { IoFitnessOutline } from "react-icons/io5";
 import Sidebar from "./Sidebar";
 import SearchBar from "./SearchBar";
-import  pageMappings  from "./PageMappings";
+import pageMappings from "./PageMappings";
+import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const { token, logout } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const sidebarRef = useRef(null);
   const navigate = useNavigate();
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setIsSidebarOpen(false);
-    navigate("/");
-  };
 
   const handleLinkClick = () => setIsSidebarOpen(false);
   const handleSearchChange = (e) => setSearchQuery(e.target.value);
@@ -55,11 +50,10 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto flex items-center justify-between px-3 py-3">
           {/* Logo + Sidebar toggle */}
           <div className="flex items-center space-x-4">
-            {isLoggedIn && (
-              <button onClick={toggleSidebar} className="text-white text-xl">
-                <FaBars />
-              </button>
-            )}
+            {/* Always show hamburger */}
+            <button onClick={toggleSidebar} className="text-white text-xl">
+              <FaBars />
+            </button>
             <Link to="/" className="flex items-center space-x-2 text-2xl font-bold text-gradient">
               <IoFitnessOutline className="text-cyan-400" />
               <span>HealthCure</span>
@@ -73,17 +67,12 @@ const Navbar = () => {
             <Link to="/find-doctors">Doctors</Link>
             <Link to="/about">About</Link>
             <Link to="/community">Community</Link>
-            <Link 
-                            to="/contact" 
-                           
-                        >
-                            Contact Us
-                        </Link>
+            <Link to="/contact">Contact Us</Link>
           </div>
 
           {/* Search/Login */}
           <div className="hidden md:flex space-x-4 items-center">
-            {isLoggedIn ? (
+            {token ? (
               <SearchBar
                 searchQuery={searchQuery}
                 onChange={handleSearchChange}
@@ -103,19 +92,18 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Sidebar */}
-      {isLoggedIn && (
-        <Sidebar
-          isOpen={isSidebarOpen}
-          sidebarRef={sidebarRef}
-          searchQuery={searchQuery}
-          handleSearchChange={handleSearchChange}
-          handleKeyPress={handleKeyPress}
-          handleLinkClick={handleLinkClick}
-          toggleSidebar={toggleSidebar}
-          handleLogout={handleLogout}
-        />
-      )}
+      {/* Sidebar (always rendered) */}
+      <Sidebar
+        isOpen={isSidebarOpen}
+        sidebarRef={sidebarRef}
+        searchQuery={searchQuery}
+        handleSearchChange={handleSearchChange}
+        handleKeyPress={handleKeyPress}
+        handleLinkClick={handleLinkClick}
+        toggleSidebar={toggleSidebar}
+        handleLogout={logout}
+        isLoggedIn={!!token}
+      />
     </>
   );
 };

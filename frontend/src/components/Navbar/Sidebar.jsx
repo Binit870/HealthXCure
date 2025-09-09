@@ -1,9 +1,19 @@
 import { Link } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
-import  MenuLinks  from "./MenuLinks";
+import MenuLinks from "./MenuLinks";
 import SearchBar from "./SearchBar";
 
-const Sidebar = ({ isOpen, sidebarRef, searchQuery, handleSearchChange, handleKeyPress, handleLinkClick, toggleSidebar, handleLogout }) => (
+const Sidebar = ({
+  isOpen,
+  sidebarRef,
+  searchQuery,
+  handleSearchChange,
+  handleKeyPress,
+  handleLinkClick,
+  toggleSidebar,
+  handleLogout,
+  isLoggedIn,
+}) => (
   <>
     {/* Overlay */}
     <div
@@ -29,37 +39,59 @@ const Sidebar = ({ isOpen, sidebarRef, searchQuery, handleSearchChange, handleKe
           </button>
         </div>
 
-        {/* Search */}
-        <SearchBar
-          searchQuery={searchQuery}
-          onChange={handleSearchChange}
-          onKeyPress={handleKeyPress}
-          className="mb-6"
-        />
+        {isLoggedIn ? (
+          <>
+            <SearchBar
+              searchQuery={searchQuery}
+              onChange={handleSearchChange}
+              onKeyPress={handleKeyPress}
+              className="mb-6"
+            />
 
-        {/* Links */}
-        <ul className="space-y-4">
-          {MenuLinks.map(({ to, label, icon: Icon, isLogout }) => (
-            <li key={label}>
-              {isLogout ? (
-                <button
-                  onClick={handleLogout}
-                  className="flex items-center space-x-2 py-2 w-full text-left hover:bg-gray-800 rounded"
-                >
-                  <Icon /> <span>{label}</span>
-                </button>
-              ) : (
-                <Link
-                  to={to}
-                  className="flex items-center space-x-2 py-2 hover:bg-gray-800 rounded"
-                  onClick={handleLinkClick}
-                >
-                  <Icon /> <span>{label}</span>
-                </Link>
-              )}
-            </li>
-          ))}
-        </ul>
+            <ul className="space-y-4">
+              {MenuLinks.map(({ to, label, icon: Icon, isLogout }) => (
+                <li key={label}>
+                  {isLogout ? (
+                    <button
+                      onClick={() => {
+                        handleLogout();
+                        handleLinkClick();
+                      }}
+                      className="flex items-center space-x-2 py-2 w-full text-left hover:bg-gray-800 rounded"
+                    >
+                      <Icon /> <span>{label}</span>
+                    </button>
+                  ) : (
+                    <Link
+                      to={to}
+                      className="flex items-center space-x-2 py-2 hover:bg-gray-800 rounded"
+                      onClick={handleLinkClick}
+                    >
+                      <Icon /> <span>{label}</span>
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <div className="flex flex-col space-y-4 mt-6">
+            <Link
+              to="/login"
+              onClick={toggleSidebar}
+              className="px-4 py-2 rounded-2xl bg-white/20 text-white text-center"
+            >
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              onClick={toggleSidebar}
+              className="px-4 py-2 rounded-2xl bg-white/20 text-white text-center"
+            >
+              Signup
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   </>

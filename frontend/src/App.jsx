@@ -9,15 +9,15 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Reports from './components/Reports/Reports';
 import NotFound from './components/NotFound';
 import Services from './components/Services';
+import DietPlanner from './components/Diet/DietPlanner';
+import Community from './components/Community/Community';
 
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ChatWithAssistant from './pages/ChatWithAssistant';
-import SymptomChecker from './pages/SymptomChecker';
+import SymptomChecker from './components/SymptomChecker/SymptomChecker';
 import FindDoctors from './pages/FindDoctors';
 import BookAppointment from './pages/BookAppointment';
-import DietPlanner from './pages/DietPlanner';
-import Community from './pages/Community';
 import About from './pages/About';
 import FAQ from './pages/FAQ';
 import TermsAndCondition from './pages/TermsAndConditions';
