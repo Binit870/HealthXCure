@@ -73,6 +73,12 @@ const Navbar = () => {
             <Link to="/find-doctors">Doctors</Link>
             <Link to="/about">About</Link>
             <Link to="/community">Community</Link>
+            <Link 
+                            to="/contact" 
+                           
+                        >
+                            Contact Us
+                        </Link>
           </div>
 
           {/* Search/Login */}
