@@ -1,12 +1,20 @@
 // fully responsive community page with a feed of posts and comments
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import axios from 'axios';
+
 import { FaUserCircle, FaPaperPlane, FaSpinner } from 'react-icons/fa';
 import { io } from 'socket.io-client';
 import { useNavigate } from 'react-router-dom';
+import API from '../utils/Api';
+import { SOCKET_URL } from "../utils/Api";
 
-const socket = io('http://localhost:5000');
+
+// Connect to backend via socket.io
+const socket = io(SOCKET_URL, {
+  transports: ["websocket"], 
+  withCredentials: true,
+});
+
 
 const Community = () => {
     const { user, token } = useAuth();
@@ -22,7 +30,7 @@ const Community = () => {
             setLoading(true);
             try {
                 const headers = token ? { Authorization: `Bearer ${token}` } : {};
-                const response = await axios.get('http://localhost:5000/api/community/posts', {
+                const response = await API.get('/community/posts', {
                     headers
                 });
                 setPosts(response.data);
@@ -58,7 +66,7 @@ const Community = () => {
 
         setIsPosting(true);
         try {
-            const response = await axios.post('http://localhost:5000/api/community/posts', 
+            const response = await API.post('/community/posts', 
                 { content: newComment },
                 { headers: { Authorization: `Bearer ${token}` } }
             );

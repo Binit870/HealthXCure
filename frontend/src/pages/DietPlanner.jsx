@@ -5,7 +5,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
-
+import API from "../utils/Api";
 const DietPlanner = () => {
   const [preferences, setPreferences] = useState("");
   const [dietType, setDietType] = useState("Vegetarian");
@@ -45,7 +45,7 @@ const DietPlanner = () => {
       formData.append("symptoms", symptoms);
       if (report) formData.append("report", report);
 
-      const res = await axios.post("http://localhost:5000/api/diet/plan", formData, {
+      const res = await API.post("/diet/plan", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

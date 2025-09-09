@@ -8,7 +8,7 @@ import DashboardSection from "./DashboardSection";
 import CommunitySection from "./CommunitySection";
 import ReportsSection from "./ReportsSection";
 import DoctorsSection from "./DoctorsSection";
-import ContactSection from "./ContactSection";
+
 
 const LandingPage = () => {
   useEffect(() => {
@@ -73,7 +73,7 @@ const LandingPage = () => {
         <CommunitySection />
         <ReportsSection />
         <DoctorsSection />
-        <ContactSection />
+        
       </main>
     </div>
   );

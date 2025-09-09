@@ -1,19 +1,21 @@
 import React, { useState } from "react";
-import axios from "axios";
-
+import API from "../utils/Api";
 const BookAppointment = () => {
   const [city, setCity] = useState("mumbai");
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  
+
   const fetchDoctors = () => {
     setLoading(true);
-    axios
-      .get("http://localhost:5000/api/practice_search", { params: { city } })
+    API
+      .get("/practice_search", { params: { city } })
       .then((res) => setDoctors(res.data.doctors || []))
       .catch((err) => console.error(err))
       .finally(() => setLoading(false));
   };
+
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
