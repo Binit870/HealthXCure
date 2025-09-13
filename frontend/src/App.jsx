@@ -14,7 +14,7 @@ import Community from './components/Community/Community';
 
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import ChatWithAssistant from './pages/ChatWithAssistant';
+import ChatWithAssistant from './pages/ChatWithAssistant/ChatWithAssistant';
 import SymptomChecker from './components/SymptomChecker/SymptomChecker';
 import FindDoctors from './pages/FindDoctors';
 import BookAppointment from './pages/BookAppointment';
@@ -23,7 +23,7 @@ import FAQ from './pages/FAQ';
 import TermsAndCondition from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Help from './pages/Help';
-import FitnessPlanner from './pages/FitnessPlanner';
+import FitnessPlanner from './components/Fitness/FitnessPlanner';
 import ContactSection from './components/LandingPage/ContactSection';
 function App() {
   const location = useLocation();

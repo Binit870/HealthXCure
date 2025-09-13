@@ -1,4 +1,3 @@
-// src/components/community/Community.jsx
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +19,7 @@ const Community = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [category, setCategory] = useState("general");
 
   // Fetch posts
   useEffect(() => {
@@ -27,7 +27,10 @@ const Community = () => {
       setLoading(true);
       try {
         const headers = token ? { Authorization: `Bearer ${token}` } : {};
-        const response = await API.get("/community/posts", { headers });
+        const response = await API.get(
+          `/community/posts?category=${category}`,
+          { headers }
+        );
         setPosts(response.data);
         setLoading(false);
       } catch (err) {
@@ -40,13 +43,15 @@ const Community = () => {
     fetchPosts();
 
     socket.on("newPost", (post) => {
-      setPosts((prevPosts) => [post, ...prevPosts]);
+      if (category === "all" || post.category === category) {
+        setPosts((prevPosts) => [post, ...prevPosts]);
+      }
     });
 
     return () => {
       socket.off("newPost");
     };
-  }, [token]);
+  }, [token, category]);
 
   // Delete post handler
   const handleDeletePost = async (postId) => {
@@ -103,12 +108,28 @@ const Community = () => {
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto">
         <h2 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 text-center mb-10 drop-shadow-lg">
-          Community Forum
+          Community Forum ✨
         </h2>
         <p className="text-gray-300 text-center mb-12 max-w-2xl mx-auto">
           Share your thoughts, ask questions, and connect with others on their
           health journey.
         </p>
+
+        {/* Category Filter Tabs */}
+        <div className="flex justify-center space-x-4 mb-8">
+          {["all", "general", "nutrition", "fitness", "health"].map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setCategory(cat)}
+              className={`px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 ${category === cat
+                  ? "bg-blue-600 text-white shadow-lg"
+                  : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                }`}
+            >
+              {cat.charAt(0).toUpperCase() + cat.slice(1)}
+            </button>
+          ))}
+        </div>
 
         {user ? (
           <PostForm socket={socket} user={user} token={token} />
@@ -118,7 +139,11 @@ const Community = () => {
           </div>
         )}
 
-        <PostList posts={posts} user={user} handleDeletePost={handleDeletePost} />
+        <PostList
+          posts={posts}
+          user={user}
+          handleDeletePost={handleDeletePost}
+        />
       </div>
     </section>
   );

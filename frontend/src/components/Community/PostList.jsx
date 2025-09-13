@@ -1,4 +1,3 @@
-// src/components/community/PostList.jsx
 import React from "react";
 import PostItem from "./PostItem";
 
