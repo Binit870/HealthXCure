@@ -1,21 +1,22 @@
 // src/components/FitnessPlanner.jsx
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  FaDumbbell,
-  FaRunning,
-  FaWalking,
-  FaBiking,
-  FaSwimmer,
-  FaRedo,
-} from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { FaDumbbell, FaRunning, FaWalking, FaBiking, FaSwimmer, FaRedo } from "react-icons/fa";
+import API from "../../utils/Api";
+import { useAuth } from "../../context/AuthContext";
+import FitnessResults from "./FitnessResults";
+import FitnessHistory from "./FitnessHistory";
 
 const FitnessPlanner = () => {
+  const { user } = useAuth();
+  const userId = user?._id;
+
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
   const [bmi, setBmi] = useState(null);
   const [plan, setPlan] = useState(null);
   const [tip, setTip] = useState("");
+  const [history, setHistory] = useState([]);
 
   const tips = [
     "💧 Stay hydrated: drink at least 2-3 liters of water daily.",
@@ -25,10 +26,26 @@ const FitnessPlanner = () => {
     "🏃 Consistency beats intensity — small steps daily matter!",
   ];
 
-  // Function to calculate BMI and plan
-  const calculateBMI = () => {
-    if (!height || !weight)
-      return alert("Please enter both height and weight");
+  const fetchHistory = async () => {
+    try {
+      if (!userId) return;
+      const res = await API.get(`/fitness/history/${userId}`);
+      if (res.data.success) {
+        setHistory(res.data.history);
+      } else {
+        setHistory([]);
+      }
+    } catch (err) {
+      console.error("❌ Error fetching fitness history:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchHistory();
+  }, [userId]);
+
+  const calculateBMI = async () => {
+    if (!height || !weight) return alert("Please enter both height and weight");
 
     const heightInMeters = height / 100;
     const bmiValue = (weight / (heightInMeters * heightInMeters)).toFixed(1);
@@ -71,14 +88,32 @@ const FitnessPlanner = () => {
       calories = "🍽️ Stick to 1500–1700 kcal/day, consult a nutritionist.";
     }
 
-    setBmi({ value: bmiValue, category, calories });
+    const bmiData = { value: bmiValue, category, calories };
+    setBmi(bmiData);
     setPlan(exercises);
-
-    // Pick random tip
     setTip(tips[Math.floor(Math.random() * tips.length)]);
+
+    try {
+      if (userId) {
+        const saveRes = await API.post("/fitness/save", {
+          userId,
+          height,
+          weight,
+          bmi: bmiValue,
+          category,
+          plan: exercises.map((ex) => ex.name),
+          calories,
+        });
+        console.log("✅ Saved fitness entry:", saveRes.data);
+        fetchHistory();
+      } else {
+        console.warn("⚠️ No userId found, not saving to backend");
+      }
+    } catch (err) {
+      console.error("❌ Error saving fitness data:", err);
+    }
   };
 
-  // Reset all values
   const resetPlanner = () => {
     setHeight("");
     setWeight("");
@@ -95,12 +130,9 @@ const FitnessPlanner = () => {
         transition={{ duration: 0.6 }}
         className="bg-gray-800/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-700 p-8 w-full max-w-lg"
       >
-        {/* Title */}
         <h1 className="text-3xl md:text-4xl font-extrabold text-center bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent mb-6">
           🏋️ Fitness Planner
         </h1>
-
-        {/* Input Form */}
         <div className="space-y-4 mb-6">
           <input
             type="number"
@@ -135,61 +167,8 @@ const FitnessPlanner = () => {
             </motion.button>
           </div>
         </div>
-
-        {/* Results Section */}
-        <AnimatePresence>
-          {bmi && (
-            <motion.div
-              key="results"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.5 }}
-              className="bg-gray-700/70 rounded-xl p-6 border border-gray-600 shadow-inner"
-            >
-              <h2 className="text-xl font-bold text-center mb-2 text-cyan-300">
-                Your BMI: {bmi.value}
-              </h2>
-              <p className="text-center text-gray-300 mb-2">
-                Category:{" "}
-                <span className="font-semibold text-blue-400">
-                  {bmi.category}
-                </span>
-              </p>
-
-              {/* BMI Progress Bar */}
-              <div className="w-full bg-gray-600 rounded-full h-3 mb-4">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: `${Math.min((bmi.value / 40) * 100, 100)}%` }}
-                  transition={{ duration: 1 }}
-                  className="h-3 rounded-full bg-gradient-to-r from-blue-400 to-cyan-300"
-                ></motion.div>
-              </div>
-
-              <p className="text-sm text-gray-400 mb-4">{bmi.calories}</p>
-
-              <ul className="space-y-3 mb-4">
-                {plan.map((exercise, index) => (
-                  <li
-                    key={index}
-                    className="flex items-center space-x-3 bg-gray-800 p-3 rounded-lg hover:bg-gray-700 transition"
-                  >
-                    <span className="text-cyan-400 text-xl">{exercise.icon}</span>
-                    <span className="text-gray-200">{exercise.name}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Fitness Tip */}
-              {tip && (
-                <div className="bg-gray-800 p-4 rounded-lg text-sm text-center text-gray-300 italic border border-gray-600">
-                  💡 {tip}
-                </div>
-              )}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <FitnessResults bmi={bmi} plan={plan} tip={tip} />
+        <FitnessHistory history={history} fetchHistory={fetchHistory} />
       </motion.div>
     </div>
   );

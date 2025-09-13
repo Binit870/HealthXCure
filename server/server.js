@@ -13,7 +13,8 @@ import dietRoutes from "./routes/dietRoutes.js";
 import communityRoutes from "./routes/communityRoutes.js";
 import reportRoutes from "./routes/reportRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
-
+import fitnessRoutes from "./routes/fitnessRoutes.js";
+import symptomRoutes from "./routes/symptomRoutes.js";
 dotenv.config();
 const __dirname = path.resolve();
 
@@ -53,11 +54,13 @@ io.on("connection", (socket) => {
 // --- REST API Routes ---
 app.use("/api/auth", authRoutes);
 app.use("/api/ai", aiRoutes);
+app.use("/api/ai", symptomRoutes);
 app.use("/api", doctorRoutes);
 app.use("/api/diet", dietRoutes);
 app.use("/api/community", communityRoutes(io)); // ✅ pass existing io instance
 app.use("/api/reports", reportRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/fitness", fitnessRoutes);
 
 // --- DB + Server ---
 connectDB();

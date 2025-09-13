@@ -51,7 +51,7 @@ const SymptomChecker = () => {
         setResults([]);
 
         try {
-            const res = await API.post("/ai/diagnosis/check", { symptoms: symptomsList, age, gender });
+            const res = await API.post("/ai/symptoms/check", { symptoms: symptomsList, age, gender });
 
             if (res.data && Array.isArray(res.data.conditions)) {
                 setResults(res.data.conditions);

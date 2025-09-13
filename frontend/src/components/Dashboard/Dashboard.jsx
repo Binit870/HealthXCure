@@ -6,6 +6,7 @@ import API from "../../utils/Api";
 import UserProfileSection from "./UserProfileSection";
 import HealthMetricsGrid from "./HealthMetricsGrid";
 import HistorySection from "./HistorySection";
+import NotificationSection from "./NotificationSection";
 
 const Dashboard = () => {
     const { user, token, updateUser } = useAuth();
@@ -133,6 +134,10 @@ const Dashboard = () => {
                 <span className="text-blue-400 font-semibold">latest health metrics</span> and{" "}
                 <span className="text-cyan-300 font-semibold">history</span>, guiding you towards a healthier life.
             </p>
+<div className="max-w-6xl mx-auto mt-12 relative z-10 mb-12">
+  <NotificationSection user={user} />
+</div>
+
 
             <HealthMetricsGrid heartRate={heartRate} steps={steps} sleepScore={sleepScore} />
 

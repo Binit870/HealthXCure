@@ -37,14 +37,14 @@ const DietHistory = ({ history, loading, handleDelete, handleBackToForm, setSele
                             </div>
                             <div className="flex gap-2">
                                 <button
-  onClick={() => {
-    console.log("Clicked plan:", planItem);
-    setSelectedPlan(planItem);
-  }}
-  className="px-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition-all"
->
-  View
-</button>
+                                    onClick={() => {
+                                        console.log("Clicked plan:", planItem);
+                                        setSelectedPlan(planItem);
+                                    }}
+                                    className="px-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition-all"
+                                >
+                                    View
+                                </button>
 
 
                                 <button

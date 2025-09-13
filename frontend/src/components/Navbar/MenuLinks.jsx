@@ -1,9 +1,19 @@
 import { 
-  FaHome, FaChartBar, FaUserMd, FaStethoscope, 
-  FaFileAlt, FaCalendarCheck, FaComments, FaUtensils, FaSignOutAlt 
+  FaHome, 
+  FaChartBar, 
+  FaUserMd, 
+  FaStethoscope, 
+  FaFileAlt, 
+  FaCalendarCheck, 
+  FaComments, 
+  FaUtensils, 
+  FaDumbbell, 
+  FaSignOutAlt, 
+  FaSignInAlt, 
+  FaUserPlus
 } from "react-icons/fa";
 
- const MenuLinks = [
+const MenuLinks = [
   { to: "/", label: "Home", icon: FaHome },
   { to: "/dashboard", label: "Dashboard", icon: FaChartBar },
   { to: "/find-doctors", label: "Find Doctor", icon: FaUserMd },
@@ -12,7 +22,12 @@ import {
   { to: "/book-appointment", label: "My Appointments", icon: FaCalendarCheck },
   { to: "/chat", label: "Chat With Assistant", icon: FaComments },
   { to: "/diet-planner", label: "Diet Planner", icon: FaUtensils },
-  { to: "/fitness", label: "Fitness Planner", icon: FaUtensils },
+  { to: "/fitness", label: "Fitness Planner", icon: FaDumbbell },
+
+  // Auth-related
+  // { to: "/login", label: "Login", icon: FaSignInAlt, isLogin: true },
+  // { to: "/signup", label: "Signup", icon: FaUserPlus, isRegister: true },
   { to: "/logout", label: "Logout", icon: FaSignOutAlt, isLogout: true }
 ];
-export default  MenuLinks;
+
+export default MenuLinks;

@@ -15,12 +15,12 @@ const SymptomInput = ({ age, setAge, gender, setGender, symptomsInput, setSympto
         placeholder="Age"
         value={age}
         onChange={(e) => setAge(e.target.value)}
-        className="w-full rounded-full p-3 bg-white/10 backdrop-blur-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-pink-400"
+        className="w-full rounded-full p-3 bg-black backdrop-blur-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-pink-400"
       />
       <select
         value={gender}
         onChange={(e) => setGender(e.target.value)}
-        className="w-full rounded-full p-3 bg-white/10 backdrop-blur-lg text-white focus:outline-none focus:ring-2 focus:ring-pink-400"
+        className="w-full rounded-full p-3 bg-black backdrop-blur-lg text-white focus:outline-none focus:ring-2 focus:ring-pink-400"
       >
         <option value="" disabled>Select Gender</option>
         <option value="male">Male</option>

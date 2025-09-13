@@ -1,4 +1,3 @@
-// src/components/community/PostItem.jsx
 import React from "react";
 import { FaUserCircle, FaTrash } from "react-icons/fa";
 
