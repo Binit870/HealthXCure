@@ -16,5 +16,6 @@
   "services": "/services",
   'about': "/about",
   "community": "/community",
+  "notifications": "/notifications",
 };
 export default PageMappings;

@@ -11,11 +11,14 @@ import NotFound from './components/NotFound';
 import Services from './components/Services';
 import DietPlanner from './components/Diet/DietPlanner';
 import Community from './components/Community/Community';
+import SymptomChecker from './components/SymptomChecker/SymptomChecker';
+import FitnessPlanner from './components/Fitness/FitnessPlanner';
+import ContactSection from './components/LandingPage/ContactSection';
 
+import Notification from './pages/Notification';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ChatWithAssistant from './pages/ChatWithAssistant/ChatWithAssistant';
-import SymptomChecker from './components/SymptomChecker/SymptomChecker';
 import FindDoctors from './pages/FindDoctors';
 import BookAppointment from './pages/BookAppointment';
 import About from './pages/About';
@@ -23,8 +26,6 @@ import FAQ from './pages/FAQ';
 import TermsAndCondition from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Help from './pages/Help';
-import FitnessPlanner from './components/Fitness/FitnessPlanner';
-import ContactSection from './components/LandingPage/ContactSection';
 function App() {
   const location = useLocation();
 
@@ -65,6 +66,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <ChatWithAssistant />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/notifications"
+            element={
+              <ProtectedRoute>
+                <Notification />
               </ProtectedRoute>
             }
           />
