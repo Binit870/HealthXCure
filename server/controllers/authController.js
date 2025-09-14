@@ -31,9 +31,8 @@ export const loginUser = async (req, res) => {
         if (!isPasswordCorrect) {
             return res.status(400).json({ message: "Invalid credentials" });
         }
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        
-        // ✅ CORRECTED LINE: Include the profileImageUrl
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '24h' });
+       
         res.status(200).json({ 
             token, 
             user: { 
@@ -41,7 +40,7 @@ export const loginUser = async (req, res) => {
                 name: user.name, 
                 username: user.username, 
                 email: user.email,
-                profileImageUrl: user.profileImageUrl // Add this line
+                profileImageUrl: user.profileImageUrl
             } 
         });
     }

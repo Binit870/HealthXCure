@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaBell } from "react-icons/fa";
 import { IoFitnessOutline } from "react-icons/io5";
 import Sidebar from "./Sidebar";
 import SearchBar from "./SearchBar";
@@ -45,54 +45,74 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Navbar */}
+      {/* Navbar Container */}
       <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-3xl bg-white/10 border-b border-white/20 shadow-md">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-3 py-3">
-          {/* Logo + Sidebar toggle */}
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
+          {/* Left Section: Logo + Sidebar Toggle */}
           <div className="flex items-center space-x-4">
-            {/* Always show hamburger */}
             <button onClick={toggleSidebar} className="text-white text-xl">
               <FaBars />
             </button>
-            <Link to="/" className="flex items-center space-x-2 text-2xl font-bold text-gradient">
+            <Link to="/" className="flex items-center space-x-2 text-2xl font-bold text-white">
               <IoFitnessOutline className="text-cyan-400" />
               <span>HealthCure</span>
             </Link>
           </div>
 
-          {/* Desktop links */}
-          <div className="hidden md:flex space-x-12 text-white font-medium">
-            <Link to="/">Home</Link>
-            <Link to="/services">Services</Link>
-            <Link to="/find-doctors">Doctors</Link>
-            <Link to="/about">About</Link>
-            <Link to="/community">Community</Link>
-            <Link to="/contact">Contact Us</Link>
+          {/* Center Section: Desktop Links */}
+          <div className="hidden lg:flex space-x-8 text-white font-medium">
+            <Link to="/" className="hover:text-cyan-400 transition-colors">Home</Link>
+            <Link to="/services" className="hover:text-cyan-400 transition-colors">Services</Link>
+            <Link to="/find-doctors" className="hover:text-cyan-400 transition-colors">Doctors</Link>
+            <Link to="/about" className="hover:text-cyan-400 transition-colors">About</Link>
+            <Link to="/community" className="hover:text-cyan-400 transition-colors">Community</Link>
+            <Link to="/contact" className="hover:text-cyan-400 transition-colors">Contact Us</Link>
           </div>
 
-          {/* Search/Login */}
-          <div className="hidden md:flex space-x-4 items-center">
-            {token ? (
+          {/* Right Section: Search + Auth/Notifications */}
+          <div className="flex items-center space-x-4">
+            <div className="hidden md:block">
               <SearchBar
                 searchQuery={searchQuery}
                 onChange={handleSearchChange}
                 onKeyPress={handleKeyPress}
               />
+            </div>
+            
+            {token ? (
+              <div className="flex items-center space-x-4">
+                {/* Notification Bell with Badge */}
+                <Link
+                  to="/notifications"
+                  className="relative text-white text-xl hover:text-cyan-400 transition-colors"
+                >
+                  <FaBell />
+                  {/* Example Notification Badge (optional) */}
+                  
+                </Link>
+                <button
+                  onClick={logout}
+                  className="hidden md:block px-4 py-2 rounded-2xl bg-white/20 text-white hover:bg-white/30 transition-colors"
+                >
+                  Logout
+                </button>
+              </div>
             ) : (
-              <>
-                <Link to="/login" className="px-4 py-2 rounded-2xl bg-white/20 text-white">
+              <div className="flex items-center space-x-2 md:space-x-4">
+                <Link to="/login" className="px-3 py-1 md:px-4 md:py-2 rounded-2xl bg-white/20 text-white hover:bg-white/30 transition-colors">
                   Login
                 </Link>
-                <Link to="/signup" className="px-4 py-2 rounded-2xl bg-white/20 text-white">
+                <Link to="/signup" className="px-3 py-1 md:px-4 md:py-2 rounded-2xl bg-white/20 text-white hover:bg-white/30 transition-colors">
                   Signup
                 </Link>
-              </>
+              </div>
             )}
+            
           </div>
         </div>
       </nav>
 
-      {/* Sidebar (always rendered) */}
+      {/* Sidebar (remains unchanged) */}
       <Sidebar
         isOpen={isSidebarOpen}
         sidebarRef={sidebarRef}

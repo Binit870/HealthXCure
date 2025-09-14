@@ -9,13 +9,13 @@ import {
   FaUtensils, 
   FaDumbbell, 
   FaSignOutAlt, 
-  FaSignInAlt, 
-  FaUserPlus
+  FaBell
 } from "react-icons/fa";
 
 const MenuLinks = [
   { to: "/", label: "Home", icon: FaHome },
   { to: "/dashboard", label: "Dashboard", icon: FaChartBar },
+  // {to: "/notifications", label: "Notifications", icon: FaBell },
   { to: "/find-doctors", label: "Find Doctor", icon: FaUserMd },
   { to: "/symptom-checker", label: "Diagnosis", icon: FaStethoscope },
   { to: "/reports", label: "Reports", icon: FaFileAlt },
