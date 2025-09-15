@@ -21,6 +21,7 @@ import userRoutes from "./routes/userRoutes.js";
 import fitnessRoutes from "./routes/fitnessRoutes.js";
 import symptomRoutes from "./routes/symptomRoutes.js";
 
+
 dotenv.config();
 const __dirname = path.resolve();
 
@@ -35,6 +36,8 @@ const allowedOrigins = [
 
 // --- Middleware ---
 app.use(express.json());
+
+
 app.use(cors({
   origin: allowedOrigins,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -66,6 +69,7 @@ io.on("connection", (socket) => {
 
 // --- REST API Routes ---
 app.use("/api/auth", authRoutes);
+
 app.use("/api/ai", aiRoutes);
 app.use("/api/ai", symptomRoutes);
 app.use("/api", doctorRoutes);
@@ -76,6 +80,10 @@ app.use("/api/user", userRoutes);
 app.use("/api/fitness", fitnessRoutes);
 app.use("/api/notifications", notificationRoutes);
 
+app.use((req, res, next) => {
+  console.log(`❌ Unmatched route: ${req.method} ${req.originalUrl}`);
+  res.status(404).json({ message: 'Route not found' });
+});
 // ✅ Health tips list
 const healthTips = [
   "💧 Stay hydrated! Drink at least 8 glasses of water today.",
