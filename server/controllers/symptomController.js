@@ -17,7 +17,7 @@ export const checkSymptoms = async (req, res) => {
 
     const prompt = `
 You are a medical assistant AI.
-  The user is a ${age}-year-old ${gender}. They have the following symptoms: ${symptoms.join(", ")}.
+  The user is a ${age}-year-old ${gender}. They have the following symptoms: ${symptoms.join(",")}.
 Based on this, provide a list of the top 5 most likely health conditions.
 For each condition, include:
 - A brief name.
