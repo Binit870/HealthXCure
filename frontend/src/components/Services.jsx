@@ -197,10 +197,9 @@ const Services = () => {
                   bg-white/10 backdrop-blur-sm rounded-3xl p-8 flex flex-col items-center text-center cursor-pointer
                   transition-all duration-500 ease-in-out
                   shadow-lg shadow-blue-400/30 hover:shadow-blue-400/70
-                  ${
-                    activeFeatureId === service.id
-                      ? "scale-105 border border-blue-400"
-                      : "hover:scale-105"
+                  ${activeFeatureId === service.id
+                    ? "scale-105 border border-blue-400"
+                    : "hover:scale-105"
                   }
                 `}
                 variants={featureVariants}

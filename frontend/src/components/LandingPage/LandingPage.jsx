@@ -7,7 +7,7 @@ import AssistantSection from "./AssistantSection";
 import DashboardSection from "./DashboardSection";
 import CommunitySection from "./CommunitySection";
 import ReportsSection from "./ReportsSection";
-import DoctorsSection from "./DoctorsSection";
+
 
 
 const LandingPage = () => {
@@ -72,7 +72,7 @@ const LandingPage = () => {
         <DashboardSection />
         <CommunitySection />
         <ReportsSection />
-        {/* <DoctorsSection /> */}
+       
         
       </main>
     </div>

@@ -4,9 +4,7 @@
   "diagnosis": "/symptom-checker",
   "symptom checker": "/symptom-checker",
   "reports": "/reports",
-  "my appointments": "/book-appointment",
-  "appointments": "/book-appointment",
-  "book appointment": "/book-appointment",
+  
   "fitness planner": "/fitness",
   "chat with assistant": "/chat",
   'chat': "/chat",

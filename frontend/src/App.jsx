@@ -27,7 +27,7 @@ import FAQ from './pages/FAQ';
 import TermsAndCondition from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Help from './pages/Help';
-import AmbulanceList from './components/Ambulance/AmbulanceList';
+
 function App() {
   const location = useLocation();
 
@@ -60,7 +60,7 @@ function App() {
           <Route path="/help" element={<Help />} />
           <Route path="/contact" element={<ContactSection />} />
 
-          
+
 
           {/* Protected Pages */}
           <Route
@@ -119,7 +119,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-         
+
           <Route
             path="/diet-planner"
             element={
@@ -144,15 +144,8 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/ambulance-list"
-            element={
-              
-                <AmbulanceList/>
-              
-            }
-          />
           
+
 
           {/* 404 Fallback */}
           <Route path="*" element={<NotFound />} />
