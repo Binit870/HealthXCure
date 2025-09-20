@@ -15,6 +15,7 @@ import SymptomChecker from './components/SymptomChecker/SymptomChecker';
 import FitnessPlanner from './components/Fitness/FitnessPlanner';
 import ContactSection from './components/LandingPage/ContactSection';
 
+
 import Notification from './pages/Notification';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -26,6 +27,7 @@ import FAQ from './pages/FAQ';
 import TermsAndCondition from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Help from './pages/Help';
+import AmbulanceList from './components/Ambulance/AmbulanceList';
 function App() {
   const location = useLocation();
 
@@ -142,6 +144,15 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/ambulance-list"
+            element={
+              
+                <AmbulanceList/>
+              
+            }
+          />
+          
 
           {/* 404 Fallback */}
           <Route path="*" element={<NotFound />} />
