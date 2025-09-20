@@ -72,7 +72,7 @@ const LandingPage = () => {
         <DashboardSection />
         <CommunitySection />
         <ReportsSection />
-        <DoctorsSection />
+        {/* <DoctorsSection /> */}
         
       </main>
     </div>

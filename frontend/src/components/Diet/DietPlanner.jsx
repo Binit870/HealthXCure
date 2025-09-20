@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaHistory, FaSpinner, FaPlusCircle } from "react-icons/fa";
+import { FaHistory, FaPlusCircle } from "react-icons/fa";
+import { GiForkKnifeSpoon } from "react-icons/gi"; // New diet icon
 import API from "../../utils/Api";
-import { cardVariants } from "./variants";
 import DietForm from "./DietForm";
 import DietPlanResult from "./DietPlanResult";
 import DietHistory from "./DietHistory";
@@ -10,6 +10,7 @@ import { useAuth } from "../../context/AuthContext";
 
 const DietPlanner = () => {
   const { user, token } = useAuth();
+
   const [formData, setFormData] = useState({
     preferences: "",
     dietType: "Vegetarian",
@@ -18,6 +19,8 @@ const DietPlanner = () => {
     days: 7,
     age: "",
     gender: "Male",
+    height: "",
+    weight: "",
     symptoms: "",
     diseases: "",
     report: null,
@@ -35,8 +38,9 @@ const DietPlanner = () => {
   };
 
   const generatePlan = async () => {
-    const { age, preferences, symptoms, report, diseases } = formData;
-    if (!age && !preferences && !symptoms && !report && !diseases) {
+    const { age, preferences, symptoms, report, diseases, height, weight } = formData;
+
+    if (!age && !preferences && !symptoms && !report && !diseases && !height && !weight) {
       alert("Please fill in some details to generate a plan.");
       return;
     }
@@ -122,34 +126,47 @@ const DietPlanner = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 p-8 flex flex-col items-center justify-center font-sans relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] p-8 flex flex-col items-center justify-center font-sans relative overflow-hidden">
       <motion.h1
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="text-5xl md:text-6xl font-extrabold text-green-800 mb-6 drop-shadow-md text-center"
+        initial={{ opacity: 0, y: -40, scale: 0.9 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{
+          duration: 1,
+          ease: "easeOut",
+          type: "spring",
+          stiffness: 120,
+        }}
+        className="text-5xl md:text-6xl font-extrabold mb-6 text-center tracking-tight"
+        style={{
+  color: "#22C55E", // emerald green
+  textShadow: "1px 1px 4px rgba(0,0,0,0.4)",
+  fontFamily: "'Poppins', sans-serif",
+}}
+
+
       >
-        🌿 Your Personal Diet Guru
+        <GiForkKnifeSpoon className="inline mr-3 animate-pulse" />
+        Your Personal Diet Guru
       </motion.h1>
 
       <div className="absolute top-8 right-8 z-20 flex gap-4">
         {user && showForm && (
           <motion.button
-  whileHover={{ scale: 1.05 }}
-  whileTap={{ scale: 0.97 }}
-  onClick={fetchHistory}
-  className="flex items-center gap-2 p-3 bg-transparent text-green-700 rounded-full shadow-lg hover:shadow-xl transition-all font-medium border-2 border-green-700"
->
-  <FaHistory />
-  History
-</motion.button>
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={fetchHistory}
+            className="flex items-center gap-2 p-3 bg-gray-800 text-cyan-300 rounded-full shadow-lg hover:shadow-xl transition-all font-medium border-2 border-cyan-300"
+          >
+            <FaHistory />
+            History
+          </motion.button>
         )}
         {user && (showHistory || selectedPlan) && (
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
             onClick={handleBackToForm}
-            className="flex items-center gap-2 p-3 bg-white text-green-700 rounded-full shadow-lg hover:shadow-xl transition-all font-medium border border-green-200"
+            className="flex items-center gap-2 p-3 bg-gray-800 text-green-400 rounded-full shadow-lg hover:shadow-xl transition-all font-medium border border-green-500"
           >
             <FaPlusCircle />
             New Plan
@@ -166,6 +183,7 @@ const DietPlanner = () => {
             generatePlan={generatePlan}
             handleFileChange={handleFileChange}
             loading={loading}
+            darkTheme={true}
           />
         ) : selectedPlan ? (
           <DietPlanResult
@@ -175,6 +193,7 @@ const DietPlanner = () => {
             fetchHistory={fetchHistory}
             handleBackToHistory={handleBackToHistory}
             isHistoryView={true}
+            darkTheme={true}
           />
         ) : showHistory ? (
           <DietHistory
@@ -184,6 +203,7 @@ const DietPlanner = () => {
             handleDelete={handleDelete}
             handleBackToForm={handleBackToForm}
             setSelectedPlan={setSelectedPlan}
+            darkTheme={true}
           />
         ) : (
           <DietPlanResult
@@ -192,6 +212,7 @@ const DietPlanner = () => {
             handleBackToForm={handleBackToForm}
             fetchHistory={fetchHistory}
             handleBackToHistory={handleBackToHistory}
+            darkTheme={true}
           />
         )}
       </AnimatePresence>

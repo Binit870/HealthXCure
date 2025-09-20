@@ -4,12 +4,12 @@ import {
   FaUserMd, 
   FaStethoscope, 
   FaFileAlt, 
-  FaCalendarCheck, 
+  // FaCalendarCheck, 
   FaComments, 
   FaUtensils, 
   FaDumbbell, 
   FaSignOutAlt, 
-  FaBell
+  // FaBell
 } from "react-icons/fa";
 
 const MenuLinks = [
@@ -19,7 +19,7 @@ const MenuLinks = [
   { to: "/find-doctors", label: "Find Doctor", icon: FaUserMd },
   { to: "/symptom-checker", label: "Diagnosis", icon: FaStethoscope },
   { to: "/reports", label: "Reports", icon: FaFileAlt },
-  { to: "/book-appointment", label: "My Appointments", icon: FaCalendarCheck },
+  // { to: "/book-appointment", label: "My Appointments", icon: FaCalendarCheck },
   { to: "/chat", label: "Chat With Assistant", icon: FaComments },
   { to: "/diet-planner", label: "Diet Planner", icon: FaUtensils },
   { to: "/fitness", label: "Fitness Planner", icon: FaDumbbell },
