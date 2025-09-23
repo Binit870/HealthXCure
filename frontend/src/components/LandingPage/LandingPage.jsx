@@ -64,7 +64,7 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-cyan-900 to-blue-900 min-h-screen pt-8 text-white">
+    <div className="bg-gradient-to-br from-cyan-900 to-teal-900 min-h-screen pt-8 text-white">
       <main className="container mx-auto px-4">
         <HeroSection />
         <ServicesSection />
