@@ -12,17 +12,20 @@ export const generateDietPlan = async (req, res) => {
     const authUserId = req.user?._id;
     // Accept fields from body as fallback (if you ever call this internally)
     const {
-      age,
-      gender,
-      goal = "Weight Loss",
-      dietType = "Vegetarian",
-      preferences,
-      reason = "General Health",
-      days = 7,
-      symptoms,
-      diseases,
-      userId: bodyUserId,
-    } = req.body;
+  age,
+  gender,
+  height,
+  weight,
+  goal = "Weight Loss",
+  dietType = "Vegetarian",
+  preferences,
+  reason = "General Health",
+  days = 7,
+  symptoms,
+  diseases,
+  userId: bodyUserId,
+} = req.body;
+
 
     const userId = authUserId || bodyUserId;
     if (!userId) {
@@ -62,6 +65,9 @@ You are a certified nutritionist AI. Create a diet plan:
 
 - Age: ${age || "Not provided"}
 - Gender: ${gender || "Not provided"}
+- Height: ${height || "Not provided"} cm
+- Weight: ${weight || "Not provided"} kg
+
 - Goal: ${goal}
 - Diet Preference: ${dietType}
 - Reason for Diet: ${reason}
@@ -84,20 +90,23 @@ Instructions:
 
     // Save to DB
     const newDiet = await Diet.create({
-      userId,
-      age,
-      gender,
-      goal,
-      dietType,
-      preferences,
-      reason,
-      days,
-      symptoms,
-      diseases,
-      plan,
-      report: reportName,
-      reportText,
-    });
+  userId,
+  age,
+  gender,
+  height,
+  weight,
+  goal,
+  dietType,
+  preferences,
+  reason,
+  days,
+  symptoms,
+  diseases,
+  plan,
+  report: reportName,
+  reportText,
+});
+
 
     // Return the full saved object
     res.json({ success: true, newDiet });
@@ -124,7 +133,7 @@ export const getDietHistory = async (req, res) => {
   try {
     const userId = req.user._id;
     const history = await Diet.find({ userId }).sort({ createdAt: -1 });
-    console.log("History being sent:", history); // 👈 add this
+    // console.log("History being sent:", history); // 👈 add this
     res.json(history);
   } catch (error) {
     console.error("History Fetch Error:", error);

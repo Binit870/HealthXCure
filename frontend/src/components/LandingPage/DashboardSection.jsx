@@ -1,50 +1,82 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
- FaHeartbeat,
-  FaRunning,
-  FaBed,
-  FaMicroscope,
-  FaCalendarCheck,
-  FaMapMarkerAlt,
-  FaAppleAlt,
-  FaPaperPlane
-   } from "react-icons/fa";
+  FaBell,
+  FaUserCircle,
+  FaHistory,
+  FaTachometerAlt
+} from "react-icons/fa";
 
-const AssistantSection = () => (
-    <section id="dashboard" className="py-12 bg-gradient-to-br from-gray-800 to-gray-600 rounded-3xl shadow-lg mb-16 p-8 md:p-12 text-center text-white fade-in-on-scroll">
-              <h3 className="text-4xl font-extrabold text-white mb-6">Your Personal Health Dashboard</h3>
-              <p className="text-gray-300 max-w-2xl mx-auto mb-8">
-                Track your health metrics, appointments, and progress all in one place.
-              </p>
-              {/* Flex container to organize the grid and the button vertically */}
-              <div className="flex flex-col items-center">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
-                  <div className="rounded-3xl p-6 shadow-md flex flex-col items-center text-center bg-gradient-to-br from-blue-600 to-blue-800">
-                    <FaHeartbeat className="text-white text-4xl mb-3" />
-                    <h4 className="text-xl font-bold mb-1 text-white">Heart Rate</h4>
-                    <p className="text-white text-2xl font-bold">72 bpm</p>
-                  </div>
-                  <div className="rounded-3xl p-6 shadow-md flex flex-col items-center text-center bg-gradient-to-br from-emerald-600 to-teal-700">
-                    <FaRunning className="text-white text-4xl mb-3" />
-                    <h4 className="text-xl font-bold mb-1 text-white">Steps Today</h4>
-                    <p className="text-white text-2xl font-bold">8,500</p>
-                  </div>
-                  <div className="rounded-3xl p-6 shadow-md flex flex-col items-center text-center bg-gradient-to-br from-purple-600 to-indigo-700">
-                    <FaBed className="text-white text-4xl mb-3" />
-                    <h4 className="text-xl font-bold mb-1 text-white">Sleep Score</h4>
-                    <p className="text-white text-2xl font-bold">92%</p>
-                  </div>
-                </div>
-                {/* The Link is now properly spaced below the grid with mt-8 */}
-                <Link
-                  to="/dashboard"
-                  className="mt-8 bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105"
-                >
-                  Go to Dashboard
-                </Link>
-              </div>
-            </section>
+const DashboardSection = () => (
+  <section
+    id="dashboard"
+    className="scroll-mt-20 py-10 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32 bg-gradient-to-br from-cyan-500 via-cyan-600 to-cyan-800 
+               overflow-hidden border border-cyan-400 rounded-3xl shadow-2xl fade-in-on-scroll text-center text-white mb-16 max-w-screen-2xl mx-auto"
+  >
+    <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-6 flex items-center justify-center gap-4">
+      <FaTachometerAlt className="text-white text-3xl sm:text-4xl" />
+      Your Personal Health Dashboard
+    </h3>
 
+    <p className="text-white max-w-2xl mx-auto mb-10 text-base sm:text-lg md:text-xl">
+      Stay updated with <FaBell className="inline text-yellow-300" /> notifications, manage your{" "}
+      <FaUserCircle className="inline text-sky-300" /> profile, and review your{" "}
+      <FaHistory className="inline text-purple-300" /> health history.
+    </p>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+      {/* Notifications */}
+      <div className="rounded-3xl p-6 sm:p-8 shadow-md flex flex-col items-center text-center 
+                      bg-slate-950/70 border border-yellow-500 text-white 
+                      transition transform hover:scale-105 hover:shadow-xl">
+        <div className="w-14 h-14 sm:w-16 sm:h-16 bg-yellow-500/20 rounded-full flex items-center justify-center mb-4 text-2xl sm:text-3xl text-yellow-400">
+          <FaBell />
+        </div>
+        <h4 className="text-xl sm:text-2xl font-semibold mb-2">Notifications</h4>
+        <p className="text-gray-400 text-sm sm:text-base">
+          You have 3 new alerts including appointment reminders and diet tips.
+        </p>
+      </div>
+
+      {/* User Profile */}
+      <div className="rounded-3xl p-6 sm:p-8 shadow-md flex flex-col items-center text-center 
+                      bg-slate-950/70 border border-sky-500 text-white 
+                      transition transform hover:scale-105 hover:shadow-xl">
+        <div className="w-14 h-14 sm:w-16 sm:h-16 bg-sky-500/20 rounded-full flex items-center justify-center mb-4 text-2xl sm:text-3xl text-sky-400">
+          <FaUserCircle />
+        </div>
+        <h4 className="text-xl sm:text-2xl font-semibold mb-2">Welcome, Priya</h4>
+        <p className="text-gray-400 text-sm sm:text-base">
+          View and update your personal details, preferences, and health goals.
+        </p>
+      </div>
+
+      {/* History */}
+      <div className="rounded-3xl p-6 sm:p-8 shadow-md flex flex-col items-center text-center 
+                      bg-slate-950/70 border border-purple-500 text-white 
+                      transition transform hover:scale-105 hover:shadow-xl">
+        <div className="w-14 h-14 sm:w-16 sm:h-16 bg-purple-500/20 rounded-full flex items-center justify-center mb-4 text-2xl sm:text-3xl text-purple-400">
+          <FaHistory />
+        </div>
+        <h4 className="text-xl sm:text-2xl font-semibold mb-2">Health History</h4>
+        <p className="text-gray-400 text-sm sm:text-base">
+          Review your past symptoms, diet plans, and activity logs.
+        </p>
+      </div>
+    </div>
+
+    {/* Main Dashboard Button */}
+    <div className="mt-10 sm:mt-12 text-center">
+      <Link
+        to="/dashboard"
+        className="inline-block px-6 py-3 text-base sm:text-lg font-semibold text-white 
+                   bg-gradient-to-r from-teal-600 to-blue-700 rounded-full shadow-md 
+                   hover:scale-105 hover:shadow-xl transition"
+      >
+        Go to Dashboard
+      </Link>
+    </div>
+  </section>
 );
-export default AssistantSection;
+
+export default DashboardSection;
