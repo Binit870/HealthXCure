@@ -21,7 +21,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ChatWithAssistant from './pages/ChatWithAssistant/ChatWithAssistant';
 import FindDoctors from './pages/FindDoctors';
-import BookAppointment from './pages/BookAppointment';
+
 import About from './pages/About';
 import FAQ from './pages/FAQ';
 import TermsAndCondition from './pages/TermsAndConditions';
@@ -136,15 +136,8 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/book-appointment"
-            element={
-              <ProtectedRoute>
-                <BookAppointment />
-              </ProtectedRoute>
-            }
-          />
-          
+
+
 
 
           {/* 404 Fallback */}

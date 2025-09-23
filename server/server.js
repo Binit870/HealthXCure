@@ -44,14 +44,14 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // --- WebSocket Setup ---
 const io = new Server(server, {
-  cors: { origin: allowedOrigins, methods: ["GET", "POST"] }
+  cors: { origin: allowedOrigins, methods: ["GET", "POST"] , credentials: true },
 });
 
 io.on("connection", (socket) => {
   console.log(`User connected: ${socket.id}`);
   socket.on("join", (userId) => {
     socket.join(userId);
-    console.log(`User ${userId} joined their notification room`);
+    
   });
   socket.on("disconnect", () => {
     console.log(`User disconnected: ${socket.id}`);
@@ -61,7 +61,7 @@ io.on("connection", (socket) => {
 // --- REST API Routes ---
 app.use("/api/auth", authRoutes);
 app.use("/api/ai", aiRoutes);
-app.use("/api/ai", symptomRoutes);
+app.use("/api/symptoms", symptomRoutes);
 app.use("/api", doctorRoutes);
 app.use("/api/diet", dietRoutes);
 app.use("/api/community", communityRoutes(io));

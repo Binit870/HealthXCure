@@ -68,8 +68,8 @@ const LandingPage = () => {
       <main className="container mx-auto px-4">
         <HeroSection />
         <ServicesSection />
-        <AssistantSection />
         <DashboardSection />
+        <AssistantSection />
         <CommunitySection />
         <ReportsSection />
        
