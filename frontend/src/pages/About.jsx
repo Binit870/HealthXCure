@@ -9,7 +9,7 @@ import {
   FaChartLine,
   FaRunning,
   FaUsers,
-  FaFileMedicalAlt, // New Icon for Reports
+  FaFileMedicalAlt,
 } from "react-icons/fa";
 
 const About = () => {
@@ -33,7 +33,7 @@ const About = () => {
       title: "Health Dashboard",
       description:
         "Your personalized overview of all health data, including key metrics, activity levels, and progress toward your wellness goals.",
-      color: "text-blue-500",
+      color: "text-blue-400",
     },
     {
       id: 2,
@@ -41,7 +41,7 @@ const About = () => {
       title: "AI-Powered Symptom Checker",
       description:
         "Get an instant, AI-driven diagnosis based on your symptoms to understand potential health issues quickly and accurately.",
-      color: "text-indigo-500",
+      color: "text-indigo-400",
     },
     {
       id: 3,
@@ -49,7 +49,7 @@ const About = () => {
       title: "Certified Doctor Finder",
       description:
         "Easily find and connect with certified medical professionals in your area, with options to filter by specialty, location, and ratings.",
-      color: "text-pink-500",
+      color: "text-pink-400",
     },
     {
       id: 4,
@@ -57,7 +57,7 @@ const About = () => {
       title: "Fitness & Activity Tracker",
       description:
         "Track your workouts, set fitness goals, and monitor your daily activity to maintain a healthy and active lifestyle.",
-      color: "text-orange-500",
+      color: "text-orange-400",
     },
     {
       id: 5,
@@ -65,7 +65,7 @@ const About = () => {
       title: "Personalized Diet & Nutrition",
       description:
         "Receive custom diet plans tailored to your health goals, dietary restrictions, and lifestyle, helping you stay on track with your wellness journey.",
-      color: "text-yellow-500",
+      color: "text-yellow-400",
     },
     {
       id: 6,
@@ -73,15 +73,15 @@ const About = () => {
       title: "Community & Support",
       description:
         "Connect with others who share similar health interests and experiences. Our community forums provide a safe space to ask questions, share knowledge, and find encouragement on your wellness journey.",
-      color: "text-green-500",
+      color: "text-green-400",
     },
     {
       id: 7,
-      icon: FaFileMedicalAlt, // The new icon for reports
+      icon: FaFileMedicalAlt,
       title: "My Health Reports",
       description:
         "Securely store and access all your medical reports, lab results, and prescriptions in one place. Easily share them with your doctors for seamless consultations and a comprehensive health overview.",
-      color: "text-red-500",
+      color: "text-red-400",
     },
     {
       id: 8,
@@ -89,7 +89,7 @@ const About = () => {
       title: "Chat with Assistance",
       description:
         "Connect with our support team for any queries or assistance related to our services and platform.",
-      color: "text-teal-500",
+      color: "text-teal-400",
     },
     {
       id: 9,
@@ -97,15 +97,15 @@ const About = () => {
       title: "Notifications",
       description:
         "Stay informed with real-time updates on your appointments, lab results, and medication reminders, all in one central, easy-to-manage location.",
-      color: "text-purple-500",
+      color: "text-purple-400",
     },
   ];
 
   return (
     <div
-      className="text-gray-200 font-sans pt-24 pb-12 min-h-screen"
+      className="font-sans pt-24 pb-12 min-h-screen text-gray-100"
       style={{
-        backgroundColor: "#1a1a1a",
+        backgroundColor: "#2F4F4F",
       }}
     >
       <motion.div
@@ -121,7 +121,7 @@ const About = () => {
             style={{ zIndex: -1 }}
           >
             <div
-              className="w-[420px] h-[160px] rounded-full blur-2xl"
+              className="w-[420px] h-[160px] rounded-full blur-2xl opacity-40"
               style={{
                 background:
                   "radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 80%)",
@@ -132,14 +132,10 @@ const About = () => {
             className="text-5xl md:text-6xl font-extrabold mb-0 relative"
             style={{
               color: "transparent",
-              backgroundImage: "linear-gradient(to bottom, #f0f0f0 0%, #a0a0a0 100%)",
+              backgroundImage: "linear-gradient(to bottom, #E0E0E0 0%, #A0A0A0 100%)",
               WebkitBackgroundClip: "text",
               backgroundClip: "text",
-              textShadow: `
-                0 2px 2px rgba(0,0,0,0.5),
-                0 4px 5px rgba(0,0,0,0.3),
-                0 6px 8px rgba(0,0,0,0.2)
-              `,
+              textShadow: "0 2px 5px rgba(0,0,0,0.5)",
             }}
           >
             Your Partner in Health and Wellness
@@ -149,24 +145,32 @@ const About = () => {
           </p>
         </motion.div>
 
-        <motion.hr variants={itemVariants} className="my-12 border-t-2 border-gray-600" />
+        <motion.hr
+          variants={itemVariants}
+          className="my-12 border-t border-gray-600"
+        />
 
         {/* Features Grid */}
         <motion.div className="mb-16" variants={itemVariants}>
-          <h2 className="text-4xl font-bold text-center text-white mb-10">What We Offer</h2>
+          <h2 className="text-4xl font-bold text-center text-gray-200 mb-10">
+            What We Offer
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {features.map((feature) => (
               <motion.div
                 key={feature.id}
                 className={`
-                  bg-white/10 backdrop-blur-sm rounded-3xl p-8 flex flex-col items-center text-center
-                  transition-all duration-500 ease-in-out
-                  shadow-lg shadow-blue-400/30 hover:shadow-blue-400/70 hover:scale-105
+                  bg-white/5 backdrop-blur-sm rounded-3xl p-8 flex flex-col items-center text-center
+                  transition-all duration-300 ease-in-out
+                  border border-transparent hover:border-blue-400
+                  hover:bg-white/10
                 `}
                 variants={featureVariants}
               >
                 <feature.icon className={`text-5xl mb-4 ${feature.color}`} />
-                <h3 className="text-xl font-extrabold mb-2 text-white">{feature.title}</h3>
+                <h3 className="text-xl font-extrabold mb-2 text-white">
+                  {feature.title}
+                </h3>
                 <p className="text-gray-300">{feature.description}</p>
               </motion.div>
             ))}

@@ -10,7 +10,7 @@ import {
   FaChartLine,
   FaRunning,
   FaUsers,
-  FaFileMedicalAlt, // New Icon for Reports
+  FaFileMedicalAlt,
 } from "react-icons/fa";
 
 const Services = () => {
@@ -42,7 +42,7 @@ const Services = () => {
       title: "Health Dashboard",
       description:
         "Your personalized overview of all health data, including key metrics, activity levels, and progress towards your wellness goals.",
-      color: "text-blue-500",
+      color: "text-blue-400",
       route: "/dashboard",
     },
     {
@@ -51,7 +51,7 @@ const Services = () => {
       title: "AI-Powered Symptom Checker",
       description:
         "Get an instant, AI-driven diagnosis based on your symptoms to understand potential health issues quickly and accurately.",
-      color: "text-indigo-500",
+      color: "text-indigo-400",
       route: "/symptom-checker",
     },
     {
@@ -60,7 +60,7 @@ const Services = () => {
       title: "Certified Doctor Finder",
       description:
         "Easily find and connect with certified medical professionals in your area, with options to filter by specialty, location, and ratings.",
-      color: "text-pink-500",
+      color: "text-pink-400",
       route: "/find-doctors",
     },
     {
@@ -69,7 +69,7 @@ const Services = () => {
       title: "Fitness & Activity Tracker",
       description:
         "Track your workouts, set fitness goals, and monitor your daily activity to maintain a healthy and active lifestyle.",
-      color: "text-orange-500",
+      color: "text-orange-400",
       route: "/fitness",
     },
     {
@@ -78,7 +78,7 @@ const Services = () => {
       title: "Personalized Diet & Nutrition",
       description:
         "Receive custom diet plans tailored to your health goals, dietary restrictions, and lifestyle, helping you stay on track with your wellness journey.",
-      color: "text-yellow-500",
+      color: "text-yellow-400",
       route: "/diet-planner",
     },
     {
@@ -87,16 +87,16 @@ const Services = () => {
       title: "Community & Support",
       description:
         "Connect with others who share similar health interests and experiences. Our community forums provide a safe space to ask questions, share knowledge, and find encouragement on your wellness journey.",
-      color: "text-green-500",
+      color: "text-green-400",
       route: "/community",
     },
     {
       id: 7,
-      icon: FaFileMedicalAlt, // The new icon for reports
+      icon: FaFileMedicalAlt,
       title: "My Health Reports",
       description:
         "Securely store and access all your medical reports, lab results, and prescriptions in one place. Easily share them with your doctors for seamless consultations and a comprehensive health overview.",
-      color: "text-red-500",
+      color: "text-red-400",
       route: "/my-reports",
     },
     {
@@ -105,7 +105,7 @@ const Services = () => {
       title: "Chat with Assistance",
       description:
         "Connect with our support team for any queries or assistance related to our services and platform.",
-      color: "text-teal-500",
+      color: "text-teal-400",
       route: "/chat-assistance",
     },
     {
@@ -114,7 +114,7 @@ const Services = () => {
       title: "Notifications",
       description:
         "Stay informed with real-time updates on your appointments, lab results, and medication reminders, all in one central location.",
-      color: "text-purple-500",
+      color: "text-purple-400",
       route: "/notifications",
     },
   ];
@@ -128,9 +128,9 @@ const Services = () => {
 
   return (
     <div
-      className="text-gray-200 font-sans pt-24 pb-12 min-h-screen"
+      className="font-sans pt-24 pb-12 min-h-screen text-gray-100"
       style={{
-        backgroundColor: "#1a1a1a",
+        backgroundColor: "#2F4F4F",
       }}
     >
       <motion.div
@@ -141,38 +141,31 @@ const Services = () => {
       >
         {/* Hero Section */}
         <motion.div className="text-center mb-16 relative" variants={itemVariants}>
-          {/* White soft glow background behind heading */}
           <div
             className="absolute inset-0 flex items-center justify-center"
             style={{ zIndex: -1 }}
           >
             <div
-              className="w-[420px] h-[160px] rounded-full blur-2xl"
+              className="w-[420px] h-[160px] rounded-full blur-2xl opacity-40"
               style={{
                 background:
                   "radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 80%)",
               }}
             ></div>
           </div>
-
           <h1
             className="text-5xl md:text-6xl font-extrabold mb-0 relative"
             style={{
               color: "transparent",
               backgroundImage:
-                "linear-gradient(to bottom, #f0f0f0 0%, #a0a0a0 100%)",
+                "linear-gradient(to bottom, #E0E0E0 0%, #A0A0A0 100%)",
               WebkitBackgroundClip: "text",
               backgroundClip: "text",
-              textShadow: `
-                0 2px 2px rgba(0,0,0,0.5),
-                0 4px 5px rgba(0,0,0,0.3),
-                0 6px 8px rgba(0,0,0,0.2)
-              `,
+              textShadow: "0 2px 5px rgba(0,0,0,0.5)",
             }}
           >
             Our Comprehensive Health Services
           </h1>
-
           <p className="text-lg md:text-xl max-w-2xl mx-auto text-gray-300 mt-4">
             At HealthCure, we offer a wide range of services designed to make
             your health journey simple, efficient, and personalized.
@@ -181,12 +174,12 @@ const Services = () => {
 
         <motion.hr
           variants={itemVariants}
-          className="my-12 border-t-2 border-gray-600"
+          className="my-12 border-t border-gray-600"
         />
 
         {/* Services Grid */}
         <motion.div className="mb-16" variants={itemVariants}>
-          <h2 className="text-4xl font-bold text-center text-white mb-10">
+          <h2 className="text-4xl font-bold text-center text-gray-200 mb-10">
             Explore Our Offerings
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -194,14 +187,11 @@ const Services = () => {
               <motion.div
                 key={service.id}
                 className={`
-                  bg-white/10 backdrop-blur-sm rounded-3xl p-8 flex flex-col items-center text-center cursor-pointer
-                  transition-all duration-500 ease-in-out
-                  shadow-lg shadow-blue-400/30 hover:shadow-blue-400/70
-                  ${
-                    activeFeatureId === service.id
-                      ? "scale-105 border border-blue-400"
-                      : "hover:scale-105"
-                  }
+                  bg-white/5 backdrop-blur-sm rounded-3xl p-8 flex flex-col items-center text-center cursor-pointer
+                  transition-all duration-300 ease-in-out
+                  border border-transparent hover:border-blue-400
+                  hover:bg-white/10
+                  ${activeFeatureId === service.id ? "scale-105 border-blue-400 bg-white/10" : "hover:scale-105"}
                 `}
                 variants={featureVariants}
                 onClick={() => handleFeatureClick(service.id, service.route)}
@@ -216,8 +206,8 @@ const Services = () => {
                     e.stopPropagation();
                     handleFeatureClick(service.id, service.route);
                   }}
-                  className="mt-auto px-6 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 transition
-                             shadow-md shadow-green-700/50 hover:shadow-lg hover:shadow-green-700/70"
+                  className="mt-auto px-6 py-2 bg-[#4682B4] text-white rounded-full hover:bg-[#5A9BD6] transition
+                          shadow-md shadow-[#4682B4]/50 hover:shadow-lg hover:shadow-[#4682B4]/70"
                 >
                   View
                 </button>
