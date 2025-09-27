@@ -21,7 +21,6 @@ const Community = () => {
   const [error, setError] = useState(null);
   const [category, setCategory] = useState("general");
 
-  // Fetch posts
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
@@ -53,7 +52,6 @@ const Community = () => {
     };
   }, [token, category]);
 
-  // Delete post handler
   const handleDeletePost = async (postId) => {
     if (window.confirm("Are you sure you want to delete this post?")) {
       try {
@@ -79,7 +77,7 @@ const Community = () => {
 
   if (loading) {
     return (
-      <div className="pt-20 text-center text-white min-h-screen flex flex-col items-center justify-center bg-gray-950">
+      <div className="pt-20 text-center text-white min-h-screen flex flex-col items-center justify-center bg-cyan-950">
         <FaSpinner className="animate-spin text-5xl mx-auto mb-4" />
         <h3 className="text-4xl font-extrabold text-white">
           Loading Community...
@@ -90,7 +88,7 @@ const Community = () => {
 
   if (error) {
     return (
-      <div className="pt-20 text-center text-white min-h-screen flex flex-col items-center justify-center bg-gray-950">
+      <div className="pt-20 text-center text-white min-h-screen flex flex-col items-center justify-center bg-cyan-950">
         <h3 className="text-4xl font-extrabold text-red-400">Error</h3>
         <p className="text-gray-300 mt-2">{error}</p>
       </div>
@@ -98,16 +96,16 @@ const Community = () => {
   }
 
   return (
-    <section className="py-20 px-4 md:px-10 lg:px-20 min-h-screen text-white relative overflow-hidden bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950">
+    <section className="py-20 px-4 md:px-10 lg:px-20 min-h-screen text-white relative overflow-hidden bg-gradient-to-br from-cyan-900 via-cyan-800 to-cyan-950">
       {/* Background Blobs */}
       <div className="absolute inset-0 z-0">
-        <div className="w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-20 absolute top-1/4 left-1/4 animate-pulse"></div>
-        <div className="w-80 h-80 bg-purple-500 rounded-full blur-3xl opacity-20 absolute bottom-1/4 right-1/4 animate-pulse-slow"></div>
+        <div className="w-96 h-96 bg-cyan-500 rounded-full blur-3xl opacity-20 absolute top-1/4 left-1/4 animate-pulse"></div>
+        <div className="w-80 h-80 bg-teal-500 rounded-full blur-3xl opacity-20 absolute bottom-1/4 right-1/4 animate-pulse-slow"></div>
       </div>
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto">
-        <h2 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 text-center mb-10 drop-shadow-lg">
+        <h2 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 text-center mb-10 drop-shadow-lg">
           Community Forum ✨
         </h2>
         <p className="text-gray-300 text-center mb-12 max-w-2xl mx-auto">
@@ -116,20 +114,22 @@ const Community = () => {
         </p>
 
         {/* Category Filter Tabs */}
-        <div className="flex justify-center space-x-4 mb-8">
-          {["all", "general", "nutrition", "fitness", "health"].map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setCategory(cat)}
-              className={`px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 ${category === cat
-                  ? "bg-blue-600 text-white shadow-lg"
-                  : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                }`}
-            >
-              {cat.charAt(0).toUpperCase() + cat.slice(1)}
-            </button>
-          ))}
-        </div>
+        <div className="flex flex-wrap justify-center gap-3 mb-8">
+  {["all", "general", "nutrition", "fitness", "health"].map((cat) => (
+    <button
+      key={cat}
+      onClick={() => setCategory(cat)}
+      className={`px-4 py-2 text-sm sm:text-base rounded-full transition-all duration-300 transform hover:scale-105 ${
+        category === cat
+          ? "bg-cyan-600 text-white shadow-lg"
+          : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+      }`}
+    >
+      {cat.charAt(0).toUpperCase() + cat.slice(1)}
+    </button>
+  ))}
+</div>
+
 
         {user ? (
           <PostForm socket={socket} user={user} token={token} />

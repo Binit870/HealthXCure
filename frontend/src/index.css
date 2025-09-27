@@ -19,3 +19,34 @@ html {
 html {
   -ms-overflow-style: none; /* hide scrollbar */
 }
+/* src/index.css or global stylesheet */
+
+.pulse-shadow {
+  animation: pulse-shadow 2s infinite alternate;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.7); /* Initial glow */
+}
+
+@keyframes pulse-shadow {
+  0% {
+    box-shadow: 0 0 10px rgba(31, 152, 192, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 20px rgb(6, 110, 175);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.7);
+  }
+}
+
+/* Animation delays for blob background */
+.animation-delay-0 { animation-delay: 0s; }
+.animation-delay-2000 { animation-delay: 2s; }
+.animation-delay-4000 { animation-delay: 4s; }
+
+/* Fix for mix-blend-mode for blob animations */
+.mix-blend-multiply {
+  mix-blend-mode: multiply;
+}
+.mix-blend-screen {
+  mix-blend-mode: screen;
+}

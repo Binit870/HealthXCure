@@ -21,13 +21,13 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ChatWithAssistant from './pages/ChatWithAssistant/ChatWithAssistant';
 import FindDoctors from './pages/FindDoctors';
-import BookAppointment from './pages/BookAppointment';
+
 import About from './pages/About';
 import FAQ from './pages/FAQ';
 import TermsAndCondition from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Help from './pages/Help';
-import AmbulanceList from './components/Ambulance/AmbulanceList';
+
 function App() {
   const location = useLocation();
 
@@ -60,7 +60,7 @@ function App() {
           <Route path="/help" element={<Help />} />
           <Route path="/contact" element={<ContactSection />} />
 
-          
+
 
           {/* Protected Pages */}
           <Route
@@ -119,7 +119,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-         
+
           <Route
             path="/diet-planner"
             element={
@@ -136,23 +136,9 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/book-appointment"
-            element={
-              <ProtectedRoute>
-                <BookAppointment />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/ambulance-list"
-            element={
-              
-                <AmbulanceList/>
-              
-            }
-          />
-          
+
+
+
 
           {/* 404 Fallback */}
           <Route path="*" element={<NotFound />} />

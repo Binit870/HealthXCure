@@ -11,10 +11,12 @@ const SymptomDisclaimer = ({ show, onClose }) => (
         onClick={onClose}
       >
         <div
-          className="bg-white/90 p-8 rounded-3xl max-w-lg w-full text-gray-800 shadow-2xl relative"
+          // Added responsive padding and rounded corners for better mobile adaptation.
+          className="bg-white/90 p-6 sm:p-8 rounded-2xl sm:rounded-3xl max-w-lg w-full text-gray-800 shadow-2xl relative"
           onClick={(e) => e.stopPropagation()}
         >
-          <h2 className="text-2xl font-bold mb-4">Medical Disclaimer 🚨</h2>
+          {/* Adjusted font size for responsiveness */}
+          <h2 className="text-xl sm:text-2xl font-bold mb-4">Medical Disclaimer 🚨</h2>
           <p className="mb-4">
             This AI Symptom Checker is for informational purposes only and is <strong>not a substitute for professional medical advice</strong>.
           </p>
@@ -23,7 +25,7 @@ const SymptomDisclaimer = ({ show, onClose }) => (
           </p>
           <button
             onClick={onClose}
-            className="bg-purple-600 text-white font-bold py-2 px-6 rounded-full w-full transition-transform hover:scale-105"
+            className="bg-cyan-600 text-white font-bold py-2 px-6 rounded-full w-full transition-transform hover:scale-105"
           >
             I Understand
           </button>

@@ -10,6 +10,9 @@ const dietSchema = new mongoose.Schema(
     },
     age: String,
     gender: String,
+    height: String,
+weight: String,
+
     goal: String,
     dietType: String,
     preferences: String,

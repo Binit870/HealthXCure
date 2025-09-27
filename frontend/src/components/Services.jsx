@@ -187,11 +187,13 @@ const Services = () => {
               <motion.div
                 key={service.id}
                 className={`
-                  bg-white/5 backdrop-blur-sm rounded-3xl p-8 flex flex-col items-center text-center cursor-pointer
-                  transition-all duration-300 ease-in-out
-                  border border-transparent hover:border-blue-400
-                  hover:bg-white/10
-                  ${activeFeatureId === service.id ? "scale-105 border-blue-400 bg-white/10" : "hover:scale-105"}
+                  bg-white/10 backdrop-blur-sm rounded-3xl p-8 flex flex-col items-center text-center cursor-pointer
+                  transition-all duration-500 ease-in-out
+                  shadow-lg shadow-blue-400/30 hover:shadow-blue-400/70
+                  ${activeFeatureId === service.id
+                    ? "scale-105 border border-blue-400"
+                    : "hover:scale-105"
+                  }
                 `}
                 variants={featureVariants}
                 onClick={() => handleFeatureClick(service.id, service.route)}
