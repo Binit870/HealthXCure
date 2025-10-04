@@ -58,10 +58,8 @@ export const uploadFileToAI = async (req, res) => {
     const filePath = file.path;
 
     if (file.mimetype === "application/pdf") {
-      // ✅ Handle PDF with pdf2json
       extractedText = await extractTextFromPDF(filePath);
     } else if (file.mimetype.startsWith("image/")) {
-      // ✅ Handle Image with Gemini Vision
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
       const result = await model.generateContent([
@@ -74,14 +72,13 @@ export const uploadFileToAI = async (req, res) => {
         },
       ]);
 
-      fs.unlinkSync(filePath); // cleanup
+      fs.unlinkSync(filePath);
       return res.json({ reply: result.response.text() });
     } else {
       fs.unlinkSync(filePath);
       return res.json({ reply: `Unsupported file type: ${file.mimetype}` });
     }
 
-    // ✅ If text extracted (PDF), send to Gemini
     if (extractedText) {
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
@@ -92,7 +89,7 @@ ${extractedText}
 
       const result = await model.generateContent(prompt);
 
-      fs.unlinkSync(filePath); // cleanup
+      fs.unlinkSync(filePath);
       return res.json({ reply: result.response.text() });
     }
 
@@ -104,32 +101,3 @@ ${extractedText}
   }
 };
 
-// 📌 Symptom Checker with Gemini
-export const checkSymptoms = async (req, res) => {
-  try {
-    const { symptoms } = req.body;
-
-    if (!symptoms || symptoms.length === 0) {
-      return res.status(400).json({ error: "Please provide symptoms" });
-    }
-
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
-    const prompt = `
-You are a medical assistant AI.
-The user has the following symptoms: ${symptoms.join(", ")}.
-List the top 5 most likely possible health conditions in simple language.
-Also, suggest whether the user should see a doctor urgently or monitor symptoms at home.
-    `;
-
-    const result = await model.generateContent(prompt);
-
-    res.json({
-      input: symptoms,
-      conditions: result.response.text(),
-    });
-  } catch (error) {
-    console.error("Error checking symptoms:", error.message);
-    res.status(500).json({ error: "Failed to check symptoms" });
-  }
-};

@@ -1,87 +1,223 @@
-import React from 'react';
-import { Stethoscope, Salad, HeartPulse, Shield, Calendar, Phone } from 'lucide-react';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import {
+  FaStethoscope,
+  FaUserMd,
+  FaUtensils,
+  FaComments,
+  FaBell,
+  FaChartLine,
+  FaRunning,
+  FaUsers,
+  FaFileMedicalAlt,
+} from "react-icons/fa";
 
-// The ServiceCard component displays a single service with an icon, title, and description.
-// It includes a subtle hover animation for an interactive feel.
-const ServiceCard = ({ icon, title, description }) => {
-  return (
-    <div className="group relative overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl rounded-3xl p-6 bg-white border-2 border-transparent hover:border-blue-400">
-      <div className="relative z-10">
-        <div className="mb-4 inline-block p-3 rounded-full bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
-          {icon}
-        </div>
-        <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">{title}</h3>
-        <p className="text-gray-600">{description}</p>
-      </div>
-      {/* Background animation for a cool effect */}
-      <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl"></div>
-      </div>
-    </div>
-  );
-};
-
-// The main Services component that renders the entire services section.
 const Services = () => {
-  const services = [
+  const [activeFeatureId, setActiveFeatureId] = useState(null);
+  const navigate = useNavigate();
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2, delayChildren: 0.2 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
+  const featureVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+  };
+
+  const servicesList = [
     {
-      title: 'Find a Doctor',
-      description: 'Search and book appointments with verified doctors and specialists in your area with ease.',
-      icon: <Stethoscope size={32} />,
+      id: 1,
+      icon: FaChartLine,
+      title: "Health Dashboard",
+      description:
+        "Your personalized overview of all health data, including key metrics, activity levels, and progress towards your wellness goals.",
+      color: "text-blue-400",
+      route: "/dashboard",
     },
     {
-      title: 'Personalized Diet Plans',
-      description: 'Get custom diet and nutrition plans crafted by experts to meet your health goals.',
-      icon: <Salad size={32} />,
+      id: 2,
+      icon: FaStethoscope,
+      title: "AI-Powered Symptom Checker",
+      description:
+        "Get an instant, AI-driven diagnosis based on your symptoms to understand potential health issues quickly and accurately.",
+      color: "text-indigo-400",
+      route: "/symptom-checker",
     },
     {
-      title: 'Emergency Care',
-      description: 'Immediate access to our emergency care team for urgent medical needs.',
-      icon: <HeartPulse size={32} />,
+      id: 3,
+      icon: FaUserMd,
+      title: "Certified Doctor Finder",
+      description:
+        "Easily find and connect with certified medical professionals in your area, with options to filter by specialty, location, and ratings.",
+      color: "text-pink-400",
+      route: "/find-doctors",
     },
     {
-      title: 'Telemedicine',
-      description: 'Consult with healthcare professionals from the comfort of your home via video calls.',
-      icon: <Phone size={32} />,
+      id: 4,
+      icon: FaRunning,
+      title: "Fitness & Activity Tracker",
+      description:
+        "Track your workouts, set fitness goals, and monitor your daily activity to maintain a healthy and active lifestyle.",
+      color: "text-orange-400",
+      route: "/fitness",
     },
     {
-      title: 'Health Insurance',
-      description: 'Navigate complex insurance plans and find coverage that is right for you and your family.',
-      icon: <Shield size={32} />,
+      id: 5,
+      icon: FaUtensils,
+      title: "Personalized Diet & Nutrition",
+      description:
+        "Receive custom diet plans tailored to your health goals, dietary restrictions, and lifestyle, helping you stay on track with your wellness journey.",
+      color: "text-yellow-400",
+      route: "/diet-planner",
     },
     {
-      title: 'Schedule a Visit',
-      description: 'Effortlessly schedule your next clinic visit and receive timely reminders.',
-      icon: <Calendar size={32} />,
+      id: 6,
+      icon: FaUsers,
+      title: "Community & Support",
+      description:
+        "Connect with others who share similar health interests and experiences. Our community forums provide a safe space to ask questions, share knowledge, and find encouragement on your wellness journey.",
+      color: "text-green-400",
+      route: "/community",
+    },
+    {
+      id: 7,
+      icon: FaFileMedicalAlt,
+      title: "My Health Reports",
+      description:
+        "Securely store and access all your medical reports, lab results, and prescriptions in one place. Easily share them with your doctors for seamless consultations and a comprehensive health overview.",
+      color: "text-red-400",
+      route: "/my-reports",
+    },
+    {
+      id: 8,
+      icon: FaComments,
+      title: "Chat with Assistance",
+      description:
+        "Connect with our support team for any queries or assistance related to our services and platform.",
+      color: "text-teal-400",
+      route: "/chat-assistance",
+    },
+    {
+      id: 9,
+      icon: FaBell,
+      title: "Notifications",
+      description:
+        "Stay informed with real-time updates on your appointments, lab results, and medication reminders, all in one central location.",
+      color: "text-purple-400",
+      route: "/notifications",
     },
   ];
 
-  return (
-    <div className="min-h-screen font-sans  flex items-center justify-center p-4 sm:p-6 lg:p-10">
-      <script src="https://cdn.tailwindcss.com"></script>
-      {/* Main container for the services section */}
-      <div className="w-full max-w-7xl mx-auto text-center py-10">
-        {/* Section Heading */}
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-100 mb-4 tracking-tight">
-          Our Health Services
-        </h2>
-        {/* Section Subtitle */}
-        <p className="text-lg md:text-xl text-gray-200 mb-12 max-w-3xl mx-auto">
-          We provide a comprehensive range of services to ensure your health and well-being.
-        </p>
+  const handleFeatureClick = (id, route) => {
+    setActiveFeatureId(id);
+    if (route) {
+      navigate(route);
+    }
+  };
 
-        {/* Responsive grid for the service cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <ServiceCard
-              key={index}
-              icon={service.icon}
-              title={service.title}
-              description={service.description}
-            />
-          ))}
-        </div>
-      </div>
+  return (
+    <div
+      className="font-sans pt-24 pb-12 min-h-screen text-gray-100"
+      style={{
+        backgroundColor: "#2F4F4F",
+      }}
+    >
+      <motion.div
+        className="container mx-auto px-6 max-w-7xl"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Hero Section */}
+        <motion.div className="text-center mb-16 relative" variants={itemVariants}>
+          <div
+            className="absolute inset-0 flex items-center justify-center"
+            style={{ zIndex: -1 }}
+          >
+            <div
+              className="w-[420px] h-[160px] rounded-full blur-2xl opacity-40"
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 80%)",
+              }}
+            ></div>
+          </div>
+          <h1
+            className="text-5xl md:text-6xl font-extrabold mb-0 relative"
+            style={{
+              color: "transparent",
+              backgroundImage:
+                "linear-gradient(to bottom, #E0E0E0 0%, #A0A0A0 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              textShadow: "0 2px 5px rgba(0,0,0,0.5)",
+            }}
+          >
+            Our Comprehensive Health Services
+          </h1>
+          <p className="text-lg md:text-xl max-w-2xl mx-auto text-gray-300 mt-4">
+            At HealthCure, we offer a wide range of services designed to make
+            your health journey simple, efficient, and personalized.
+          </p>
+        </motion.div>
+
+        <motion.hr
+          variants={itemVariants}
+          className="my-12 border-t border-gray-600"
+        />
+
+        {/* Services Grid */}
+        <motion.div className="mb-16" variants={itemVariants}>
+          <h2 className="text-4xl font-bold text-center text-gray-200 mb-10">
+            Explore Our Offerings
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            {servicesList.map((service) => (
+              <motion.div
+                key={service.id}
+                className={`
+                  bg-white/10 backdrop-blur-sm rounded-3xl p-8 flex flex-col items-center text-center cursor-pointer
+                  transition-all duration-500 ease-in-out
+                  shadow-lg shadow-blue-400/30 hover:shadow-blue-400/70
+                  ${activeFeatureId === service.id
+                    ? "scale-105 border border-blue-400"
+                    : "hover:scale-105"
+                  }
+                `}
+                variants={featureVariants}
+                onClick={() => handleFeatureClick(service.id, service.route)}
+              >
+                <service.icon className={`text-5xl mb-4 ${service.color}`} />
+                <h3 className="text-xl font-extrabold mb-2 text-white">
+                  {service.title}
+                </h3>
+                <p className="text-gray-300 mb-4">{service.description}</p>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleFeatureClick(service.id, service.route);
+                  }}
+                  className="mt-auto px-6 py-2 bg-[#4682B4] text-white rounded-full hover:bg-[#5A9BD6] transition
+                          shadow-md shadow-[#4682B4]/50 hover:shadow-lg hover:shadow-[#4682B4]/70"
+                >
+                  View
+                </button>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };

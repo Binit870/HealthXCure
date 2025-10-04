@@ -1,80 +1,83 @@
-/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
-import axios from "axios";
+import API from "../utils/Api";
+import {jwtDecode} from "jwt-decode";
 
 const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
-const API_URL = "http://localhost:5000/api/auth";
-
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Sanitize token from localStorage
+  // Initialize token from localStorage
   const rawToken = localStorage.getItem("token");
   const initialToken =
     rawToken && rawToken !== "null" && rawToken !== "undefined" ? rawToken : null;
   const [token, setToken] = useState(initialToken);
 
+  // Hydrate user from localStorage
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser && storedUser !== "undefined" && storedUser !== "null") {
+    if (token) {
+      const storedUser = localStorage.getItem("user");
+      if (storedUser && storedUser !== "undefined" && storedUser !== "null") {
+        try {
+          const parsedUser = JSON.parse(storedUser);
+          if (parsedUser && (parsedUser._id || parsedUser.id)) {
+            setUser(parsedUser);
+          } else {
+            localStorage.removeItem("user");
+          }
+        } catch {
+          localStorage.removeItem("user");
+        }
+      }
+    }
+    setLoading(false);
+  }, [token]);
+
+  // Check token expiration
+  useEffect(() => {
+    if (token) {
       try {
-        setUser(JSON.parse(storedUser));
-      } catch (error) {
-        console.error("Failed to parse user data from localStorage", error);
-        localStorage.removeItem("user");
-        setUser(null);
+        const decoded = jwtDecode(token);
+        const currentTime = Date.now() / 1000;
+        if (decoded.exp < currentTime) logout();
+      } catch {
+        logout();
       }
     }
   }, [token]);
 
-  // Signup
-  const signup = async (name, username, email, password) => {
-    try {
-      await axios.post(`${API_URL}/signup`, { name, username, email, password });
-    } catch (err) {
-      throw new Error(err.response?.data?.message || "Signup failed");
-    }
-  };
-
-  // Login
   const login = async (email, password) => {
-    try {
-      const res = await axios.post(`${API_URL}/login`, { email, password });
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-      setToken(res.data.token);
-      setUser(res.data.user);
-
-      // Optional: Set global Axios header
-      axios.defaults.headers.common["Authorization"] = `Bearer ${res.data.token}`;
-    } catch (err) {
-      throw new Error(err.response?.data?.message || "Login failed");
-    }
+    const res = await API.post("/auth/login", { email, password });
+    localStorage.setItem("token", res.data.token);
+    localStorage.setItem("user", JSON.stringify(res.data.user));
+    setToken(res.data.token);
+    setUser(res.data.user);
   };
 
-  // Logout
+  const signup = async (name, username, email, password) => {
+    await API.post("/auth/signup", { name, username, email, password });
+  };
+
   const logout = () => {
-  // Clear everything related to auth
-  localStorage.removeItem("token");
-  localStorage.removeItem("user");
-  sessionStorage.clear(); // just in case anything is stored there
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    sessionStorage.clear();
+    setToken(null);
+    setUser(null);
+    window.location.href = "/";
+  };
 
-  // Clear Axios headers
-  delete axios.defaults.headers.common["Authorization"];
-
-  // Reset state
-  setToken(null);
-  setUser(null);
-
-  // Force reload to reset all components
-  window.location.href = "/login"; // redirect to login instead of reload
-};
-
+  const updateUser = (newUser) => {
+    if (newUser && newUser._id) {
+      setUser(newUser);
+      localStorage.setItem("user", JSON.stringify(newUser));
+    }
+  };
 
   return (
-    <AuthContext.Provider value={{ user, token, signup, login, logout }}>
+    <AuthContext.Provider value={{ user, token, login, logout, signup, updateUser, loading }}>
       {children}
     </AuthContext.Provider>
   );

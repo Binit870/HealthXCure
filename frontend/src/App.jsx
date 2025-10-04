@@ -1,38 +1,42 @@
 import React from 'react';
+
 import { Routes, Route, useLocation } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer';
 import LandingPage from './components/LandingPage/LandingPage';
+import ProtectedRoute from './components/ProtectedRoute';
+import Dashboard from './components/Dashboard/Dashboard';
+import Reports from './components/Reports/Reports';
+import NotFound from './components/NotFound';
+import Services from './components/Services';
+import DietPlanner from './components/Diet/DietPlanner';
+import Community from './components/Community/Community';
+import SymptomChecker from './components/SymptomChecker/SymptomChecker';
+import FitnessPlanner from './components/Fitness/FitnessPlanner';
+import ContactSection from './components/LandingPage/ContactSection';
+
+
+import Notification from './pages/Notification';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import SearchResults from './components/SearchResults';
-import ChatWithAssistant from './pages/ChatWithAssistant';
-import ProtectedRoute from './components/ProtectedRoute';
-import SymptomChecker from './pages/SymptomChecker';
+import ChatWithAssistant from './pages/ChatWithAssistant/ChatWithAssistant';
 import FindDoctors from './pages/FindDoctors';
-import BookAppointment from './pages/BookAppointment';
-import DietPlanner from './pages/DietPlanner';
-import Community from './pages/Community';
+
 import About from './pages/About';
-import Dashboard from './components/Dashboard';
-import FAQ from './pages/FAQ.JSX';
+import FAQ from './pages/FAQ';
 import TermsAndCondition from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Help from './pages/Help';
-import Reports from './pages/Reports';
-import Services from './components/Services';
-import NotFound from './components/NotFound';
+
 function App() {
   const location = useLocation();
 
-  // Define which paths should hide the navbar and footer.
-  // Use a Set for efficient lookup and include a check for trailing slashes.
+  // Hide Navbar/Footer on specific routes
   const pathsWithoutNavbar = new Set(['/login', '/signup']);
   const pathsWithoutFooter = new Set(['/login', '/signup', '/chat']);
 
-  // Normalize the current path for a reliable check.
   const normalizedPathname = location.pathname.endsWith('/')
-    ? location.pathname.slice(0, -1) // Remove trailing slash
+    ? location.pathname.slice(0, -1)
     : location.pathname;
 
   const hideNavbar = pathsWithoutNavbar.has(normalizedPathname.toLowerCase());
@@ -44,22 +48,42 @@ function App() {
 
       <div className={`flex-grow flex flex-col ${!hideNavbar ? 'pt-16' : ''}`}>
         <Routes>
+          {/* Public Pages */}
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path='/services' element={<Services />}></Route>
-          <Route path='/about' element={<About />}></Route>
-          <Route path='/faq' element={<FAQ />}></Route>
-          <Route path='/terms' element={<TermsAndCondition />}></Route>
-          <Route path='/privacy-policy' element={<PrivacyPolicy />}></Route>
-          <Route path='/help' element={<Help />}></Route>
+          <Route path="/services" element={<Services />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/terms" element={<TermsAndCondition />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/help" element={<Help />} />
+          <Route path="/contact" element={<ContactSection />} />
 
-          {/* Protected routes */}
+
+
+          {/* Protected Pages */}
           <Route
             path="/chat"
             element={
               <ProtectedRoute>
                 <ChatWithAssistant />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/notifications"
+            element={
+              <ProtectedRoute>
+                <Notification />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/fitness"
+            element={
+              <ProtectedRoute>
+                <FitnessPlanner />
               </ProtectedRoute>
             }
           />
@@ -87,16 +111,15 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/symptom-checker" element={<ProtectedRoute><SymptomChecker /></ProtectedRoute>} />
-
           <Route
-            path="/search"
+            path="/symptom-checker"
             element={
               <ProtectedRoute>
-                <SearchResults />
+                <SymptomChecker />
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/diet-planner"
             element={
@@ -105,8 +128,19 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/find-doctors" element={<ProtectedRoute><FindDoctors /></ProtectedRoute>}></Route>
-          <Route path="/book-appointment" element={<ProtectedRoute><BookAppointment /></ProtectedRoute>}></Route>
+          <Route
+            path="/find-doctors"
+            element={
+              <ProtectedRoute>
+                <FindDoctors />
+              </ProtectedRoute>
+            }
+          />
+
+
+
+
+          {/* 404 Fallback */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

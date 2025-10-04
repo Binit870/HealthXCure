@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getPosts, createPost } from '../controllers/communityController.js';
+import { getPosts, createPost, deletePost } from '../controllers/communityController.js'; // 👈 Import deletePost
 import jwt from 'jsonwebtoken';
 
 const router = Router();
@@ -39,11 +39,15 @@ const authenticate = (req, res, next) => {
 };
 
 export default (io) => {
-    // GET route for fetching all posts
+    // GET route for fetching all posts (public)
     router.get('/posts', getPosts);
 
-   router.post('/posts', authenticate, (req, res) => createPost(req, res, io));
+    // POST route for creating a new post (protected)
+    router.post('/posts', authenticate, (req, res) => createPost(req, res, io));
 
+    // ⭐️ New DELETE route for deleting a post (protected)
+    // The ':id' is a URL parameter that captures the post ID.
+    router.delete('/posts/:id', authenticate, deletePost);
 
     return router;
 };

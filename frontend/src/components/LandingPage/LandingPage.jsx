@@ -7,8 +7,8 @@ import AssistantSection from "./AssistantSection";
 import DashboardSection from "./DashboardSection";
 import CommunitySection from "./CommunitySection";
 import ReportsSection from "./ReportsSection";
-import DoctorsSection from "./DoctorsSection";
-import ContactSection from "./ContactSection";
+
+
 
 const LandingPage = () => {
   useEffect(() => {
@@ -64,16 +64,16 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-cyan-900 to-blue-900 min-h-screen pt-8 text-white">
+    <div className="bg-gradient-to-br from-cyan-900 to-teal-900 min-h-screen pt-8 text-white">
       <main className="container mx-auto px-4">
         <HeroSection />
         <ServicesSection />
-        <AssistantSection />
         <DashboardSection />
+        <AssistantSection />
         <CommunitySection />
         <ReportsSection />
-        <DoctorsSection />
-        <ContactSection />
+       
+        
       </main>
     </div>
   );
