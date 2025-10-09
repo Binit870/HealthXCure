@@ -17,7 +17,7 @@ export const checkSymptoms = async (req, res) => {
       return res.status(400).json({ error: "Please provide symptoms" });
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
     const prompt = `
       You are a medical assistant AI.

@@ -10,12 +10,11 @@ import Reports from './components/Reports/Reports';
 import NotFound from './components/NotFound';
 import Services from './components/Services';
 import DietPlanner from './components/Diet/DietPlanner';
-import Community from './components/Community/Community';
+
 import SymptomChecker from './components/SymptomChecker/SymptomChecker';
 import FitnessPlanner from './components/Fitness/FitnessPlanner';
 import ContactSection from './components/LandingPage/ContactSection';
-
-
+import Community from './components/Community/Community';
 import Notification from './pages/Notification';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -27,6 +26,8 @@ import FAQ from './pages/FAQ';
 import TermsAndCondition from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Help from './pages/Help';
+
+import ScrollToTop from './ScrollToTop';
 
 function App() {
   const location = useLocation();
@@ -44,11 +45,13 @@ function App() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-cyan-900 to-blue-900 font-inter">
+      <ScrollToTop />
       {!hideNavbar && <Navbar />}
 
       <div className={`flex-grow flex flex-col ${!hideNavbar ? 'pt-16' : ''}`}>
         <Routes>
           {/* Public Pages */}
+          
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
