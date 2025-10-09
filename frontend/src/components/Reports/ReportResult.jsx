@@ -52,7 +52,7 @@ const ReportResult = ({ result, selectedHistoryItem }) => {
             ),
             p: ({ node, ...props }) => (
               <p
-                className="text-cyan-300 leading-relaxed mb-4 hover:text-cyan-600 transition-colors"
+                className="text-cyan-300 leading-relaxed mb-4  transition-colors"
                 {...props}
               />
             ),

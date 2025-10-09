@@ -10,6 +10,8 @@ const ContactSection = () => {
     const data = new FormData(form);
 
     try {
+      // NOTE: Using 'await' with fetch without catching the network error 
+      // is common, but ensure your Formspree URL is correct.
       const response = await fetch("https://formspree.io/f/mldwovbn", {
         method: "POST",
         body: data,
@@ -33,7 +35,11 @@ const ContactSection = () => {
       id="contact"
       className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-slate-900 to-blue-800 p-6"
     >
-      <div className="w-full max-w-2xl bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl hover:shadow-[0_0_35px_rgba(0,191,255,0.8)] transition duration-300 p-10 border border-white/10">
+      <div
+        className="w-full max-w-2xl bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl transition duration-300 p-10 border border-white/10
+          
+          hover:shadow-xl hover:border-cyan-500/50"
+      >
         <h3 className="text-4xl font-extrabold text-white text-center mb-10">
           Get in Touch with Us
         </h3>
@@ -52,8 +58,9 @@ const ContactSection = () => {
               id="name"
               name="name"
               className="w-full p-4 rounded-xl border border-white/20 bg-slate-800/80 text-white placeholder-gray-400 
-                         focus:outline-none focus:ring-2 focus:ring-cyan-400 hover:border-cyan-300 
-                         hover:shadow-[0_0_25px_rgba(0,191,255,0.9)] focus:shadow-[0_0_30px_rgba(0,191,255,1)] transition"
+                focus:outline-none focus:ring-2 focus:ring-cyan-400 transition 
+                
+                hover:border-cyan-400"
               placeholder="Enter your name"
               required
             />
@@ -73,8 +80,9 @@ const ContactSection = () => {
                 id="email"
                 name="email"
                 className="flex-1 p-4 rounded-xl border border-white/20 bg-slate-800/80 text-white placeholder-gray-400 
-                           focus:outline-none focus:ring-2 focus:ring-cyan-400 hover:border-cyan-300 
-                           hover:shadow-[0_0_25px_rgba(0,191,255,0.9)] focus:shadow-[0_0_30px_rgba(0,191,255,1)] transition"
+                  focus:outline-none focus:ring-2 focus:ring-cyan-400 transition 
+                 
+                  hover:border-cyan-400"
                 placeholder="Enter your email"
                 required
               />
@@ -100,8 +108,9 @@ const ContactSection = () => {
               name="message"
               rows="5"
               className="w-full p-4 rounded-xl border border-white/20 bg-slate-800/80 text-white placeholder-gray-400 
-                         focus:outline-none focus:ring-2 focus:ring-cyan-400 hover:border-cyan-300 
-                         hover:shadow-[0_0_25px_rgba(0,191,255,0.9)] focus:shadow-[0_0_30px_rgba(0,191,255,1)] transition"
+                focus:outline-none focus:ring-2 focus:ring-cyan-400 transition 
+                
+                hover:border-cyan-400"
               placeholder="Type your message here..."
               required
             ></textarea>
@@ -111,9 +120,8 @@ const ContactSection = () => {
           <button
             type="submit"
             className="w-full bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold py-4 rounded-xl shadow-lg 
-                       hover:from-cyan-500 hover:to-blue-600 
-                       hover:shadow-[0_0_40px_rgba(0,191,255,1)] 
-                       transition duration-300 transform hover:scale-105"
+             
+              hover:from-blue-500 hover:to-blue-400 hover:shadow-2xl"
           >
             Send Message
           </button>
