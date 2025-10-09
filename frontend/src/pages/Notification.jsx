@@ -14,26 +14,25 @@ const Notification = () => {
   useEffect(() => {
     if (loading || !user) return;
 
-    const userId = user._id;
-
     socketRef.current = io(SOCKET_URL, {
       withCredentials: true,
     });
 
-    socketRef.current.emit("join", userId);
+    socketRef.current.emit("join", user._id);
 
     const fetchNotifications = async () => {
       try {
-        const res = await API.get(`/notifications/${userId}`);
+        const res = await API.get(`/notifications`); // ✅ No userId in URL
         setNotifications(res.data);
       } catch (err) {
         console.error("Error fetching notifications:", err.message);
       }
     };
+
     fetchNotifications();
 
     socketRef.current.on("newNotification", (notif) => {
-      if (notif.userId?.toString() === userId.toString()) {
+      if (notif.userId?.toString() === user._id.toString()) {
         setNotifications((prev) => [notif, ...prev]);
       }
     });
@@ -83,7 +82,6 @@ const Notification = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
-        // This is the line that was changed: max-w-2xl -> max-w-4xl
         className="relative z-10 p-12 bg-gray-900 rounded-3xl shadow-2xl max-w-8xl mx-auto border border-gray-700 backdrop-blur-md bg-opacity-80"
       >
         <motion.div

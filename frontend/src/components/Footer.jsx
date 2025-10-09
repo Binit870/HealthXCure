@@ -158,7 +158,7 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="mt-10 border-t border-gray-700 py-6 text-center">
         <p className="text-sm text-gray-500">
-          &copy; 2025 HealthCure. All rights reserved.
+          &copy; 2025 HealthXCure. All rights reserved.
         </p>
       </div>
     </footer>

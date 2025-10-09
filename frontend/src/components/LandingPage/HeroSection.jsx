@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import healthImage from "../../assets/healthcare.png";
 
 const HeroSection = () => (
@@ -22,13 +22,16 @@ const HeroSection = () => (
     {/* Text Content Overlay */}
     <div className="relative z-10 text-center px-4 sm:px-6 md:px-12">
       <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 animate-fade-in leading-tight">
-        Your Partner in Health and Wellness
+       Your Health, Our Priority
+      </h2>
+      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 animate-fade-in leading-tight">
+       Your Partner in Health and Wellness
       </h2>
       <h3 className="text-lg sm:text-xl md:text-2xl text-white font-semibold mb-4 animate-fade-in-delay">
         Trusted care, anytime, anywhere.
       </h3>
       <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white max-w-3xl mx-auto mb-6 animate-fade-in-delay">
-        Manage your health from one place. Check symptoms, find doctors, and get personalized diet plans and fitness plans.
+        Manage your health from one place. Check symptoms, find doctors, and get personalized diet plans and fitness plans with AI powered.
       </p>
 
       <a

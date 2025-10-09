@@ -26,11 +26,12 @@ const ReportHistory = ({ history, showHistory, setShowHistory, handleViewHistory
     return (
         <div className="w-full max-w-3xl mt-8">
             <motion.button
-                onClick={() => setShowHistory(!showHistory)}
-                className="w-full bg-gradient-to-r from-cyan-600 to-blue-700 text-whcyan-300ite font-semibold py-3 md:py-4 rounded-2xl shadow-xl hover:from-cyan-700 hover:to-blue-800 transition flex justify-between items-center px-6 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-950"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-            >
+  onClick={() => setShowHistory(!showHistory)}
+  className="w-full bg-gradient-to-r from-cyan-600 to-blue-700 text-white font-semibold py-3 md:py-4 rounded-2xl shadow-xl hover:from-cyan-700 hover:to-blue-800 transition flex justify-between items-center px-6 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-transparent"
+ 
+  whileHover={{ scale: 1.02 }}
+  whileTap={{ scale: 0.98 }}
+>
                 <span className="text-lg md:text-xl flex items-center">
                     <AiOutlineHistory className="mr-2 text-2xl" /> View Upload History ({history.length})
                 </span>

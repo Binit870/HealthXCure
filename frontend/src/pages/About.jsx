@@ -10,12 +10,15 @@ import {
   FaRunning,
   FaUsers,
   FaFileMedicalAlt,
+  // New Imports
+  FaHeartbeat, // For Mental/Stress Tracking
+  FaLaptopMedical, // For Telemedicine
 } from "react-icons/fa";
 
 const About = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.2 } },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
   };
   const itemVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -40,11 +43,19 @@ const About = () => {
       icon: FaStethoscope,
       title: "AI-Powered Symptom Checker",
       description:
-        "Get an instant, AI-driven diagnosis based on your symptoms to understand potential health issues quickly and accurately.",
+        "Get an instant, AI-driven analysis based on your symptoms to understand potential health issues quickly and accurately.",
       color: "text-indigo-400",
     },
+    // {
+    //   id: 3,
+    //   icon: FaLaptopMedical, // NEW ICON
+    //   title: "Telemedicine & Consultations", // NEW TITLE
+    //   description:
+    //     "Book and attend virtual appointments with certified doctors directly through the platform, allowing for secure, remote care.", // UPDATED DESCRIPTION
+    //   color: "text-cyan-400", // NEW COLOR
+    // },
     {
-      id: 3,
+      id: 4,
       icon: FaUserMd,
       title: "Certified Doctor Finder",
       description:
@@ -52,7 +63,7 @@ const About = () => {
       color: "text-pink-400",
     },
     {
-      id: 4,
+      id: 5,
       icon: FaRunning,
       title: "Fitness & Activity Tracker",
       description:
@@ -60,41 +71,49 @@ const About = () => {
       color: "text-orange-400",
     },
     {
-      id: 5,
+      id: 6,
       icon: FaUtensils,
       title: "Personalized Diet & Nutrition",
       description:
         "Receive custom diet plans tailored to your health goals, dietary restrictions, and lifestyle, helping you stay on track with your wellness journey.",
       color: "text-yellow-400",
     },
+    // {
+    //   id: 7,
+    //   icon: FaHeartbeat, // NEW ICON
+    //   title: "Mental Health & Stress Tracking", // NEW FEATURE
+    //   description:
+    //     "Monitor your mood, track stress levels, and access guided meditations and resources for emotional well-being and mental resilience.",
+    //   color: "text-fuchsia-400", // NEW COLOR
+    // },
     {
-      id: 6,
+      id: 8,
       icon: FaUsers,
       title: "Community & Support",
       description:
-        "Connect with others who share similar health interests and experiences. Our community forums provide a safe space to ask questions, share knowledge, and find encouragement on your wellness journey.",
+        "Connect with others who share similar health interests and experiences. Our community forums provide a safe space to ask questions, share knowledge, and find encouragement.",
       color: "text-green-400",
     },
     {
-      id: 7,
+      id: 9,
       icon: FaFileMedicalAlt,
       title: "My Health Reports",
       description:
-        "Securely store and access all your medical reports, lab results, and prescriptions in one place. Easily share them with your doctors for seamless consultations and a comprehensive health overview.",
+        "Securely store and access all your medical reports, lab results, and prescriptions in one place. Easily share them with your doctors for seamless consultations.",
       color: "text-red-400",
     },
     {
-      id: 8,
+      id: 10, // Updated ID
       icon: FaComments,
-      title: "Chat with Assistance",
+      title: "AI Health Coach (Chat)", // MODIFIED TITLE
       description:
-        "Connect with our support team for any queries or assistance related to our services and platform.",
+        "A 24/7 AI-powered health coach to answer FAQs, provide motivation, suggest exercises, and guide you through platform features.", // MODIFIED DESCRIPTION
       color: "text-teal-400",
     },
     {
-      id: 9,
+      id: 11, // Updated ID
       icon: FaBell,
-      title: "Notifications",
+      title: "Notifications & Reminders", // MODIFIED TITLE
       description:
         "Stay informed with real-time updates on your appointments, lab results, and medication reminders, all in one central, easy-to-manage location.",
       color: "text-purple-400",
@@ -116,6 +135,7 @@ const About = () => {
       >
         {/* Hero Section */}
         <motion.div className="text-center mb-16 relative" variants={itemVariants}>
+          {/* Subtle background glow effect */}
           <div
             className="absolute inset-0 flex items-center justify-center"
             style={{ zIndex: -1 }}
@@ -138,7 +158,7 @@ const About = () => {
               textShadow: "0 2px 5px rgba(0,0,0,0.5)",
             }}
           >
-            Your Partner in Health and Wellness
+            Your Partner in Holistic Wellness
           </h1>
           <p className="text-lg md:text-xl max-w-2xl mx-auto text-gray-300 mt-4">
             At HealthCure, we believe that health is a journey, not a destination. We're here to empower you with innovative tools and compassionate support.
@@ -153,7 +173,7 @@ const About = () => {
         {/* Features Grid */}
         <motion.div className="mb-16" variants={itemVariants}>
           <h2 className="text-4xl font-bold text-center text-gray-200 mb-10">
-            What We Offer
+            Comprehensive Digital Care
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {features.map((feature) => (
