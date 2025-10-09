@@ -55,7 +55,7 @@ const Navbar = () => {
             </button>
             <Link to="/" className="flex items-center space-x-2 text-2xl font-bold text-white">
               <IoFitnessOutline className="text-cyan-400" />
-              <span>HealthCure</span>
+              <span>HealthXCure</span>
             </Link>
           </div>
 

@@ -22,35 +22,51 @@ const Footer = () => {
       <div className="container mx-auto px-6 lg:px-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 text-center md:text-left">
         {/* Brand */}
         <div>
-          <h4 className="text-2xl font-bold text-gradient mb-4">HealthCure</h4>
+          <h4 className="text-2xl font-bold text-gradient mb-4">HealthXCure</h4>
           <p className="text-sm">
             Your all-in-one platform for managing health and well-being.
           </p>
           <div className="mt-5 flex justify-center md:justify-start space-x-4">
-            <Link
-              to="/facebook"
-              className="p-2 bg-gray-800 rounded-full hover:bg-pink-500 transition duration-300"
-            >
-              <FaFacebookF />
-            </Link>
-            <Link
-              to="/twitter"
-              className="p-2 bg-gray-800 rounded-full hover:bg-blue-400 transition duration-300"
-            >
-              <FaTwitter />
-            </Link>
-            <Link
-              to="/instagram"
-              className="p-2 bg-gray-800 rounded-full hover:bg-gradient-to-r from-pink-500 to-yellow-400 transition duration-300"
-            >
-              <FaInstagram />
-            </Link>
-            <Link
-              to="/linkedin"
-              className="p-2 bg-gray-800 rounded-full hover:bg-blue-600 transition duration-300"
-            >
-              <FaLinkedinIn />
-            </Link>
+            <a
+  href="https://www.facebook.com/profile.php?id=61581851285563"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="p-2 bg-gray-800 rounded-full hover:bg-pink-500 transition duration-300"
+><FaFacebookF />
+</a>
+
+              
+            
+            <a
+  href="https://x.com/HealthCure59238"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="p-2 bg-gray-800 rounded-full hover:bg-pink-500 transition duration-300"
+>
+  <FaTwitter />
+</a>
+              
+            
+            <a
+  href="https://www.instagram.com/healthcure775/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="p-2 bg-gray-800 rounded-full hover:bg-pink-500 transition duration-300"
+>
+  <FaInstagram />
+</a>
+              
+            
+            <a
+  href="https://www.linkedin.com/in/healthcure-jamshedpur-2994a8389/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="p-2 bg-gray-800 rounded-full hover:bg-pink-500 transition duration-300"
+>
+ <FaLinkedinIn />
+</a>
+              
+            
           </div>
         </div>
 

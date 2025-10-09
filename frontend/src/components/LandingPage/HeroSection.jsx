@@ -4,19 +4,20 @@ import healthImage from "../../assets/healthcare.png";
 
 const HeroSection = () => (
   <section
-  id="hero"
-  className="scroll-mt-20 pt-20 sm:pt-24 relative w-full h-[90vh] sm:h-screen flex items-center justify-center overflow-hidden rounded-3xl shadow-lg mb-16 max-w-screen-2xl mx-auto"
->
+    id="hero"
+    className="scroll-mt-20 pt-20 sm:pt-24 relative w-full h-[90vh] sm:h-screen flex items-center justify-center overflow-hidden rounded-3xl shadow-lg mb-16 max-w-screen-2xl mx-auto"
+  >
 
-    {/* Full Width Background Image */}
+    {/* Full Width Background Image (No blur needed if it's heavily covered) */}
     <img
       src={healthImage}
       alt="Health and Wellness"
       className="absolute inset-0 w-full h-full object-cover"
     />
 
-    {/* Dark overlay for readability */}
-    <div className="absolute inset-0 bg-black/40"></div>
+    {/* Opaque Color Overlay with controlled opacity */}
+    {/* Key Change: Using a solid color (bg-cyan-800) and then reducing the element's opacity (opacity-75) */}
+    <div className="absolute inset-0 bg-cyan-900/60 opacity-75"></div>
 
     {/* Text Content Overlay */}
     <div className="relative z-10 text-center px-4 sm:px-6 md:px-12">
