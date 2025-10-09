@@ -37,7 +37,7 @@ const ContactSection = () => {
     >
       <div
         className="w-full max-w-2xl bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl transition duration-300 p-10 border border-white/10
-          /* MINIMAL CONTAINER HOVER: Subtle lift and border highlight */
+          
           hover:shadow-xl hover:border-cyan-500/50"
       >
         <h3 className="text-4xl font-extrabold text-white text-center mb-10">
@@ -59,7 +59,7 @@ const ContactSection = () => {
               name="name"
               className="w-full p-4 rounded-xl border border-white/20 bg-slate-800/80 text-white placeholder-gray-400 
                 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition 
-                /* MINIMAL INPUT HOVER: Only border and focus highlight */
+                
                 hover:border-cyan-400"
               placeholder="Enter your name"
               required
@@ -81,7 +81,7 @@ const ContactSection = () => {
                 name="email"
                 className="flex-1 p-4 rounded-xl border border-white/20 bg-slate-800/80 text-white placeholder-gray-400 
                   focus:outline-none focus:ring-2 focus:ring-cyan-400 transition 
-                  /* MINIMAL INPUT HOVER: Only border and focus highlight */
+                 
                   hover:border-cyan-400"
                 placeholder="Enter your email"
                 required
@@ -109,7 +109,7 @@ const ContactSection = () => {
               rows="5"
               className="w-full p-4 rounded-xl border border-white/20 bg-slate-800/80 text-white placeholder-gray-400 
                 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition 
-                /* MINIMAL INPUT HOVER: Only border and focus highlight */
+                
                 hover:border-cyan-400"
               placeholder="Type your message here..."
               required
@@ -120,8 +120,7 @@ const ContactSection = () => {
           <button
             type="submit"
             className="w-full bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold py-4 rounded-xl shadow-lg 
-              transition duration-300 
-              /* MINIMAL BUTTON HOVER: Subtle color shift and shadow change */
+             
               hover:from-blue-500 hover:to-blue-400 hover:shadow-2xl"
           >
             Send Message
