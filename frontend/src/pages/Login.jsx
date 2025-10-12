@@ -3,9 +3,13 @@ import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import loginBg from "../assets/bg.png";
 import { useAuth } from "../context/AuthContext.jsx";
+import { GoogleLogin } from '@react-oauth/google';
+import {jwtDecode } from "jwt-decode";
+
+import API from "../utils/Api";
 
 const Login = () => {
-  const { login } = useAuth();
+  const { login,googleAuth  } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -84,7 +88,23 @@ const Login = () => {
             {isLoading ? "Logging in..." : "Login"}
           </button>
         </form>
-        
+       <div className="mt-6 flex justify-center">
+  <GoogleLogin
+  onSuccess={async (credentialResponse) => {
+    const token = credentialResponse.credential;
+    try {
+      await googleAuth(token); // ✅ update AuthContext immediately
+      setMessage({ type: "success", text: "Google login successful!" });
+      setTimeout(() => navigate("/"), 1500);
+    } catch (err) {
+      console.error(err);
+      setMessage({ type: "error", text: "Google login failed" });
+    }
+  }}
+  onError={() => setMessage({ type: "error", text: "Google login failed" })}
+/>
+</div>
+
         {/* Display the message here */}
         {message.text && (
           <p className={`mt-6 text-center text-sm font-medium ${

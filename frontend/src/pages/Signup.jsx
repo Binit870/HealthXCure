@@ -3,9 +3,13 @@ import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import signupBg from "../assets/bg.png";
 import { useAuth } from "../context/AuthContext.jsx";
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from "jwt-decode";
+
+import API from "../utils/Api";
 
 const Signup = () => {
-  const { signup } = useAuth();
+  const { signup, googleAuth } = useAuth();
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -62,7 +66,7 @@ const Signup = () => {
           Create an Account
         </h2>
         <p className="text-center text-white/80 mb-8">
-          Join HealthCure to get started
+          Join HealthXCure to get started
         </p>
 
         <form onSubmit={handleSubmit} className="flex flex-col space-y-6">
@@ -117,7 +121,22 @@ const Signup = () => {
             ) : "Signup"}
           </button>
         </form>
-
+        <div className="mt-6 flex justify-center">
+          <GoogleLogin
+            onSuccess={async (credentialResponse) => {
+              const token = credentialResponse.credential;
+              try {
+                await googleAuth(token);
+                setMessage({ type: "success", text: "Google signup successful!" });
+                setTimeout(() => navigate("/"), 1500);
+              } catch (err) {
+                console.error(err);
+                setMessage({ type: "error", text: "Google signup failed" });
+              }
+            }}
+            onError={() => setMessage({ type: "error", text: "Google signup failed" })}
+          />
+        </div>
         {/* Display the message here */}
         {message.text && (
           <p className={`mt-6 text-center text-sm font-medium ${message.type === 'success' ? 'text-green-400' : 'text-red-400'
