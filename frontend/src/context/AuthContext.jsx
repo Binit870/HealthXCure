@@ -1,19 +1,23 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import API from "../utils/Api";
-import {jwtDecode} from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Initialize token from localStorage
-  const rawToken = localStorage.getItem("token");
-  const initialToken =
-    rawToken && rawToken !== "null" && rawToken !== "undefined" ? rawToken : null;
-  const [token, setToken] = useState(initialToken);
+  // Load token from localStorage when app starts
+  useEffect(() => {
+    const rawToken = localStorage.getItem("token");
+    if (rawToken && rawToken !== "null" && rawToken !== "undefined") {
+      setToken(rawToken);
+    }
+    setLoading(false);
+  }, []);
 
   // Hydrate user from localStorage
   useEffect(() => {
@@ -48,6 +52,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, [token]);
 
+  // Normal login
   const login = async (email, password) => {
     const res = await API.post("/auth/login", { email, password });
     localStorage.setItem("token", res.data.token);
@@ -56,10 +61,25 @@ export const AuthProvider = ({ children }) => {
     setUser(res.data.user);
   };
 
+  // Google login/signup
+  const googleAuth = async (googleToken) => {
+    const res = await API.post("/auth/google", { token: googleToken });
+    const userData = res.data.user;
+    const jwtToken = res.data.token;
+
+    localStorage.setItem("token", jwtToken);
+    localStorage.setItem("user", JSON.stringify(userData));
+
+    setToken(jwtToken); // ✅ update context
+    setUser(userData);  // ✅ update context
+  };
+
+  // Signup
   const signup = async (name, username, email, password) => {
     await API.post("/auth/signup", { name, username, email, password });
   };
 
+  // Logout
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -69,6 +89,7 @@ export const AuthProvider = ({ children }) => {
     window.location.href = "/";
   };
 
+  // Update user info
   const updateUser = (newUser) => {
     if (newUser && newUser._id) {
       setUser(newUser);
@@ -77,7 +98,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout, signup, updateUser, loading }}>
+    <AuthContext.Provider
+      value={{ user, token, login, googleAuth, logout, signup, updateUser, loading }}
+    >
       {children}
     </AuthContext.Provider>
   );
