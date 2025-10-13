@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import API from "../../utils/Api";
 import { motion, AnimatePresence } from "framer-motion";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-
+import { MdDescription } from "react-icons/md";
 // Import the smaller components
 import ReportUpload from "./ReportUpload";
 import ReportResult from "./ReportResult";
@@ -15,6 +15,7 @@ const Reports = () => {
   const [history, setHistory] = useState([]);
   const [showHistory, setShowHistory] = useState(false);
   const [selectedHistoryItem, setSelectedHistoryItem] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   const fetchHistory = async () => {
     try {
@@ -27,6 +28,10 @@ const Reports = () => {
 
   useEffect(() => {
     fetchHistory();
+
+    // Detect if the user is on mobile
+    const checkMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    setIsMobile(checkMobile);
   }, []);
 
   const handleFileChange = (e) => {
@@ -87,6 +92,12 @@ const Reports = () => {
     setSelectedHistoryItem(null);
   };
 
+  // Mobile camera capture handler
+  const handleCapturePhoto = (e) => {
+    const capturedFile = e.target.files[0];
+    if (capturedFile) setFile(capturedFile);
+  };
+
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -108,28 +119,33 @@ const Reports = () => {
         className="bg-white/10 backdrop-blur-3xl shadow-2xl rounded-3xl p-6 md:p-10 w-full max-w-3xl border border-white/20 relative z-10"
       >
         {/* Header with clear button */}
-        <div className="flex justify-between items-center mb-4">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-cyan-300">
-            🧾 Medical Report Analyzer
-          </h1>
-          <AnimatePresence>
-            {result && (
-              <motion.button
-                key="clear-btn"
-                onClick={clearCurrentView}
-                className="flex items-center text-sm text-cyan-3000 hover:text-red-300 transition"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <AiOutlineCloseCircle className="mr-1" />
-                Clear
-              </motion.button>
-            )}
-          </AnimatePresence>
-        </div>
+        <div className="mb-4 flex flex-col items-center justify-center text-center space-y-2">
+  <div className="flex items-center justify-center space-x-3">
+    <MdDescription className="text-cyan-200 text-3xl md:text-4xl" />
+    <h1 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-cyan-300">
+      Medical Report Analyzer
+    </h1>
+  </div>
+
+  <AnimatePresence>
+    {result && (
+      <motion.button
+        key="clear-btn"
+        onClick={clearCurrentView}
+        className="flex items-center text-sm text-cyan-300 hover:text-red-300 transition"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: 20 }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <AiOutlineCloseCircle className="mr-1" />
+        Clear
+      </motion.button>
+    )}
+  </AnimatePresence>
+</div>
+
 
         {/* Instructions */}
         <p className="text-cyan-300 text-center mb-6 md:mb-8 text-sm md:text-base leading-relaxed">
@@ -141,13 +157,29 @@ const Reports = () => {
         {/* Upload / Result */}
         <AnimatePresence mode="wait">
           {!result ? (
-            <ReportUpload
-              file={file}
-              loading={loading}
-              handleFileChange={handleFileChange}
-              handleClearFile={handleClearFile}
-              handleUpload={handleUpload}
-            />
+            <div className="flex flex-col items-center space-y-3">
+              <ReportUpload
+                file={file}
+                loading={loading}
+                handleFileChange={handleFileChange}
+                handleClearFile={handleClearFile}
+                handleUpload={handleUpload}
+              />
+
+              {/* 📷 Mobile Camera Button */}
+              {isMobile && (
+                <label className="cursor-pointer text-cyan-300 bg-cyan-800/50 px-4 py-2 rounded-xl hover:bg-cyan-700/50 transition-all text-sm">
+                  📷 Scan Using Camera
+                  <input
+                    type="file"
+                    accept="image/*"
+                    capture="environment"
+                    onChange={handleCapturePhoto}
+                    className="hidden"
+                  />
+                </label>
+              )}
+            </div>
           ) : (
             <ReportResult result={result} selectedHistoryItem={selectedHistoryItem} />
           )}

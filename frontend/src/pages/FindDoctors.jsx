@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   GoogleMap,
   useJsApiLoader,
   MarkerF,
   InfoWindowF,
-} from '@react-google-maps/api';
-import { FaSearch } from 'react-icons/fa';
-import API from '../utils/Api';
+} from "@react-google-maps/api";
+import { FaSearch } from "react-icons/fa";
+import API from "../utils/Api";
 
 const containerStyle = {
-  width: '100%',
-  height: '500px',
+  width: "100%",
+  height: "500px",
 };
 
 const defaultCenter = {
-  lat: 28.7041, // Default to New Delhi, India
+  lat: 28.7041, // Default: New Delhi
   lng: 77.1025,
 };
 
@@ -22,17 +22,21 @@ const FindDoctors = () => {
   const [markers, setMarkers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [mapCenter, setMapCenter] = useState(defaultCenter);
   const [userLocation, setUserLocation] = useState(null);
   const [selectedMarker, setSelectedMarker] = useState(null);
 
-  // ✅ Load Google Maps
+  // ✅ City list
+  const [cities, setCities] = useState([]);
+  const [selectedCity, setSelectedCity] = useState("");
+
   const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
+    id: "google-map-script",
     googleMapsApiKey: import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY,
   });
 
+  // ✅ Get user location on load
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -42,47 +46,61 @@ const FindDoctors = () => {
           const location = { lat: userLat, lng: userLng };
           setUserLocation(location);
           setMapCenter(location);
-          fetchDoctors('doctors', location);
+          fetchDoctors("", "", location);
         },
         (err) => {
-          console.error('Geolocation error:', err);
-          setError('Failed to get your location. Displaying a default map.');
-          fetchDoctors('doctors', defaultCenter);
+          console.error("Geolocation error:", err);
+          setError("Failed to get your location. Showing default map.");
+          fetchDoctors("", "", defaultCenter);
         }
       );
     } else {
-      setError('Geolocation is not supported by your browser. Displaying a default map.');
-      fetchDoctors('doctors', defaultCenter);
+      setError("Geolocation not supported. Showing default map.");
+      fetchDoctors("", "", defaultCenter);
     }
   }, []);
 
-  // Fetch doctors from backend
-  const fetchDoctors = async (query, location) => {
+
+ // ✅ Fetch available cities from backend
+useEffect(() => {
+  const fetchCities = async () => {
+    try {
+      const response = await API.get("/search/filters");
+      setCities(response.data.cities || []);
+    } catch (error) {
+      console.error("❌ Failed to load cities:", error);
+    }
+  };
+  fetchCities();
+}, []);
+
+
+  // ✅ Fetch doctors from backend
+  const fetchDoctors = async (query, city, location) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await API.get('/search/doctors', {
+      const response = await API.get("/search/doctors", {
         params: {
-          query: query,
+          query: query || "",
+          city: city || "",
           lat: location.lat,
           lng: location.lng,
         },
       });
 
       const data = response.data;
-      if (!Array.isArray(data)) {
-        throw new Error('Invalid data format from server.');
-      }
+      if (!Array.isArray(data)) throw new Error("Invalid data from server.");
 
       setMarkers(data);
       if (data.length > 0) {
-        setMapCenter({ lat: data[0].lat, lng: data[0].lng });
+        setMapCenter({ lat: data[0].lat || location.lat, lng: data[0].lng || location.lng });
       } else {
-        setError('No doctors found for this search.');
+        setError("No doctors found for this search.");
       }
     } catch (err) {
-      setError(err.message || 'Failed to fetch doctors from server.');
-      console.error('Error fetching doctors:', err);
+      console.error("Error fetching doctors:", err);
+      setError(err.message || "Failed to fetch doctors.");
     } finally {
       setLoading(false);
     }
@@ -90,19 +108,12 @@ const FindDoctors = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      const searchLocation = userLocation || mapCenter;
-      fetchDoctors(searchQuery, searchLocation);
-    }
+    const searchLocation = userLocation || mapCenter;
+    fetchDoctors(searchQuery, selectedCity, searchLocation);
   };
 
-  const handleMarkerClick = (marker) => {
-    setSelectedMarker(marker);
-  };
-
-  const handleCloseClick = () => {
-    setSelectedMarker(null);
-  };
+  const handleMarkerClick = (marker) => setSelectedMarker(marker);
+  const handleCloseClick = () => setSelectedMarker(null);
 
   return isLoaded ? (
     <div className="bg-gray-900 text-white min-h-screen pt-20 pb-10 px-4 md:px-10 lg:px-20 font-sans">
@@ -111,50 +122,64 @@ const FindDoctors = () => {
           Find Doctors and Medical Facilities ⚕️
         </h1>
         <p className="text-gray-300 text-center text-lg mb-8">
-          Search for professionals near you and see them on the map.
+          Search doctors by name or city.
         </p>
+
+        {/* 🔍 Search & Filter Section */}
         <form
           onSubmit={handleSearch}
-          className="flex flex-col md:flex-row justify-center items-center mb-8 space-y-4 md:space-y-0 md:space-x-4"
+          className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-4 mb-8"
         >
-          <div className="relative w-full md:w-auto flex-grow">
+          {/* Search Bar */}
+          <div className="relative w-full md:w-1/3">
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search for doctors, hospitals, etc."
-              className="w-full pl-12 pr-4 py-3 rounded-full bg-white/10 text-white placeholder-gray-400 border border-white/20 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-colors duration-200"
+              placeholder="Search by name..."
+              className="w-full pl-12 pr-4 py-3 rounded-full bg-white/10 text-white placeholder-gray-400 border border-white/20 focus:outline-none focus:ring-2 focus:ring-cyan-500"
             />
             <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
           </div>
+
+          {/* City Dropdown */}
+          {/* City Dropdown */}
+<select
+  value={selectedCity}
+  onChange={(e) => setSelectedCity(e.target.value)}
+  className="px-4 py-3 rounded-full bg-white/10 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+>
+  <option value="">All Cities</option>
+  {cities.map((city, idx) => (
+    <option key={idx} value={city}>
+      {city}
+    </option>
+  ))}
+</select>
+
+
+          {/* Search Button */}
           <button
             type="submit"
-            className="w-full md:w-auto px-8 py-3 bg-cyan-600 text-white font-semibold rounded-full hover:bg-cyan-700 transition duration-300 transform hover:scale-105 shadow-lg"
+            className="px-8 py-3 bg-cyan-600 text-white font-semibold rounded-full hover:bg-cyan-700 transition duration-300 transform hover:scale-105 shadow-lg"
           >
             Search
           </button>
         </form>
 
-        {loading && (
-          <div className="text-center my-4">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-500 mx-auto"></div>
-            <p className="text-gray-400 mt-2">Loading...</p>
-          </div>
-        )}
-        {error && <p className="text-center text-red-500 my-4">{error}</p>}
-
+        {/* Map Section */}
         <div className="rounded-xl overflow-hidden shadow-2xl border border-white/10">
           <GoogleMap mapContainerStyle={containerStyle} center={mapCenter} zoom={12}>
-            {/* User location marker */}
+            {/* User marker */}
             {userLocation && (
               <MarkerF
                 position={userLocation}
                 icon={{
                   path: window.google.maps.SymbolPath.CIRCLE,
                   scale: 8,
-                  fillColor: '#007bff',
+                  fillColor: "#007bff",
                   fillOpacity: 1,
-                  strokeColor: '#fff',
+                  strokeColor: "#fff",
                   strokeWeight: 2,
                 }}
               />
@@ -164,25 +189,26 @@ const FindDoctors = () => {
             {markers.map((marker, index) => (
               <MarkerF
                 key={index}
-                position={{ lat: marker.lat, lng: marker.lng }}
+                position={{ lat: marker.lat || defaultCenter.lat, lng: marker.lng || defaultCenter.lng }}
                 onClick={() => handleMarkerClick(marker)}
                 icon={{
-                  url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+                  url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
                   scaledSize: new window.google.maps.Size(40, 40),
                 }}
               />
             ))}
 
-            {/* Info window */}
+            {/* Info Window */}
             {selectedMarker && (
               <InfoWindowF
-                position={{ lat: selectedMarker.lat, lng: selectedMarker.lng }}
+                position={{ lat: selectedMarker.lat || defaultCenter.lat, lng: selectedMarker.lng || defaultCenter.lng }}
                 onCloseClick={handleCloseClick}
               >
                 <div className="text-black p-2">
                   <h3 className="font-bold text-lg">{selectedMarker.name}</h3>
+                  <p className="text-sm">Education: {selectedMarker.education}</p>
                   <p className="text-sm">Address: {selectedMarker.address}</p>
-                  <p className="text-sm">Category: {selectedMarker.category}</p>
+                  <p className="text-sm">City: {selectedMarker.city}</p>
                 </div>
               </InfoWindowF>
             )}

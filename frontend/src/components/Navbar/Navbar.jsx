@@ -73,11 +73,11 @@ const Navbar = () => {
           {/* Center Section: Desktop Links */}
           <div className="hidden lg:flex space-x-8 text-white font-medium">
             <Link to="/" className="hover:text-cyan-400 transition-colors">Home</Link>
-            <Link to="/services" className="hover:text-cyan-400 transition-colors">Services</Link>
+            <Link to="/symptom-checker" className="hover:text-cyan-400 transition-colors">Diagnosis</Link>
             <Link to="/find-doctors" className="hover:text-cyan-400 transition-colors">Doctors</Link>
-            <Link to="/about" className="hover:text-cyan-400 transition-colors">About</Link>
+            <Link to="/reports" className="hover:text-cyan-400 transition-colors">ScanCure</Link>
+            <Link to="/diet-planner" className="hover:text-cyan-400 transition-colors">DietCure</Link>
             <Link to="/community" className="hover:text-cyan-400 transition-colors">Community</Link>
-            <Link to="/contact" className="hover:text-cyan-400 transition-colors">Contact Us</Link>
           </div>
 
           {/* Right Section: Search + Auth/Notifications */}
