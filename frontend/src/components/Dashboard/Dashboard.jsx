@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FaUtensils, FaTired, FaFileAlt } from "react-icons/fa";
 import { useAuth } from "../../context/AuthContext";
 import API from "../../utils/Api";
@@ -16,17 +16,19 @@ const Dashboard = () => {
   const [uploading, setUploading] = useState(false);
   const [isEditingProfileImage, setIsEditingProfileImage] = useState(false);
 
+  const [profileImageUrl, setProfileImageUrl] = useState(() => {
+    return user?.profileImageUrl || "";
+  });
+
   const handleImageUpload = async (event) => {
     const file = event.target.files?.[0];
 
     if (!user || !user._id) {
-      console.error("User is not available.");
       alert("You are not authenticated. Please log in again.");
       return;
     }
 
     if (!file) {
-      console.error("No file selected.");
       alert("Please select an image to upload.");
       return;
     }
@@ -45,23 +47,21 @@ const Dashboard = () => {
       const updatedUser = response.data.user;
 
       if (updatedUser.profileImageUrl) {
-        const backendUrl =
-          import.meta.env.VITE_API_BASE_URL?.replace(/\/api$/, "") ||
-          "http://localhost:5000";
-        updatedUser.profileImageUrl = `${backendUrl}${updatedUser.profileImageUrl}`;
+        setProfileImageUrl(updatedUser.profileImageUrl); // ✅ use backend's full URL directly
+        updatedUser.profileImageUrl = updatedUser.profileImageUrl;
       }
 
-      if (updateUser) updateUser(updatedUser);
+      if (updateUser) updateUser({ ...updatedUser });
+      localStorage.setItem("user", JSON.stringify(updatedUser));
       setIsEditingProfileImage(false);
     } catch (error) {
-      console.error("Image upload failed:", error);
+      console.error("❌ Image upload failed:", error);
       alert("Failed to upload image. Please try again.");
     } finally {
       setUploading(false);
     }
   };
 
-  // ✅ Wait until auth loading finishes
   if (loading) {
     return (
       <div className="pt-20 flex flex-col items-center justify-center min-h-screen text-center text-white">
@@ -102,6 +102,7 @@ const Dashboard = () => {
         isEditing={isEditingProfileImage}
         setIsEditing={setIsEditingProfileImage}
         handleImageUpload={handleImageUpload}
+        profileImageUrl={profileImageUrl}
       />
 
       <p className="text-gray-300 max-w-2xl mx-auto mb-12 text-md md:text-lg">

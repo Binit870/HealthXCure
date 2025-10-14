@@ -1,9 +1,20 @@
 import User from "../models/User.js";
 import { OAuth2Client } from "google-auth-library";
-import bcrypt from "bcryptjs"; // ✅ typo fixed (was `bycrypt`)
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
+// ✅ Helper to format user response with absolute image URL
+const formatUserResponse = (req, user) => {
+  const baseUrl = `${req.protocol}://${req.get("host")}`;
+  const userObj = user.toObject ? user.toObject() : user; // Handle both Mongoose doc & plain obj
+  if (userObj.profileImageUrl && !userObj.profileImageUrl.startsWith("http")) {
+    userObj.profileImageUrl = `${baseUrl}${userObj.profileImageUrl}`;
+  }
+  delete userObj.password;
+  return userObj;
+};
 
 /* -------------------------- GOOGLE LOGIN / SIGNUP -------------------------- */
 export const googleLogin = async (req, res) => {
@@ -28,7 +39,7 @@ export const googleLogin = async (req, res) => {
         name,
         username: email.split("@")[0],
         email,
-        password: "google_oauth", // placeholder (never used for login)
+        password: "google_oauth",
         profileImageUrl: picture,
       });
     }
@@ -40,13 +51,7 @@ export const googleLogin = async (req, res) => {
 
     res.status(200).json({
       token: jwtToken,
-      user: {
-        _id: user._id,
-        name: user.name,
-        username: user.username,
-        email: user.email,
-        profileImageUrl: user.profileImageUrl,
-      },
+      user: formatUserResponse(req, user),
     });
   } catch (error) {
     console.error("Google login error:", error);
@@ -64,7 +69,7 @@ export const registerUser = async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10); // ✅ fixed
+    const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({
       name,
       username,
@@ -73,7 +78,14 @@ export const registerUser = async (req, res) => {
     });
     await newUser.save();
 
-    res.status(201).json({ message: "User registered successfully" });
+    const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
+      expiresIn: "24h",
+    });
+
+    res.status(201).json({
+      token,
+      user: formatUserResponse(req, newUser),
+    });
   } catch (error) {
     console.error("Register error:", error);
     res.status(500).json({ message: "Something went wrong" });
@@ -90,7 +102,7 @@ export const loginUser = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Prevent login via password for Google-only users
+    // Prevent password login for Google users
     if (user.password === "google_oauth") {
       return res.status(400).json({
         message: "Please log in using Google",
@@ -108,13 +120,7 @@ export const loginUser = async (req, res) => {
 
     res.status(200).json({
       token,
-      user: {
-        _id: user._id,
-        name: user.name,
-        username: user.username,
-        email: user.email,
-        profileImageUrl: user.profileImageUrl,
-      },
+      user: formatUserResponse(req, user),
     });
   } catch (error) {
     console.error("Login error:", error);

@@ -1,19 +1,19 @@
 import express from "express";
 import multer from "multer";
 import path from "path";
+import fs from "fs";
 import User from "../models/User.js";
 import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-// Ensure 'uploads' directory exists
-import fs from "fs";
+// ✅ Ensure 'uploads' directory exists
 const uploadDir = path.join(process.cwd(), "uploads");
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
 }
 
-// Multer configuration
+// ✅ Multer configuration
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, "uploads/"),
   filename: (req, file, cb) => {
@@ -24,7 +24,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({
   storage,
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
   fileFilter: (req, file, cb) => {
     const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
     if (allowedTypes.includes(file.mimetype)) cb(null, true);
@@ -32,7 +32,7 @@ const upload = multer({
   },
 });
 
-// Upload route
+// ✅ Upload route (profile image)
 router.post("/:id/profile-image", protect, upload.single("profileImage"), async (req, res) => {
   try {
     if (!req.file) {
@@ -44,14 +44,25 @@ router.post("/:id/profile-image", protect, upload.single("profileImage"), async 
       return res.status(404).json({ message: "User not found." });
     }
 
+    // ✅ Remove old image if exists
+    if (user.profileImageUrl && fs.existsSync(`.${user.profileImageUrl}`)) {
+      fs.unlinkSync(`.${user.profileImageUrl}`);
+    }
+
+    // ✅ Save new image path in DB
     const imagePath = `/uploads/${req.file.filename}`;
     user.profileImageUrl = imagePath;
     await user.save();
 
-    console.log("✅ Image saved:", imagePath);
+    // ✅ Return updated user with absolute URL
+    const baseUrl = `${req.protocol}://${req.get("host")}`;
+    const userResponse = user.toObject();
+    userResponse.profileImageUrl = `${baseUrl}${user.profileImageUrl}`;
+
+    console.log("✅ Image saved:", userResponse.profileImageUrl);
     res.status(200).json({
       message: "Profile image updated successfully.",
-      user,
+      user: userResponse,
     });
   } catch (error) {
     console.error("❌ Image upload failed:", error);

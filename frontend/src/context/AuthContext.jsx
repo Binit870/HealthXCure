@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Load token from localStorage when app starts
+  // Load token on app start
   useEffect(() => {
     const rawToken = localStorage.getItem("token");
     if (rawToken && rawToken !== "null" && rawToken !== "undefined") {
@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  // Hydrate user from localStorage
+  // Hydrate user
   useEffect(() => {
     if (token) {
       const storedUser = localStorage.getItem("user");
@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, [token]);
 
-  // Check token expiration
+  // Auto logout if token expired
   useEffect(() => {
     if (token) {
       try {
@@ -70,13 +70,13 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("token", jwtToken);
     localStorage.setItem("user", JSON.stringify(userData));
 
-    setToken(jwtToken); // ✅ update context
-    setUser(userData);  // ✅ update context
+    setToken(jwtToken);
+    setUser(userData);
   };
 
   // Signup
   const signup = async (name, username, email, password) => {
-    await API.post("/auth/signup", { name, username, email, password });
+    await API.post("/auth/register", { name, username, email, password });
   };
 
   // Logout
@@ -92,14 +92,25 @@ export const AuthProvider = ({ children }) => {
   // Update user info
   const updateUser = (newUser) => {
     if (newUser && newUser._id) {
-      setUser(newUser);
-      localStorage.setItem("user", JSON.stringify(newUser));
+      const freshUser = { ...newUser };
+      setUser(freshUser);
+      localStorage.setItem("user", JSON.stringify(freshUser));
     }
   };
 
   return (
     <AuthContext.Provider
-      value={{ user, token, login, googleAuth, logout, signup, updateUser, loading }}
+      value={{
+        user,
+        token,
+        login,
+        googleAuth,
+        logout,
+        signup,
+        updateUser,
+        loading,
+        setUser,
+      }}
     >
       {children}
     </AuthContext.Provider>

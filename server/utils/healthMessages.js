@@ -1,4 +1,53 @@
 export const healthMessages = [
+  // --- Mental Health & Emotional Wellness ---
+  "💖 Be kind to yourself today. Self-compassion is a cornerstone of mental health.",
+  "☀️ Practice mindful awareness. Notice five things you can see, hear, or feel right now.",
+  "🧠 Schedule 'worry time.' Keeping anxieties contained can help manage stress.",
+  "🚫 Learn to say 'no' to commitments that drain your energy. Protect your peace.",
+  "🧘 Find a quiet space. Even 2 minutes of silence can reset your focus.",
+  "🎨 Engage in a hobby you love. It activates the creative and relaxing parts of your brain.",
+  "😌 Forgive yourself for past mistakes. Move forward with grace.",
+  "💬 Talk to a friend or professional about anything weighing on your mind. You're not alone.",
+  "🌳 Spend time in nature. The sights and sounds are proven mood boosters.",
+  "🚫 Set boundaries. Healthy relationships thrive on clear limits.",
+
+  // --- Physical Health & Fitness ---
+  "🏃‍♀️ Aim for 150 minutes of moderate exercise this week. Start small!",
+  "🤸‍♂️ Balance is key! Practice standing on one foot while brushing your teeth.",
+  "💪 Try bodyweight exercises (push-ups, squats) wherever you are, no equipment needed.",
+  "🍎 Fuel your workout with complex carbs (oatmeal, brown rice) for sustained energy.",
+  "🏋️‍♂️ Remember active recovery days. Gentle movement is often better than complete rest.",
+  "👟 Wear comfortable shoes. They prevent strain across your entire body.",
+  "🦴 Focus on core strength; it supports your spine and improves posture.",
+  "🔋 If you feel sluggish, try a quick burst of high-intensity activity.",
+  "🌡️ Don't overtrain. Listen to your body and prioritize rest when sore.",
+  "🩸 Check your blood pressure regularly if possible; know your numbers.",
+
+  // --- Nutrition & Diet ---
+  "🥗 Fill half your plate with vegetables at lunch and dinner for fiber and nutrients.",
+  "🌰 Eat healthy fats like avocado and nuts; they are great for brain function.",
+  "🍬 Be mindful of hidden sugars in sauces, dressings, and processed foods.",
+  "☕️ Limit caffeine intake after lunch to ensure quality sleep.",
+  "🍽️ Eat slowly and chew thoroughly. It aids digestion and helps you feel full faster.",
+  "🍞 Choose whole-grain bread over white bread for added fiber and nutrients.",
+  "🧊 Keep water handy! Add lemon or mint for flavor without sugar.",
+  "🐟 Eat fatty fish (salmon) weekly for essential Omega-3 fatty acids.",
+  "🧪 Get enough protein. It's crucial for muscle repair and satiety.",
+  "🥕 Snack smart! Keep fresh fruits and vegetables pre-cut in the fridge.",
+
+  // --- Ergonomics & Daily Habits ---
+  "🧑‍💻 Adjust your monitor so the top is at or slightly below eye level.",
+  "🪑 Ensure your chair supports your lower back's natural curve.",
+  "💡 Use good lighting to reduce eye strain, especially when reading or working.",
+  "📱 Give your neck a break. Hold your phone up, not down.",
+  "🚿 Take cold showers occasionally. They can boost circulation and mood.",
+  "🚽 Don't scroll on the toilet! Prolonged sitting there isn't good for circulation.",
+  "🧼 Wash your hands for at least 20 seconds, singing 'Happy Birthday' twice.",
+  "🚪 Change your workspace occasionally; a new view can inspire productivity.",
+  "🖥️ Use the 20-20-20 rule: Every 20 minutes, look at something 20 feet away for 20 seconds.",
+  "🧤 Clean your phone screen daily—it carries more germs than you think.",
+
+  // --- Original Messages (Kept for completeness) ---
   "🧠 Don't forget to take a walk today to boost your energy!",
   "💧 Stay hydrated! Drinking a glass of water can improve focus.",
   "🧘‍♂️ Take a moment to stretch and de-stress your mind.",

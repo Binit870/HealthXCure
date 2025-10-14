@@ -37,7 +37,17 @@ app.use(cors({
   credentials: true,
 }));
 
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+// ✅ Prevent browser caching of uploaded images
+app.use("/uploads", express.static(path.join(__dirname, "uploads"), {
+  setHeaders: (res, path) => {
+    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
+    res.setHeader("Surrogate-Control", "no-store");
+  }
+}));
+
+
 
 const io = new Server(server, {
   cors: { origin: allowedOrigins, methods: ["GET", "POST"], credentials: true },
