@@ -5,34 +5,29 @@ import {
   getDirections,
   filterDoctorsByCity,
   getCities,
+  getDoctorsByCity,
 } from "../controllers/doctorController.js";
 import Doctor from "../models/Doctor.js"; // ✅ Add this line
-import { getDoctorsByCity } from "../controllers/doctorController.js";
-
 
 const router = Router();
-router.get("/doctors/by-city", getDoctorsByCity);
-// ✅ Get unique cities from MongoDB
-router.get("/search/filters", async (req, res) => {
-  try {
-    const cities = await Doctor.distinct("city", { city: { $ne: "" } }); // get unique city names
-    res.json({ cities });
-  } catch (err) {
-    console.error("❌ Error fetching cities:", err);
-    res.status(500).json({ message: "Failed to load cities" });
-  }
-});
 
-// ✅ Local MongoDB Doctor Search (filters by name and city)
+// 🔍 Local MongoDB Search
+router.get("/doctors/by-city", getDoctorsByCity);
+
+// ✅ Fixed: Declare variables before logging
 router.get("/search/doctors", async (req, res) => {
   try {
-    const { query, city } = req.query;
+    const { name, city } = req.query;
 
     const filter = {};
-    if (query) filter.name = new RegExp(query, "i");
+    if (name) filter.name = new RegExp(name, "i");
     if (city) filter.city = city;
 
     const doctors = await Doctor.find(filter).limit(100);
+
+    console.log("🔍 Filter:", filter);
+    console.log("📦 Found doctors:", doctors.length);
+
     res.json(doctors);
   } catch (err) {
     console.error("❌ Error fetching doctors:", err);
@@ -40,18 +35,11 @@ router.get("/search/doctors", async (req, res) => {
   }
 });
 
-// ✅ NEW: Fetch all unique cities for dropdown
-router.get("/doctors/cities", async (req, res) => {
-  try {
-    const cities = await Doctor.distinct("city");
-    res.json({ cities });
-  } catch (err) {
-    console.error("❌ Error fetching cities:", err);
-    res.status(500).json({ message: "Failed to fetch cities" });
-  }
-});
+// 🌆 Unique cities for dropdown
+router.get("/doctors/cities", getCities);
+router.get("/search/filters", getCities);
 
-// 🧭 Google Places (optional)
+// 🧭 Google Places API
 router.get("/search/doctors/google", searchDoctors);
 
 // 🌍 RapidAPI fallback

@@ -5,8 +5,55 @@ const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 const BETTER_DOCTOR_RAPID_API_KEY = process.env.BETTER_DOCTOR_RAPID_API_KEY;
 
 /**
- * 🔍 Local MongoDB Search
- * Filter by name and city only
+ * 🔍 Local MongoDB Search by city with geocoding fallback
+ */
+export const getDoctorsByCity = async (req, res) => {
+  try {
+    const { city } = req.query;
+
+    if (!city) {
+      return res.status(400).json({ message: "City is required." });
+    }
+
+    const doctors = await Doctor.find({
+      city: { $regex: new RegExp(`^${city}$`, "i") },
+    });
+
+    if (!doctors.length) {
+      return res.status(404).json({ message: "No doctors found in this city." });
+    }
+
+    const geocodedDoctors = await Promise.all(
+      doctors.map(async (doc) => {
+        if (!doc.lat || !doc.lng) {
+          try {
+            const geoRes = await axios.get(
+              `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(doc.address)}&key=${GOOGLE_API_KEY}`
+            );
+
+            const loc = geoRes.data.results[0]?.geometry.location;
+            if (loc) {
+              doc.lat = loc.lat;
+              doc.lng = loc.lng;
+              await doc.save();
+            }
+          } catch (err) {
+            console.error("Geocoding failed for doctor:", doc.name, err.message);
+          }
+        }
+        return doc;
+      })
+    );
+
+    res.status(200).json(geocodedDoctors);
+  } catch (error) {
+    console.error("❌ Error fetching doctors by city:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+/**
+ * 🔍 Filter doctors by name and city
  */
 export const filterDoctorsByCity = async (req, res) => {
   try {
@@ -18,8 +65,9 @@ export const filterDoctorsByCity = async (req, res) => {
 
     const doctors = await Doctor.find(query).limit(100);
 
-    if (!doctors.length)
+    if (!doctors.length) {
       return res.status(404).json({ message: "No doctors found." });
+    }
 
     res.status(200).json(doctors);
   } catch (error) {
@@ -29,7 +77,7 @@ export const filterDoctorsByCity = async (req, res) => {
 };
 
 /**
- * 🌆 Fetch all unique city names for dropdown
+ * 🌆 Fetch all unique city names
  */
 export const getCities = async (req, res) => {
   try {
@@ -42,7 +90,7 @@ export const getCities = async (req, res) => {
 };
 
 /**
- * 🧭 Google Maps + Places API Search (kept for reference)
+ * 🧭 Google Maps + Places API Search
  */
 export const searchDoctors = async (req, res) => {
   const { query, lat, lng } = req.query;
@@ -134,15 +182,13 @@ export const getDoctors = async (req, res) => {
 };
 
 /**
- * 🚗 Directions (kept as-is)
+ * 🚗 Directions API
  */
 export const getDirections = async (req, res) => {
   const { originLat, originLng, destLat, destLng } = req.query;
 
   if (!originLat || !originLng || !destLat || !destLng) {
-    return res
-      .status(400)
-      .json({ message: "Missing required location parameters." });
+    return res.status(400).json({ message: "Missing required location parameters." });
   }
 
   try {
@@ -161,28 +207,6 @@ export const getDirections = async (req, res) => {
     });
   } catch (error) {
     console.error("Error fetching directions:", error.message);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-};
-export const getDoctorsByCity = async (req, res) => {
-  try {
-    const { city } = req.query;
-
-    if (!city) {
-      return res.status(400).json({ message: "City is required." });
-    }
-
-    const doctors = await Doctor.find({
-      city: { $regex: new RegExp(`^${city}$`, "i") }, // case-insensitive match
-    });
-
-    if (!doctors.length) {
-      return res.status(404).json({ message: "No doctors found in this city." });
-    }
-
-    res.status(200).json(doctors);
-  } catch (error) {
-    console.error("❌ Error fetching doctors by city:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
