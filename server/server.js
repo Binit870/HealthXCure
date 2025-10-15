@@ -6,9 +6,8 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 
 import connectDB from "./config/db.js";
-import startCronJob from "./utils/cronJob.js"; // Import the cron job function
+import startCronJob from "./utils/cronJob.js";
 
-// ✅ Import all your routes
 import notificationRoutes from "./routes/notificationRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import aiRoutes from "./routes/aiRoutes.js";
@@ -31,7 +30,6 @@ const allowedOrigins = [
   "https://healthxcure.netlify.app",
 ];
 
-// --- Middleware ---
 app.use(express.json());
 app.use(cors({
   origin: allowedOrigins,
@@ -39,26 +37,22 @@ app.use(cors({
   credentials: true,
 }));
 
-// --- Static Files ---
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// --- WebSocket Setup ---
 const io = new Server(server, {
-  cors: { origin: allowedOrigins, methods: ["GET", "POST"] , credentials: true },
+  cors: { origin: allowedOrigins, methods: ["GET", "POST"], credentials: true },
 });
 
 io.on("connection", (socket) => {
   console.log(`User connected: ${socket.id}`);
   socket.on("join", (userId) => {
     socket.join(userId);
-    
   });
   socket.on("disconnect", () => {
     console.log(`User disconnected: ${socket.id}`);
   });
 });
 
-// --- REST API Routes ---
 app.use("/api/auth", authRoutes);
 app.use("/api/ai", aiRoutes);
 app.use("/api/symptoms", symptomRoutes);
@@ -69,14 +63,16 @@ app.use("/api/reports", reportRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/fitness", fitnessRoutes);
 app.use("/api/notifications", notificationRoutes);
+app.get("/ping", (req, res) => {
+  res.send("Server is awake");
+});
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
 
-// --- DB + Server ---
 connectDB();
-startCronJob(io); // ✅ Call the cron job function after the server starts
+startCronJob(io);
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {

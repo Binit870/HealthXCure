@@ -4,10 +4,9 @@ import User from "../models/User.js";
 import { healthMessages } from "./healthMessages.js";
 
 const startCronJob = (io) => {
-  // Every minute for testing (later change to "0 21 * * *" for 9PM daily)
-  cron.schedule("0 21 * * *", async () => {
+  cron.schedule("0 9 * * *", async () => {
     try {
-      console.log("⏰ Running random health notification job...");
+      console.log("⏰ Sending daily health notifications...");
       const randomMessage = healthMessages[Math.floor(Math.random() * healthMessages.length)];
       const users = await User.find({});
 
@@ -18,13 +17,12 @@ const startCronJob = (io) => {
         });
         await notification.save();
 
-        // Push instantly via socket.io
         io.to(user._id.toString()).emit("newNotification", notification);
       }
 
-      console.log("✅ Random health notification sent!");
+      console.log("✅ DB + socket notifications sent successfully!");
     } catch (err) {
-      console.error("❌ Error in cron job:", err.message);
+      console.error("❌ Error in daily job:", err.message);
     }
   });
 };

@@ -1,8 +1,5 @@
 import Notification from "../models/Notification.js";
 
-// @desc    Get all notifications for the authenticated user
-// @route   GET /api/notifications
-// @access  Private
 export const getNotifications = async (req, res) => {
   try {
     const notifications = await Notification.find({ userId: req.user._id }).sort({ createdAt: -1 });
@@ -12,9 +9,6 @@ export const getNotifications = async (req, res) => {
   }
 };
 
-// @desc    Mark a notification as read
-// @route   PUT /api/notifications/:id/read
-// @access  Private
 export const markAsRead = async (req, res) => {
   try {
     const { id } = req.params;
@@ -24,7 +18,6 @@ export const markAsRead = async (req, res) => {
       return res.status(404).json({ message: "Notification not found" });
     }
 
-    // Authorization check: ensure the notification belongs to the authenticated user
     if (notification.userId.toString() !== req.user._id.toString()) {
       return res.status(401).json({ message: "Not authorized to perform this action" });
     }
@@ -37,9 +30,6 @@ export const markAsRead = async (req, res) => {
   }
 };
 
-// @desc    Delete a notification
-// @route   DELETE /api/notifications/:id
-// @access  Private
 export const deleteNotification = async (req, res) => {
   try {
     const { id } = req.params;
@@ -49,7 +39,6 @@ export const deleteNotification = async (req, res) => {
       return res.status(404).json({ message: "Notification not found" });
     }
 
-    // Authorization check: ensure the notification belongs to the authenticated user
     if (notification.userId.toString() !== req.user._id.toString()) {
       return res.status(401).json({ message: "Not authorized to perform this action" });
     }

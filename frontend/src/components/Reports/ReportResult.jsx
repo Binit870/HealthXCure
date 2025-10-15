@@ -11,21 +11,18 @@ const ReportResult = ({ result, selectedHistoryItem }) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 20 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="mt-10 p-6 md:p-10 bg-gradient-to-br from-gray-800/90 to-gray-900/90 backdrop-blur-xl 
-                 rounded-2xl border border-gray-700 shadow-2xl hover:shadow-blue-500/20 
-                 transition-all duration-300"
+      className="mt-10 p-6 md:p-10 bg-white/10 backdrop-blur-3xl rounded-2xl border border-white/20 shadow-2xl hover:shadow-cyan-400/20 transition-all duration-300"
     >
       {/* Header */}
-      <h2 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text 
-                     bg-gradient-to-r from-blue-400 to-cyan-300 text-center mb-6">
+      <h2 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-cyan-300 text-center mb-6">
         📑 Report Summary
       </h2>
 
       {/* History Info */}
       {selectedHistoryItem && (
-        <div className="text-center text-sm text-gray-400 mb-6">
+        <div className="text-center text-sm text-cyan-300 mb-6">
           Viewing summary for:{" "}
-          <span className="font-semibold text-blue-400 hover:text-cyan-300 transition-colors">
+          <span className="font-semibold text-cyan-300 hover:text-cyan-300 transition-colors">
             {selectedHistoryItem.name}
           </span>
         </div>
@@ -43,7 +40,7 @@ const ReportResult = ({ result, selectedHistoryItem }) => {
           components={{
             h1: ({ node, ...props }) => (
               <h1
-                className="text-2xl font-bold text-blue-300 border-b border-gray-700 pb-1 mb-4"
+                className="text-2xl font-bold text-cyan-300 border-b border-white/30 pb-1 mb-4"
                 {...props}
               />
             ),
@@ -55,16 +52,16 @@ const ReportResult = ({ result, selectedHistoryItem }) => {
             ),
             p: ({ node, ...props }) => (
               <p
-                className="text-gray-200 leading-relaxed mb-4 hover:text-gray-100 transition-colors"
+                className="text-cyan-300 leading-relaxed mb-4  transition-colors"
                 {...props}
               />
             ),
             strong: ({ node, ...props }) => (
-              <strong className="text-white font-semibold bg-blue-500/20 px-1 rounded" {...props} />
+              <strong className="text-black font-semibold bg-cyan-300 px-1 rounded" {...props} />
             ),
             blockquote: ({ node, ...props }) => (
               <blockquote
-                className="border-l-4 border-cyan-400 pl-4 italic text-gray-300 bg-gray-800/40 rounded-md py-2"
+                className="border-l-4 border-cyan-400 pl-4 italic text-white/80 bg-white/10 rounded-md py-2"
                 {...props}
               />
             ),
@@ -77,11 +74,11 @@ const ReportResult = ({ result, selectedHistoryItem }) => {
             code: ({ node, inline, ...props }) =>
               inline ? (
                 <code
-                  className="bg-gray-800/60 text-cyan-300 px-1 py-0.5 rounded text-sm"
+                  className="bg-white/20 text-cyan-300 px-1 py-0.5 rounded text-sm"
                   {...props}
                 />
               ) : (
-                <pre className="bg-gray-900/70 text-cyan-200 p-3 rounded-lg overflow-x-auto shadow-lg">
+                <pre className="bg-white/10 text-cyan-200 p-3 rounded-lg overflow-x-auto shadow-lg">
                   <code {...props} />
                 </pre>
               ),

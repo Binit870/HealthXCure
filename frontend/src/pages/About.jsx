@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { motion } from "framer-motion";
 import {
@@ -10,171 +11,158 @@ import {
   FaRunning,
   FaUsers,
   FaFileMedicalAlt,
+  FaHeartbeat,
 } from "react-icons/fa";
 
 const About = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.2 } },
-  };
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
-  const featureVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
-  };
-
   const features = [
     {
       id: 1,
       icon: FaChartLine,
       title: "Health Dashboard",
-      description:
-        "Your personalized overview of all health data, including key metrics, activity levels, and progress toward your wellness goals.",
-      color: "text-blue-400",
+      desc: "Track your vitals, activity, and progress with a real-time, data-driven dashboard that visualizes your health journey.",
+      color: "from-sky-400 to-cyan-400",
     },
     {
       id: 2,
       icon: FaStethoscope,
-      title: "AI-Powered Symptom Checker",
-      description:
-        "Get an instant, AI-driven diagnosis based on your symptoms to understand potential health issues quickly and accurately.",
-      color: "text-indigo-400",
+      title: "AI Symptom Checker",
+      desc: "Instantly analyze your symptoms with our intelligent system and receive insights on possible causes and recommendations.",
+      color: "from-indigo-400 to-blue-400",
     },
     {
       id: 3,
       icon: FaUserMd,
-      title: "Certified Doctor Finder",
-      description:
-        "Easily find and connect with certified medical professionals in your area, with options to filter by specialty, location, and ratings.",
-      color: "text-pink-400",
+      title: "Find Certified Doctors",
+      desc: "Locate trusted healthcare professionals near you with filters for specialty, ratings, and online consultation availability.",
+      color: "from-pink-400 to-rose-300",
     },
     {
       id: 4,
       icon: FaRunning,
-      title: "Fitness & Activity Tracker",
-      description:
-        "Track your workouts, set fitness goals, and monitor your daily activity to maintain a healthy and active lifestyle.",
-      color: "text-orange-400",
+      title: "Fitness & Activity Tracking",
+      desc: "Monitor workouts, set fitness goals, and analyze performance trends with detailed insights and reminders.",
+      color: "from-orange-400 to-amber-300",
     },
     {
       id: 5,
       icon: FaUtensils,
-      title: "Personalized Diet & Nutrition",
-      description:
-        "Receive custom diet plans tailored to your health goals, dietary restrictions, and lifestyle, helping you stay on track with your wellness journey.",
-      color: "text-yellow-400",
+      title: "Personalized Nutrition Plans",
+      desc: "AI-tailored diet suggestions based on your lifestyle, preferences, and health conditions for better eating habits.",
+      color: "from-yellow-400 to-lime-300",
     },
     {
       id: 6,
-      icon: FaUsers,
-      title: "Community & Support",
-      description:
-        "Connect with others who share similar health interests and experiences. Our community forums provide a safe space to ask questions, share knowledge, and find encouragement on your wellness journey.",
-      color: "text-green-400",
+      icon: FaHeartbeat,
+      title: "Mental Health & Balance",
+      desc: "Track stress and emotions, meditate with guided sessions, and build mindfulness for overall wellness.",
+      color: "from-fuchsia-400 to-purple-300",
     },
     {
       id: 7,
-      icon: FaFileMedicalAlt,
-      title: "My Health Reports",
-      description:
-        "Securely store and access all your medical reports, lab results, and prescriptions in one place. Easily share them with your doctors for seamless consultations and a comprehensive health overview.",
-      color: "text-red-400",
+      icon: FaUsers,
+      title: "Community Support",
+      desc: "Join discussions, share experiences, and stay motivated with people having similar health goals.",
+      color: "from-green-400 to-emerald-300",
     },
     {
       id: 8,
-      icon: FaComments,
-      title: "Chat with Assistance",
-      description:
-        "Connect with our support team for any queries or assistance related to our services and platform.",
-      color: "text-teal-400",
+      icon: FaFileMedicalAlt,
+      title: "Digital Health Records",
+      desc: "Securely upload, store, and access your medical files, prescriptions, and test results anytime.",
+      color: "from-red-400 to-rose-300",
     },
     {
       id: 9,
+      icon: FaComments,
+      title: "AI Health Assistant",
+      desc: "Get 24/7 virtual health advice and chat-based recommendations personalized just for you.",
+      color: "from-teal-400 to-cyan-300",
+    },
+    {
+      id: 10,
       icon: FaBell,
-      title: "Notifications",
-      description:
-        "Stay informed with real-time updates on your appointments, lab results, and medication reminders, all in one central, easy-to-manage location.",
-      color: "text-purple-400",
+      title: "Smart Notifications",
+      desc: "Get timely alerts for appointments, medication reminders, and new reports directly on your dashboard.",
+      color: "from-purple-400 to-indigo-300",
     },
   ];
 
   return (
-    <div
-      className="font-sans pt-24 pb-12 min-h-screen text-gray-100"
-      style={{
-        backgroundColor: "#2F4F4F",
-      }}
-    >
+    <div className="min-h-screen bg-white text-gray-800 pt-24 pb-20 relative overflow-hidden">
+      {/* Light background accents */}
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-cyan-100/40 blur-[180px] rounded-full"></div>
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-pink-100/40 blur-[160px] rounded-full"></div>
+
       <motion.div
-        className="container mx-auto px-6 max-w-7xl"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
+        className="container mx-auto px-6 max-w-7xl relative z-10"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
       >
-        {/* Hero Section */}
-        <motion.div className="text-center mb-16 relative" variants={itemVariants}>
-          <div
-            className="absolute inset-0 flex items-center justify-center"
-            style={{ zIndex: -1 }}
+        {/* Header */}
+        <div className="text-center mb-20">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="text-5xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-cyan-600 via-blue-500 to-indigo-400 text-transparent bg-clip-text"
           >
-            <div
-              className="w-[420px] h-[160px] rounded-full blur-2xl opacity-40"
-              style={{
-                background:
-                  "radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 80%)",
+            Empowering Your Health Journey
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9 }}
+            className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed"
+          >
+            HealthCure is your all-in-one wellness partner — combining technology,
+            community, and compassion to help you live a healthier, happier life.
+          </motion.p>
+        </div>
+
+        {/* Features Section */}
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            visible: {
+              transition: { staggerChildren: 0.12, delayChildren: 0.2 },
+            },
+          }}
+        >
+          {features.map((feature) => (
+            <motion.div
+              key={feature.id}
+              variants={{
+                hidden: { opacity: 0, scale: 0.9, y: 30 },
+                visible: {
+                  opacity: 1,
+                  scale: 1,
+                  y: 0,
+                  transition: { duration: 0.6, ease: "easeOut" },
+                },
               }}
-            ></div>
-          </div>
-          <h1
-            className="text-5xl md:text-6xl font-extrabold mb-0 relative"
-            style={{
-              color: "transparent",
-              backgroundImage: "linear-gradient(to bottom, #E0E0E0 0%, #A0A0A0 100%)",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              textShadow: "0 2px 5px rgba(0,0,0,0.5)",
-            }}
-          >
-            Your Partner in Health and Wellness
-          </h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto text-gray-300 mt-4">
-            At HealthCure, we believe that health is a journey, not a destination. We're here to empower you with innovative tools and compassionate support.
-          </p>
-        </motion.div>
-
-        <motion.hr
-          variants={itemVariants}
-          className="my-12 border-t border-gray-600"
-        />
-
-        {/* Features Grid */}
-        <motion.div className="mb-16" variants={itemVariants}>
-          <h2 className="text-4xl font-bold text-center text-gray-200 mb-10">
-            What We Offer
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            {features.map((feature) => (
-              <motion.div
-                key={feature.id}
-                className={`
-                  bg-white/5 backdrop-blur-sm rounded-3xl p-8 flex flex-col items-center text-center
-                  transition-all duration-300 ease-in-out
-                  border border-transparent hover:border-blue-400
-                  hover:bg-white/10
-                `}
-                variants={featureVariants}
+              whileHover={{
+                scale: 1.04,
+                boxShadow: "0 8px 25px rgba(0,0,0,0.15)",
+              }}
+              className="relative group bg-white p-8 rounded-3xl border border-gray-200 transition-all duration-300 flex flex-col items-center text-center shadow-[0_4px_15px_rgba(0,0,0,0.08)]"
+            >
+              <div
+                className={`w-20 h-20 mb-6 flex items-center justify-center rounded-2xl bg-gradient-to-tr ${feature.color} text-white shadow-md`}
               >
-                <feature.icon className={`text-5xl mb-4 ${feature.color}`} />
-                <h3 className="text-xl font-extrabold mb-2 text-white">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-300">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
+                <feature.icon className="text-4xl" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-3 text-gray-800">
+                {feature.title}
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                {feature.desc}
+              </p>
+            </motion.div>
+          ))}
         </motion.div>
       </motion.div>
     </div>
