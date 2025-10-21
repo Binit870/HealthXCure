@@ -8,10 +8,6 @@ const NotificationSection = ({ user }) => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        // Example: API call
-        // const response = await API.get(`/user/${user._id}/notifications`);
-        // setNotifications(response.data);
-
         // Temporary mock data
         setNotifications([
           {
@@ -36,26 +32,29 @@ const NotificationSection = ({ user }) => {
   }, [user]);
 
   return (
-    <div className="rounded-3xl p-8 shadow-xl bg-gradient-to-br from-gray-700 to-gray-800 transition-shadow duration-300 hover:shadow-2xl">
-      <h4 className="text-2xl font-bold mb-6 text-white flex items-center">
-        <FaBell className="mr-4 text-yellow-400 text-3xl animate-bounce" />
+    // Redesigned card: Light background, subtle shadow, teal border/accent
+    <div className="rounded-3xl p-8 shadow-xl bg-white border border-teal-100 transition-shadow duration-300 hover:shadow-2xl">
+      <h4 className="text-2xl font-bold mb-6 text-teal-700 flex items-center">
+        {/* Icon color switched to warm yellow/orange for contrast and importance */}
+        <FaBell className="mr-4 text-orange-400 text-3xl animate-bounce" />
         Notifications
       </h4>
 
       {notifications.length > 0 ? (
-        <ul className="space-y-4 text-gray-200">
+        <ul className="space-y-4 text-gray-800">
           {notifications.map((notif) => (
             <li
               key={notif.id}
-              className="border-t border-gray-600 pt-4 flex justify-between items-center hover:bg-gray-800 p-3 rounded-lg transition-colors duration-200"
+              // Separator is light gray
+              className="border-t border-gray-200 pt-4 flex justify-between items-center hover:bg-teal-50/50 p-3 rounded-xl transition-colors duration-200"
             >
               <div>
-                <p className="text-sm text-gray-400">{notif.date}</p>
+                <p className="text-sm text-gray-500">{notif.date}</p>
                 <p className="text-lg">
                   {notif.type === "success" ? (
-                    <FaCheckCircle className="inline text-green-400 mr-2" />
+                    <FaCheckCircle className="inline text-teal-500 mr-2" />
                   ) : (
-                    <FaTimesCircle className="inline text-red-400 mr-2" />
+                    <FaTimesCircle className="inline text-red-500 mr-2" />
                   )}
                   {notif.message}
                 </p>
@@ -64,7 +63,7 @@ const NotificationSection = ({ user }) => {
           ))}
         </ul>
       ) : (
-        <p className="text-gray-400 text-lg">No new notifications 🎉</p>
+        <p className="text-gray-500 text-lg">No new notifications 🎉</p>
       )}
     </div>
   );

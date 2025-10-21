@@ -78,16 +78,19 @@ export const generateFitnessPlan = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
-// 📌 Save a new fitness entry
+
+// 📌 Save a new fitness entry (UPDATED)
 export const saveFitnessData = async (req, res) => {
   try {
-    const { userId, height, weight, bmi, category, calories, plan } = req.body;
+    // Destructure new fields: targetWeight, weeklyGoal
+    const { userId, height, weight, bmi, category, calories, plan, targetWeight, weeklyGoal } = req.body;
 
     if (!userId || !height || !weight || !bmi) {
       return res.status(400).json({ success: false, error: "Missing required fields" });
     }
 
-    const entry = new Fitness({ userId, height, weight, bmi, category, calories, plan });
+    // Pass new fields to the Mongoose model
+    const entry = new Fitness({ userId, height, weight, bmi, category, calories, plan, targetWeight, weeklyGoal });
     await entry.save();
 
     res.json({ success: true, entry });

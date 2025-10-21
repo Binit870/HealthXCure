@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import loginBg from "../assets/bg.png";
 import { useAuth } from "../context/AuthContext.jsx";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import { FaHeartbeat } from "react-icons/fa";
 
 const Login = () => {
   const { login, googleAuth } = useAuth();
@@ -28,94 +28,125 @@ const Login = () => {
     }
   };
 
-  const formVariants = {
-    hidden: { opacity: 0, y: 50 },
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
   };
 
   return (
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-      <div className="min-h-screen flex items-center justify-center relative text-white">
-        <img
-          src={loginBg}
-          alt="abstract background"
-          className="absolute inset-0 w-full h-full object-cover opacity-60 z-0 pointer-events-none"
-        />
-
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 via-white to-green-100 p-6">
         <motion.div
-          variants={formVariants}
           initial="hidden"
           animate="visible"
-          className="relative z-10 backdrop-blur-xl bg-white/10 p-10 rounded-3xl shadow-2xl border border-white/20 w-96 mt-12 flex flex-col justify-center"
+          variants={cardVariants}
+          className="flex flex-col md:flex-row rounded-3xl shadow-2xl overflow-hidden w-full max-w-5xl backdrop-blur-lg border border-emerald-100"
         >
-          <h2 className="text-4xl font-extrabold mb-6 text-center">Welcome Back</h2>
-          <p className="text-center text-white/80 mb-8">Sign in to your account</p>
-
-          <form onSubmit={handleSubmit} className="flex flex-col space-y-6">
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="px-5 py-3 rounded-xl bg-white/20 text-white placeholder-white/50 border border-white/30 focus:ring-2 focus:ring-white"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="px-5 py-3 rounded-xl bg-white/20 text-white placeholder-white/50 border border-white/30 focus:ring-2 focus:ring-white"
-            />
-
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="px-6 py-3 rounded-xl bg-white/20 border border-white/30 hover:bg-white/30 text-white font-semibold"
-            >
-              {isLoading ? "Logging in..." : "Login"}
-            </button>
-          </form>
-          <div className="mt-6 flex items-center justify-center">
-            <div className="w-1/4 border-t border-white/30"></div>
-            <span className="text-white/70 mx-3 text-sm">or</span>
-            <div className="w-1/4 border-t border-white/30"></div>
+          {/* Left Info Card */}
+          <div className="relative flex flex-col justify-center items-center text-center bg-gradient-to-br from-emerald-500 via-teal-500 to-green-400 text-white p-10 md:w-1/2 w-full">
+            <div className="absolute inset-0 bg-white/10 backdrop-blur-xl rounded-3xl"></div>
+            <div className="relative z-10">
+              <div className="flex justify-center mb-6">
+                <FaHeartbeat className="text-6xl text-white animate-pulse drop-shadow-lg" />
+              </div>
+              <h1 className="text-4xl font-extrabold mb-4 tracking-wide drop-shadow-md">
+                HealthXCure
+              </h1>
+              <p className="text-white/90 text-lg max-w-sm leading-relaxed mb-6">
+                Reimagine your healthcare experience.  
+                Secure. Smart. Connected.  
+                Stay in control of your health — anytime, anywhere.
+              </p>
+              <div className="mt-4 h-1 w-16 bg-white/70 rounded-full mx-auto"></div>
+            </div>
           </div>
 
-          <div className="mt-6 flex justify-center">
-            <GoogleLogin
-              onSuccess={async (credentialResponse) => {
-                const token = credentialResponse.credential;
-                try {
-                  await googleAuth(token);
-                  setMessage({ type: "success", text: "Google login successful!" });
-                  setTimeout(() => navigate("/"), 1500);
-                } catch (err) {
-                  console.error(err);
-                  setMessage({ type: "error", text: "Google login failed" });
-                }
-              }}
-              onError={() => setMessage({ type: "error", text: "Google login failed" })}
-            />
-          </div>
-
-          {message.text && (
-            <p
-              className={`mt-6 text-center text-sm font-medium ${
-                message.type === "success" ? "text-green-400" : "text-red-400"
-              }`}
+          {/* Right Login Card */}
+          <div className="p-10 md:w-1/2 w-full bg-white/80 backdrop-blur-md flex flex-col justify-center">
+            <motion.h2
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="text-3xl font-extrabold mb-6 text-center text-emerald-700"
             >
-              {message.text}
+              Welcome Back
+            </motion.h2>
+            <p className="text-center text-gray-500 mb-8">
+              Sign in to your account
             </p>
-          )}
 
-          <p className="mt-8 text-center text-white/80 text-sm">
-            Don't have an account?{" "}
-            <Link to="/signup" className="text-white font-semibold hover:underline">
-              Sign up
-            </Link>
-          </p>
+            <form onSubmit={handleSubmit} className="flex flex-col space-y-5">
+              <input
+                type="email"
+                placeholder="Email Address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="px-5 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 outline-none shadow-sm hover:shadow-md transition-all"
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="px-5 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-emerald-500 outline-none shadow-sm hover:shadow-md transition-all"
+              />
+
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold shadow-md hover:shadow-lg transition-all"
+              >
+                {isLoading ? "Logging in..." : "Login"}
+              </button>
+            </form>
+
+            <div className="mt-6 flex items-center justify-center">
+              <div className="w-1/4 border-t border-gray-300"></div>
+              <span className="text-gray-400 mx-3 text-sm">or</span>
+              <div className="w-1/4 border-t border-gray-300"></div>
+            </div>
+
+            <div className="mt-6 flex justify-center">
+              <GoogleLogin
+                onSuccess={async (credentialResponse) => {
+                  const token = credentialResponse.credential;
+                  try {
+                    await googleAuth(token);
+                    setMessage({ type: "success", text: "Google login successful!" });
+                    setTimeout(() => navigate("/"), 1500);
+                  } catch (err) {
+                    console.error(err);
+                    setMessage({ type: "error", text: "Google login failed" });
+                  }
+                }}
+                onError={() =>
+                  setMessage({ type: "error", text: "Google login failed" })
+                }
+              />
+            </div>
+
+            {message.text && (
+              <p
+                className={`mt-6 text-center text-sm font-medium ${
+                  message.type === "success" ? "text-green-600" : "text-red-500"
+                }`}
+              >
+                {message.text}
+              </p>
+            )}
+
+            <p className="mt-8 text-center text-gray-600 text-sm">
+              Don’t have an account?{" "}
+              <Link
+                to="/signup"
+                className="text-emerald-600 font-semibold hover:underline"
+              >
+                Sign up
+              </Link>
+            </p>
+          </div>
         </motion.div>
       </div>
     </GoogleOAuthProvider>

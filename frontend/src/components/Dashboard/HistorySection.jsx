@@ -6,10 +6,11 @@ const HistorySection = ({ title, icon: Icon, historyData, emptyMessage }) => {
       case 'Diet History':
         return (
           <div key={index}>
-            <p className="text-sm font-semibold">
+            <p className="text-sm font-semibold text-gray-500">
               {new Date(item.createdAt).toLocaleDateString()}:
             </p>
-            <p className="text-lg text-yellow-300 whitespace-pre-line">
+            {/* Color changed to Teal/Mint for a "fresh" feeling */}
+            <p className="text-lg text-teal-600 whitespace-pre-line">
               {item.plan}
             </p>
           </div>
@@ -17,18 +18,19 @@ const HistorySection = ({ title, icon: Icon, historyData, emptyMessage }) => {
       case 'Symptom History':
         return (
           <div key={index}>
-            <p className="text-sm font-semibold">{item.date}:</p>
-            <p className="text-lg">
+            <p className="text-sm font-semibold text-gray-500">{item.date}:</p>
+            <p className="text-lg text-gray-800">
               {item.symptom} - Severity:{" "}
-              <span className="font-bold text-red-400">{item.severity}</span>
+              {/* Severity color adjusted for a lighter theme */}
+              <span className="font-bold text-red-500">{item.severity}</span>
             </p>
           </div>
         );
       case 'Report History':
         return (
           <div key={index}>
-            <p className="text-sm font-semibold">{item.date}:</p>
-            <p className="text-lg">{item.name}</p>
+            <p className="text-sm font-semibold text-gray-500">{item.date}:</p>
+            <p className="text-lg text-gray-800">{item.name}</p>
           </div>
         );
       default:
@@ -43,7 +45,8 @@ const HistorySection = ({ title, icon: Icon, historyData, emptyMessage }) => {
           href={item.fileUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-400 hover:text-blue-300 transition-colors duration-200 font-semibold px-4 py-2 rounded-lg border border-blue-400 hover:border-blue-300"
+          // Link color changed to Teal-500 for a cohesive look
+          className="text-teal-500 hover:text-teal-600 transition-colors duration-200 font-semibold px-4 py-2 rounded-full border border-teal-300 hover:border-teal-400 text-sm"
         >
           View/Download
         </a>
@@ -53,16 +56,19 @@ const HistorySection = ({ title, icon: Icon, historyData, emptyMessage }) => {
   };
 
   return (
-    <div className="rounded-3xl p-8 shadow-xl bg-gradient-to-br from-gray-700 to-gray-800 transition-shadow duration-300 hover:shadow-2xl">
-      <h4 className="text-2xl font-bold mb-6 text-white flex items-center">
-        <Icon className="mr-4 text-3xl" /> {title}
+    // Redesigned card: White background, subtle shadow, light border accent
+    <div className="rounded-3xl p-8 shadow-lg bg-white border border-lavender-100 transition-shadow duration-300 hover:shadow-xl">
+      <h4 className="text-2xl font-bold mb-6 text-teal-700 flex items-center">
+        {/* Icon color changed to Teal-500 */}
+        <Icon className="mr-4 text-3xl text-teal-500" /> {title}
       </h4>
       {historyData.length > 0 ? (
-        <ul className="space-y-4 text-gray-200">
+        <ul className="space-y-4 text-gray-800">
           {historyData.map((item, index) => (
             <li
               key={index}
-              className="border-t border-gray-600 pt-4 flex justify-between items-center hover:bg-gray-800 p-2 rounded-lg transition-colors duration-200"
+              // Separator is light gray
+              className="border-t border-gray-200 pt-4 flex justify-between items-center hover:bg-lavender-50/50 p-3 rounded-xl transition-colors duration-200"
             >
               {renderHistoryItem(item, index)}
               {renderActionLink(item)}
@@ -70,7 +76,7 @@ const HistorySection = ({ title, icon: Icon, historyData, emptyMessage }) => {
           ))}
         </ul>
       ) : (
-        <p className="text-gray-400 text-lg">{emptyMessage}</p>
+        <p className="text-gray-500 text-lg">{emptyMessage}</p>
       )}
     </div>
   );

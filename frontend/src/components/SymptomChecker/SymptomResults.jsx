@@ -58,10 +58,10 @@ const SymptomResults = ({ results }) => (
                   </span>
 
                   {/* Urgency */}
-                 
-<div className="flex items-center gap-2">
-  {renderUrgency(condition.urgency || condition.urgency_level || "Non-Urgent")}
-</div>
+
+                  <div className="flex items-center gap-2">
+                    {renderUrgency(condition.urgency || condition.urgency_level || "Non-Urgent")}
+                  </div>
 
                 </div>
               </div>
