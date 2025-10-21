@@ -3,9 +3,11 @@
   "doctors": "/find-doctors",
   "diagnosis": "/symptom-checker",
   "symptom checker": "/symptom-checker",
+  "symptom ": "/symptom-checker",
   "reports": "/reports",
   
   "fitness planner": "/fitness",
+  "fitness": "/fitness",
   "chat with assistant": "/chat",
   'chat': "/chat",
   "assistant": "/chat",

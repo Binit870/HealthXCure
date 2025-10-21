@@ -44,7 +44,7 @@ function App() {
   const hideFooter = pathsWithoutFooter.has(normalizedPathname.toLowerCase());
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-cyan-900 to-blue-900 font-inter">
+    <div className="flex flex-col min-h-screen font-inter">
       <ScrollToTop />
       {!hideNavbar && <Navbar />}
 

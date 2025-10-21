@@ -25,7 +25,7 @@ const SymptomDisclaimer = ({ show, onClose }) => (
           </p>
           <button
             onClick={onClose}
-            className="bg-cyan-600 text-white font-bold py-2 px-6 rounded-full w-full transition-transform hover:scale-105"
+            className="bg-teal-600 text-white font-bold py-2 px-6 rounded-full w-full transition-transform hover:scale-105"
           >
             I Understand
           </button>

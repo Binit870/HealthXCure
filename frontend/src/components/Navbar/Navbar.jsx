@@ -57,7 +57,7 @@ const Navbar = () => {
   return (
     <>
       {/* Navbar Container */}
-      <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-3xl bg-white/10 border-b border-white/20 shadow-md">
+      <nav className="fixed top-0 left-0 w-full z-50 bg-emerald-700 border-b border-white/20 shadow-md">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
           {/* Left Section: Logo + Sidebar Toggle */}
           <div className="flex items-center space-x-4">

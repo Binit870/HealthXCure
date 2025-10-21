@@ -105,52 +105,51 @@ const Reports = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cyan-600 via-sky-800 to-blue-900 text-cyan-300 flex flex-col items-center p-4 md:p-8 py-12 font-sans relative overflow-hidden">
-      {/* Floating background glow */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-white/10 blur-3xl rounded-full animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-white/10 blur-3xl rounded-full animate-pulse delay-2000" />
-      </div>
-
+    <div className="min-h-screen bg-white text-gray-800 flex flex-col items-center p-4 md:p-8 py-12 font-sans relative overflow-hidden">
+      {/* Floating background glow (REMOVED: To keep the background simple white) */}
+      
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="bg-white/10 backdrop-blur-3xl shadow-2xl rounded-3xl p-6 md:p-10 w-full max-w-3xl border border-white/20 relative z-10"
+        // Changed styling for a simple white box with a subtle shadow and teal border
+        className="bg-white shadow-xl rounded-2xl p-6 md:p-10 w-full max-w-3xl border-t-4 border-teal-500 relative z-10"
       >
         {/* Header with clear button */}
         <div className="mb-4 flex flex-col items-center justify-center text-center space-y-2">
-  <div className="flex items-center justify-center space-x-3">
-    <MdDescription className="text-cyan-200 text-3xl md:text-4xl" />
-    <h1 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-cyan-300">
-      Medical Report Analyzer
-    </h1>
-  </div>
+          <div className="flex items-center justify-center space-x-3">
+            <MdDescription className="text-teal-500 text-3xl md:text-4xl" />
+            {/* Title uses a strong teal color */}
+            <h1 className="text-3xl md:text-4xl font-extrabold text-teal-600">
+              Medical Report Analyzer
+            </h1>
+          </div>
 
-  <AnimatePresence>
-    {result && (
-      <motion.button
-        key="clear-btn"
-        onClick={clearCurrentView}
-        className="flex items-center text-sm text-cyan-300 hover:text-red-300 transition"
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: 20 }}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <AiOutlineCloseCircle className="mr-1" />
-        Clear
-      </motion.button>
-    )}
-  </AnimatePresence>
-</div>
+          <AnimatePresence>
+            {result && (
+              <motion.button
+                key="clear-btn"
+                onClick={clearCurrentView}
+                // Teal text that hovers to red
+                className="flex items-center text-sm text-teal-600 hover:text-red-600 transition"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <AiOutlineCloseCircle className="mr-1" />
+                Clear
+              </motion.button>
+            )}
+          </AnimatePresence>
+        </div>
 
 
         {/* Instructions */}
-        <p className="text-cyan-300 text-center mb-6 md:mb-8 text-sm md:text-base leading-relaxed">
-          Upload your <span className="text-cyan-300 font-semibold">report (PDF/Image)</span>.
-          Our AI will <span className="text-cyan-300 font-semibold">analyze</span> and explain it in simple,
+        <p className="text-gray-600 text-center mb-6 md:mb-8 text-sm md:text-base leading-relaxed">
+          Upload your <span className="text-teal-600 font-semibold">report (PDF/Image)</span>.
+          Our AI will <span className="text-teal-600 font-semibold">analyze</span> and explain it in simple,
           easy-to-understand terms.
         </p>
 
@@ -158,6 +157,7 @@ const Reports = () => {
         <AnimatePresence mode="wait">
           {!result ? (
             <div className="flex flex-col items-center space-y-3">
+              {/* NOTE: ReportUpload component needs internal styling updates for teal theme */}
               <ReportUpload
                 file={file}
                 loading={loading}
@@ -166,9 +166,9 @@ const Reports = () => {
                 handleUpload={handleUpload}
               />
 
-              {/* 📷 Mobile Camera Button */}
+              {/* 📷 Mobile Camera Button - Changed to use a solid teal look */}
               {isMobile && (
-                <label className="cursor-pointer text-cyan-300 bg-cyan-800/50 px-4 py-2 rounded-xl hover:bg-cyan-700/50 transition-all text-sm">
+                <label className="cursor-pointer text-white bg-teal-600 px-4 py-2 rounded-xl hover:bg-teal-700 transition-all text-sm shadow-md">
                   📷 Scan Using Camera
                   <input
                     type="file"
@@ -181,6 +181,7 @@ const Reports = () => {
               )}
             </div>
           ) : (
+            // NOTE: ReportResult component needs internal styling updates for teal theme
             <ReportResult result={result} selectedHistoryItem={selectedHistoryItem} />
           )}
         </AnimatePresence>
@@ -188,6 +189,7 @@ const Reports = () => {
 
       {/* History Section */}
       {history.length > 0 && (
+        // NOTE: ReportHistory component needs internal styling updates for teal theme
         <ReportHistory
           history={history}
           showHistory={showHistory}

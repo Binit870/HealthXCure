@@ -47,7 +47,7 @@ const Dashboard = () => {
       const updatedUser = response.data.user;
 
       if (updatedUser.profileImageUrl) {
-        setProfileImageUrl(updatedUser.profileImageUrl); // ✅ use backend's full URL directly
+        setProfileImageUrl(updatedUser.profileImageUrl);
         updatedUser.profileImageUrl = updatedUser.profileImageUrl;
       }
 
@@ -62,37 +62,44 @@ const Dashboard = () => {
     }
   };
 
+  // --- Light Theme Loading State ---
   if (loading) {
     return (
-      <div className="pt-20 flex flex-col items-center justify-center min-h-screen text-center text-white">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mb-4"></div>
-        <h3 className="text-4xl font-extrabold text-white">
+      <div className="pt-20 flex flex-col items-center justify-center min-h-screen text-center bg-mint-50/50 text-teal-700">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-teal-500 mb-4"></div>
+        <h3 className="text-4xl font-extrabold text-teal-700">
           Loading your HealthCure Dashboard...
         </h3>
-        <p className="text-gray-300">Please wait while we fetch your personalized data.</p>
+        <p className="text-gray-600">Please wait while we fetch your personalized data.</p>
       </div>
     );
   }
 
+  // --- Light Theme Not Logged In State ---
   if (!user) {
     return (
-      <div className="pt-20 flex flex-col items-center justify-center min-h-screen text-center text-white">
-        <h3 className="text-4xl font-extrabold text-white">
+      <div className="pt-20 flex flex-col items-center justify-center min-h-screen text-center bg-mint-50/50 text-teal-700">
+        <h3 className="text-4xl font-extrabold text-teal-700">
           You must be logged in to view the dashboard
         </h3>
       </div>
     );
   }
 
+  // --- Dashboard Main View ---
   return (
     <section
       id="dashboard"
-      className="relative pt-20 min-h-screen px-4 md:px-10 lg:px-20 mb-20 text-center text-white overflow-hidden"
+      className="relative pt-20 min-h-screen px-4 md:px-10 lg:px-20 mb-20 text-center text-gray-800 overflow-hidden"
+      style={{
+        // Soft, light background gradient
+        background: "linear-gradient(180deg, #F0FFF9 0%, #F5F7FF 100%)",
+      }}
     >
-      {/* Background glow effects */}
+      {/* Redesigned Background glow effects (Teal/Lavender) */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/20 blur-3xl rounded-full animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-cyan-400/20 blur-3xl rounded-full animate-pulse delay-2000" />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-teal-200/40 blur-3xl rounded-full animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-lavender-200/40 blur-3xl rounded-full animate-pulse delay-2000" />
       </div>
 
       {/* User Profile Section */}
@@ -105,10 +112,11 @@ const Dashboard = () => {
         profileImageUrl={profileImageUrl}
       />
 
-      <p className="text-gray-300 max-w-2xl mx-auto mb-12 text-md md:text-lg">
+      {/* Redesigned Introductory Text */}
+      <p className="text-gray-600 max-w-2xl mx-auto mb-12 text-md md:text-lg">
         ✨ Here are your{" "}
-        <span className="text-blue-400 font-semibold">latest health metrics</span> and{" "}
-        <span className="text-cyan-300 font-semibold">history</span>, guiding you towards a healthier life.
+        <span className="text-teal-500 font-semibold">latest health metrics</span> and{" "}
+        <span className="text-lavender-500 font-semibold">history</span>, guiding you towards a healthier life.
       </p>
 
       {/* Notifications */}

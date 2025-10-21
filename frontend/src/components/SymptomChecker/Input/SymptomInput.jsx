@@ -155,7 +155,7 @@ const SymptomInput = ({
         className="w-full border border-white/50 rounded-2xl p-4 mt-4 bg-white/80 text-gray-800 shadow-lg"
       >
         <label className="block text-gray-700 text-sm font-medium mb-1">
-          Do you take any medication after the pain?
+          Do you take any medication?
         </label>
         <input
           type="text"
@@ -174,7 +174,7 @@ const SymptomInput = ({
         className="w-full border border-white/50 rounded-2xl p-4 mt-4 bg-white/80 text-gray-800 shadow-lg"
       >
         <label className="block text-gray-700 text-sm font-medium mb-1">
-           Any other specification you want to tell?
+           Any other specification you want to tell or not listed?
         </label>
         <textarea
           placeholder="Type additional information here..."
