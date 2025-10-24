@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-
 import dotenv from "dotenv";
-import SymptomHistory from "../models/SymptomHistory.js"; // Assuming a Mongoose model
+import SymptomHistory from "../models/SymptomHistory.js"; // Mongoose model
+
 dotenv.config();
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
@@ -9,21 +9,37 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 // 📌 Symptom Checker with Gemini
 export const checkSymptoms = async (req, res) => {
   try {
-    const { symptoms, age, gender } = req.body;
+    let { symptoms, age, gender, painAreas, painDescriptions, medication, otherInfo } = req.body;
     const userId = req.user.id;
 
-    if (!symptoms || symptoms.length === 0) {
-      return res.status(400).json({ error: "Please provide symptoms" });
+    // ✅ Normalize symptoms input
+    if (typeof symptoms === "string") {
+      symptoms = symptoms.split(",").map(s => s.trim()).filter(Boolean);
+    }
+
+    if (!Array.isArray(symptoms) || symptoms.length === 0) {
+      return res.status(400).json({ error: "Please provide valid symptoms as a list or comma-separated string." });
+    }
+
+    if (!age || !gender) {
+      return res.status(400).json({ error: "Please provide both age and gender." });
     }
 
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
+    // 🧠 Enhanced Prompt with Context
     const prompt = `
 You are an intelligent and empathetic AI medical assistant.
 
 The user is a ${age}-year-old ${gender}. They are experiencing the following symptoms: ${symptoms.join(", ")}.
 
-Based on these symptoms, list the **top 4 most likely health conditions**.
+Additional context:
+- Pain areas: ${painAreas?.join(", ") || "None"}
+- Pain descriptions: ${JSON.stringify(painDescriptions) || "None"}
+- Medication: ${medication || "None"}
+- Other info: ${otherInfo || "None"}
+
+Based on these symptoms and context, list the top 4 most likely health conditions.
 
 For each condition, include:
 - "name": The medical condition name.
@@ -48,27 +64,38 @@ Return only valid JSON:
 }
 `;
 
-
     const result = await model.generateContent(prompt);
     const textResponse = result.response.text();
 
+    // ✅ Extract JSON safely
     const jsonStart = textResponse.indexOf("{");
     const jsonEnd = textResponse.lastIndexOf("}");
     if (jsonStart !== -1 && jsonEnd !== -1) {
       const jsonString = textResponse.substring(jsonStart, jsonEnd + 1);
-      const parsedData = JSON.parse(jsonString);
+      try {
+        const parsedData = JSON.parse(jsonString);
 
-      // 💾 Save to DB
-      const newHistoryEntry = new SymptomHistory({
-        user: userId,
-        symptoms,
-        age,
-        gender,
-        results: parsedData.conditions,
-      });
-      await newHistoryEntry.save();
+        // 💾 Save to DB
+        const newHistoryEntry = new SymptomHistory({
+          user: userId,
+          symptoms,
+          age,
+          gender,
+          painAreas,
+          painDescriptions,
+          medication,
+          otherInfo,
+          results: parsedData.conditions,
+        });
+        await newHistoryEntry.save();
 
-      return res.json(parsedData);
+        return res.json(parsedData);
+      } catch (parseError) {
+        return res.status(200).json({
+          error: "AI returned malformed JSON. Please try again.",
+          rawResponse: textResponse,
+        });
+      }
     } else {
       return res.status(200).json({
         error: "AI did not return a valid JSON object. Please try again.",
@@ -87,26 +114,22 @@ Return only valid JSON:
   }
 };
 
-
-
-// 📌 NEW: Get Symptom History
 // 📌 Get Symptom History
 export const getSymptomHistory = async (req, res) => {
-    try {
-        const userId = req.user.id;
-        // ✅ Add .lean() to the query
-        const history = await SymptomHistory.find({ user: userId }).sort({ createdAt: -1 }).lean();
-        res.json({ history });
-    } catch (error) {
-        console.error("Error fetching symptom history:", error);
-        res.status(500).json({ error: "Failed to fetch history." });
-    }
+  try {
+    const userId = req.user.id;
+    const history = await SymptomHistory.find({ user: userId }).sort({ createdAt: -1 }).lean();
+    res.json({ history });
+  } catch (error) {
+    console.error("Error fetching symptom history:", error);
+    res.status(500).json({ error: "Failed to fetch history." });
+  }
 };
 
+// 📌 Delete Symptom History
 export const deleteSymptomHistory = async (req, res) => {
   try {
     const { id } = req.params;
-
     const deleted = await SymptomHistory.findByIdAndDelete(id);
 
     if (!deleted) {

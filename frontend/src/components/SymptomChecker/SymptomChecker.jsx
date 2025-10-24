@@ -4,8 +4,8 @@ import { FaStethoscope, FaHistory } from "react-icons/fa";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { MdOutlineClose } from "react-icons/md";
 import API from "../../utils/Api";
-import SymptomDisclaimer from "./SymptomDisclaimer"; 
-import SymptomInput from "./Input/SymptomInput"; 
+import SymptomDisclaimer from "./SymptomDisclaimer";
+import SymptomInput from "./Input/SymptomInput";
 import SymptomResults from "./SymptomResults";
 import SymptomHistory from "./SymptomHistory";
 
@@ -72,27 +72,27 @@ const SymptomChecker = () => {
 
     // --- UI Redesign (Focus on single text color) ---
     return (
-        <div 
-            className="relative min-h-screen flex flex-col items-center justify-start px-4 sm:px-6 md:px-8 py-10 sm:py-16 text-gray-800 overflow-hidden" 
-            style={{ 
-                background: "linear-gradient(180deg, #F0FFF9 0%, #F5F7FF 100%)", 
-            }} 
+        <div
+            className="relative min-h-screen flex flex-col items-center justify-start px-4 sm:px-6 md:px-8 py-10 sm:py-16 text-gray-800 overflow-hidden"
+            style={{
+                background: "linear-gradient(180deg, #F0FFF9 0%, #F5F7FF 100%)",
+            }}
         >
             {/* Soft animated background accents (Unchanged) */}
             <div className="absolute top-10 left-8 w-28 h-28 bg-teal-100/60 rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute bottom-16 right-8 w-36 h-36 bg-indigo-100/60 rounded-full blur-3xl animate-bounce"></div>
 
             {/* Disclaimer Modal (Unchanged) */}
-            <SymptomDisclaimer 
-                show={showDisclaimer} 
-                onClose={() => setShowDisclaimer(false)} 
+            <SymptomDisclaimer
+                show={showDisclaimer}
+                onClose={() => setShowDisclaimer(false)}
             />
 
             <AnimatePresence mode="wait">
                 {showHistory ? (
                     <SymptomHistory setShowHistory={setShowHistory} />
                 ) : (
-                    <motion.div 
+                    <motion.div
                         key="checker-view"
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -101,12 +101,12 @@ const SymptomChecker = () => {
                         className="w-full max-w-4xl flex flex-col items-center z-10"
                     >
                         {results.length === 0 ? (
-                            <motion.div 
+                            <motion.div
                                 key="input-view"
                                 initial={{ opacity: 0, y: -30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, ease: "easeOut" }}
-                                className="flex flex-col items-center text-center bg-white border border-gray-100 rounded-3xl p-6 sm:p-10 shadow-xl w-full max-w-4xl"
+                                className="flex flex-col items-center text-center bg-cyan-100 border border-gray-100 rounded-3xl p-6 sm:p-10 shadow-xl w-full max-w-4xl"
                             >
                                 {/* Icon and Header */}
                                 <FaStethoscope className="text-5xl sm:text-6xl mb-4 text-teal-500" />
@@ -119,19 +119,19 @@ const SymptomChecker = () => {
                                 </p>
 
                                 {/* Input Section (Unchanged) */}
-                                <SymptomInput 
-                                    age={age} setAge={setAge} 
-                                    gender={gender} setGender={setGender} 
-                                    symptomsList={symptomsList} setSymptomsList={setSymptomsList} 
-                                    checkedPainAreas={checkedPainAreas} setCheckedPainAreas={setCheckedPainAreas} 
-                                    painDescriptions={painDescriptions} setPainDescriptions={setPainDescriptions} 
-                                    medication={medication} setMedication={setMedication} 
-                                    otherInfo={otherInfo} setOtherInfo={setOtherInfo} 
+                                <SymptomInput
+                                    age={age} setAge={setAge}
+                                    gender={gender} setGender={setGender}
+                                    symptomsList={symptomsList} setSymptomsList={setSymptomsList}
+                                    checkedPainAreas={checkedPainAreas} setCheckedPainAreas={setCheckedPainAreas}
+                                    painDescriptions={painDescriptions} setPainDescriptions={setPainDescriptions}
+                                    medication={medication} setMedication={setMedication}
+                                    otherInfo={otherInfo} setOtherInfo={setOtherInfo}
                                 />
 
                                 {/* Buttons Container (Unchanged) */}
                                 <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-10 w-full justify-center">
-                                    <motion.button 
+                                    <motion.button
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
                                         onClick={handleCheckSymptoms}
@@ -139,15 +139,15 @@ const SymptomChecker = () => {
                                         className="w-full sm:w-auto px-8 py-3 bg-teal-500 text-white font-bold rounded-full shadow-lg shadow-teal-300/50 hover:bg-teal-600 transition-all duration-300 flex items-center justify-center gap-2 text-lg"
                                     >
                                         {loading ? (
-                                            <> 
-                                                <AiOutlineLoading3Quarters className="animate-spin" /> Checking... 
+                                            <>
+                                                <AiOutlineLoading3Quarters className="animate-spin" /> Checking...
                                             </>
                                         ) : (
                                             "Check Symptoms"
                                         )}
                                     </motion.button>
-                                    
-                                    <motion.button 
+
+                                    <motion.button
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
                                         onClick={() => setShowHistory(true)}
@@ -155,9 +155,9 @@ const SymptomChecker = () => {
                                     >
                                         <FaHistory /> View History
                                     </motion.button>
-                                    
+
                                     {(symptomsList.length > 0 || error) && (
-                                        <motion.button 
+                                        <motion.button
                                             whileHover={{ scale: 1.05 }}
                                             whileTap={{ scale: 0.95 }}
                                             onClick={handleReset}
@@ -167,12 +167,12 @@ const SymptomChecker = () => {
                                         </motion.button>
                                     )}
                                 </div>
-                                
+
                                 {/* Error Message (Unchanged) */}
                                 {error && (
-                                    <motion.p 
-                                        initial={{ opacity: 0 }} 
-                                        animate={{ opacity: 1 }} 
+                                    <motion.p
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
                                         className="text-red-500 mt-6 font-medium text-base sm:text-lg bg-red-50 p-3 rounded-xl border border-red-200"
                                     >
                                         {error}
@@ -180,7 +180,7 @@ const SymptomChecker = () => {
                                 )}
                             </motion.div>
                         ) : (
-                            <motion.div 
+                            <motion.div
                                 key="results-view"
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -189,7 +189,7 @@ const SymptomChecker = () => {
                             >
                                 <SymptomResults results={results} />
                                 <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-10 w-full justify-center">
-                                    <motion.button 
+                                    <motion.button
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
                                         onClick={handleReset}
@@ -197,8 +197,8 @@ const SymptomChecker = () => {
                                     >
                                         <FaStethoscope /> Check New Symptoms
                                     </motion.button>
-                                    
-                                    <motion.button 
+
+                                    <motion.button
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
                                         onClick={() => setShowHistory(true)}
