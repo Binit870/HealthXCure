@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaUtensils, FaTired, FaFileAlt } from "react-icons/fa";
 import { useAuth } from "../../context/AuthContext";
 import API from "../../utils/Api";
 
+// Import the new KeyMetricsSection
+import KeyMetricsSection from "./KeyMetricsSection"; 
 import UserProfileSection from "./UserProfileSection";
 import HistorySection from "./HistorySection";
 import NotificationSection from "./NotificationSection";
@@ -19,6 +21,32 @@ const Dashboard = () => {
   const [profileImageUrl, setProfileImageUrl] = useState(() => {
     return user?.profileImageUrl || "";
   });
+
+  useEffect(() => {
+    const fetchHistory = async () => {
+      if (!token || !user) return;
+      try {
+        const dietRes = await API.get("/diet/history", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setDietHistory(dietRes.data.data || []);
+
+        const symptomRes = await API.get("/symptom/history", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setSymptomHistory(symptomRes.data.data || []);
+
+        const reportRes = await API.get("/report/history", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setReportHistory(reportRes.data.data || []);
+      } catch (error) {
+        console.error("Failed to fetch history:", error);
+      }
+    };
+
+    fetchHistory();
+  }, [user, token]);
 
   const handleImageUpload = async (event) => {
     const file = event.target.files?.[0];
@@ -48,7 +76,6 @@ const Dashboard = () => {
 
       if (updatedUser.profileImageUrl) {
         setProfileImageUrl(updatedUser.profileImageUrl);
-        updatedUser.profileImageUrl = updatedUser.profileImageUrl;
       }
 
       if (updateUser) updateUser({ ...updatedUser });
@@ -92,58 +119,86 @@ const Dashboard = () => {
       id="dashboard"
       className="relative pt-20 min-h-screen px-4 md:px-10 lg:px-20 mb-20 text-center text-gray-800 overflow-hidden"
       style={{
-        // Soft, light background gradient
         background: "linear-gradient(180deg, #F0FFF9 0%, #F5F7FF 100%)",
       }}
     >
-      {/* Redesigned Background glow effects (Teal/Lavender) */}
+      {/* Background glow */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-teal-200/40 blur-3xl rounded-full animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-lavender-200/40 blur-3xl rounded-full animate-pulse delay-2000" />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-teal-100/30 blur-[100px] rounded-full" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-indigo-100/30 blur-[100px] rounded-full" />
       </div>
 
-      {/* User Profile Section */}
-      <UserProfileSection
-        user={user}
-        uploading={uploading}
-        isEditing={isEditingProfileImage}
-        setIsEditing={setIsEditingProfileImage}
-        handleImageUpload={handleImageUpload}
-        profileImageUrl={profileImageUrl}
-      />
+      <div className="max-w-7xl mx-auto pt-8 pb-12">
+        {/* TOP ROW: Profile + Metrics */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+          <div className="lg:col-span-1">
+            <UserProfileSection
+              user={user}
+              uploading={uploading}
+              isEditing={isEditingProfileImage}
+              setIsEditing={setIsEditingProfileImage}
+              handleImageUpload={handleImageUpload}
+              profileImageUrl={profileImageUrl}
+            />
+          </div>
 
-      {/* Redesigned Introductory Text */}
-      <p className="text-gray-600 max-w-2xl mx-auto mb-12 text-md md:text-lg">
-        ✨ Here are your{" "}
-        <span className="text-teal-500 font-semibold">latest health metrics</span> and{" "}
-        <span className="text-lavender-500 font-semibold">history</span>, guiding you towards a healthier life.
-      </p>
+          <div className="lg:col-span-2 text-left">
+            <KeyMetricsSection user={user} />
+          </div>
+        </div>
 
-      {/* Notifications */}
-      <div className="max-w-6xl mx-auto mt-12 relative z-10 mb-12">
-        <NotificationSection user={user} />
-      </div>
+        <p className="text-gray-600 max-w-2xl mx-auto mb-12 text-md md:text-lg">
+          ✨ Your personalized <span className="text-teal-500 font-semibold">health snapshot</span> and{" "}
+          <span className="text-indigo-500 font-semibold">activity history</span>, guiding your wellness journey.
+        </p>
 
-      {/* History Sections */}
-      <div className="max-w-6xl mx-auto py-3 space-y-8">
-        <HistorySection
-          title="Diet History"
-          icon={FaUtensils}
-          historyData={dietHistory}
-          emptyMessage="No diet history recorded yet. Start tracking your meals!"
-        />
-        <HistorySection
-          title="Symptom History"
-          icon={FaTired}
-          historyData={symptomHistory}
-          emptyMessage="No symptom history recorded. Track your symptoms for better insights!"
-        />
-        <HistorySection
-          title="Report History"
-          icon={FaFileAlt}
-          historyData={reportHistory}
-          emptyMessage="No reports available. Upload your health reports here."
-        />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* LEFT: Notifications + Actions */}
+          <div className="lg:col-span-1 space-y-8">
+            <NotificationSection user={user} />
+
+            <div className="rounded-3xl p-6 shadow-md bg-white border border-teal-100 text-left">
+              <h5 className="text-xl font-bold text-teal-600 mb-3">Quick Actions</h5>
+              <button className="w-full text-center bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 rounded-xl transition-colors duration-200">
+                Log Today's Meal 🍎
+              </button>
+              <button className="w-full text-center mt-3 border border-indigo-400 text-indigo-500 hover:bg-indigo-50 font-semibold py-3 rounded-xl transition-colors duration-200">
+                Symptom Checker 🩺
+              </button>
+            </div>
+          </div>
+
+          {/* RIGHT: History */}
+          <div className="lg:col-span-2 space-y-8">
+            <h3 className="text-3xl font-bold text-gray-800 text-left mb-4 border-b-2 border-indigo-200 pb-2">
+              Activity and Data History
+            </h3>
+
+            <HistorySection
+              title="Diet History"
+              icon={FaUtensils}
+              historyData={dietHistory.slice(0, 3)}
+              emptyMessage="No diet history recorded yet. Start tracking your meals!"
+              showViewAll={true}
+            />
+
+            <HistorySection
+              title="Symptom History"
+              icon={FaTired}
+              historyData={symptomHistory.slice(0, 3)}
+              emptyMessage="No symptom history recorded. Track your symptoms for better insights!"
+              showViewAll={true}
+            />
+
+            <HistorySection
+              title="Report History"
+              icon={FaFileAlt}
+              historyData={reportHistory.slice(0, 3)}
+              emptyMessage="No reports available. Upload your health reports here."
+              showViewAll={true}
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

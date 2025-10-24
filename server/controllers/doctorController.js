@@ -3,9 +3,6 @@ import Doctor from "../models/Doctor.js";
 
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
-/**
- * 🌆 Fetch all unique city names
- */
 export const getCities = async (req, res) => {
   try {
     const cities = await Doctor.distinct("city");
@@ -16,33 +13,27 @@ export const getCities = async (req, res) => {
   }
 };
 
-/**
- * 🔍 Fetch doctors by name/city + auto-geocode missing lat/lng
- */
 export const getDoctorsFiltered = async (req, res) => {
   try {
     const { name, city } = req.query;
 
     const filter = {};
     if (name) filter.name = new RegExp(name, "i");
-    if (city) filter.city = new RegExp(city, "i");
+    if (city) filter.city = new RegExp(`^${city}$`, "i");
 
-    const doctors = await Doctor.find(filter).limit(100);
+    const doctors = await Doctor.find(filter).limit(200);
+    if (!doctors.length) return res.status(404).json([]);
 
-    if (!doctors.length) {
-      return res.status(404).json({ message: "No doctors found." });
-    }
-
-    // Auto-geocode missing coordinates
     const updatedDoctors = await Promise.all(
       doctors.map(async (doc) => {
         if (!doc.lat || !doc.lng) {
           try {
             const address = `${doc.address || ""}, ${doc.city || ""}`;
             const geoRes = await axios.get(
-              `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${GOOGLE_API_KEY}`
+              `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+                address
+              )}&key=${GOOGLE_API_KEY}`
             );
-
             const loc = geoRes.data.results[0]?.geometry.location;
             if (loc) {
               doc.lat = loc.lat;
@@ -50,7 +41,7 @@ export const getDoctorsFiltered = async (req, res) => {
               await doc.save();
             }
           } catch (err) {
-            console.error("❌ Failed to geocode doctor:", doc.name, err.message);
+            console.error("❌ Failed to geocode doctor:", doc.name);
           }
         }
         return doc;
@@ -64,15 +55,13 @@ export const getDoctorsFiltered = async (req, res) => {
   }
 };
 
-/**
- * 🧭 Google Directions API
- */
 export const getDirections = async (req, res) => {
   const { originLat, originLng, destLat, destLng } = req.query;
 
-  if (!originLat || !originLng || !destLat || !destLng) {
-    return res.status(400).json({ message: "Missing required location parameters." });
-  }
+  if (!originLat || !originLng || !destLat || !destLng)
+    return res
+      .status(400)
+      .json({ message: "Missing required location parameters." });
 
   try {
     const directionsResponse = await axios.get(

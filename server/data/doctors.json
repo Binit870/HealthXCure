@@ -1,0 +1,404 @@
+[
+  {"name":"Dr. Riya Sharma","phone":"+91-9876543210","city":"Mumbai","state":"Maharashtra","gender":"Female","address":"Fortis Hospital, Mulund, Mumbai","specialization":"Cardiologist","lat":19.1715,"lng":72.9576},
+  {"name":"Dr. Amit Verma","phone":"+91-9876543211","city":"Mumbai","state":"Maharashtra","gender":"Male","address":"Lilavati Hospital, Bandra, Mumbai","specialization":"Dermatologist","lat":19.0600,"lng":72.8300},
+  {"name":"Dr. Sneha Joshi","phone":"+91-9876543212","city":"Mumbai","state":"Maharashtra","gender":"Female","address":"Hiranandani Hospital, Powai, Mumbai","specialization":"Pediatrician","lat":19.1200,"lng":72.9000},
+  {"name":"Dr. Rohit Mehta","phone":"+91-9876543213","city":"Mumbai","state":"Maharashtra","gender":"Male","address":"Kokilaben Dhirubhai Hospital, Andheri, Mumbai","specialization":"Neurologist","lat":19.1000,"lng":72.8300},
+  {"name":"Dr. Anjali Gupta","phone":"+91-9876543214","city":"Mumbai","state":"Maharashtra","gender":"Female","address":"Seven Hills Hospital, Mumbai","specialization":"Gynecologist","lat":19.0950,"lng":72.8500},
+  {"name":"Dr. Karan Singh","phone":"+91-9876543215","city":"Mumbai","state":"Maharashtra","gender":"Male","address":"S L Raheja Hospital, Mumbai","specialization":"Orthopedic","lat":19.0700,"lng":72.8400},
+  {"name":"Dr. Priya Nair","phone":"+91-9876543216","city":"Mumbai","state":"Maharashtra","gender":"Female","address":"Wockhardt Hospital, Mumbai","specialization":"Dentist","lat":19.0900,"lng":72.8600},
+  {"name":"Dr. Rajesh Kumar","phone":"+91-9876543217","city":"Mumbai","state":"Maharashtra","gender":"Male","address":"Saifee Hospital, Mumbai","specialization":"ENT Specialist","lat":19.0500,"lng":72.8200},
+  {"name":"Dr. Meera Reddy","phone":"+91-9876543218","city":"Mumbai","state":"Maharashtra","gender":"Female","address":"Bhatia Hospital, Mumbai","specialization":"Ophthalmologist","lat":19.0600,"lng":72.8500},
+  {"name":"Dr. Vikas Malhotra","phone":"+91-9876543219","city":"Mumbai","state":"Maharashtra","gender":"Male","address":"Hinduja Hospital, Mumbai","specialization":"Psychiatrist","lat":19.1000,"lng":72.8700},
+
+ 
+  {"name":"Dr. Ananya Singh","phone":"+91-9876543220","city":"Delhi","state":"Delhi","gender":"Female","address":"AIIMS, New Delhi","specialization":"Cardiologist","lat":28.567,"lng":77.210},
+  {"name":"Dr. Rajeev Mehta","phone":"+91-9876543221","city":"Delhi","state":"Delhi","gender":"Male","address":"Apollo Clinic, Saket, Delhi","specialization":"Dermatologist","lat":28.5245,"lng":77.2066},
+  {"name":"Dr. Priya Verma","phone":"+91-9876543222","city":"Delhi","state":"Delhi","gender":"Female","address":"Max Hospital, Shalimar Bagh","specialization":"Pediatrician","lat":28.688,"lng":77.154},
+  {"name":"Dr. Amit Kapoor","phone":"+91-9876543223","city":"Delhi","state":"Delhi","gender":"Male","address":"Fortis Hospital, Vasant Kunj","specialization":"Neurologist","lat":28.526,"lng":77.182},
+  {"name":"Dr. Neha Reddy","phone":"+91-9876543224","city":"Delhi","state":"Delhi","gender":"Female","address":"BLK Hospital, Pusa Road","specialization":"Gynecologist","lat":28.644,"lng":77.184},
+  {"name":"Dr. Rohit Sharma","phone":"+91-9876543225","city":"Delhi","state":"Delhi","gender":"Male","address":"Sir Ganga Ram Hospital, Delhi","specialization":"Orthopedic","lat":28.644,"lng":77.201},
+  {"name":"Dr. Swati Nair","phone":"+91-9876543226","city":"Delhi","state":"Delhi","gender":"Female","address":"Indian Spinal Injuries Center, Delhi","specialization":"Dentist","lat":28.621,"lng":77.211},
+  {"name":"Dr. Karan Singh","phone":"+91-9876543227","city":"Delhi","state":"Delhi","gender":"Male","address":"Pushpawati Singhania Hospital, Delhi","specialization":"ENT Specialist","lat":28.632,"lng":77.212},
+  {"name":"Dr. Meera Sharma","phone":"+91-9876543228","city":"Delhi","state":"Delhi","gender":"Female","address":"Fortis La Femme, Delhi","specialization":"Ophthalmologist","lat":28.567,"lng":77.216},
+  {"name":"Dr. Vikram Malhotra","phone":"+91-9876543229","city":"Delhi","state":"Delhi","gender":"Male","address":"Indraprastha Apollo Hospital, Delhi","specialization":"Psychiatrist","lat":28.569,"lng":77.220}
+,
+
+  {"name":"Dr. Anjali Rao","phone":"+91-9876543230","city":"Bengaluru","state":"Karnataka","gender":"Female","address":"Manipal Hospital, Whitefield, Bengaluru","specialization":"Cardiologist","lat":12.9716,"lng":77.6411},
+  {"name":"Dr. Ravi Kumar","phone":"+91-9876543231","city":"Bengaluru","state":"Karnataka","gender":"Male","address":"Narayana Health, Bannerghatta Road, Bengaluru","specialization":"Dermatologist","lat":12.9240,"lng":77.6197},
+  {"name":"Dr. Sneha Menon","phone":"+91-9876543232","city":"Bengaluru","state":"Karnataka","gender":"Female","address":"Fortis Hospital, Cunningham Road, Bengaluru","specialization":"Pediatrician","lat":12.9719,"lng":77.5946},
+  {"name":"Dr. Kiran Shetty","phone":"+91-9876543233","city":"Bengaluru","state":"Karnataka","gender":"Male","address":"Columbia Asia Hospital, Whitefield, Bengaluru","specialization":"Neurologist","lat":12.9690,"lng":77.6950},
+  {"name":"Dr. Priya Nambiar","phone":"+91-9876543234","city":"Bengaluru","state":"Karnataka","gender":"Female","address":"Sakra World Hospital, Bengaluru","specialization":"Gynecologist","lat":12.9710,"lng":77.6220},
+  {"name":"Dr. Manoj Patil","phone":"+91-9876543235","city":"Bengaluru","state":"Karnataka","gender":"Male","address":"Aster CMI Hospital, Hebbal, Bengaluru","specialization":"Orthopedic","lat":13.0375,"lng":77.5970},
+  {"name":"Dr. Meera Iyer","phone":"+91-9876543236","city":"Bengaluru","state":"Karnataka","gender":"Female","address":"Sparsh Hospital, Jayanagar, Bengaluru","specialization":"Dentist","lat":12.9250,"lng":77.5938},
+  {"name":"Dr. Rajesh Hegde","phone":"+91-9876543237","city":"Bengaluru","state":"Karnataka","gender":"Male","address":"Apollo Hospital, Jayanagar, Bengaluru","specialization":"ENT Specialist","lat":12.9235,"lng":77.5850},
+  {"name":"Dr. Nandini Sharma","phone":"+91-9876543238","city":"Bengaluru","state":"Karnataka","gender":"Female","address":"Vydehi Hospital, Whitefield, Bengaluru","specialization":"Ophthalmologist","lat":12.9790,"lng":77.7270},
+  {"name":"Dr. Vikas Reddy","phone":"+91-9876543239","city":"Bengaluru","state":"Karnataka","gender":"Male","address":"Rainbow Children Hospital, Bengaluru","specialization":"Psychiatrist","lat":12.9750,"lng":77.6050},
+
+
+  {"name":"Dr. Sita Reddy","phone":"+91-9876543240","city":"Hyderabad","state":"Telangana","gender":"Female","address":"Apollo Hospital, Banjara Hills, Hyderabad","specialization":"Cardiologist","lat":17.4326,"lng":78.4480},
+  {"name":"Dr. Arjun Rao","phone":"+91-9876543241","city":"Hyderabad","state":"Telangana","gender":"Male","address":"KIMS Hospital, Secunderabad","specialization":"Dermatologist","lat":17.4366,"lng":78.4983},
+  {"name":"Dr. Meera Sharma","phone":"+91-9876543242","city":"Hyderabad","state":"Telangana","gender":"Female","address":"Continental Hospitals, Gachibowli","specialization":"Pediatrician","lat":17.4440,"lng":78.3490},
+  {"name":"Dr. Rakesh Kumar","phone":"+91-9876543243","city":"Hyderabad","state":"Telangana","gender":"Male","address":"Care Hospital, Banjara Hills","specialization":"Neurologist","lat":17.4230,"lng":78.4400},
+  {"name":"Dr. Anjali Rao","phone":"+91-9876543244","city":"Hyderabad","state":"Telangana","gender":"Female","address":"Yashoda Hospital, Secunderabad","specialization":"Gynecologist","lat":17.4450,"lng":78.4980},
+  {"name":"Dr. Kiran Reddy","phone":"+91-9876543245","city":"Hyderabad","state":"Telangana","gender":"Male","address":"Rainbow Children Hospital, Hyderabad","specialization":"Orthopedic","lat":17.4310,"lng":78.4430},
+  {"name":"Dr. Sneha Iyer","phone":"+91-9876543246","city":"Hyderabad","state":"Telangana","gender":"Female","address":"Hinduja Hospital, Hyderabad","specialization":"Dentist","lat":17.4300,"lng":78.4400},
+  {"name":"Dr. Rohit Malhotra","phone":"+91-9876543247","city":"Hyderabad","state":"Telangana","gender":"Male","address":"Care IVF, Banjara Hills","specialization":"ENT Specialist","lat":17.4320,"lng":78.4485},
+  {"name":"Dr. Nandini Reddy","phone":"+91-9876543248","city":"Hyderabad","state":"Telangana","gender":"Female","address":"LV Prasad Eye Institute, Hyderabad","specialization":"Ophthalmologist","lat":17.4340,"lng":78.4800},
+  {"name":"Dr. Vikas Sharma","phone":"+91-9876543249","city":"Hyderabad","state":"Telangana","gender":"Male","address":"Fernandez Hospital, Hyderabad","specialization":"Psychiatrist","lat":17.4315,"lng":78.4450}
+,
+
+
+  {"name":"Dr. Priya Iyer","phone":"+91-9876543250","city":"Chennai","state":"Tamil Nadu","gender":"Female","address":"Apollo Hospital, Greams Road, Chennai","specialization":"Cardiologist","lat":13.0620,"lng":80.2580},
+  {"name":"Dr. Arjun Kumar","phone":"+91-9876543251","city":"Chennai","state":"Tamil Nadu","gender":"Male","address":"Fortis Malar Hospital, Adyar, Chennai","specialization":"Dermatologist","lat":13.0100,"lng":80.2520},
+  {"name":"Dr. Meera Ramesh","phone":"+91-9876543252","city":"Chennai","state":"Tamil Nadu","gender":"Female","address":"MIOT Hospital, Manapakkam, Chennai","specialization":"Pediatrician","lat":12.9760,"lng":80.1650},
+  {"name":"Dr. Karthik Sharma","phone":"+91-9876543253","city":"Chennai","state":"Tamil Nadu","gender":"Male","address":"Gleneagles Global Health City, Perumbakkam","specialization":"Neurologist","lat":12.9200,"lng":80.2200},
+  {"name":"Dr. Anjali Menon","phone":"+91-9876543254","city":"Chennai","state":"Tamil Nadu","gender":"Female","address":"Sri Ramachandra Hospital, Porur, Chennai","specialization":"Gynecologist","lat":13.0400,"lng":80.1700},
+  {"name":"Dr. Rohit Reddy","phone":"+91-9876543255","city":"Chennai","state":"Tamil Nadu","gender":"Male","address":"Kauvery Hospital, Alwarpet, Chennai","specialization":"Orthopedic","lat":13.0330,"lng":80.2450},
+  {"name":"Dr. Nandini Iyer","phone":"+91-9876543256","city":"Chennai","state":"Tamil Nadu","gender":"Female","address":"Billroth Hospitals, Chennai","specialization":"Dentist","lat":13.0300,"lng":80.2500},
+  {"name":"Dr. Vikas Sharma","phone":"+91-9876543257","city":"Chennai","state":"Tamil Nadu","gender":"Male","address":"Vijaya Hospital, Royapettah, Chennai","specialization":"ENT Specialist","lat":13.0500,"lng":80.2700},
+  {"name":"Dr. Meera Nair","phone":"+91-9876543258","city":"Chennai","state":"Tamil Nadu","gender":"Female","address":"Sankara Nethralaya, Chennai","specialization":"Ophthalmologist","lat":13.0650,"lng":80.2540},
+  {"name":"Dr. Kiran Reddy","phone":"+91-9876543259","city":"Chennai","state":"Tamil Nadu","gender":"Male","address":"MGM Healthcare, Chennai","specialization":"Psychiatrist","lat":13.0400,"lng":80.2100}
+,
+
+
+  {"name":"Dr. Ananya Mukherjee","phone":"+91-9876543260","city":"Kolkata","state":"West Bengal","gender":"Female","address":"Apollo Gleneagles Hospitals, Kolkata","specialization":"Cardiologist","lat":22.5726,"lng":88.3639},
+  {"name":"Dr. Rajesh Banerjee","phone":"+91-9876543261","city":"Kolkata","state":"West Bengal","gender":"Male","address":"Fortis Hospital, Anandapur, Kolkata","specialization":"Dermatologist","lat":22.5730,"lng":88.4142},
+  {"name":"Dr. Sneha Chatterjee","phone":"+91-9876543262","city":"Kolkata","state":"West Bengal","gender":"Female","address":"Ruby General Hospital, Kolkata","specialization":"Pediatrician","lat":22.5361,"lng":88.4000},
+  {"name":"Dr. Arjun Roy","phone":"+91-9876543263","city":"Kolkata","state":"West Bengal","gender":"Male","address":"AMRI Hospital, Salt Lake, Kolkata","specialization":"Neurologist","lat":22.5780,"lng":88.4145},
+  {"name":"Dr. Meera Sen","phone":"+91-9876543264","city":"Kolkata","state":"West Bengal","gender":"Female","address":"CMRI Hospital, Kolkata","specialization":"Gynecologist","lat":22.5910,"lng":88.3980},
+  {"name":"Dr. Karan Das","phone":"+91-9876543265","city":"Kolkata","state":"West Bengal","gender":"Male","address":"Belle Vue Clinic, Kolkata","specialization":"Orthopedic","lat":22.5800,"lng":88.3600},
+  {"name":"Dr. Nandini Ghosh","phone":"+91-9876543266","city":"Kolkata","state":"West Bengal","gender":"Female","address":"Dental Solutions, Kolkata","specialization":"Dentist","lat":22.5720,"lng":88.3700},
+  {"name":"Dr. Rohit Mitra","phone":"+91-9876543267","city":"Kolkata","state":"West Bengal","gender":"Male","address":"Woodlands Hospital, Kolkata","specialization":"ENT Specialist","lat":22.5670,"lng":88.3500},
+  {"name":"Dr. Meera Roy","phone":"+91-9876543268","city":"Kolkata","state":"West Bengal","gender":"Female","address":"Disha Eye Hospitals, Kolkata","specialization":"Ophthalmologist","lat":22.5800,"lng":88.4000},
+  {"name":"Dr. Vikram Sen","phone":"+91-9876543269","city":"Kolkata","state":"West Bengal","gender":"Male","address":"Mediwell Psychiatric Center, Kolkata","specialization":"Psychiatrist","lat":22.5750,"lng":88.3900}
+,
+
+  {"name":"Dr. Priya Deshmukh","phone":"+91-9876543270","city":"Pune","state":"Maharashtra","gender":"Female","address":"Ruby Hall Clinic, Pune","specialization":"Cardiologist","lat":18.5204,"lng":73.8567},
+  {"name":"Dr. Rohit Kulkarni","phone":"+91-9876543271","city":"Pune","state":"Maharashtra","gender":"Male","address":"Aditya Birla Memorial Hospital, Pune","specialization":"Dermatologist","lat":18.5300,"lng":73.8410},
+  {"name":"Dr. Meera Patil","phone":"+91-9876543272","city":"Pune","state":"Maharashtra","gender":"Female","address":"Jehangir Hospital, Pune","specialization":"Pediatrician","lat":18.5250,"lng":73.8400},
+  {"name":"Dr. Karan Shinde","phone":"+91-9876543273","city":"Pune","state":"Maharashtra","gender":"Male","address":"Sahyadri Hospital, Pune","specialization":"Neurologist","lat":18.5350,"lng":73.8450},
+  {"name":"Dr. Anjali Jadhav","phone":"+91-9876543274","city":"Pune","state":"Maharashtra","gender":"Female","address":"Deenanath Mangeshkar Hospital, Pune","specialization":"Gynecologist","lat":18.5180,"lng":73.8550},
+  {"name":"Dr. Manoj Rane","phone":"+91-9876543275","city":"Pune","state":"Maharashtra","gender":"Male","address":"Sparsh Hospital, Pune","specialization":"Orthopedic","lat":18.5200,"lng":73.8600},
+  {"name":"Dr. Nandini More","phone":"+91-9876543276","city":"Pune","state":"Maharashtra","gender":"Female","address":"Smile Dental Clinic, Pune","specialization":"Dentist","lat":18.5210,"lng":73.8570},
+  {"name":"Dr. Rajesh Patil","phone":"+91-9876543277","city":"Pune","state":"Maharashtra","gender":"Male","address":"Phoenix ENT Clinic, Pune","specialization":"ENT Specialist","lat":18.5220,"lng":73.8580},
+  {"name":"Dr. Meera Joshi","phone":"+91-9876543278","city":"Pune","state":"Maharashtra","gender":"Female","address":"Pune Eye Hospital, Pune","specialization":"Ophthalmologist","lat":18.5190,"lng":73.8560},
+  {"name":"Dr. Vikas Sharma","phone":"+91-9876543279","city":"Pune","state":"Maharashtra","gender":"Male","address":"Mind Matters Psychiatry, Pune","specialization":"Psychiatrist","lat":18.5185,"lng":73.8575}
+,
+
+  {"name":"Dr. Priya Patel","phone":"+91-9876543280","city":"Ahmedabad","state":"Gujarat","gender":"Female","address":"Shalby Hospital, Ahmedabad","specialization":"Cardiologist","lat":23.0225,"lng":72.5714},
+  {"name":"Dr. Rohit Mehta","phone":"+91-9876543281","city":"Ahmedabad","state":"Gujarat","gender":"Male","address":"CIMS Hospital, Ahmedabad","specialization":"Dermatologist","lat":23.0350,"lng":72.5290},
+  {"name":"Dr. Meera Desai","phone":"+91-9876543282","city":"Ahmedabad","state":"Gujarat","gender":"Female","address":"Apollo Hospital, Ahmedabad","specialization":"Pediatrician","lat":23.0250,"lng":72.5800},
+  {"name":"Dr. Karan Shah","phone":"+91-9876543283","city":"Ahmedabad","state":"Gujarat","gender":"Male","address":"Sal Hospital, Ahmedabad","specialization":"Neurologist","lat":23.0270,"lng":72.5500},
+  {"name":"Dr. Anjali Raval","phone":"+91-9876543284","city":"Ahmedabad","state":"Gujarat","gender":"Female","address":"Shreeji Hospital, Ahmedabad","specialization":"Gynecologist","lat":23.0300,"lng":72.5700},
+  {"name":"Dr. Manoj Trivedi","phone":"+91-9876543285","city":"Ahmedabad","state":"Gujarat","gender":"Male","address":"Sal Dental Clinic, Ahmedabad","specialization":"Orthopedic","lat":23.0280,"lng":72.5720},
+  {"name":"Dr. Nandini Patel","phone":"+91-9876543286","city":"Ahmedabad","state":"Gujarat","gender":"Female","address":"Smile Dental Care, Ahmedabad","specialization":"Dentist","lat":23.0220,"lng":72.5730},
+  {"name":"Dr. Rajesh Mehta","phone":"+91-9876543287","city":"Ahmedabad","state":"Gujarat","gender":"Male","address":"ENT Care Hospital, Ahmedabad","specialization":"ENT Specialist","lat":23.0240,"lng":72.5740},
+  {"name":"Dr. Meera Shah","phone":"+91-9876543288","city":"Ahmedabad","state":"Gujarat","gender":"Female","address":"Vision Eye Hospital, Ahmedabad","specialization":"Ophthalmologist","lat":23.0260,"lng":72.5750},
+  {"name":"Dr. Vikas Patel","phone":"+91-9876543289","city":"Ahmedabad","state":"Gujarat","gender":"Male","address":"Mind Care Psychiatry, Ahmedabad","specialization":"Psychiatrist","lat":23.0255,"lng":72.5760}
+,
+
+  {"name":"Dr. Ananya Sharma","phone":"+91-9876543290","city":"Jaipur","state":"Rajasthan","gender":"Female","address":"Fortis Escorts Hospital, Jaipur","specialization":"Cardiologist","lat":26.9124,"lng":75.7873},
+  {"name":"Dr. Rajesh Mehta","phone":"+91-9876543291","city":"Jaipur","state":"Rajasthan","gender":"Male","address":"Santokba Durlabhji Memorial Hospital, Jaipur","specialization":"Dermatologist","lat":26.9190,"lng":75.8050},
+  {"name":"Dr. Meera Jain","phone":"+91-9876543292","city":"Jaipur","state":"Rajasthan","gender":"Female","address":"Apex Hospital, Jaipur","specialization":"Pediatrician","lat":26.9050,"lng":75.8100},
+  {"name":"Dr. Karan Singh","phone":"+91-9876543293","city":"Jaipur","state":"Rajasthan","gender":"Male","address":"Aakash Healthcare, Jaipur","specialization":"Neurologist","lat":26.9180,"lng":75.7980},
+  {"name":"Dr. Anjali Verma","phone":"+91-9876543294","city":"Jaipur","state":"Rajasthan","gender":"Female","address":"Fortis La Femme, Jaipur","specialization":"Gynecologist","lat":26.9150,"lng":75.7850},
+  {"name":"Dr. Rohit Sharma","phone":"+91-9876543295","city":"Jaipur","state":"Rajasthan","gender":"Male","address":"Shalby Hospital, Jaipur","specialization":"Orthopedic","lat":26.9100,"lng":75.7800},
+  {"name":"Dr. Nandini Gupta","phone":"+91-9876543296","city":"Jaipur","state":"Rajasthan","gender":"Female","address":"Smile Dental Clinic, Jaipur","specialization":"Dentist","lat":26.9120,"lng":75.7900},
+  {"name":"Dr. Rajesh Singh","phone":"+91-9876543297","city":"Jaipur","state":"Rajasthan","gender":"Male","address":"ENT Care Hospital, Jaipur","specialization":"ENT Specialist","lat":26.9130,"lng":75.7920},
+  {"name":"Dr. Meera Sharma","phone":"+91-9876543298","city":"Jaipur","state":"Rajasthan","gender":"Female","address":"Vision Eye Hospital, Jaipur","specialization":"Ophthalmologist","lat":26.9110,"lng":75.7880},
+  {"name":"Dr. Vikas Jain","phone":"+91-9876543299","city":"Jaipur","state":"Rajasthan","gender":"Male","address":"Mind Care Psychiatry, Jaipur","specialization":"Psychiatrist","lat":26.9140,"lng":75.7890}
+
+,
+  {"name":"Dr. Anjali Singh","phone":"+91-9876543300","city":"Lucknow","state":"Uttar Pradesh","gender":"Female","address":"King George Medical University Hospital, Lucknow","specialization":"Cardiologist","lat":26.8467,"lng":80.9462},
+  {"name":"Dr. Rajesh Verma","phone":"+91-9876543301","city":"Lucknow","state":"Uttar Pradesh","gender":"Male","address":"Apollo Hospital, Lucknow","specialization":"Dermatologist","lat":26.8470,"lng":80.9490},
+  {"name":"Dr. Meera Tripathi","phone":"+91-9876543302","city":"Lucknow","state":"Uttar Pradesh","gender":"Female","address":"Medanta Hospital, Lucknow","specialization":"Pediatrician","lat":26.8480,"lng":80.9500},
+  {"name":"Dr. Karan Shukla","phone":"+91-9876543303","city":"Lucknow","state":"Uttar Pradesh","gender":"Male","address":"SGPGI, Lucknow","specialization":"Neurologist","lat":26.8475,"lng":80.9450},
+  {"name":"Dr. Ananya Gupta","phone":"+91-9876543304","city":"Lucknow","state":"Uttar Pradesh","gender":"Female","address":"King George Medical Hospital, Lucknow","specialization":"Gynecologist","lat":26.8460,"lng":80.9470},
+  {"name":"Dr. Rohit Pandey","phone":"+91-9876543305","city":"Lucknow","state":"Uttar Pradesh","gender":"Male","address":"RML Hospital, Lucknow","specialization":"Orthopedic","lat":26.8485,"lng":80.9440},
+  {"name":"Dr. Nandini Verma","phone":"+91-9876543306","city":"Lucknow","state":"Uttar Pradesh","gender":"Female","address":"Smile Dental Clinic, Lucknow","specialization":"Dentist","lat":26.8450,"lng":80.9465},
+  {"name":"Dr. Rajesh Singh","phone":"+91-9876543307","city":"Lucknow","state":"Uttar Pradesh","gender":"Male","address":"ENT Care Hospital, Lucknow","specialization":"ENT Specialist","lat":26.8465,"lng":80.9480},
+  {"name":"Dr. Meera Saxena","phone":"+91-9876543308","city":"Lucknow","state":"Uttar Pradesh","gender":"Female","address":"Vision Eye Hospital, Lucknow","specialization":"Ophthalmologist","lat":26.8472,"lng":80.9495},
+  {"name":"Dr. Vikas Verma","phone":"+91-9876543309","city":"Lucknow","state":"Uttar Pradesh","gender":"Male","address":"Mind Care Psychiatry, Lucknow","specialization":"Psychiatrist","lat":26.8468,"lng":80.9468}
+
+,
+  {"name":"Dr. Priya Desai","phone":"+91-9876543310","city":"Surat","state":"Gujarat","gender":"Female","address":"Shalby Hospital, Surat","specialization":"Cardiologist","lat":21.1702,"lng":72.8311},
+  {"name":"Dr. Rohit Patel","phone":"+91-9876543311","city":"Surat","state":"Gujarat","gender":"Male","address":"CIMS Hospital, Surat","specialization":"Dermatologist","lat":21.1675,"lng":72.8315},
+  {"name":"Dr. Meera Shah","phone":"+91-9876543312","city":"Surat","state":"Gujarat","gender":"Female","address":"Apollo Hospital, Surat","specialization":"Pediatrician","lat":21.1690,"lng":72.8320},
+  {"name":"Dr. Karan Mehta","phone":"+91-9876543313","city":"Surat","state":"Gujarat","gender":"Male","address":"Columbia Asia Hospital, Surat","specialization":"Neurologist","lat":21.1680,"lng":72.8305},
+  {"name":"Dr. Anjali Patel","phone":"+91-9876543314","city":"Surat","state":"Gujarat","gender":"Female","address":"Shreeji Hospital, Surat","specialization":"Gynecologist","lat":21.1710,"lng":72.8310},
+  {"name":"Dr. Manoj Desai","phone":"+91-9876543315","city":"Surat","state":"Gujarat","gender":"Male","address":"Sparsh Hospital, Surat","specialization":"Orthopedic","lat":21.1720,"lng":72.8325},
+  {"name":"Dr. Nandini Shah","phone":"+91-9876543316","city":"Surat","state":"Gujarat","gender":"Female","address":"Smile Dental Clinic, Surat","specialization":"Dentist","lat":21.1705,"lng":72.8330},
+  {"name":"Dr. Rajesh Mehta","phone":"+91-9876543317","city":"Surat","state":"Gujarat","gender":"Male","address":"ENT Care Hospital, Surat","specialization":"ENT Specialist","lat":21.1695,"lng":72.8315},
+  {"name":"Dr. Meera Desai","phone":"+91-9876543318","city":"Surat","state":"Gujarat","gender":"Female","address":"Vision Eye Hospital, Surat","specialization":"Ophthalmologist","lat":21.1715,"lng":72.8320},
+  {"name":"Dr. Vikas Patel","phone":"+91-9876543319","city":"Surat","state":"Gujarat","gender":"Male","address":"Mind Care Psychiatry, Surat","specialization":"Psychiatrist","lat":21.1700,"lng":72.8318}
+
+,
+
+  {"name":"Dr. Anjali Verma","phone":"+91-9876543320","city":"Kanpur","state":"Uttar Pradesh","gender":"Female","address":"Lala Lajpat Rai Hospital, Kanpur","specialization":"Cardiologist","lat":26.4499,"lng":80.3319},
+  {"name":"Dr. Rajesh Kumar","phone":"+91-9876543321","city":"Kanpur","state":"Uttar Pradesh","gender":"Male","address":"HCL Hospital, Kanpur","specialization":"Dermatologist","lat":26.4550,"lng":80.3300},
+  {"name":"Dr. Meera Singh","phone":"+91-9876543322","city":"Kanpur","state":"Uttar Pradesh","gender":"Female","address":"Apollo Clinic, Kanpur","specialization":"Pediatrician","lat":26.4520,"lng":80.3320},
+  {"name":"Dr. Karan Sharma","phone":"+91-9876543323","city":"Kanpur","state":"Uttar Pradesh","gender":"Male","address":"Ganesh Hospital, Kanpur","specialization":"Neurologist","lat":26.4505,"lng":80.3310},
+  {"name":"Dr. Ananya Gupta","phone":"+91-9876543324","city":"Kanpur","state":"Uttar Pradesh","gender":"Female","address":"Shree Ram Hospital, Kanpur","specialization":"Gynecologist","lat":26.4515,"lng":80.3330},
+  {"name":"Dr. Rohit Verma","phone":"+91-9876543325","city":"Kanpur","state":"Uttar Pradesh","gender":"Male","address":"Sanjeevani Hospital, Kanpur","specialization":"Orthopedic","lat":26.4530,"lng":80.3340},
+  {"name":"Dr. Nandini Sharma","phone":"+91-9876543326","city":"Kanpur","state":"Uttar Pradesh","gender":"Female","address":"Smile Dental Clinic, Kanpur","specialization":"Dentist","lat":26.4525,"lng":80.3325},
+  {"name":"Dr. Rajesh Singh","phone":"+91-9876543327","city":"Kanpur","state":"Uttar Pradesh","gender":"Male","address":"ENT Care Hospital, Kanpur","specialization":"ENT Specialist","lat":26.4510,"lng":80.3315},
+  {"name":"Dr. Meera Verma","phone":"+91-9876543328","city":"Kanpur","state":"Uttar Pradesh","gender":"Female","address":"Vision Eye Hospital, Kanpur","specialization":"Ophthalmologist","lat":26.4500,"lng":80.3305},
+  {"name":"Dr. Vikas Kumar","phone":"+91-9876543329","city":"Kanpur","state":"Uttar Pradesh","gender":"Male","address":"Mind Care Psychiatry, Kanpur","specialization":"Psychiatrist","lat":26.4495,"lng":80.3320}
+
+,
+  {"name":"Dr. Anjali Deshmukh","phone":"+91-9876543330","city":"Nagpur","state":"Maharashtra","gender":"Female","address":"Orange City Hospital, Nagpur","specialization":"Cardiologist","lat":21.1458,"lng":79.0882},
+  {"name":"Dr. Rohit Patil","phone":"+91-9876543331","city":"Nagpur","state":"Maharashtra","gender":"Male","address":"Wockhardt Hospital, Nagpur","specialization":"Dermatologist","lat":21.1465,"lng":79.0850},
+  {"name":"Dr. Meera Sharma","phone":"+91-9876543332","city":"Nagpur","state":"Maharashtra","gender":"Female","address":"Mayo Hospital, Nagpur","specialization":"Pediatrician","lat":21.1480,"lng":79.0870},
+  {"name":"Dr. Karan Deshpande","phone":"+91-9876543333","city":"Nagpur","state":"Maharashtra","gender":"Male","address":"Care Hospital, Nagpur","specialization":"Neurologist","lat":21.1470,"lng":79.0890},
+  {"name":"Dr. Ananya Raut","phone":"+91-9876543334","city":"Nagpur","state":"Maharashtra","gender":"Female","address":"Orange City Women’s Hospital, Nagpur","specialization":"Gynecologist","lat":21.1455,"lng":79.0860},
+  {"name":"Dr. Manoj Sharma","phone":"+91-9876543335","city":"Nagpur","state":"Maharashtra","gender":"Male","address":"Shalby Hospital, Nagpur","specialization":"Orthopedic","lat":21.1460,"lng":79.0855},
+  {"name":"Dr. Nandini Deshmukh","phone":"+91-9876543336","city":"Nagpur","state":"Maharashtra","gender":"Female","address":"Smile Dental Clinic, Nagpur","specialization":"Dentist","lat":21.1450,"lng":79.0845},
+  {"name":"Dr. Rajesh Patil","phone":"+91-9876543337","city":"Nagpur","state":"Maharashtra","gender":"Male","address":"ENT Care Hospital, Nagpur","specialization":"ENT Specialist","lat":21.1445,"lng":79.0835},
+  {"name":"Dr. Meera Raut","phone":"+91-9876543338","city":"Nagpur","state":"Maharashtra","gender":"Female","address":"Vision Eye Hospital, Nagpur","specialization":"Ophthalmologist","lat":21.1462,"lng":79.0875},
+  {"name":"Dr. Vikas Sharma","phone":"+91-9876543339","city":"Nagpur","state":"Maharashtra","gender":"Male","address":"Mind Care Psychiatry, Nagpur","specialization":"Psychiatrist","lat":21.1457,"lng":79.0865}
+
+,
+  {"name":"Dr. Anjali Verma","phone":"+91-9876543340","city":"Indore","state":"Madhya Pradesh","gender":"Female","address":"CHL Apollo Hospital, Indore","specialization":"Cardiologist","lat":22.7196,"lng":75.8577},
+  {"name":"Dr. Rohit Sharma","phone":"+91-9876543341","city":"Indore","state":"Madhya Pradesh","gender":"Male","address":"Bombay Hospital, Indore","specialization":"Dermatologist","lat":22.7200,"lng":75.8560},
+  {"name":"Dr. Meera Jain","phone":"+91-9876543342","city":"Indore","state":"Madhya Pradesh","gender":"Female","address":"Choithram Hospital, Indore","specialization":"Pediatrician","lat":22.7180,"lng":75.8550},
+  {"name":"Dr. Karan Singh","phone":"+91-9876543343","city":"Indore","state":"Madhya Pradesh","gender":"Male","address":"Quality Hospital, Indore","specialization":"Neurologist","lat":22.7210,"lng":75.8570},
+  {"name":"Dr. Ananya Gupta","phone":"+91-9876543344","city":"Indore","state":"Madhya Pradesh","gender":"Female","address":"CHL Women’s Hospital, Indore","specialization":"Gynecologist","lat":22.7190,"lng":75.8580},
+  {"name":"Dr. Manoj Patel","phone":"+91-9876543345","city":"Indore","state":"Madhya Pradesh","gender":"Male","address":"Shalby Hospital, Indore","specialization":"Orthopedic","lat":22.7175,"lng":75.8575},
+  {"name":"Dr. Nandini Sharma","phone":"+91-9876543346","city":"Indore","state":"Madhya Pradesh","gender":"Female","address":"Smile Dental Clinic, Indore","specialization":"Dentist","lat":22.7185,"lng":75.8565},
+  {"name":"Dr. Rajesh Mehta","phone":"+91-9876543347","city":"Indore","state":"Madhya Pradesh","gender":"Male","address":"ENT Care Hospital, Indore","specialization":"ENT Specialist","lat":22.7195,"lng":75.8570},
+  {"name":"Dr. Meera Verma","phone":"+91-9876543348","city":"Indore","state":"Madhya Pradesh","gender":"Female","address":"Vision Eye Hospital, Indore","specialization":"Ophthalmologist","lat":22.7205,"lng":75.8565},
+  {"name":"Dr. Vikas Sharma","phone":"+91-9876543349","city":"Indore","state":"Madhya Pradesh","gender":"Male","address":"Mind Care Psychiatry, Indore","specialization":"Psychiatrist","lat":22.7192,"lng":75.8572}
+
+,
+  {"name":"Dr. Ananya Iyer","phone":"+91-9876543350","city":"Coimbatore","state":"Tamil Nadu","gender":"Female","address":"KG Hospital, Coimbatore","specialization":"Cardiologist","lat":11.0168,"lng":76.9558},
+  {"name":"Dr. Rohit Kumar","phone":"+91-9876543351","city":"Coimbatore","state":"Tamil Nadu","gender":"Male","address":"Ganga Hospital, Coimbatore","specialization":"Dermatologist","lat":11.0150,"lng":76.9600},
+  {"name":"Dr. Meera Ramesh","phone":"+91-9876543352","city":"Coimbatore","state":"Tamil Nadu","gender":"Female","address":"Ramakrishna Hospital, Coimbatore","specialization":"Pediatrician","lat":11.0170,"lng":76.9580},
+  {"name":"Dr. Karan Shankar","phone":"+91-9876543353","city":"Coimbatore","state":"Tamil Nadu","gender":"Male","address":"Kovai Medical Center, Coimbatore","specialization":"Neurologist","lat":11.0180,"lng":76.9570},
+  {"name":"Dr. Anjali Menon","phone":"+91-9876543354","city":"Coimbatore","state":"Tamil Nadu","gender":"Female","address":"Coimbatore Women’s Hospital, Coimbatore","specialization":"Gynecologist","lat":11.0160,"lng":76.9560},
+  {"name":"Dr. Manoj Kumar","phone":"+91-9876543355","city":"Coimbatore","state":"Tamil Nadu","gender":"Male","address":"Shalby Hospital, Coimbatore","specialization":"Orthopedic","lat":11.0155,"lng":76.9555},
+  {"name":"Dr. Nandini Iyer","phone":"+91-9876543356","city":"Coimbatore","state":"Tamil Nadu","gender":"Female","address":"Smile Dental Clinic, Coimbatore","specialization":"Dentist","lat":11.0175,"lng":76.9590},
+  {"name":"Dr. Rajesh Kumar","phone":"+91-9876543357","city":"Coimbatore","state":"Tamil Nadu","gender":"Male","address":"ENT Care Hospital, Coimbatore","specialization":"ENT Specialist","lat":11.0165,"lng":76.9565},
+  {"name":"Dr. Meera Iyer","phone":"+91-9876543358","city":"Coimbatore","state":"Tamil Nadu","gender":"Female","address":"Vision Eye Hospital, Coimbatore","specialization":"Ophthalmologist","lat":11.0185,"lng":76.9585},
+  {"name":"Dr. Vikas Sharma","phone":"+91-9876543359","city":"Coimbatore","state":"Tamil Nadu","gender":"Male","address":"Mind Care Psychiatry, Coimbatore","specialization":"Psychiatrist","lat":11.0162,"lng":76.9575}
+,
+
+  {"name":"Dr. Anjali Singh","phone":"+91-9876543360","city":"Patna","state":"Bihar","gender":"Female","address":"Paras Hospital, Patna","specialization":"Cardiologist","lat":25.5941,"lng":85.1376},
+  {"name":"Dr. Rohit Kumar","phone":"+91-9876543361","city":"Patna","state":"Bihar","gender":"Male","address":"Indira Gandhi Institute of Medical Sciences, Patna","specialization":"Dermatologist","lat":25.5950,"lng":85.1400},
+  {"name":"Dr. Meera Rani","phone":"+91-9876543362","city":"Patna","state":"Bihar","gender":"Female","address":"Mithila Hospital, Patna","specialization":"Pediatrician","lat":25.5935,"lng":85.1380},
+  {"name":"Dr. Karan Singh","phone":"+91-9876543363","city":"Patna","state":"Bihar","gender":"Male","address":"Apex Hospital, Patna","specialization":"Neurologist","lat":25.5945,"lng":85.1390},
+  {"name":"Dr. Ananya Gupta","phone":"+91-9876543364","city":"Patna","state":"Bihar","gender":"Female","address":"Bihar Women’s Hospital, Patna","specialization":"Gynecologist","lat":25.5955,"lng":85.1370},
+  {"name":"Dr. Manoj Kumar","phone":"+91-9876543365","city":"Patna","state":"Bihar","gender":"Male","address":"Shalby Hospital, Patna","specialization":"Orthopedic","lat":25.5930,"lng":85.1365},
+  {"name":"Dr. Nandini Singh","phone":"+91-9876543366","city":"Patna","state":"Bihar","gender":"Female","address":"Smile Dental Clinic, Patna","specialization":"Dentist","lat":25.5940,"lng":85.1385},
+  {"name":"Dr. Rajesh Kumar","phone":"+91-9876543367","city":"Patna","state":"Bihar","gender":"Male","address":"ENT Care Hospital, Patna","specialization":"ENT Specialist","lat":25.5938,"lng":85.1375},
+  {"name":"Dr. Meera Singh","phone":"+91-9876543368","city":"Patna","state":"Bihar","gender":"Female","address":"Vision Eye Hospital, Patna","specialization":"Ophthalmologist","lat":25.5942,"lng":85.1388},
+  {"name":"Dr. Vikas Ranjan","phone":"+91-9876543369","city":"Patna","state":"Bihar","gender":"Male","address":"Mind Care Psychiatry, Patna","specialization":"Psychiatrist","lat":25.5946,"lng":85.1372}
+
+,
+  {"name":"Dr. Ananya Sharma","phone":"+91-9876543370","city":"Bhopal","state":"Madhya Pradesh","gender":"Female","address":"AIIMS Bhopal, Bhopal","specialization":"Cardiologist","lat":23.2599,"lng":77.4126},
+  {"name":"Dr. Rohit Verma","phone":"+91-9876543371","city":"Bhopal","state":"Madhya Pradesh","gender":"Male","address":"Sakra Hospital, Bhopal","specialization":"Dermatologist","lat":23.2610,"lng":77.4100},
+  {"name":"Dr. Meera Gupta","phone":"+91-9876543372","city":"Bhopal","state":"Madhya Pradesh","gender":"Female","address":"Chiplo Hospital, Bhopal","specialization":"Pediatrician","lat":23.2580,"lng":77.4110},
+  {"name":"Dr. Karan Singh","phone":"+91-9876543373","city":"Bhopal","state":"Madhya Pradesh","gender":"Male","address":"Narmada Hospital, Bhopal","specialization":"Neurologist","lat":23.2600,"lng":77.4130},
+  {"name":"Dr. Anjali Rathi","phone":"+91-9876543374","city":"Bhopal","state":"Madhya Pradesh","gender":"Female","address":"Bhopal Women’s Hospital, Bhopal","specialization":"Gynecologist","lat":23.2575,"lng":77.4140},
+  {"name":"Dr. Manoj Sharma","phone":"+91-9876543375","city":"Bhopal","state":"Madhya Pradesh","gender":"Male","address":"Shalby Hospital, Bhopal","specialization":"Orthopedic","lat":23.2585,"lng":77.4120},
+  {"name":"Dr. Nandini Gupta","phone":"+91-9876543376","city":"Bhopal","state":"Madhya Pradesh","gender":"Female","address":"Smile Dental Clinic, Bhopal","specialization":"Dentist","lat":23.2590,"lng":77.4135},
+  {"name":"Dr. Rajesh Verma","phone":"+91-9876543377","city":"Bhopal","state":"Madhya Pradesh","gender":"Male","address":"ENT Care Hospital, Bhopal","specialization":"ENT Specialist","lat":23.2605,"lng":77.4115},
+  {"name":"Dr. Meera Sharma","phone":"+91-9876543378","city":"Bhopal","state":"Madhya Pradesh","gender":"Female","address":"Vision Eye Hospital, Bhopal","specialization":"Ophthalmologist","lat":23.2588,"lng":77.4128},
+  {"name":"Dr. Vikas Rathi","phone":"+91-9876543379","city":"Bhopal","state":"Madhya Pradesh","gender":"Male","address":"Mind Care Psychiatry, Bhopal","specialization":"Psychiatrist","lat":23.2595,"lng":77.4132}
+
+,
+
+  {"name":"Dr. Ananya Reddy","phone":"+91-9876543380","city":"Visakhapatnam","state":"Andhra Pradesh","gender":"Female","address":"Apollo Hospital, Visakhapatnam","specialization":"Cardiologist","lat":17.6868,"lng":83.2185},
+  {"name":"Dr. Rohit Kumar","phone":"+91-9876543381","city":"Visakhapatnam","state":"Andhra Pradesh","gender":"Male","address":"Lifeline Hospital, Visakhapatnam","specialization":"Dermatologist","lat":17.6875,"lng":83.2190},
+  {"name":"Dr. Meera Rani","phone":"+91-9876543382","city":"Visakhapatnam","state":"Andhra Pradesh","gender":"Female","address":"Care Hospital, Visakhapatnam","specialization":"Pediatrician","lat":17.6880,"lng":83.2175},
+  {"name":"Dr. Karan Reddy","phone":"+91-9876543383","city":"Visakhapatnam","state":"Andhra Pradesh","gender":"Male","address":"KIMS Hospital, Visakhapatnam","specialization":"Neurologist","lat":17.6865,"lng":83.2180},
+  {"name":"Dr. Anjali Sharma","phone":"+91-9876543384","city":"Visakhapatnam","state":"Andhra Pradesh","gender":"Female","address":"Visakha Women’s Hospital, Visakhapatnam","specialization":"Gynecologist","lat":17.6870,"lng":83.2195},
+  {"name":"Dr. Manoj Reddy","phone":"+91-9876543385","city":"Visakhapatnam","state":"Andhra Pradesh","gender":"Male","address":"Shalby Hospital, Visakhapatnam","specialization":"Orthopedic","lat":17.6860,"lng":83.2170},
+  {"name":"Dr. Nandini Reddy","phone":"+91-9876543386","city":"Visakhapatnam","state":"Andhra Pradesh","gender":"Female","address":"Smile Dental Clinic, Visakhapatnam","specialization":"Dentist","lat":17.6869,"lng":83.2182},
+  {"name":"Dr. Rajesh Kumar","phone":"+91-9876543387","city":"Visakhapatnam","state":"Andhra Pradesh","gender":"Male","address":"ENT Care Hospital, Visakhapatnam","specialization":"ENT Specialist","lat":17.6872,"lng":83.2188},
+  {"name":"Dr. Meera Reddy","phone":"+91-9876543388","city":"Visakhapatnam","state":"Andhra Pradesh","gender":"Female","address":"Vision Eye Hospital, Visakhapatnam","specialization":"Ophthalmologist","lat":17.6876,"lng":83.2183},
+  {"name":"Dr. Vikas Sharma","phone":"+91-9876543389","city":"Visakhapatnam","state":"Andhra Pradesh","gender":"Male","address":"Mind Care Psychiatry, Visakhapatnam","specialization":"Psychiatrist","lat":17.6867,"lng":83.2186}
+
+,
+
+  {"name":"Dr. Anjali Patel","phone":"+91-9876543390","city":"Rajkot","state":"Gujarat","gender":"Female","address":"Shalby Hospital, Rajkot","specialization":"Cardiologist","lat":22.3039,"lng":70.8022},
+  {"name":"Dr. Rohit Mehta","phone":"+91-9876543391","city":"Rajkot","state":"Gujarat","gender":"Male","address":"CIMS Hospital, Rajkot","specialization":"Dermatologist","lat":22.3045,"lng":70.8030},
+  {"name":"Dr. Meera Shah","phone":"+91-9876543392","city":"Rajkot","state":"Gujarat","gender":"Female","address":"Apollo Hospital, Rajkot","specialization":"Pediatrician","lat":22.3050,"lng":70.8040},
+  {"name":"Dr. Karan Patel","phone":"+91-9876543393","city":"Rajkot","state":"Gujarat","gender":"Male","address":"Shreeji Hospital, Rajkot","specialization":"Neurologist","lat":22.3040,"lng":70.8050},
+  {"name":"Dr. Ananya Desai","phone":"+91-9876543394","city":"Rajkot","state":"Gujarat","gender":"Female","address":"Rajkot Women’s Hospital, Rajkot","specialization":"Gynecologist","lat":22.3035,"lng":70.8035},
+  {"name":"Dr. Manoj Mehta","phone":"+91-9876543395","city":"Rajkot","state":"Gujarat","gender":"Male","address":"Shalby Ortho Clinic, Rajkot","specialization":"Orthopedic","lat":22.3030,"lng":70.8025},
+  {"name":"Dr. Nandini Patel","phone":"+91-9876543396","city":"Rajkot","state":"Gujarat","gender":"Female","address":"Smile Dental Clinic, Rajkot","specialization":"Dentist","lat":22.3042,"lng":70.8045},
+  {"name":"Dr. Rajesh Shah","phone":"+91-9876543397","city":"Rajkot","state":"Gujarat","gender":"Male","address":"ENT Care Hospital, Rajkot","specialization":"ENT Specialist","lat":22.3038,"lng":70.8038},
+  {"name":"Dr. Meera Patel","phone":"+91-9876543398","city":"Rajkot","state":"Gujarat","gender":"Female","address":"Vision Eye Hospital, Rajkot","specialization":"Ophthalmologist","lat":22.3041,"lng":70.8042},
+  {"name":"Dr. Vikas Mehta","phone":"+91-9876543399","city":"Rajkot","state":"Gujarat","gender":"Male","address":"Mind Care Psychiatry, Rajkot","specialization":"Psychiatrist","lat":22.3037,"lng":70.8037}
+
+,
+
+  {"name":"Dr. Ananya Ramesh","phone":"+91-9876543400","city":"Madurai","state":"Tamil Nadu","gender":"Female","address":"Apollo Multispeciality Hospital, Madurai","specialization":"Cardiologist","lat":9.9252,"lng":78.1198},
+  {"name":"Dr. Rohit Kumar","phone":"+91-9876543401","city":"Madurai","state":"Tamil Nadu","gender":"Male","address":"Meenakshi Mission Hospital, Madurai","specialization":"Dermatologist","lat":9.9260,"lng":78.1185},
+  {"name":"Dr. Meera Iyer","phone":"+91-9876543402","city":"Madurai","state":"Tamil Nadu","gender":"Female","address":"Sankara Hospital, Madurai","specialization":"Pediatrician","lat":9.9245,"lng":78.1205},
+  {"name":"Dr. Karan Ramesh","phone":"+91-9876543403","city":"Madurai","state":"Tamil Nadu","gender":"Male","address":"GRH Hospital, Madurai","specialization":"Neurologist","lat":9.9255,"lng":78.1210},
+  {"name":"Dr. Anjali Menon","phone":"+91-9876543404","city":"Madurai","state":"Tamil Nadu","gender":"Female","address":"Madurai Women’s Hospital, Madurai","specialization":"Gynecologist","lat":9.9240,"lng":78.1190},
+  {"name":"Dr. Manoj Kumar","phone":"+91-9876543405","city":"Madurai","state":"Tamil Nadu","gender":"Male","address":"Shalby Hospital, Madurai","specialization":"Orthopedic","lat":9.9248,"lng":78.1188},
+  {"name":"Dr. Nandini Ramesh","phone":"+91-9876543406","city":"Madurai","state":"Tamil Nadu","gender":"Female","address":"Smile Dental Clinic, Madurai","specialization":"Dentist","lat":9.9258,"lng":78.1200},
+  {"name":"Dr. Rajesh Kumar","phone":"+91-9876543407","city":"Madurai","state":"Tamil Nadu","gender":"Male","address":"ENT Care Hospital, Madurai","specialization":"ENT Specialist","lat":9.9262,"lng":78.1195},
+  {"name":"Dr. Meera Menon","phone":"+91-9876543408","city":"Madurai","state":"Tamil Nadu","gender":"Female","address":"Vision Eye Hospital, Madurai","specialization":"Ophthalmologist","lat":9.9250,"lng":78.1208},
+  {"name":"Dr. Vikas Sharma","phone":"+91-9876543409","city":"Madurai","state":"Tamil Nadu","gender":"Male","address":"Mind Care Psychiatry, Madurai","specialization":"Psychiatrist","lat":9.9247,"lng":78.1192}
+
+,
+
+  {"name":"Dr. Anjali Singh","phone":"+91-9876543410","city":"Jamshedpur","state":"Jharkhand","gender":"Female","address":"Tata Main Hospital, Jamshedpur","specialization":"Cardiologist","lat":22.8046,"lng":86.2029},
+  {"name":"Dr. Rohit Kumar","phone":"+91-9876543411","city":"Jamshedpur","state":"Jharkhand","gender":"Male","address":"AMRI Hospital, Jamshedpur","specialization":"Dermatologist","lat":22.8055,"lng":86.2035},
+  {"name":"Dr. Meera Rani","phone":"+91-9876543412","city":"Jamshedpur","state":"Jharkhand","gender":"Female","address":"Fortis Hospital, Jamshedpur","specialization":"Pediatrician","lat":22.8040,"lng":86.2040},
+  {"name":"Dr. Karan Singh","phone":"+91-9876543413","city":"Jamshedpur","state":"Jharkhand","gender":"Male","address":"Medica Hospital, Jamshedpur","specialization":"Neurologist","lat":22.8035,"lng":86.2030},
+  {"name":"Dr. Ananya Gupta","phone":"+91-9876543414","city":"Jamshedpur","state":"Jharkhand","gender":"Female","address":"Jamshedpur Women’s Hospital, Jamshedpur","specialization":"Gynecologist","lat":22.8050,"lng":86.2025},
+  {"name":"Dr. Manoj Kumar","phone":"+91-9876543415","city":"Jamshedpur","state":"Jharkhand","gender":"Male","address":"Shalby Hospital, Jamshedpur","specialization":"Orthopedic","lat":22.8045,"lng":86.2038},
+  {"name":"Dr. Nandini Singh","phone":"+91-9876543416","city":"Jamshedpur","state":"Jharkhand","gender":"Female","address":"Smile Dental Clinic, Jamshedpur","specialization":"Dentist","lat":22.8048,"lng":86.2042},
+  {"name":"Dr. Rajesh Kumar","phone":"+91-9876543417","city":"Jamshedpur","state":"Jharkhand","gender":"Male","address":"ENT Care Hospital, Jamshedpur","specialization":"ENT Specialist","lat":22.8038,"lng":86.2028},
+  {"name":"Dr. Meera Singh","phone":"+91-9876543418","city":"Jamshedpur","state":"Jharkhand","gender":"Female","address":"Vision Eye Hospital, Jamshedpur","specialization":"Ophthalmologist","lat":22.8042,"lng":86.2032},
+  {"name":"Dr. Vikas Ranjan","phone":"+91-9876543419","city":"Jamshedpur","state":"Jharkhand","gender":"Male","address":"Mind Care Psychiatry, Jamshedpur","specialization":"Psychiatrist","lat":22.8046,"lng":86.2035}
+
+,
+
+  {"name":"Dr. Anjali Verma","phone":"+91-9876543420","city":"Prayagraj","state":"Uttar Pradesh","gender":"Female","address":"Swaroop Rani Nehru Hospital, Prayagraj","specialization":"Cardiologist","lat":25.4358,"lng":81.8463},
+  {"name":"Dr. Rohit Kumar","phone":"+91-9876543421","city":"Prayagraj","state":"Uttar Pradesh","gender":"Male","address":"Balrampur Hospital, Prayagraj","specialization":"Dermatologist","lat":25.4365,"lng":81.8470},
+  {"name":"Dr. Meera Singh","phone":"+91-9876543422","city":"Prayagraj","state":"Uttar Pradesh","gender":"Female","address":"Prayag Hospital, Prayagraj","specialization":"Pediatrician","lat":25.4370,"lng":81.8460},
+  {"name":"Dr. Karan Verma","phone":"+91-9876543423","city":"Prayagraj","state":"Uttar Pradesh","gender":"Male","address":"Apollo Clinic, Prayagraj","specialization":"Neurologist","lat":25.4350,"lng":81.8455},
+  {"name":"Dr. Ananya Gupta","phone":"+91-9876543424","city":"Prayagraj","state":"Uttar Pradesh","gender":"Female","address":"Prayagraj Women’s Hospital, Prayagraj","specialization":"Gynecologist","lat":25.4355,"lng":81.8468},
+  {"name":"Dr. Manoj Kumar","phone":"+91-9876543425","city":"Prayagraj","state":"Uttar Pradesh","gender":"Male","address":"Shalby Hospital, Prayagraj","specialization":"Orthopedic","lat":25.4360,"lng":81.8475},
+  {"name":"Dr. Nandini Singh","phone":"+91-9876543426","city":"Prayagraj","state":"Uttar Pradesh","gender":"Female","address":"Smile Dental Clinic, Prayagraj","specialization":"Dentist","lat":25.4362,"lng":81.8462},
+  {"name":"Dr. Rajesh Kumar","phone":"+91-9876543427","city":"Prayagraj","state":"Uttar Pradesh","gender":"Male","address":"ENT Care Hospital, Prayagraj","specialization":"ENT Specialist","lat":25.4352,"lng":81.8458},
+  {"name":"Dr. Meera Verma","phone":"+91-9876543428","city":"Prayagraj","state":"Uttar Pradesh","gender":"Female","address":"Vision Eye Hospital, Prayagraj","specialization":"Ophthalmologist","lat":25.4357,"lng":81.8465},
+  {"name":"Dr. Vikas Ranjan","phone":"+91-9876543429","city":"Prayagraj","state":"Uttar Pradesh","gender":"Male","address":"Mind Care Psychiatry, Prayagraj","specialization":"Psychiatrist","lat":25.4368,"lng":81.8460}
+
+,
+
+  {"name":"Dr. Ananya Iyer","phone":"+91-9876543430","city":"Tiruchirappalli","state":"Tamil Nadu","gender":"Female","address":"K.A.P. Hospital, Tiruchirappalli","specialization":"Cardiologist","lat":10.7905,"lng":78.7047},
+  {"name":"Dr. Rohit Kumar","phone":"+91-9876543431","city":"Tiruchirappalli","state":"Tamil Nadu","gender":"Male","address":"Mahatma Gandhi Memorial Hospital, Tiruchirappalli","specialization":"Dermatologist","lat":10.7910,"lng":78.7055},
+  {"name":"Dr. Meera Ramesh","phone":"+91-9876543432","city":"Tiruchirappalli","state":"Tamil Nadu","gender":"Female","address":"Suguna Hospital, Tiruchirappalli","specialization":"Pediatrician","lat":10.7920,"lng":78.7060},
+  {"name":"Dr. Karan Iyer","phone":"+91-9876543433","city":"Tiruchirappalli","state":"Tamil Nadu","gender":"Male","address":"Rajalakshmi Hospital, Tiruchirappalli","specialization":"Neurologist","lat":10.7900,"lng":78.7040},
+  {"name":"Dr. Anjali Menon","phone":"+91-9876543434","city":"Tiruchirappalli","state":"Tamil Nadu","gender":"Female","address":"Trichy Women’s Hospital, Tiruchirappalli","specialization":"Gynecologist","lat":10.7915,"lng":78.7050},
+  {"name":"Dr. Manoj Kumar","phone":"+91-9876543435","city":"Tiruchirappalli","state":"Tamil Nadu","gender":"Male","address":"Shalby Hospital, Tiruchirappalli","specialization":"Orthopedic","lat":10.7908,"lng":78.7045},
+  {"name":"Dr. Nandini Iyer","phone":"+91-9876543436","city":"Tiruchirappalli","state":"Tamil Nadu","gender":"Female","address":"Smile Dental Clinic, Tiruchirappalli","specialization":"Dentist","lat":10.7912,"lng":78.7048},
+  {"name":"Dr. Rajesh Kumar","phone":"+91-9876543437","city":"Tiruchirappalli","state":"Tamil Nadu","gender":"Male","address":"ENT Care Hospital, Tiruchirappalli","specialization":"ENT Specialist","lat":10.7903,"lng":78.7052},
+  {"name":"Dr. Meera Iyer","phone":"+91-9876543438","city":"Tiruchirappalli","state":"Tamil Nadu","gender":"Female","address":"Vision Eye Hospital, Tiruchirappalli","specialization":"Ophthalmologist","lat":10.7907,"lng":78.7042},
+  {"name":"Dr. Vikas Sharma","phone":"+91-9876543439","city":"Tiruchirappalli","state":"Tamil Nadu","gender":"Male","address":"Mind Care Psychiatry, Tiruchirappalli","specialization":"Psychiatrist","lat":10.7918,"lng":78.7055}
+
+,
+
+  {"name":"Dr. Anjali Sharma","phone":"+91-9876543440","city":"Bareilly","state":"Uttar Pradesh","gender":"Female","address":"Lala Lajpat Rai Hospital, Bareilly","specialization":"Cardiologist","lat":28.3670,"lng":79.4304},
+  {"name":"Dr. Rohit Kumar","phone":"+91-9876543441","city":"Bareilly","state":"Uttar Pradesh","gender":"Male","address":"Sahara Hospital, Bareilly","specialization":"Dermatologist","lat":28.3665,"lng":79.4310},
+  {"name":"Dr. Meera Verma","phone":"+91-9876543442","city":"Bareilly","state":"Uttar Pradesh","gender":"Female","address":"Apollo Clinic, Bareilly","specialization":"Pediatrician","lat":28.3675,"lng":79.4320},
+  {"name":"Dr. Karan Sharma","phone":"+91-9876543443","city":"Bareilly","state":"Uttar Pradesh","gender":"Male","address":"Shalby Hospital, Bareilly","specialization":"Neurologist","lat":28.3660,"lng":79.4300},
+  {"name":"Dr. Ananya Gupta","phone":"+91-9876543444","city":"Bareilly","state":"Uttar Pradesh","gender":"Female","address":"Bareilly Women’s Hospital, Bareilly","specialization":"Gynecologist","lat":28.3672,"lng":79.4315},
+  {"name":"Dr. Manoj Kumar","phone":"+91-9876543445","city":"Bareilly","state":"Uttar Pradesh","gender":"Male","address":"Shalby Orthopedic Clinic, Bareilly","specialization":"Orthopedic","lat":28.3668,"lng":79.4312},
+  {"name":"Dr. Nandini Sharma","phone":"+91-9876543446","city":"Bareilly","state":"Uttar Pradesh","gender":"Female","address":"Smile Dental Clinic, Bareilly","specialization":"Dentist","lat":28.3678,"lng":79.4322},
+  {"name":"Dr. Rajesh Kumar","phone":"+91-9876543447","city":"Bareilly","state":"Uttar Pradesh","gender":"Male","address":"ENT Care Hospital, Bareilly","specialization":"ENT Specialist","lat":28.3663,"lng":79.4308},
+  {"name":"Dr. Meera Sharma","phone":"+91-9876543448","city":"Bareilly","state":"Uttar Pradesh","gender":"Female","address":"Vision Eye Hospital, Bareilly","specialization":"Ophthalmologist","lat":28.3671,"lng":79.4318},
+  {"name":"Dr. Vikas Ranjan","phone":"+91-9876543449","city":"Bareilly","state":"Uttar Pradesh","gender":"Male","address":"Mind Care Psychiatry, Bareilly","specialization":"Psychiatrist","lat":28.3667,"lng":79.4305}
+
+,
+
+  {"name":"Dr. Ananya Deka","phone":"+91-9876543450","city":"Guwahati","state":"Assam","gender":"Female","address":"GNRC Hospital, Guwahati","specialization":"Cardiologist","lat":26.1445,"lng":91.7362},
+  {"name":"Dr. Rohit Sharma","phone":"+91-9876543451","city":"Guwahati","state":"Assam","gender":"Male","address":"Apollo Hospital, Guwahati","specialization":"Dermatologist","lat":26.1450,"lng":91.7370},
+  {"name":"Dr. Meera Baruah","phone":"+91-9876543452","city":"Guwahati","state":"Assam","gender":"Female","address":"Hayat Hospital, Guwahati","specialization":"Pediatrician","lat":26.1440,"lng":91.7368},
+  {"name":"Dr. Karan Deka","phone":"+91-9876543453","city":"Guwahati","state":"Assam","gender":"Male","address":"Dispur Hospital, Guwahati","specialization":"Neurologist","lat":26.1455,"lng":91.7375},
+  {"name":"Dr. Anjali Sharma","phone":"+91-9876543454","city":"Guwahati","state":"Assam","gender":"Female","address":"Guwahati Women’s Hospital, Guwahati","specialization":"Gynecologist","lat":26.1448,"lng":91.7365},
+  {"name":"Dr. Manoj Kumar","phone":"+91-9876543455","city":"Guwahati","state":"Assam","gender":"Male","address":"Shalby Hospital, Guwahati","specialization":"Orthopedic","lat":26.1452,"lng":91.7360},
+  {"name":"Dr. Nandini Deka","phone":"+91-9876543456","city":"Guwahati","state":"Assam","gender":"Female","address":"Smile Dental Clinic, Guwahati","specialization":"Dentist","lat":26.1447,"lng":91.7372},
+  {"name":"Dr. Rajesh Sharma","phone":"+91-9876543457","city":"Guwahati","state":"Assam","gender":"Male","address":"ENT Care Hospital, Guwahati","specialization":"ENT Specialist","lat":26.1443,"lng":91.7367},
+  {"name":"Dr. Meera Deka","phone":"+91-9876543458","city":"Guwahati","state":"Assam","gender":"Female","address":"Vision Eye Hospital, Guwahati","specialization":"Ophthalmologist","lat":26.1451,"lng":91.7369},
+  {"name":"Dr. Vikas Sharma","phone":"+91-9876543459","city":"Guwahati","state":"Assam","gender":"Male","address":"Mind Care Psychiatry, Guwahati","specialization":"Psychiatrist","lat":26.1446,"lng":91.7364}
+
+,
+
+  {"name":"Dr. Anjali Singh","phone":"+91-9876543460","city":"Ranchi","state":"Jharkhand","gender":"Female","address":"Ranchi Institute of Medical Sciences, Ranchi","specialization":"Cardiologist","lat":23.3441,"lng":85.3096},
+  {"name":"Dr. Rohit Kumar","phone":"+91-9876543461","city":"Ranchi","state":"Jharkhand","gender":"Male","address":"AMRI Hospital, Ranchi","specialization":"Dermatologist","lat":23.3450,"lng":85.3105},
+  {"name":"Dr. Meera Rani","phone":"+91-9876543462","city":"Ranchi","state":"Jharkhand","gender":"Female","address":"Fortis Hospital, Ranchi","specialization":"Pediatrician","lat":23.3435,"lng":85.3110},
+  {"name":"Dr. Karan Singh","phone":"+91-9876543463","city":"Ranchi","state":"Jharkhand","gender":"Male","address":"Medica Hospital, Ranchi","specialization":"Neurologist","lat":23.3445,"lng":85.3090},
+  {"name":"Dr. Ananya Gupta","phone":"+91-9876543464","city":"Ranchi","state":"Jharkhand","gender":"Female","address":"Ranchi Women’s Hospital, Ranchi","specialization":"Gynecologist","lat":23.3455,"lng":85.3085},
+  {"name":"Dr. Manoj Kumar","phone":"+91-9876543465","city":"Ranchi","state":"Jharkhand","gender":"Male","address":"Shalby Hospital, Ranchi","specialization":"Orthopedic","lat":23.3438,"lng":85.3100},
+  {"name":"Dr. Nandini Singh","phone":"+91-9876543466","city":"Ranchi","state":"Jharkhand","gender":"Female","address":"Smile Dental Clinic, Ranchi","specialization":"Dentist","lat":23.3442,"lng":85.3095},
+  {"name":"Dr. Rajesh Kumar","phone":"+91-9876543467","city":"Ranchi","state":"Jharkhand","gender":"Male","address":"ENT Care Hospital, Ranchi","specialization":"ENT Specialist","lat":23.3448,"lng":85.3102},
+  {"name":"Dr. Meera Singh","phone":"+91-9876543468","city":"Ranchi","state":"Jharkhand","gender":"Female","address":"Vision Eye Hospital, Ranchi","specialization":"Ophthalmologist","lat":23.3452,"lng":85.3098},
+  {"name":"Dr. Vikas Ranjan","phone":"+91-9876543469","city":"Ranchi","state":"Jharkhand","gender":"Male","address":"Mind Care Psychiatry, Ranchi","specialization":"Psychiatrist","lat":23.3440,"lng":85.3092}
+
+,
+
+  {"name":"Dr. Ananya Patnaik","phone":"+91-9876543470","city":"Bhubaneswar","state":"Odisha","gender":"Female","address":"AIIMS Bhubaneswar","specialization":"Cardiologist","lat":20.2961,"lng":85.8245},
+  {"name":"Dr. Rohit Mohanty","phone":"+91-9876543471","city":"Bhubaneswar","state":"Odisha","gender":"Male","address":"Kalinga Hospital, Bhubaneswar","specialization":"Dermatologist","lat":20.2955,"lng":85.8250},
+  {"name":"Dr. Meera Sahu","phone":"+91-9876543472","city":"Bhubaneswar","state":"Odisha","gender":"Female","address":"SUM Hospital, Bhubaneswar","specialization":"Pediatrician","lat":20.2965,"lng":85.8260},
+  {"name":"Dr. Karan Raut","phone":"+91-9876543473","city":"Bhubaneswar","state":"Odisha","gender":"Male","address":"Prativa Hospital, Bhubaneswar","specialization":"Neurologist","lat":20.2970,"lng":85.8235},
+  {"name":"Dr. Anjali Mishra","phone":"+91-9876543474","city":"Bhubaneswar","state":"Odisha","gender":"Female","address":"Bhubaneswar Women’s Hospital","specialization":"Gynecologist","lat":20.2968,"lng":85.8240},
+  {"name":"Dr. Manoj Sahu","phone":"+91-9876543475","city":"Bhubaneswar","state":"Odisha","gender":"Male","address":"Shalby Hospital, Bhubaneswar","specialization":"Orthopedic","lat":20.2958,"lng":85.8238},
+  {"name":"Dr. Nandini Patnaik","phone":"+91-9876543476","city":"Bhubaneswar","state":"Odisha","gender":"Female","address":"Smile Dental Clinic, Bhubaneswar","specialization":"Dentist","lat":20.2963,"lng":85.8255},
+  {"name":"Dr. Rajesh Kumar","phone":"+91-9876543477","city":"Bhubaneswar","state":"Odisha","gender":"Male","address":"ENT Care Hospital, Bhubaneswar","specialization":"ENT Specialist","lat":20.2959,"lng":85.8248},
+  {"name":"Dr. Meera Patnaik","phone":"+91-9876543478","city":"Bhubaneswar","state":"Odisha","gender":"Female","address":"Vision Eye Hospital, Bhubaneswar","specialization":"Ophthalmologist","lat":20.2966,"lng":85.8252},
+  {"name":"Dr. Vikas Ranjan","phone":"+91-9876543479","city":"Bhubaneswar","state":"Odisha","gender":"Male","address":"Mind Care Psychiatry, Bhubaneswar","specialization":"Psychiatrist","lat":20.2960,"lng":85.8242}
+,
+
+  {"name":"Dr. Anjali Kaur","phone":"+91-9876543480","city":"Amritsar","state":"Punjab","gender":"Female","address":"Golden Hospital, Amritsar","specialization":"Cardiologist","lat":31.6340,"lng":74.8723},
+  {"name":"Dr. Rohit Singh","phone":"+91-9876543481","city":"Amritsar","state":"Punjab","gender":"Male","address":"Guru Nanak Hospital, Amritsar","specialization":"Dermatologist","lat":31.6350,"lng":74.8730},
+  {"name":"Dr. Meera Kaur","phone":"+91-9876543482","city":"Amritsar","state":"Punjab","gender":"Female","address":"Amandeep Hospital, Amritsar","specialization":"Pediatrician","lat":31.6345,"lng":74.8720},
+  {"name":"Dr. Karan Singh","phone":"+91-9876543483","city":"Amritsar","state":"Punjab","gender":"Male","address":"Shalby Hospital, Amritsar","specialization":"Neurologist","lat":31.6355,"lng":74.8725},
+  {"name":"Dr. Ananya Sharma","phone":"+91-9876543484","city":"Amritsar","state":"Punjab","gender":"Female","address":"Amritsar Women’s Hospital","specialization":"Gynecologist","lat":31.6348,"lng":74.8728},
+  {"name":"Dr. Manoj Kumar","phone":"+91-9876543485","city":"Amritsar","state":"Punjab","gender":"Male","address":"Ortho Care Hospital, Amritsar","specialization":"Orthopedic","lat":31.6342,"lng":74.8732},
+  {"name":"Dr. Nandini Kaur","phone":"+91-9876543486","city":"Amritsar","state":"Punjab","gender":"Female","address":"Smile Dental Clinic, Amritsar","specialization":"Dentist","lat":31.6352,"lng":74.8727},
+  {"name":"Dr. Rajesh Sharma","phone":"+91-9876543487","city":"Amritsar","state":"Punjab","gender":"Male","address":"ENT Care Hospital, Amritsar","specialization":"ENT Specialist","lat":31.6346,"lng":74.8725},
+  {"name":"Dr. Meera Singh","phone":"+91-9876543488","city":"Amritsar","state":"Punjab","gender":"Female","address":"Vision Eye Hospital, Amritsar","specialization":"Ophthalmologist","lat":31.6351,"lng":74.8729},
+  {"name":"Dr. Vikas Ranjan","phone":"+91-9876543489","city":"Amritsar","state":"Punjab","gender":"Male","address":"Mind Care Psychiatry, Amritsar","specialization":"Psychiatrist","lat":31.6344,"lng":74.8724}
+
+,
+
+  {"name":"Dr. Ananya Menon","phone":"+91-9876543500","city":"Kochi","state":"Kerala","gender":"Female","address":"Aster Medcity, Kochi","specialization":"Cardiologist","lat":9.9668,"lng":76.2875},
+  {"name":"Dr. Rohit Kumar","phone":"+91-9876543501","city":"Kochi","state":"Kerala","gender":"Male","address":"Lisie Hospital, Kochi","specialization":"Dermatologist","lat":9.9680,"lng":76.2890},
+  {"name":"Dr. Meera Nair","phone":"+91-9876543502","city":"Kochi","state":"Kerala","gender":"Female","address":"Medical Trust Hospital, Kochi","specialization":"Pediatrician","lat":9.9670,"lng":76.2880},
+  {"name":"Dr. Karan Menon","phone":"+91-9876543503","city":"Kochi","state":"Kerala","gender":"Male","address":"Shalby Hospital, Kochi","specialization":"Neurologist","lat":9.9665,"lng":76.2870},
+  {"name":"Dr. Anjali Nair","phone":"+91-9876543504","city":"Kochi","state":"Kerala","gender":"Female","address":"Kochi Women’s Hospital","specialization":"Gynecologist","lat":9.9675,"lng":76.2878},
+  {"name":"Dr. Manoj Kumar","phone":"+91-9876543505","city":"Kochi","state":"Kerala","gender":"Male","address":"Ortho Care Hospital, Kochi","specialization":"Orthopedic","lat":9.9669,"lng":76.2873},
+  {"name":"Dr. Nandini Menon","phone":"+91-9876543506","city":"Kochi","state":"Kerala","gender":"Female","address":"Smile Dental Clinic, Kochi","specialization":"Dentist","lat":9.9672,"lng":76.2885},
+  {"name":"Dr. Rajesh Kumar","phone":"+91-9876543507","city":"Kochi","state":"Kerala","gender":"Male","address":"ENT Care Hospital, Kochi","specialization":"ENT Specialist","lat":9.9678,"lng":76.2872},
+  {"name":"Dr. Meera Menon","phone":"+91-9876543508","city":"Kochi","state":"Kerala","gender":"Female","address":"Vision Eye Hospital, Kochi","specialization":"Ophthalmologist","lat":9.9667,"lng":76.2879},
+  {"name":"Dr. Vikas Ranjan","phone":"+91-9876543509","city":"Kochi","state":"Kerala","gender":"Male","address":"Mind Care Psychiatry, Kochi","specialization":"Psychiatrist","lat":9.9671,"lng":76.2882}
+
+,
+
+  {"name":"Dr. Anjali Sharma","phone":"+91-9876543510","city":"Dehradun","state":"Uttarakhand","gender":"Female","address":"Max Super Speciality Hospital, Dehradun","specialization":"Cardiologist","lat":30.3165,"lng":78.0322},
+  {"name":"Dr. Rohit Singh","phone":"+91-9876543511","city":"Dehradun","state":"Uttarakhand","gender":"Male","address":"Doon Hospital, Dehradun","specialization":"Dermatologist","lat":30.3170,"lng":78.0330},
+  {"name":"Dr. Meera Joshi","phone":"+91-9876543512","city":"Dehradun","state":"Uttarakhand","gender":"Female","address":"Sir Ganga Ram Hospital, Dehradun","specialization":"Pediatrician","lat":30.3160,"lng":78.0315},
+  {"name":"Dr. Karan Sharma","phone":"+91-9876543513","city":"Dehradun","state":"Uttarakhand","gender":"Male","address":"Shalby Hospital, Dehradun","specialization":"Neurologist","lat":30.3172,"lng":78.0325},
+  {"name":"Dr. Ananya Verma","phone":"+91-9876543514","city":"Dehradun","state":"Uttarakhand","gender":"Female","address":"Doon Women’s Hospital","specialization":"Gynecologist","lat":30.3168,"lng":78.0320},
+  {"name":"Dr. Manoj Kumar","phone":"+91-9876543515","city":"Dehradun","state":"Uttarakhand","gender":"Male","address":"Ortho Care Hospital, Dehradun","specialization":"Orthopedic","lat":30.3163,"lng":78.0318},
+  {"name":"Dr. Nandini Sharma","phone":"+91-9876543516","city":"Dehradun","state":"Uttarakhand","gender":"Female","address":"Smile Dental Clinic, Dehradun","specialization":"Dentist","lat":30.3167,"lng":78.0327},
+  {"name":"Dr. Rajesh Kumar","phone":"+91-9876543517","city":"Dehradun","state":"Uttarakhand","gender":"Male","address":"ENT Care Hospital, Dehradun","specialization":"ENT Specialist","lat":30.3171,"lng":78.0321},
+  {"name":"Dr. Meera Sharma","phone":"+91-9876543518","city":"Dehradun","state":"Uttarakhand","gender":"Female","address":"Vision Eye Hospital, Dehradun","specialization":"Ophthalmologist","lat":30.3164,"lng":78.0324},
+  {"name":"Dr. Vikas Ranjan","phone":"+91-9876543519","city":"Dehradun","state":"Uttarakhand","gender":"Male","address":"Mind Care Psychiatry, Dehradun","specialization":"Psychiatrist","lat":30.3169,"lng":78.0326}
+
+,
+
+  {"name":"Dr. Ananya Das","phone":"+91-9876543540","city":"Agartala","state":"Tripura","gender":"Female","address":"Agartala Medical College Hospital","specialization":"Cardiologist","lat":23.8315,"lng":91.2868},
+  {"name":"Dr. Rohit Kumar","phone":"+91-9876543541","city":"Agartala","state":"Tripura","gender":"Male","address":"GNRC Hospital, Agartala","specialization":"Dermatologist","lat":23.8320,"lng":91.2875},
+  {"name":"Dr. Meera Sen","phone":"+91-9876543542","city":"Agartala","state":"Tripura","gender":"Female","address":"Agartala Children’s Hospital","specialization":"Pediatrician","lat":23.8310,"lng":91.2865},
+  {"name":"Dr. Karan Das","phone":"+91-9876543543","city":"Agartala","state":"Tripura","gender":"Male","address":"Tripura Neurology Center","specialization":"Neurologist","lat":23.8322,"lng":91.2869},
+  {"name":"Dr. Anjali Roy","phone":"+91-9876543544","city":"Agartala","state":"Tripura","gender":"Female","address":"Agartala Women’s Hospital","specialization":"Gynecologist","lat":23.8318,"lng":91.2867},
+  {"name":"Dr. Manoj Kumar","phone":"+91-9876543545","city":"Agartala","state":"Tripura","gender":"Male","address":"Ortho Care Hospital, Agartala","specialization":"Orthopedic","lat":23.8313,"lng":91.2871},
+  {"name":"Dr. Nandini Das","phone":"+91-9876543546","city":"Agartala","state":"Tripura","gender":"Female","address":"Smile Dental Clinic, Agartala","specialization":"Dentist","lat":23.8316,"lng":91.2873},
+  {"name":"Dr. Rajesh Kumar","phone":"+91-9876543547","city":"Agartala","state":"Tripura","gender":"Male","address":"ENT Care Hospital, Agartala","specialization":"ENT Specialist","lat":23.8321,"lng":91.2866},
+  {"name":"Dr. Meera Roy","phone":"+91-9876543548","city":"Agartala","state":"Tripura","gender":"Female","address":"Vision Eye Hospital, Agartala","specialization":"Ophthalmologist","lat":23.8314,"lng":91.2869},
+  {"name":"Dr. Vikas Ranjan","phone":"+91-9876543549","city":"Agartala","state":"Tripura","gender":"Male","address":"Mind Care Psychiatry, Agartala","specialization":"Psychiatrist","lat":23.8319,"lng":91.2870}
+
+,
+
+  {"name":"Dr. Ananya Fernandes","phone":"+91-9876543550","city":"Panaji","state":"Goa","gender":"Female","address":"Goa Medical College, Panaji","specialization":"Cardiologist","lat":15.4909,"lng":73.8278},
+  {"name":"Dr. Rohit D’Souza","phone":"+91-9876543551","city":"Panaji","state":"Goa","gender":"Male","address":"Mapusa Hospital, Panaji","specialization":"Dermatologist","lat":15.4915,"lng":73.8285},
+  {"name":"Dr. Meera Pinto","phone":"+91-9876543552","city":"Panaji","state":"Goa","gender":"Female","address":"Panaji Children’s Hospital","specialization":"Pediatrician","lat":15.4905,"lng":73.8275},
+  {"name":"Dr. Karan Fernandes","phone":"+91-9876543553","city":"Panaji","state":"Goa","gender":"Male","address":"Neurology Care, Panaji","specialization":"Neurologist","lat":15.4912,"lng":73.8280},
+  {"name":"Dr. Anjali D’Souza","phone":"+91-9876543554","city":"Panaji","state":"Goa","gender":"Female","address":"Panaji Women’s Hospital","specialization":"Gynecologist","lat":15.4910,"lng":73.8277},
+  {"name":"Dr. Manoj Kumar","phone":"+91-9876543555","city":"Panaji","state":"Goa","gender":"Male","address":"Ortho Care Hospital, Panaji","specialization":"Orthopedic","lat":15.4908,"lng":73.8279},
+  {"name":"Dr. Nandini Fernandes","phone":"+91-9876543556","city":"Panaji","state":"Goa","gender":"Female","address":"Smile Dental Clinic, Panaji","specialization":"Dentist","lat":15.4911,"lng":73.8282},
+  {"name":"Dr. Rajesh Kumar","phone":"+91-9876543557","city":"Panaji","state":"Goa","gender":"Male","address":"ENT Care Hospital, Panaji","specialization":"ENT Specialist","lat":15.4907,"lng":73.8276},
+  {"name":"Dr. Meera Fernandes","phone":"+91-9876543558","city":"Panaji","state":"Goa","gender":"Female","address":"Vision Eye Hospital, Panaji","specialization":"Ophthalmologist","lat":15.4913,"lng":73.8281},
+  {"name":"Dr. Vikas Ranjan","phone":"+91-9876543559","city":"Panaji","state":"Goa","gender":"Male","address":"Mind Care Psychiatry, Panaji","specialization":"Psychiatrist","lat":15.4906,"lng":73.8278}
+
+
+]
+
