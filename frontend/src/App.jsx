@@ -19,7 +19,7 @@ import Notification from './pages/Notification';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ChatWithAssistant from './pages/ChatWithAssistant/ChatWithAssistant';
-import FindDoctors from './pages/FindDoctors';
+import FindDoctors from './pages/Doctors/FindDoctors';
 
 import About from './pages/About';
 import FAQ from './pages/FAQ';
