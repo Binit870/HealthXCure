@@ -41,12 +41,12 @@ const ChatMessages = ({ messages, speakingText, setSpeakingText }) => {
           <div
             className={`p-3 rounded-2xl shadow-md ${
               msg.sender === "user"
-                ? "bg-green-600 text-white"
-                : "bg-gray-100 text-gray-900 border border-gray-200"
+                ? "bg-green-400 text-black border border-green-200"
+                : "bg-teal-500 text-gray-900 border border-teal-200"
             }`}
           >
             {msg.sender === "bot" ? (
-              <div className="max-w-md bg-white rounded-xl shadow-sm p-4 text-sm text-gray-800 leading-relaxed">
+              <div className="max-w-md bg-teal-100 rounded-xl shadow-sm p-4 text-sm text-black leading-relaxed">
   <ReactMarkdown
     remarkPlugins={[remarkGfm]}
     components={{

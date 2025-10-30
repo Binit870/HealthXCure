@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Toaster } from "react-hot-toast";
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer';
@@ -49,6 +49,7 @@ function App() {
       {!hideNavbar && <Navbar />}
 
       <div className={`flex-grow flex flex-col ${!hideNavbar ? 'pt-16' : ''}`}>
+        <Toaster position="top-center" />
         <Routes>
           {/* Public Pages */}
           
