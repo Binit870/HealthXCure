@@ -7,12 +7,20 @@ import { useAuth } from "../../context/AuthContext";
 import FitnessResults from "./FitnessResults";
 import FitnessHistory from "./FitnessHistory";
 
+const weeklyGoals = [
+  "3 sessions/week (Beginner)",
+  "4 sessions/week (Intermediate)",
+  "5 sessions/week (Advanced)",
+];
+
 const FitnessPlanner = () => {
   const { user } = useAuth();
   const userId = user?._id;
 
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
+  const [targetWeight, setTargetWeight] = useState(""); // 💡 NEW STATE
+  const [weeklyGoal, setWeeklyGoal] = useState(weeklyGoals[0]); // 💡 NEW STATE
   const [bmi, setBmi] = useState(null);
   const [plan, setPlan] = useState(null);
   const [tip, setTip] = useState("");
@@ -45,7 +53,8 @@ const FitnessPlanner = () => {
   }, [userId]);
 
   const calculateBMI = async () => {
-    if (!height || !weight) return alert("Please enter both height and weight");
+    if (!height || !weight) return alert("Please enter current height and weight.");
+    if (targetWeight && parseFloat(targetWeight) <= 0) return alert("Target weight must be a positive number.");
 
     const heightInMeters = height / 100;
     const bmiValue = (weight / (heightInMeters * heightInMeters)).toFixed(1);
@@ -53,6 +62,7 @@ const FitnessPlanner = () => {
     let category = "";
     let exercises = [];
     let calories = "";
+    let finalRecommendation = `Based on your goal of **${weeklyGoal}**, focus on integrating the following activities.`;
 
     if (bmiValue < 18.5) {
       category = "Underweight";
@@ -61,7 +71,7 @@ const FitnessPlanner = () => {
         { name: "Yoga for flexibility", icon: <FaRunning /> },
         { name: "Weightlifting basics", icon: <FaDumbbell /> },
       ];
-      calories = "🍽️ Aim for 2200–2500 kcal/day with protein-rich foods.";
+      calories = "🍽️ Aim for 2200–2500 kcal/day with protein-rich foods (to gain).";
     } else if (bmiValue >= 18.5 && bmiValue <= 24.9) {
       category = "Normal";
       exercises = [
@@ -77,7 +87,7 @@ const FitnessPlanner = () => {
         { name: "Cycling / HIIT (3-4x/week)", icon: <FaBiking /> },
         { name: "Bodyweight Training", icon: <FaDumbbell /> },
       ];
-      calories = "🍽️ Reduce to ~1800 kcal/day, focusing on lean proteins & veggies.";
+      calories = "🍽️ Reduce to ~1800 kcal/day, focusing on lean proteins & veggies (to lose).";
     } else {
       category = "Obese";
       exercises = [
@@ -85,10 +95,10 @@ const FitnessPlanner = () => {
         { name: "Swimming (safe cardio)", icon: <FaSwimmer /> },
         { name: "Resistance Bands", icon: <FaDumbbell /> },
       ];
-      calories = "🍽️ Stick to 1500–1700 kcal/day, consult a nutritionist.";
+      calories = "🍽️ Stick to 1500–1700 kcal/day, consult a nutritionist (to lose).";
     }
 
-    const bmiData = { value: bmiValue, category, calories };
+    const bmiData = { value: bmiValue, category, calories, targetWeight: targetWeight || null, weeklyGoal, finalRecommendation };
     setBmi(bmiData);
     setPlan(exercises);
     setTip(tips[Math.floor(Math.random() * tips.length)]);
@@ -117,43 +127,72 @@ const FitnessPlanner = () => {
   const resetPlanner = () => {
     setHeight("");
     setWeight("");
+    setTargetWeight(""); // Reset new state
+    setWeeklyGoal(weeklyGoals[0]); // Reset new state
     setBmi(null);
     setPlan(null);
     setTip("");
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white px-6 py-12">
+    // Simple white background, dark text
+    <div className="min-h-screen flex flex-col items-center justify-center bg-white text-gray-800 px-6 py-12">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="bg-gray-800/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-700 p-8 w-full max-w-lg"
+        // White box with teal border/shadow
+        className="bg-white rounded-2xl shadow-2xl border border-teal-100 p-8 w-full max-w-lg"
       >
-        <h1 className="text-3xl md:text-4xl font-extrabold text-center bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent mb-6">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-center text-teal-600 mb-6">
           🏋️ Fitness Planner
         </h1>
         <div className="space-y-4 mb-6">
+          {/* Input 1: Height */}
           <input
             type="number"
-            placeholder="Enter height (cm)"
+            placeholder="Enter current height (cm)"
             value={height}
             onChange={(e) => setHeight(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            // Clean white/gray/teal focus styling
+            className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:outline-none text-gray-800"
           />
+          {/* Input 2: Current Weight */}
           <input
             type="number"
-            placeholder="Enter weight (kg)"
+            placeholder="Enter current weight (kg)"
             value={weight}
             onChange={(e) => setWeight(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:outline-none text-gray-800"
           />
-          <div className="flex space-x-3">
+          {/* Input 3: Target Weight (NEW) */}
+          <input
+            type="number"
+            placeholder="Enter target weight (kg, optional)"
+            value={targetWeight}
+            onChange={(e) => setTargetWeight(e.target.value)}
+            className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:outline-none text-gray-800"
+          />
+          {/* Input 4: Weekly Goal (NEW DROPDOWN) */}
+          <select
+            value={weeklyGoal}
+            onChange={(e) => setWeeklyGoal(e.target.value)}
+            className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:outline-none text-gray-800 appearance-none"
+          >
+            {weeklyGoals.map((goal) => (
+              <option key={goal} value={goal}>
+                Weekly Goal: {goal}
+              </option>
+            ))}
+          </select>
+
+          <div className="flex space-x-3 pt-2">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={calculateBMI}
-              className="flex-1 py-3 rounded-xl font-semibold text-lg bg-gradient-to-r from-blue-500 to-cyan-400 text-white shadow-lg"
+              // Teal primary button
+              className="flex-1 py-3 rounded-xl font-semibold text-lg bg-teal-600 text-white shadow-md hover:bg-teal-700 transition"
             >
               Generate Plan
             </motion.button>
@@ -161,7 +200,8 @@ const FitnessPlanner = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={resetPlanner}
-              className="p-3 rounded-xl bg-gray-700 hover:bg-gray-600 text-white shadow-lg"
+              // Subtle gray/teal reset button
+              className="p-3 rounded-xl bg-gray-200 hover:bg-gray-300 text-teal-600 shadow-md"
             >
               <FaRedo />
             </motion.button>
@@ -175,3 +215,4 @@ const FitnessPlanner = () => {
 };
 
 export default FitnessPlanner;
+

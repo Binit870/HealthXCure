@@ -77,73 +77,60 @@ const Community = () => {
 
   if (loading) {
     return (
-      <div className="pt-20 text-center text-white min-h-screen flex flex-col items-center justify-center bg-cyan-950">
-        <FaSpinner className="animate-spin text-5xl mx-auto mb-4" />
-        <h3 className="text-4xl font-extrabold text-white">
-          Loading Community...
-        </h3>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-teal-50 to-white text-teal-600">
+        <FaSpinner className="animate-spin text-4xl mb-4" />
+        <h3 className="text-2xl font-semibold">Loading Community...</h3>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="pt-20 text-center text-white min-h-screen flex flex-col items-center justify-center bg-cyan-950">
-        <h3 className="text-4xl font-extrabold text-red-400">Error</h3>
-        <p className="text-gray-300 mt-2">{error}</p>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-red-50 to-white text-red-500">
+        <h3 className="text-2xl font-semibold">Error</h3>
+        <p className="text-gray-600 mt-2">{error}</p>
       </div>
     );
   }
 
   return (
-    <section className="py-20 px-4 md:px-10 lg:px-20 min-h-screen text-white relative overflow-hidden bg-gradient-to-br from-cyan-900 via-cyan-800 to-cyan-950">
-      {/* Background Blobs */}
-      <div className="absolute inset-0 z-0">
-        <div className="w-96 h-96 bg-cyan-500 rounded-full blur-3xl opacity-20 absolute top-1/4 left-1/4 animate-pulse"></div>
-        <div className="w-80 h-80 bg-teal-500 rounded-full blur-3xl opacity-20 absolute bottom-1/4 right-1/4 animate-pulse-slow"></div>
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto">
-        <h2 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 text-center mb-10 drop-shadow-lg">
-          Community Forum ✨
+    <section className="py-16 px-4 md:px-8 lg:px-16 min-h-screen bg-gradient-to-br from-teal-50 via-white to-teal-100 text-gray-800">
+      <div className="max-w-3xl mx-auto">
+        <h2 className="text-4xl font-bold text-center text-teal-700 mb-4 drop-shadow-sm">
+          🌿 Community Forum
         </h2>
-        <p className="text-gray-300 text-center mb-12 max-w-2xl mx-auto">
-          Share your thoughts, ask questions, and connect with others on their
-          health journey.
+        <p className="text-center text-gray-600 mb-10 text-lg">
+          Share your thoughts, ask questions, and connect with others on their health journey.
         </p>
 
         {/* Category Filter Tabs */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
-  {["all", "general", "nutrition", "fitness", "health"].map((cat) => (
-    <button
-      key={cat}
-      onClick={() => setCategory(cat)}
-      className={`px-4 py-2 text-sm sm:text-base rounded-full transition-all duration-300 transform hover:scale-105 ${
-        category === cat
-          ? "bg-cyan-600 text-white shadow-lg"
-          : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-      }`}
-    >
-      {cat.charAt(0).toUpperCase() + cat.slice(1)}
-    </button>
-  ))}
-</div>
+          {["all", "general", "nutrition", "fitness", "health"].map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setCategory(cat)}
+              className={`px-4 py-2 text-sm rounded-full transition-all duration-300 shadow-sm ${
+                category === cat
+                  ? "bg-teal-600 text-white"
+                  : "bg-white text-gray-700 border border-gray-300 hover:bg-teal-100"
+              }`}
+            >
+              {cat.charAt(0).toUpperCase() + cat.slice(1)}
+            </button>
+          ))}
+        </div>
 
-
+        {/* Post Form or Login Prompt */}
         {user ? (
           <PostForm socket={socket} user={user} token={token} />
         ) : (
-          <div className="text-center p-6 rounded-3xl backdrop-blur-xl bg-white/10 shadow-xl border border-white/20 mb-10">
-            <p className="text-lg text-white">Log in to share your thoughts. ✨</p>
+          <div className="text-center p-6 rounded-xl bg-white border border-gray-200 shadow-md mb-10">
+            <p className="text-base text-gray-700">Log in to share your thoughts. ✨</p>
           </div>
         )}
 
-        <PostList
-          posts={posts}
-          user={user}
-          handleDeletePost={handleDeletePost}
-        />
+        {/* Post List */}
+        <PostList posts={posts} user={user} handleDeletePost={handleDeletePost} />
       </div>
     </section>
   );

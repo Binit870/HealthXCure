@@ -26,12 +26,12 @@ const ReportHistory = ({ history, showHistory, setShowHistory, handleViewHistory
     return (
         <div className="w-full max-w-3xl mt-8">
             <motion.button
-  onClick={() => setShowHistory(!showHistory)}
-  className="w-full bg-gradient-to-r from-cyan-600 to-blue-700 text-white font-semibold py-3 md:py-4 rounded-2xl shadow-xl hover:from-cyan-700 hover:to-blue-800 transition flex justify-between items-center px-6 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-transparent"
- 
-  whileHover={{ scale: 1.02 }}
-  whileTap={{ scale: 0.98 }}
->
+                onClick={() => setShowHistory(!showHistory)}
+                // Solid teal button for history toggle
+                className="w-full bg-teal-600 text-white font-semibold py-3 md:py-4 rounded-2xl shadow-xl hover:bg-teal-700 transition flex justify-between items-center px-6 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400 focus:ring-offset-transparent"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+            >
                 <span className="text-lg md:text-xl flex items-center">
                     <AiOutlineHistory className="mr-2 text-2xl" /> View Upload History ({history.length})
                 </span>
@@ -56,23 +56,27 @@ const ReportHistory = ({ history, showHistory, setShowHistory, handleViewHistory
                         {history.map((item) => (
                             <motion.div
                                 key={item._id}
-                                className="flex justify-between items-center p-4 md:p-6 bg-white/10 backdrop-blur-md rounded-2xl shadow-lg border border-white/20 cursor-pointer hover:shadow-xl hover:border-cyan-400 transition transform hover:-translate-y-1"
+                                // List items: white background, subtle teal border, dark text
+                                className="flex justify-between items-center p-4 md:p-6 bg-white rounded-2xl shadow-md border border-gray-200 cursor-pointer hover:shadow-lg hover:border-teal-400 transition transform hover:-translate-y-1"
                                 onClick={() => handleViewHistoryItem(item)}
                                 variants={itemVariants}
                             >
                                 <div className="flex items-center flex-grow min-w-0">
-                                    <AiOutlineFileText className="text-cyan-400 mr-2 text-xl md:text-2xl flex-shrink-0" />
-                                    <span className="font-medium text-cyan-300 text-sm md:text-base truncate">
+                                    {/* Teal file icon */}
+                                    <AiOutlineFileText className="text-teal-500 mr-2 text-xl md:text-2xl flex-shrink-0" />
+                                    {/* Dark text for file name */}
+                                    <span className="font-medium text-gray-800 text-sm md:text-base truncate">
                                         {item.name}
                                     </span>
                                 </div>
                                 <div className="flex items-center space-x-2 flex-shrink-0 ml-4">
-                                    <span className="text-cyan-300 text-xs md:text-sm">
+                                    {/* Subtle date text */}
+                                    <span className="text-gray-500 text-xs md:text-sm">
                                         {new Date(item.createdAt).toLocaleString()}
                                     </span>
                                     <motion.button
                                         onClick={(e) => handleDelete(e, item._id)}
-                                        className="text-red-400 hover:text-red-500 transition"
+                                        className="text-red-500 hover:text-red-700 transition"
                                         whileHover={{ scale: 1.2 }}
                                         whileTap={{ scale: 0.9 }}
                                         title="Delete report"

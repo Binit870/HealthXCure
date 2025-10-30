@@ -4,17 +4,19 @@ import renderUrgency from "./utils/renderUrgency";
 
 // Possibility color levels
 const getPossibilityLevel = (score) => {
-  if (score >= 75) return { label: "High", color: "bg-red-500" };
-  if (score >= 40) return { label: "Moderate", color: "bg-yellow-500" };
-  return { label: "Low", color: "bg-green-500" };
+  if (score >= 75) return { label: "High", color: "bg-rose-500" };
+  if (score >= 40) return { label: "Moderate", color: "bg-amber-400" };
+  return { label: "Low", color: "bg-emerald-500" };
 };
 
 const SymptomResults = ({ results }) => (
-  <div className="relative w-full max-w-4xl z-10 p-6 md:p-8 rounded-2xl border border-white/10 bg-transparent">
+  <div className="relative w-full max-w-4xl z-10 p-6 md:p-8 rounded-2xl border border-white/10 
+                  bg-gradient-to-br from-teal-600/40 via-cyan-600/40 to-emerald-600/40 
+                  backdrop-blur-lg shadow-2xl">
     {/* Header */}
     <div className="w-full flex flex-col items-center mb-8">
-      <MdHealthAndSafety className="text-5xl text-emerald-300 drop-shadow-lg" />
-      <h2 className="text-3xl md:text-4xl font-extrabold text-white text-center mt-3 drop-shadow-md">
+      <MdHealthAndSafety className="text-5xl text-emerald-800 drop-shadow-lg" />
+      <h2 className="text-3xl md:text-4xl font-extrabold text-teal-900 text-center mt-3 drop-shadow-md">
         Possible Conditions
       </h2>
     </div>
@@ -23,7 +25,6 @@ const SymptomResults = ({ results }) => (
     <div className="grid grid-cols-1 gap-6 w-full">
       {results.map((condition, index) => {
         const level = getPossibilityLevel(condition.possibility || 0);
-        const urgency = renderUrgency(condition.urgency || "Non-Urgent");
 
         return (
           <motion.div
@@ -32,13 +33,13 @@ const SymptomResults = ({ results }) => (
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: index * 0.1 }}
             className="relative w-full overflow-hidden rounded-2xl shadow-lg 
-                       bg-gradient-to-br from-emerald-600/70 via-teal-600/70 to-green-700/70
-                       border border-white/20 p-6 backdrop-blur-md transition-all"
+                       bg-gradient-to-br from-emerald-700/70 via-teal-600/70 to-cyan-700/70
+                       border border-white/20 p-6 backdrop-blur-md transition-all hover:scale-[1.01]"
           >
             <div className="relative flex flex-col gap-3 z-10">
               {/* Icon */}
               <div className="w-12 h-12 flex items-center justify-center 
-                             rounded-xl bg-emerald-400/20 
+                             rounded-xl bg-emerald-300/20 
                              text-emerald-200 text-2xl shadow-inner">
                 🩺
               </div>
@@ -58,11 +59,11 @@ const SymptomResults = ({ results }) => (
                   </span>
 
                   {/* Urgency */}
-                 
-<div className="flex items-center gap-2">
-  {renderUrgency(condition.urgency || condition.urgency_level || "Non-Urgent")}
-</div>
-
+                  <div className="flex items-center gap-2">
+                    {renderUrgency(
+                      condition.urgency || condition.urgency_level || "Non-Urgent"
+                    )}
+                  </div>
                 </div>
               </div>
 
@@ -77,7 +78,7 @@ const SymptomResults = ({ results }) => (
               </div>
 
               {/* Description */}
-              <p className="text-sm md:text-base text-gray-100 drop-shadow-md leading-relaxed">
+              <p className="text-sm md:text-base text-teal-50 drop-shadow-md leading-relaxed">
                 {condition.description}
               </p>
 

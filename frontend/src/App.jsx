@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Toaster } from "react-hot-toast";
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer';
@@ -19,7 +19,7 @@ import Notification from './pages/Notification';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ChatWithAssistant from './pages/ChatWithAssistant/ChatWithAssistant';
-import FindDoctors from './pages/FindDoctors';
+import FindDoctors from './pages/Doctors/FindDoctors';
 
 import About from './pages/About';
 import FAQ from './pages/FAQ';
@@ -44,11 +44,12 @@ function App() {
   const hideFooter = pathsWithoutFooter.has(normalizedPathname.toLowerCase());
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-cyan-900 to-blue-900 font-inter">
+    <div className="flex flex-col min-h-screen font-inter">
       <ScrollToTop />
       {!hideNavbar && <Navbar />}
 
       <div className={`flex-grow flex flex-col ${!hideNavbar ? 'pt-16' : ''}`}>
+        <Toaster position="top-center" />
         <Routes>
           {/* Public Pages */}
           

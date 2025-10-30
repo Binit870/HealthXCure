@@ -66,7 +66,7 @@ const SymptomHistory = ({ setShowHistory }) => {
                      text-white font-bold rounded-full shadow-md hover:opacity-90 transition-all 
                      flex items-center justify-center gap-2 text-sm sm:text-base"
         >
-          <FaStethoscope /> Check Symptoms
+          <FaStethoscope /> Check New Symptoms
         </button>
       </div>
 
