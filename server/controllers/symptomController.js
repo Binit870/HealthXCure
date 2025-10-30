@@ -10,7 +10,6 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 export const checkSymptoms = async (req, res) => {
   try {
     const { symptoms, age, gender } = req.body;
-    // In a real app, you would get the user ID from the session or token
     const userId = req.user.id;
 
     if (!symptoms || symptoms.length === 0) {
@@ -20,46 +19,48 @@ export const checkSymptoms = async (req, res) => {
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
     const prompt = `
-      You are a medical assistant AI.
-      The user is a ${age}-year-old ${gender}. They have the following symptoms: ${symptoms.join(",")}.
-      Based on this, provide a list of the top 4 most likely health conditions.
-      For each condition, include:
-      - A brief name.
-      - A simple, one-sentence description.
-      - An urgency level: "Non-Urgent," "Urgent Care," or "Emergency."
-      - If non-urgent share some common treatments or medicine
-      - A call to action (CTA) in the form of simple, actionable advice.
+You are an intelligent and empathetic AI medical assistant.
 
-      Format the response as a single JSON object with a key "conditions" that contains an array of these objects.
-      Example JSON response:
-      {
-          "conditions": [
-              {
-                  "name": "Common Cold",
-                  "description": "A viral infection of the nose and throat, causing sneezing and a stuffy nose.",
-                  "urgency_level": "Non-Urgent",
-                  "treatments": "Over-the-counter cold remedies, rest, and hydration.",
-                  "medicine" : "Paracetamol or ibuprofen for fever and aches.",
-                  "cta": "Rest and drink plenty of fluids. Symptoms usually resolve within a week."
-              }
-          ]
-      }
-    `;
+The user is a ${age}-year-old ${gender}. They are experiencing the following symptoms: ${symptoms.join(", ")}.
+
+Based on these symptoms, list the **top 4 most likely health conditions**.
+
+For each condition, include:
+- "name": The medical condition name.
+- "description": A short, simple explanation.
+- "possibility": A number between 0 and 100 representing the likelihood (% chance).
+- "urgency": One of "Non-Urgent", "Urgent Care", or "Emergency".
+- "recommended_doctor": The best type of doctor to consult. Do not default to "General Physician" unless absolutely necessary. Use specialized doctors (e.g., Cardiologist, Dermatologist, Neurologist, ENT Specialist, Pulmonologist, Gastroenterologist, etc.) based on the body system affected.
+- "first_step": The first action the user should take right now.
+
+Return only valid JSON:
+{
+  "conditions": [
+    {
+      "name": "Migraine",
+      "description": "A type of headache causing severe throbbing pain.",
+      "possibility": 75,
+      "urgency": "Non-Urgent",
+      "recommended_doctor": "Neurologist",
+      "first_step": "Rest in a dark room and take a mild pain reliever."
+    }
+  ]
+}
+`;
+
 
     const result = await model.generateContent(prompt);
     const textResponse = result.response.text();
 
-    // ✅ NEW AND IMPROVED FIX: Extract the JSON string from the response
-    const jsonStartIndex = textResponse.indexOf('{');
-    const jsonEndIndex = textResponse.lastIndexOf('}');
-
-    if (jsonStartIndex !== -1 && jsonEndIndex !== -1) {
-      const jsonString = textResponse.substring(jsonStartIndex, jsonEndIndex + 1);
+    const jsonStart = textResponse.indexOf("{");
+    const jsonEnd = textResponse.lastIndexOf("}");
+    if (jsonStart !== -1 && jsonEnd !== -1) {
+      const jsonString = textResponse.substring(jsonStart, jsonEnd + 1);
       const parsedData = JSON.parse(jsonString);
 
-      // 💡 NEW LOGIC: Save the successful response to the database
+      // 💾 Save to DB
       const newHistoryEntry = new SymptomHistory({
-        user: userId, // Associate with a user
+        user: userId,
         symptoms,
         age,
         gender,
@@ -71,21 +72,22 @@ export const checkSymptoms = async (req, res) => {
     } else {
       return res.status(200).json({
         error: "AI did not return a valid JSON object. Please try again.",
-        rawResponse: textResponse
+        rawResponse: textResponse,
       });
     }
-
   } catch (error) {
     console.error("Error checking symptoms:", error);
     if (error instanceof SyntaxError) {
       return res.status(200).json({
-        error: "AI response was not in the expected format. Please try again.",
-        rawResponse: error.message
+        error: "AI response was not in the expected format.",
+        rawResponse: error.message,
       });
     }
     res.status(500).json({ error: "Failed to check symptoms due to a server error." });
   }
 };
+
+
 
 // 📌 NEW: Get Symptom History
 // 📌 Get Symptom History

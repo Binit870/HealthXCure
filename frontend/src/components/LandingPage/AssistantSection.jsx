@@ -10,14 +10,14 @@ const styles = `
     }
     50% {
       transform: scale(1.1);
-      opacity: 0.15;
+      opacity: 0.1;
     }
   }
 
   @keyframes pulse-slow-reverse {
     0%, 100% {
       transform: scale(1.1);
-      opacity: 0.15;
+      opacity: 0.1;
     }
     50% {
       transform: scale(1);
@@ -32,19 +32,19 @@ const AssistantSection = () => (
     <section
       id="assistant"
       className="relative py-12 px-4 sm:px-8 md:px-12 lg:px-16 rounded-3xl shadow-2xl mb-20 text-center fade-in-on-scroll
-                 bg-gradient-to-br from-cyan-800 via-cyan-800 to-cyan-700 border-white/10"
+                 bg-white border border-gray-200"
     >
       {/* Background SVGs */}
-      <div className="absolute inset-0 z-0 opacity-20">
+      <div className="absolute inset-0 z-0 opacity-10">
         <svg
-          className="absolute top-1/3 left-1/4 text-pink-400 w-36 h-36 transform -translate-x-1/2 -translate-y-1/2 animate-[pulse-slow_6s_ease-in-out_infinite]"
+          className="absolute top-1/3 left-1/4 w-36 h-36 transform -translate-x-1/2 -translate-y-1/2 text-blue-200 animate-[pulse-slow_6s_ease-in-out_infinite]"
           fill="currentColor"
           viewBox="0 0 512 512"
         >
           <path d="M462.3 62.6C405.6 30.3 331.8 32.5 275 75.6v0C239.3 104.5 210 160.8 210 160.8c-28.5-44.5-56.5-68.8-93.5-84.5C70.3 47.7 20.5 59.3 2.5 96.6s-18.7 101.4 12.5 154.5c41.2 73.1 129.5 174 213.5 251.5c4.7 4.5 10.4 6.8 16.2 6.8s11.5-2.3 16.2-6.8c84-77.5 172.3-178.4 213.5-251.5c31.2-53.1 27.2-117.8-12.5-154.5z"/>
         </svg>
         <svg
-          className="absolute bottom-1/4 right-1/4 text-cyan-300 w-32 h-32 transform translate-x-1/2 translate-y-1/2 animate-[pulse-slow-reverse_6s_ease-in-out_infinite]"
+          className="absolute bottom-1/4 right-1/4 w-32 h-32 transform translate-x-1/2 translate-y-1/2 text-blue-100 animate-[pulse-slow-reverse_6s_ease-in-out_infinite]"
           fill="currentColor"
           viewBox="0 0 512 512"
         >
@@ -55,50 +55,50 @@ const AssistantSection = () => (
       {/* Content */}
       <div className="relative z-10">
         <div className="flex items-center justify-center space-x-4 mb-6">
-          <h3 className="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-cyan-200 drop-shadow-2xl">
-            <FaRobot className="inline-block mr-2 text-cyan-100" />
+          <h3 className="text-4xl sm:text-5xl font-extrabold text-gray-900">
+            <FaRobot className="inline-block mr-2 text-blue-400" />
             Your Personal Health Assistant
           </h3>
         </div>
 
-        <p className="text-white max-w-2xl mx-auto mb-10 text-lg sm:text-xl">
-          <FaHeartbeat className="inline-block mr-2 text-red-300" />
+        <p className="text-gray-700 max-w-2xl mx-auto mb-10 text-lg sm:text-xl">
+          <FaHeartbeat className="inline-block mr-2 text-red-400" />
           Get instant, reliable answers to your health questions with our secure, AI-powered assistant.
         </p>
 
-        <div className="rounded-3xl shadow-2xl border border-cyan-300 overflow-hidden bg-cyan-900/40 transition-all duration-300 hover:scale-[1.01]">
+        <div className="rounded-3xl shadow-lg border border-gray-200 overflow-hidden bg-gray-50 transition-all duration-300 hover:scale-[1.01]">
           {/* Chat Preview */}
           <div className="h-72 p-6 overflow-y-auto space-y-4">
             <div className="flex justify-start">
-              <div className="chat-message received max-w-md p-4 rounded-3xl rounded-bl-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg">
+              <div className="chat-message received max-w-md p-4 rounded-3xl rounded-bl-md bg-blue-100 text-gray-900 shadow">
                 Hi there! How can I help you with your health today?
               </div>
             </div>
             <div className="flex justify-end">
-              <div className="chat-message sent max-w-md p-4 rounded-3xl rounded-br-md bg-gray-100 text-gray-900 shadow-lg">
+              <div className="chat-message sent max-w-md p-4 rounded-3xl rounded-br-md bg-white text-gray-900 shadow">
                 What are the symptoms of the flu?
               </div>
             </div>
             <div className="flex justify-start">
-              <div className="chat-message received max-w-md p-4 rounded-3xl rounded-bl-md bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg">
+              <div className="chat-message received max-w-md p-4 rounded-3xl rounded-bl-md bg-blue-100 text-gray-900 shadow">
                 Common flu symptoms include fever, body aches, sore throat, and a cough.
               </div>
             </div>
           </div>
 
           {/* Chat Input */}
-          <div className="p-4 border-t border-cyan-400 flex space-x-2 bg-cyan-950/40">
+          <div className="p-4 border-t border-gray-200 flex space-x-2 bg-gray-100">
             <input
               type="text"
               placeholder="Type your message to start the chat..."
-              className="flex-grow p-4 rounded-full border border-cyan-400 bg-cyan-950 text-white placeholder-cyan-300
-                         focus:outline-none focus:ring-2 focus:ring-white cursor-pointer transition-colors duration-300"
+              className="flex-grow p-4 rounded-full border border-gray-300 bg-white text-gray-900 placeholder-gray-400
+                         focus:outline-none focus:ring-2 focus:ring-blue-300 transition-colors duration-300"
               onFocus={() => (window.location.href = "/chat")}
             />
             <Link
               to="/chat"
-              className="bg-gradient-to-br from-pink-400 to-cyan-500 text-white rounded-full w-14 h-14 flex items-center justify-center
-                         hover:from-pink-500 hover:to-cyan-600 transition duration-300 transform hover:scale-110 shadow-lg"
+              className="bg-blue-500 text-white rounded-full w-14 h-14 flex items-center justify-center
+                         hover:bg-blue-600 transition duration-300 transform hover:scale-110 shadow"
             >
               <FaComments className="w-5 h-5" />
             </Link>

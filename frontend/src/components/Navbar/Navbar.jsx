@@ -8,7 +8,7 @@ import pageMappings from "./PageMappings";
 import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
-  const { token, logout } = useAuth();
+  const { token, logout, loading } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const sidebarRef = useRef(null);
@@ -43,6 +43,17 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isSidebarOpen]);
 
+  // ✅ Show nothing until loading completes
+  if (loading) {
+    return (
+      <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-3xl bg-white/10 border-b border-white/20 shadow-md">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 text-white">
+          <span>Loading...</span>
+        </div>
+      </nav>
+    );
+  }
+
   return (
     <>
       {/* Navbar Container */}
@@ -62,11 +73,11 @@ const Navbar = () => {
           {/* Center Section: Desktop Links */}
           <div className="hidden lg:flex space-x-8 text-white font-medium">
             <Link to="/" className="hover:text-cyan-400 transition-colors">Home</Link>
-            <Link to="/services" className="hover:text-cyan-400 transition-colors">Services</Link>
+            <Link to="/symptom-checker" className="hover:text-cyan-400 transition-colors">Diagnosis</Link>
             <Link to="/find-doctors" className="hover:text-cyan-400 transition-colors">Doctors</Link>
-            <Link to="/about" className="hover:text-cyan-400 transition-colors">About</Link>
+            <Link to="/reports" className="hover:text-cyan-400 transition-colors">ScanCure</Link>
+            <Link to="/diet-planner" className="hover:text-cyan-400 transition-colors">DietCure</Link>
             <Link to="/community" className="hover:text-cyan-400 transition-colors">Community</Link>
-            <Link to="/contact" className="hover:text-cyan-400 transition-colors">Contact Us</Link>
           </div>
 
           {/* Right Section: Search + Auth/Notifications */}
@@ -78,17 +89,15 @@ const Navbar = () => {
                 onKeyPress={handleKeyPress}
               />
             </div>
-            
+
             {token ? (
               <div className="flex items-center space-x-4">
-                {/* Notification Bell with Badge */}
+                {/* Notification Bell */}
                 <Link
                   to="/notifications"
                   className="relative text-white text-xl hover:text-cyan-400 transition-colors"
                 >
                   <FaBell />
-                  {/* Example Notification Badge (optional) */}
-                  
                 </Link>
                 <button
                   onClick={logout}
@@ -107,12 +116,11 @@ const Navbar = () => {
                 </Link>
               </div>
             )}
-            
           </div>
         </div>
       </nav>
 
-      {/* Sidebar (remains unchanged) */}
+      {/* Sidebar */}
       <Sidebar
         isOpen={isSidebarOpen}
         sidebarRef={sidebarRef}

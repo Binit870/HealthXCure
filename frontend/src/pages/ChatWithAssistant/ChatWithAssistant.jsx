@@ -5,7 +5,7 @@ import API from "../../utils/Api";
 
 const ChatWithAssistant = () => {
   const [messages, setMessages] = useState([
-    { sender: "bot", text: "Hello! I'm your AI Health Assistant. Ask me anything about health." },
+    { sender: "bot", text: "Hello! I'm Cura your Health Assistant. Ask me anything about your health." },
   ]);
   const [input, setInput] = useState("");
   const [isListening, setIsListening] = useState(false);
