@@ -5,145 +5,130 @@ import {
   FaTwitter,
   FaInstagram,
   FaLinkedinIn,
-  FaMapMarkerAlt,
-  FaEnvelope,
-  FaPhone,
-  FaInfoCircle,
-  FaHandsHelping,
-  FaUsers,
-  FaQuestionCircle,
-  FaShieldAlt,
-  FaFileContract,
 } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300 pt-12">
-      <div className="container mx-auto px-6 lg:px-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 text-center md:text-left">
-        {/* Brand */}
+    <footer className="bg-white text-gray-600 py-12 border-t border-gray-200">
+      <div className="container mx-auto px-6 lg:px-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+        
+        {/* Brand Section */}
         <div>
-          <h4 className="text-2xl font-bold text-gradient mb-4">HealthCure</h4>
-          <p className="text-sm">
-            Your all-in-one platform for managing health and well-being.
+          <h4 className="text-2xl font-bold text-teal-600 mb-3 flex items-center space-x-2">
+            <span>💚</span>
+            <span>HealthXCure</span>
+          </h4>
+          <p className="text-sm leading-relaxed">
+            Your trusted partner in health and wellness. Providing comprehensive
+            healthcare solutions powered by AI.
           </p>
-          <div className="mt-5 flex justify-center md:justify-start space-x-4">
-            <Link
-              to="/facebook"
-              className="p-2 bg-gray-800 rounded-full hover:bg-pink-500 transition duration-300"
-            >
-              <FaFacebookF />
-            </Link>
-            <Link
-              to="/twitter"
-              className="p-2 bg-gray-800 rounded-full hover:bg-blue-400 transition duration-300"
-            >
-              <FaTwitter />
-            </Link>
-            <Link
-              to="/instagram"
-              className="p-2 bg-gray-800 rounded-full hover:bg-gradient-to-r from-pink-500 to-yellow-400 transition duration-300"
-            >
-              <FaInstagram />
-            </Link>
-            <Link
-              to="/linkedin"
-              className="p-2 bg-gray-800 rounded-full hover:bg-blue-600 transition duration-300"
-            >
-              <FaLinkedinIn />
-            </Link>
-          </div>
         </div>
 
-        {/* Quick Links */}
+        {/* Services Section */}
         <div>
-          <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-          <ul className="space-y-2">
-            <li className="flex items-center space-x-2 justify-center md:justify-start">
-              <FaInfoCircle className="text-pink-500" />
-              <Link
-                to="/about"
-                className="hover:text-white transition duration-200"
-              >
-                About
+          <h4 className="text-lg font-semibold mb-4 text-gray-800">Services</h4>
+          <ul className="space-y-2 text-sm">
+            <li>
+              <Link to="/symptom-checker" className="hover:text-teal-600">
+                Symptom Checker
               </Link>
             </li>
-            <li className="flex items-center space-x-2 justify-center md:justify-start">
-              <FaHandsHelping className="text-pink-500" />
-              <Link
-                to="/help"
-                className="hover:text-white transition duration-200"
-              >
-                Help-center
+            <li>
+              <Link to="/find-doctors" className="hover:text-teal-600">
+                Find Doctors
               </Link>
             </li>
-            <li className="flex items-center space-x-2 justify-center md:justify-start">
-              <FaUsers className="text-pink-500" />
-              <Link
-                to="/community"
-                className="hover:text-white transition duration-200"
-              >
-                Community
+            <li>
+              <Link to="/diet-planner" className="hover:text-teal-600">
+                Diet Planner
+              </Link>
+            </li>
+            <li>
+              <Link to="/report-analysis" className="hover:text-teal-600">
+                Report Analysis
               </Link>
             </li>
           </ul>
         </div>
 
-        {/* Support */}
+        {/* Company Section */}
         <div>
-          <h4 className="text-lg font-semibold mb-4">Support</h4>
-          <ul className="space-y-2">
-            <li className="flex items-center space-x-2 justify-center md:justify-start">
-              <FaQuestionCircle className="text-pink-500" />
-              <Link to="/faq" className="hover:text-white transition duration-200">
+          <h4 className="text-lg font-semibold mb-4 text-gray-800">Company</h4>
+          <ul className="space-y-2 text-sm">
+            <li>
+              <Link to="/about" className="hover:text-teal-600">
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="hover:text-teal-600">
+                Contact
+              </Link>
+            </li>
+            <li>
+              <Link to="/faq" className="hover:text-teal-600">
                 FAQ
               </Link>
             </li>
-            <li className="flex items-center space-x-2 justify-center md:justify-start">
-              <FaShieldAlt className="text-pink-500" />
-              <Link
-                to="/privacy-policy"
-                className="hover:text-white transition duration-200"
-              >
+            <li>
+              <Link to="/help-center" className="hover:text-teal-600">
+                Help Center
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Legal + Socials Section */}
+        <div>
+          <h4 className="text-lg font-semibold mb-4 text-gray-800">Legal</h4>
+          <ul className="space-y-2 text-sm mb-6">
+            <li>
+              <Link to="/privacy-policy" className="hover:text-teal-600">
                 Privacy Policy
               </Link>
             </li>
-            <li className="flex items-center space-x-2 justify-center md:justify-start">
-              <FaFileContract className="text-pink-500" />
-              <Link
-                to="/terms"
-                className="hover:text-white transition duration-200"
-              >
+            <li>
+              <Link to="/terms" className="hover:text-teal-600">
                 Terms of Service
               </Link>
             </li>
           </ul>
-        </div>
 
-        {/* Contact */}
-        <div>
-          <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
-          <ul className="space-y-3 text-sm">
-            <li className="flex items-center justify-center md:justify-start space-x-2">
-              <FaMapMarkerAlt className="text-pink-500" />
-              <span>123 Health Ave, Wellness City</span>
-            </li>
-            <li className="flex items-center justify-center md:justify-start space-x-2">
-              <FaEnvelope className="text-pink-500" />
-              <span>support@healthcure.com</span>
-            </li>
-            <li className="flex items-center justify-center md:justify-start space-x-2">
-              <FaPhone className="text-pink-500" />
-              <span>+91 123-456-7890</span>
-            </li>
-          </ul>
+          <h4 className="text-lg font-semibold mb-3 text-gray-800">
+            Follow Us
+          </h4>
+          <div className="flex space-x-4">
+            <Link
+              to="/facebook"
+              className="p-2 bg-teal-50 rounded-full hover:bg-teal-100 transition"
+            >
+              <FaFacebookF className="text-teal-600" />
+            </Link>
+            <Link
+              to="/twitter"
+              className="p-2 bg-teal-50 rounded-full hover:bg-teal-100 transition"
+            >
+              <FaTwitter className="text-teal-600" />
+            </Link>
+            <Link
+              to="/instagram"
+              className="p-2 bg-teal-50 rounded-full hover:bg-teal-100 transition"
+            >
+              <FaInstagram className="text-teal-600" />
+            </Link>
+            <Link
+              to="/linkedin"
+              className="p-2 bg-teal-50 rounded-full hover:bg-teal-100 transition"
+            >
+              <FaLinkedinIn className="text-teal-600" />
+            </Link>
+          </div>
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="mt-10 border-t border-gray-700 py-6 text-center">
-        <p className="text-sm text-gray-500">
-          &copy; 2025 HealthCure. All rights reserved.
-        </p>
+      {/* Bottom Line */}
+      <div className="mt-10 text-center border-t border-gray-200 pt-6 text-sm text-gray-500">
+        © 2025 HealthXCure. All rights reserved.
       </div>
     </footer>
   );
