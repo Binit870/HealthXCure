@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useAuth } from "../context/AuthContext.jsx";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { FaHeartbeat } from "react-icons/fa";
+import toast, { Toaster } from "react-hot-toast";
 
 const Signup = () => {
   const { signup, googleAuth } = useAuth();
@@ -14,19 +15,27 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState({ type: "", text: "" });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setMessage({ type: "", text: "" });
 
     try {
       await signup(name, username, email, password);
-      setMessage({ type: "success", text: "Signup successful! Redirecting..." });
+      toast.success("Signup successful...");
       setTimeout(() => navigate("/login"), 1500);
     } catch (error) {
-      setMessage({ type: "error", text: error.message });
+      const status = error.response?.status;
+      const errorMessage =
+        status === 401
+          ? "Invalid credentials. Please try again."
+          : status === 404
+          ?
+          "Something went wrong. Please try again."
+          : "User already exist! Please Login"
+          ;
+
+      toast.error(errorMessage);
       setIsLoading(false);
     }
   };
@@ -38,7 +47,9 @@ const Signup = () => {
 
   return (
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 via-white to-green-100 p-4">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 via-white to-green-100 p-4 relative">
+        <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
+
         <motion.div
           initial="hidden"
           animate="visible"
@@ -135,28 +146,23 @@ const Signup = () => {
                   const token = credentialResponse.credential;
                   try {
                     await googleAuth(token);
-                    setMessage({ type: "success", text: "Google signup successful!" });
+                    toast.success("Signup successful...");
                     setTimeout(() => navigate("/"), 1500);
-                  } catch (err) {
-                    console.error(err);
-                    setMessage({ type: "error", text: "Google signup failed" });
+                  } catch (error) {
+                    const status = error.response?.status;
+                    const errorMessage =
+                      status === 401
+                        ? "Invalid credentials"
+                        : status === 404
+                        ? "User not found"
+                        : "Something went wrong. Please try again.";
+
+                    toast.error(errorMessage);
                   }
                 }}
-                onError={() =>
-                  setMessage({ type: "error", text: "Google signup failed" })
-                }
+                onError={() => toast.error("Signup failed. Please try again.")}
               />
             </div>
-
-            {message.text && (
-              <p
-                className={`mt-5 text-center text-xs font-medium ${
-                  message.type === "success" ? "text-green-600" : "text-red-500"
-                }`}
-              >
-                {message.text}
-              </p>
-            )}
 
             <p className="mt-6 text-center text-gray-600 text-xs">
               Already have an account?{" "}

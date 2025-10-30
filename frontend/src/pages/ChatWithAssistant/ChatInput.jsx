@@ -19,7 +19,7 @@ const ChatInput = ({
   };
 
   return (
-    <div className="p-4 bg-cyan-500 flex items-center">
+    <div className="p-4 bg-teal-500 flex items-center">
       <VoiceControls
         isListening={isListening}
         setIsListening={setIsListening}
@@ -39,7 +39,7 @@ const ChatInput = ({
       />
       <button
         onClick={() => handleSend()}
-        className="px-4 py-2 bg-cyan-900 text-white rounded-lg hover:bg-green-600 transition-colors duration-200"
+        className="px-4 py-2 bg-cyan-900 text-white rounded-lg hover:bg-teal-800 transition-colors duration-200"
       >
         Send
       </button>
