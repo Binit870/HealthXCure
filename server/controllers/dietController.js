@@ -42,7 +42,7 @@ export const generateDietPlan = async (req, res) => {
       const base64Data = fileBuffer.toString("base64");
 
       try {
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-vision" });
+        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
         const result = await model.generateContent([
           { inlineData: { data: base64Data, mimeType: req.file.mimetype } },
           "Extract relevant medical/nutritional insights from this health report and summarize concisely."

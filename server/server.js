@@ -10,7 +10,7 @@ import startCronJob from "./utils/cronJob.js";
 
 import notificationRoutes from "./routes/notificationRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
-import aiRoutes from "./routes/aiRoutes.js";
+import aiRoutes from "./routes/chatRoutes.js";
 import doctorRoutes from "./routes/doctorRoutes.js";
 import dietRoutes from "./routes/dietRoutes.js";
 import communityRoutes from "./routes/communityRoutes.js";
@@ -27,6 +27,7 @@ const server = createServer(app);
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
+  
   "https://healthxcure.netlify.app",
 ];
 
@@ -35,6 +36,7 @@ app.use(cors({
   origin: allowedOrigins,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 // ✅ Prevent browser caching of uploaded images

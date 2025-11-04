@@ -20,24 +20,38 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   // Hydrate user
-  useEffect(() => {
-    if (token) {
-      const storedUser = localStorage.getItem("user");
-      if (storedUser && storedUser !== "undefined" && storedUser !== "null") {
-        try {
-          const parsedUser = JSON.parse(storedUser);
-          if (parsedUser && (parsedUser._id || parsedUser.id)) {
-            setUser(parsedUser);
-          } else {
-            localStorage.removeItem("user");
+ // Hydrate user
+useEffect(() => {
+  if (token) {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser && storedUser !== "undefined" && storedUser !== "null") {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+
+        if (parsedUser && (parsedUser._id || parsedUser.id)) {
+          // ✅ FIX: Ensure correct backend base URL for profile images
+          const backendBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
+
+          if (
+            parsedUser.profileImageUrl &&
+            parsedUser.profileImageUrl.startsWith("/uploads/")
+          ) {
+            parsedUser.profileImageUrl = `${backendBaseUrl}${parsedUser.profileImageUrl}`;
           }
-        } catch {
+
+          setUser(parsedUser);
+        } else {
           localStorage.removeItem("user");
         }
+      } catch {
+        localStorage.removeItem("user");
       }
     }
-    setLoading(false);
-  }, [token]);
+  }
+  setLoading(false);
+}, [token]);
+
+
 
   // Auto logout if token expired
   useEffect(() => {
@@ -56,6 +70,8 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     const res = await API.post("/auth/login", { email, password });
     localStorage.setItem("token", res.data.token);
+    localStorage.setItem("user", JSON.stringify(user));
+
     localStorage.setItem("user", JSON.stringify(res.data.user));
     setToken(res.data.token);
     setUser(res.data.user);

@@ -33,7 +33,7 @@ function App() {
   const location = useLocation();
 
   // Hide Navbar/Footer on specific routes
-  const pathsWithoutNavbar = new Set(['/login', '/signup']);
+  const pathsWithoutNavbar = new Set(['/login', '/signup', '/chat']);
   const pathsWithoutFooter = new Set(['/login', '/signup', '/chat']);
 
   const normalizedPathname = location.pathname.endsWith('/')
