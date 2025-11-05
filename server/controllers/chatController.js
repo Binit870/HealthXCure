@@ -4,6 +4,7 @@ import PDFParser from "pdf2json";
 import mammoth from "mammoth";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import dotenv from "dotenv";
+import Chat from "../models/Chat.js"; // ✅ NEW — Chat model for storing messages
 dotenv.config();
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
@@ -11,14 +12,14 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 // 🧠 Chat with AI (text input)
 export const chatWithAI = async (req, res) => {
   try {
-    const { message } = req.body;
+    const { message, userId } = req.body; // ✅ include userId for saving history
     if (!message) {
       return res.status(400).json({ error: "Message is required" });
     }
 
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-   const prompt = `
+    const prompt = `
 You are **Cura**, a friendly and knowledgeable AI Health Assistant.
 
 🧠 **Tone**: warm, conversational, and easy to understand — like a caring health coach.  
@@ -52,9 +53,18 @@ ${message}
 Now write a friendly, natural-sounding reply:
 `;
 
-
     const result = await model.generateContent(prompt);
     const reply = result.response.text().trim();
+
+    // ✅ Save chat to MongoDB
+    if (userId) {
+      let chat = await Chat.findOne({ userId });
+      if (!chat) chat = new Chat({ userId, messages: [] });
+
+      chat.messages.push({ sender: "user", text: message });
+      chat.messages.push({ sender: "bot", text: reply });
+      await chat.save();
+    }
 
     res.json({ reply });
   } catch (error) {
@@ -98,7 +108,11 @@ export const uploadFileToAI = async (req, res) => {
     }
 
     // 📄 Handle Word Docs (.docx)
-    else if (ext === ".docx" || mimeType === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+    else if (
+      ext === ".docx" ||
+      mimeType ===
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    ) {
       extractedText = await extractTextFromDocx(filePath);
     }
 
@@ -160,7 +174,6 @@ ${extractedText}
 Now write a clear and helpful summary:
 `;
 
-
       const result = await model.generateContent(prompt);
       fs.unlinkSync(filePath);
       return res.json({ reply: result.response.text().trim() });
@@ -171,5 +184,59 @@ Now write a clear and helpful summary:
   } catch (error) {
     console.error("File Upload Error:", error);
     res.status(500).json({ error: "Failed to process file" });
+  }
+};
+
+// 🧾 NEW — Fetch Chat History
+export const getChatHistory = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    console.log("📥 Fetching chat history for user:", userId);
+
+    if (!userId) {
+      return res.status(400).json({ error: "User ID is required" });
+    }
+
+    const chat = await Chat.findOne({ userId });
+
+    if (!chat) {
+      console.log("🟡 No chat found for this user");
+      return res.json({ messages: [] });
+    }
+
+    console.log("✅ Chat found:", chat.messages.length, "messages");
+    res.json({ messages: chat.messages });
+  } catch (error) {
+    console.error("❌ Fetch History Error:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
+export const deleteSingleMessage = async (req, res) => {
+  try {
+    const { userId, messageId } = req.params;
+    const chat = await Chat.findOne({ userId });
+    if (!chat) return res.status(404).json({ message: "Chat not found" });
+
+    chat.messages = chat.messages.filter((msg) => msg._id.toString() !== messageId);
+    await chat.save();
+
+    res.status(200).json({ message: "Message deleted successfully" });
+  } catch (err) {
+    console.error("Error deleting message:", err);
+    res.status(500).json({ message: "Failed to delete message" });
+  }
+};
+
+
+
+// ❌ NEW — Delete Chat History
+export const deleteChatHistory = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    await Chat.findOneAndDelete({ userId });
+    res.json({ message: "Chat history deleted successfully" });
+  } catch (error) {
+    console.error("Delete History Error:", error);
+    res.status(500).json({ error: "Failed to delete chat history" });
   }
 };

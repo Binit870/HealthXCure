@@ -23,7 +23,7 @@ const DietPlanner = () => {
     weight: "",
     symptoms: "",
     diseases: "",
-    report: null,
+    
   });
 
   const [plan, setPlan] = useState(null);

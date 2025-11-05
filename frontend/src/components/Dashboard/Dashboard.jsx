@@ -1,126 +1,116 @@
 import React, { useState, useEffect } from "react";
-import { FaUtensils, FaTired, FaFileAlt } from "react-icons/fa";
+import { FaUtensils, FaTired, FaFileAlt, FaPlus, FaHeartbeat } from "react-icons/fa";
 import { useAuth } from "../../context/AuthContext";
 import API from "../../utils/Api";
-
-// Import the new KeyMetricsSection
-import KeyMetricsSection from "./KeyMetricsSection"; 
 import UserProfileSection from "./UserProfileSection";
 import HistorySection from "./HistorySection";
 import NotificationSection from "./NotificationSection";
-
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 const Dashboard = () => {
   const { user, token, updateUser, loading } = useAuth();
+  const navigate = useNavigate();
 
   const [dietHistory, setDietHistory] = useState([]);
   const [symptomHistory, setSymptomHistory] = useState([]);
   const [reportHistory, setReportHistory] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [isEditingProfileImage, setIsEditingProfileImage] = useState(false);
+  const [profileImageUrl, setProfileImageUrl] = useState(user?.profileImageUrl || "");
 
-  const [profileImageUrl, setProfileImageUrl] = useState(() => {
-    return user?.profileImageUrl || "";
-  });
-
+  // ✅ FETCH USER HISTORY
   useEffect(() => {
     const fetchHistory = async () => {
       if (!token || !user) return;
       try {
-        const dietRes = await API.get("/diet/history", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setDietHistory(dietRes.data.data || []);
+        const [dietRes, symptomRes, reportRes] = await Promise.all([
+          API.get("/diet/history", { headers: { Authorization: `Bearer ${token}` } }),
+          API.get("/symptoms/history", { headers: { Authorization: `Bearer ${token}` } }),
+          API.get("/reports/history", { headers: { Authorization: `Bearer ${token}` } }),
+        ]);
 
-        const symptomRes = await API.get("/symptom/history", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setSymptomHistory(symptomRes.data.data || []);
-
-        const reportRes = await API.get("/report/history", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setReportHistory(reportRes.data.data || []);
+        setDietHistory(Array.isArray(dietRes.data) ? dietRes.data : []);
+        setSymptomHistory(Array.isArray(symptomRes.data.history) ? symptomRes.data.history : []);
+        setReportHistory(Array.isArray(reportRes.data) ? reportRes.data : []);
       } catch (error) {
-        console.error("Failed to fetch history:", error);
+        toast.error("Failed to fetch history:", error);
       }
     };
 
     fetchHistory();
   }, [user, token]);
 
-  const handleImageUpload = async (event) => {
-    const file = event.target.files?.[0];
+  // ✅ HANDLE PROFILE IMAGE UPLOAD
+  // ✅ HANDLE PROFILE IMAGE UPLOAD
+const handleImageUpload = async (event) => {
+  const file = event.target.files?.[0];
+  if (!user?._id) {
+    toast.error("Please log in again to upload your image.");
+    return;
+  }
+  if (!file) {
+    toast.error("Please select an image to upload.");
+    return;
+  }
 
-    if (!user || !user._id) {
-      alert("You are not authenticated. Please log in again.");
-      return;
-    }
+  setUploading(true);
+  const formData = new FormData();
+  formData.append("profileImage", file);
 
-    if (!file) {
-      alert("Please select an image to upload.");
-      return;
-    }
+  // 1. DEFINED: Start a loading toast notification and capture its ID
+  const loadingToastId = toast.loading("Uploading profile image...");
 
-    setUploading(true);
-    const formData = new FormData();
-    formData.append("profileImage", file);
+  try {
+    const res = await API.post(`/user/${user._id}/profile-image`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    const updatedUser = res.data.user;
 
-    try {
-      const response = await API.post(`/user/${user._id}/profile-image`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+    if (updatedUser.profileImageUrl) {
+      // The server is returning the full absolute URL, which is correct.
+      setProfileImageUrl(updatedUser.profileImageUrl);
+      updateUser({ ...updatedUser });
+      // localStorage.setItem("user", JSON.stringify(updatedUser)); // updateAuth should handle this
 
-      const updatedUser = response.data.user;
+      // 2. USED: Success toast notification replaces the loading toast
+      toast.success("Profile image updated successfully!", { id: loadingToastId });
+    } else {
+      // 3. USED: Error toast if the URL is missing
+      toast.error("Upload successful, but image URL is missing.", { id: loadingToastId });
+    }
+    setIsEditingProfileImage(false);
+  } catch (err) {
+    console.error("❌ Image upload failed:", err);
+    // 4. USED: Error toast on API failure
+    toast.error("Failed to upload image. Please try again.", { id: loadingToastId });
+  } finally {
+    setUploading(false);
+  }
+};
 
-      if (updatedUser.profileImageUrl) {
-        setProfileImageUrl(updatedUser.profileImageUrl);
-      }
-
-      if (updateUser) updateUser({ ...updatedUser });
-      localStorage.setItem("user", JSON.stringify(updatedUser));
-      setIsEditingProfileImage(false);
-    } catch (error) {
-      console.error("❌ Image upload failed:", error);
-      alert("Failed to upload image. Please try again.");
-    } finally {
-      setUploading(false);
-    }
-  };
-
-  // --- Light Theme Loading State ---
-  if (loading) {
+  // ✅ LOADING + NOT LOGGED IN STATES
+  if (loading)
     return (
-      <div className="pt-20 flex flex-col items-center justify-center min-h-screen text-center bg-mint-50/50 text-teal-700">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-teal-500 mb-4"></div>
-        <h3 className="text-4xl font-extrabold text-teal-700">
-          Loading your HealthCure Dashboard...
-        </h3>
-        <p className="text-gray-600">Please wait while we fetch your personalized data.</p>
+      <div className="pt-20 flex flex-col items-center justify-center min-h-screen text-center bg-gradient-to-b from-mint-50 to-indigo-50 text-teal-700">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-teal-500 mb-4"></div>
+        <h3 className="text-3xl font-extrabold">Loading your HealthCure Dashboard...</h3>
+        <p className="text-gray-500">Fetching your wellness insights...</p>
       </div>
     );
-  }
 
-  // --- Light Theme Not Logged In State ---
-  if (!user) {
+  if (!user)
     return (
-      <div className="pt-20 flex flex-col items-center justify-center min-h-screen text-center bg-mint-50/50 text-teal-700">
-        <h3 className="text-4xl font-extrabold text-teal-700">
-          You must be logged in to view the dashboard
-        </h3>
+      <div className="pt-20 flex flex-col items-center justify-center min-h-screen text-center bg-gradient-to-b from-mint-50 to-indigo-50 text-teal-700">
+        <h3 className="text-3xl font-extrabold">You must be logged in to view your dashboard</h3>
       </div>
     );
-  }
 
-  // --- Dashboard Main View ---
+  // ✅ DASHBOARD MAIN VIEW
   return (
     <section
       id="dashboard"
-      className="relative pt-20 min-h-screen px-4 md:px-10 lg:px-20 mb-20 text-center text-gray-800 overflow-hidden"
-      style={{
-        background: "linear-gradient(180deg, #F0FFF9 0%, #F5F7FF 100%)",
-      }}
+      className="relative pt-20 min-h-screen px-4 md:px-10 lg:px-20 mb-20 text-gray-800 overflow-hidden"
+      style={{ background: "linear-gradient(180deg, #F0FFF9 0%, #F5F7FF 100%)" }}
     >
       {/* Background glow */}
       <div className="absolute inset-0 -z-10">
@@ -129,7 +119,7 @@ const Dashboard = () => {
       </div>
 
       <div className="max-w-7xl mx-auto pt-8 pb-12">
-        {/* TOP ROW: Profile + Metrics */}
+        {/* PROFILE ROW */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           <div className="lg:col-span-1">
             <UserProfileSection
@@ -141,34 +131,49 @@ const Dashboard = () => {
               profileImageUrl={profileImageUrl}
             />
           </div>
-
-          <div className="lg:col-span-2 text-left">
-            <KeyMetricsSection user={user} />
-          </div>
         </div>
 
-        <p className="text-gray-600 max-w-2xl mx-auto mb-12 text-md md:text-lg">
-          ✨ Your personalized <span className="text-teal-500 font-semibold">health snapshot</span> and{" "}
-          <span className="text-indigo-500 font-semibold">activity history</span>, guiding your wellness journey.
+        {/* WELCOME MESSAGE */}
+        <p className="text-gray-600 max-w-2xl mx-auto mb-12 text-md md:text-lg text-center">
+          ✨ Welcome back, <span className="text-teal-500 font-semibold">{user.name}</span>!
+          Here’s your <span className="text-indigo-500 font-semibold">health snapshot</span> and progress history.
         </p>
 
+        {/* MAIN GRID */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* LEFT: Notifications + Actions */}
           <div className="lg:col-span-1 space-y-8">
             <NotificationSection user={user} />
 
             <div className="rounded-3xl p-6 shadow-md bg-white border border-teal-100 text-left">
-              <h5 className="text-xl font-bold text-teal-600 mb-3">Quick Actions</h5>
-              <button className="w-full text-center bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 rounded-xl transition-colors duration-200">
-                Log Today's Meal 🍎
+              <h5 className="text-xl font-bold text-teal-600 mb-3 flex items-center gap-2">
+                <FaHeartbeat /> Quick Actions
+              </h5>
+
+              <button
+                onClick={() => navigate("/diet-planner")}
+                className="w-full text-center bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 rounded-xl transition-all duration-200 flex justify-center items-center gap-2"
+              >
+                <FaUtensils /> Log Today’s Meal
               </button>
-              <button className="w-full text-center mt-3 border border-indigo-400 text-indigo-500 hover:bg-indigo-50 font-semibold py-3 rounded-xl transition-colors duration-200">
-                Symptom Checker 🩺
+
+              <button
+                onClick={() => navigate("/symptom-checker")}
+                className="w-full text-center mt-3 border border-indigo-400 text-indigo-500 hover:bg-indigo-50 font-semibold py-3 rounded-xl transition-all duration-200 flex justify-center items-center gap-2"
+              >
+                <FaTired /> Symptom Checker
+              </button>
+
+              <button
+                onClick={() => navigate("/reports")}
+                className="w-full text-center mt-3 border border-pink-300 text-pink-500 hover:bg-pink-50 font-semibold py-3 rounded-xl transition-all duration-200 flex justify-center items-center gap-2"
+              >
+                <FaFileAlt /> Upload Report
               </button>
             </div>
           </div>
 
-          {/* RIGHT: History */}
+          {/* RIGHT: History Sections */}
           <div className="lg:col-span-2 space-y-8">
             <h3 className="text-3xl font-bold text-gray-800 text-left mb-4 border-b-2 border-indigo-200 pb-2">
               Activity and Data History

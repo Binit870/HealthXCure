@@ -11,13 +11,22 @@ const formatUserResponse = (req, user) => {
   const baseUrl = `${req.protocol}://${req.get("host")}`;
   const userObj = user.toObject ? user.toObject() : user;
 
-  if (userObj.profileImageUrl && !userObj.profileImageUrl.startsWith("http")) {
-    userObj.profileImageUrl = `${baseUrl}${userObj.profileImageUrl}`;
+  if (userObj.profileImageUrl) {
+    if (!userObj.profileImageUrl.startsWith("http")) {
+      userObj.profileImageUrl = `${baseUrl}${userObj.profileImageUrl}`;
+    } else if (userObj.profileImageUrl.includes("lh3.googleusercontent")) {
+      // keep Google photo URLs as they are
+      userObj.profileImageUrl = userObj.profileImageUrl;
+    } else if (!userObj.profileImageUrl.startsWith(baseUrl)) {
+      // ensure even absolute URLs are correct
+      userObj.profileImageUrl = `${baseUrl}${userObj.profileImageUrl}`;
+    }
   }
 
   delete userObj.password;
   return userObj;
 };
+
 
 /* -------------------------- GOOGLE LOGIN / SIGNUP -------------------------- */
 export const googleLogin = async (req, res) => {

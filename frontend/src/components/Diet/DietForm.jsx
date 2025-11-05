@@ -79,8 +79,7 @@ const DietForm = ({ formData, setFormData, generatePlan, handleFileChange, loadi
         >
           <option className="bg-gray-900 text-white">Vegetarian</option>
           <option className="bg-gray-900 text-white">Vegan</option>
-          <option className="bg-gray-900 text-white">Keto</option>
-          <option className="bg-gray-900 text-white">Paleo</option>
+          
           <option className="bg-gray-900 text-white">Non-Vegetarian</option>
         </motion.select>
       </div>
@@ -95,7 +94,7 @@ const DietForm = ({ formData, setFormData, generatePlan, handleFileChange, loadi
         >
           <option className="bg-gray-900 text-white">General Health</option>
           <option className="bg-gray-900 text-white">Diabetes</option>
-          <option className="bg-gray-900 text-white">PCOS</option>
+          
           <option className="bg-gray-900 text-white">Heart Health</option>
           <option className="bg-gray-900 text-white">Other</option>
         </select>
@@ -143,16 +142,7 @@ const DietForm = ({ formData, setFormData, generatePlan, handleFileChange, loadi
         className="w-full p-4 bg-gray-800 border border-gray-700 text-white rounded-xl mb-6 focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all resize-y text-sm sm:text-base"
       />
 
-      {/* Report Upload */}
-      <motion.div variants={itemVariants} className="mb-6 relative z-10 w-full">
-        <label className="block mb-2 font-semibold text-white text-sm sm:text-base">Upload Health Report (Optional)</label>
-        <input
-          type="file"
-          accept=".pdf,.png,.jpg,.jpeg"
-          onChange={(e) => handleFileChange(e.target.files[0])}
-          className="w-full text-gray-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-cyan-50/10 file:text-cyan-400 hover:file:bg-cyan-100/20"
-        />
-      </motion.div>
+      
 
       {/* Submit Button */}
       <motion.button
