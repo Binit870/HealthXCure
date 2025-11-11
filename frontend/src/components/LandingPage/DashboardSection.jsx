@@ -9,14 +9,18 @@ import {
 
 const DashboardSection = () => (
   <section
-    id="dashboard"
-    className="scroll-mt-20 py-10 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32 bg-white
-               overflow-hidden border border-gray-200 rounded-3xl shadow-2xl fade-in-on-scroll text-center text-gray-900 mb-16 max-w-screen-2xl mx-auto"
-  >
+  id="dashboard"
+  className="scroll-mt-20 py-10 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32 bg-blue-100
+             overflow-hidden border border-gray-200 rounded-3xl shadow-2xl fade-in-on-scroll 
+             text-center text-gray-900 mb-16 max-w-screen-2xl mx-auto"
+>
+
+    
     <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 flex items-center justify-center gap-4">
-      <FaTachometerAlt className="text-blue-600 text-3xl sm:text-4xl" />
-      Your Personal Health Dashboard
-    </h3>
+  <FaTachometerAlt className="text-blue-600 text-3xl sm:text-4xl" />
+  Your <span className="text-emerald-600">Personal</span> Health <span className="text-emerald-600">Dashboard</span>
+</h3>
+
 
     <p className="text-gray-700 max-w-2xl mx-auto mb-10 text-base sm:text-lg md:text-xl">
       Stay updated with <FaBell className="inline text-yellow-500" /> notifications, manage your{" "}

@@ -3,11 +3,10 @@ import "./LandingPage.css";
 
 import HeroSection from "./HeroSection";
 import ServicesSection from "./ServicesSection";
-import AssistantSection from "./AssistantSection";
 import DashboardSection from "./DashboardSection";
-import CommunitySection from "./CommunitySection";
-import ReportsSection from "./ReportsSection";
+import HealthCure from "./HealthCure";
 import ChatbotLauncher from "./ChatbotLauncher";
+import TransformHealth from "./TransformHealth";
 
 const LandingPage = () => {
   useEffect(() => {
@@ -17,9 +16,7 @@ const LandingPage = () => {
         e.preventDefault();
         const targetElement = document.querySelector(this.getAttribute("href"));
         if (targetElement) {
-          targetElement.scrollIntoView({
-            behavior: "smooth",
-          });
+          targetElement.scrollIntoView({ behavior: "smooth" });
         }
       });
     });
@@ -66,23 +63,28 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <div className="relative bg-white min-h-screen pt-8 text-gray-900">
+    <div
+      className="relative min-h-screen pt-8 text-gray-900 fade-bg"
+      style={{
+        background: "linear-gradient(180deg, #dbeafe 0%, #bfdbfe 100%)",
+      }}
+    >
       <main className="container mx-auto px-4">
         <HeroSection />
         <ServicesSection />
         <DashboardSection />
-        <AssistantSection />
-        <CommunitySection />
-        <ReportsSection />
+        <HealthCure/>
+        <TransformHealth/>
+        
       </main>
 
       {/* Floating Chatbot */}
       <ChatbotLauncher />
 
-      {/* Optional Scroll-to-Top Button */}
+      {/* Scroll-to-Top Button */}
       <button
         id="scrollToTopBtn"
-        className="fixed bottom-6 right-6 bg-gradient-to-r from-teal-600 to-cyan-600 text-white p-3 rounded-full shadow-lg opacity-0 transition-all duration-300 hover:scale-110 hover:shadow-xl"
+        className="fixed bottom-6 right-6 bg-gradient-to-r from-blue-600 to-sky-500 text-white p-3 rounded-full shadow-lg opacity-0 transition-all duration-300 hover:scale-110 hover:shadow-xl"
       >
         ↑
       </button>
