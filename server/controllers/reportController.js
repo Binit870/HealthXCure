@@ -24,15 +24,27 @@ export const analyzeReport = async (req, res) => {
       return res.status(400).json({ error: "Could not extract text from file" });
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+
     const prompt = `
-      You are a medical assistant. A patient uploaded a report.
-      Here is the extracted text:
-      ---
-      ${extractedText}
-      ---
-      Please explain this report in simple language, highlight key points, and suggest next steps.
-    `;
+You are a medical assistant AI.
+
+A user has uploaded a document. Your task is to:
+- First, determine if the content is **health-related** (e.g., medical tests, prescriptions, diagnoses, symptoms, treatments).
+- If it is health-related:
+  - Explain the report in **simple language**.
+  - Highlight **key health insights**.
+  - Suggest **next steps** or the type of doctor to consult.
+- If it is **not health-related**, reply with:
+  "**The report you uploaded does not appear to be health-related. Please upload a medical document for analysis.**"
+
+Here is the extracted text:
+---
+${extractedText}
+---
+Now respond accordingly:
+`;
+
     const result = await model.generateContent(prompt);
     const explanation = result.response.text();
 
@@ -41,7 +53,7 @@ export const analyzeReport = async (req, res) => {
       extractedText,
       explanation,
     });
-        await newReport.save();
+    await newReport.save();
 
     res.json({
       success: true,
@@ -89,6 +101,7 @@ export const getReportsHistory = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch reports history" });
   }
 };
+
 export const deleteReport = async (req, res) => {
   try {
     const { id } = req.params;

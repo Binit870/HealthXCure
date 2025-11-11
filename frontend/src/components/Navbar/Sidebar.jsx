@@ -23,12 +23,12 @@ const Sidebar = ({
       onClick={toggleSidebar}
     />
 
-    {/* Sidebar */}
+    {/* Sidebar Panel */}
     <div
       ref={sidebarRef}
       className={`fixed top-0 left-0 h-full w-64 bg-gray-900 text-white shadow-lg 
-                  transform transition-transform duration-300 z-40 
-                  ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
+        transform transition-transform duration-300 z-40 
+        ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
     >
       <div className="p-6">
         {/* Header */}
@@ -39,54 +39,58 @@ const Sidebar = ({
           </button>
         </div>
 
-        {isLoggedIn ? (
-          <>
+        {/* SearchBar (only for logged-in users on mobile) */}
+        {isLoggedIn && (
+          <div className="md:hidden mb-6">
             <SearchBar
               searchQuery={searchQuery}
               onChange={handleSearchChange}
               onKeyPress={handleKeyPress}
-              className="mb-6"
+              className="w-full bg-white/30 backdrop-blur-sm shadow-inner rounded-2xl h-10 px-4 text-white placeholder-white/70 focus:bg-white/40 transition-colors"
             />
+          </div>
+        )}
 
-            <ul className="space-y-4">
-              {MenuLinks.map(({ to, label, icon: Icon, isLogout }) => (
-                <li key={label}>
-                  {isLogout ? (
-                    <button
-                      onClick={() => {
-                        handleLogout();
-                        handleLinkClick();
-                      }}
-                      className="flex items-center space-x-2 py-2 w-full text-left hover:bg-gray-800 rounded"
-                    >
-                      <Icon /> <span>{label}</span>
-                    </button>
-                  ) : (
-                    <Link
-                      to={to}
-                      className="flex items-center space-x-2 py-2 hover:bg-gray-800 rounded"
-                      onClick={handleLinkClick}
-                    >
-                      <Icon /> <span>{label}</span>
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </>
+        {/* Menu Links or Auth Buttons */}
+        {isLoggedIn ? (
+          <ul className="space-y-4">
+            {MenuLinks.map(({ to, label, icon: Icon, isLogout }) => (
+              <li key={label}>
+                {isLogout ? (
+                  <button
+                    onClick={() => {
+                      handleLogout();
+                      handleLinkClick();
+                    }}
+                    className="flex items-center space-x-2 py-2 w-full text-left hover:bg-gray-800 rounded"
+                  >
+                    <Icon /> <span>{label}</span>
+                  </button>
+                ) : (
+                  <Link
+                    to={to}
+                    className="flex items-center space-x-2 py-2 hover:bg-gray-800 rounded"
+                    onClick={handleLinkClick}
+                  >
+                    <Icon /> <span>{label}</span>
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
         ) : (
           <div className="flex flex-col space-y-4 mt-6">
             <Link
               to="/login"
               onClick={toggleSidebar}
-              className="px-4 py-2 rounded-2xl bg-white/20 text-white text-center"
+              className="px-4 py-2 rounded-2xl bg-white/20 text-white text-center hover:bg-white/30 transition-colors"
             >
               Login
             </Link>
             <Link
               to="/signup"
               onClick={toggleSidebar}
-              className="px-4 py-2 rounded-2xl bg-white/20 text-white text-center"
+              className="px-4 py-2 rounded-2xl bg-white/20 text-white text-center hover:bg-white/30 transition-colors"
             >
               Signup
             </Link>

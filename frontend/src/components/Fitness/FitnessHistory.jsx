@@ -1,4 +1,3 @@
-// src/components/FitnessHistory.jsx
 import React from "react";
 import { FaTrashAlt } from "react-icons/fa"; // 🗑️ Icon for delete
 import API from "../../utils/Api";
@@ -19,24 +18,26 @@ const FitnessHistory = ({ history, fetchHistory }) => {
   };
 
   return (
-    <div className="mt-6">
-      <h3 className="text-lg font-bold mb-2 text-cyan-300">📊 Your Fitness History</h3>
-      <ul className="space-y-2 max-h-48 overflow-y-auto">
+    <div className="mt-8 pt-4 border-t border-gray-200">
+      <h3 className="text-lg font-bold mb-3 text-teal-600">📊 Your Fitness History</h3>
+      {/* History List Container */}
+      <ul className="space-y-3 max-h-56 overflow-y-auto pr-2"> 
         {history.map((entry, idx) => (
           <li
             key={idx}
-            className="bg-gray-800 p-3 rounded-lg text-gray-300 text-sm flex justify-between items-center"
+            // Simple white/teal list item styling
+            className="bg-white p-3 rounded-xl border border-gray-200 text-gray-700 text-sm flex justify-between items-center shadow-sm hover:bg-teal-50 transition-colors"
           >
-            <span>
-              BMI: {entry.bmi} ({entry.category})
+            <span className="font-medium">
+              BMI: <span className="text-teal-600 font-bold">{entry.bmi}</span> ({entry.category})
             </span>
-            <div className="flex items-center space-x-2">
-              <span className="text-gray-500">
+            <div className="flex items-center space-x-3">
+              <span className="text-gray-500 text-xs">
                 {new Date(entry.createdAt).toLocaleDateString()}
               </span>
               <button
                 onClick={() => handleDelete(entry._id)}
-                className="text-red-400 hover:text-red-500 transition-colors"
+                className="text-red-500 hover:text-red-700 transition-colors"
                 aria-label="Delete entry"
               >
                 <FaTrashAlt />

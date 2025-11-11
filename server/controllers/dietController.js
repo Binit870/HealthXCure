@@ -84,7 +84,7 @@ Instructions:
 - Output in **markdown format** with headings and bullet points.
 `;
 
-    const textModel = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const textModel = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
     const response = await textModel.generateContent(prompt);
     const plan = typeof response?.response?.text === "function" ? response.response.text() : (response?.response?.content || "");
 

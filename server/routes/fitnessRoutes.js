@@ -1,4 +1,3 @@
-// src/routes/fitnessRoutes.js
 import express from "express";
 import { generateFitnessPlan, saveFitnessData, getFitnessHistory, deleteFitnessEntry } from "../controllers/fitnessController.js";
 

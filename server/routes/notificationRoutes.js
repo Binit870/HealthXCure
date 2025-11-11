@@ -3,17 +3,38 @@ import { protect } from "../middleware/authMiddleware.js";
 import Notification from "../models/Notification.js";
 import User from "../models/User.js";
 import { healthMessages } from "../utils/healthMessages.js";
-import { getNotifications, markAsRead, deleteNotification } from "../controllers/notificationController.js";
+import { 
+  getNotifications, 
+  markAsRead, 
+  deleteNotification, 
+  markAllAsRead,
+  deleteAll, 
+  deleteRead, 
+  deleteUnread 
+} from "../controllers/notificationController.js"; 
 
 const router = express.Router();
 
 // ===== User-specific notification routes =====
 router.get("/", protect, getNotifications);
-router.put("/:id/read", protect, markAsRead);
-router.delete("/:id", protect, deleteNotification);
 
-// ===== Random health notification route =====
-// This is called by cron-job.org or manually for testing
+// Read/Mark routes
+router.put("/:id/read", protect, markAsRead);
+router.put("/read-all", protect, markAllAsRead); 
+
+// ------------------------------------------------------------------
+// ✅ FIX: Place specific routes (bulk operations) BEFORE dynamic routes
+// ------------------------------------------------------------------
+
+// BULK Delete Routes (Specific)
+router.delete("/all", protect, deleteAll);       // Matches /notifications/all
+router.delete("/read", protect, deleteRead);     // Matches /notifications/read
+router.delete("/unread", protect, deleteUnread); // Matches /notifications/unread
+
+// SINGLE Delete Route (Dynamic)
+router.delete("/:id", protect, deleteNotification); // Matches /notifications/60d...
+
+// ===== Random health notification route (kept for completeness) =====
 router.post("/sendRandom", async (req, res) => {
   try {
     const randomMessage = healthMessages[Math.floor(Math.random() * healthMessages.length)];
@@ -23,10 +44,6 @@ router.post("/sendRandom", async (req, res) => {
     for (const user of users) {
       const notification = new Notification({ userId: user._id, message: randomMessage });
       await notification.save();
-
-      // If you want real-time push with socket.io, you'll need io instance
-      // Example: io.to(user._id.toString()).emit("newNotification", notification);
-
       notifications.push(notification);
     }
 

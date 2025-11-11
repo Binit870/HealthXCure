@@ -97,7 +97,7 @@ const Services = () => {
       description:
         "Securely store and access all your medical reports, lab results, and prescriptions in one place. Easily share them with your doctors for seamless consultations and a comprehensive health overview.",
       color: "text-red-400",
-      route: "/my-reports",
+      route: "/reports",
     },
     {
       id: 8,
@@ -106,7 +106,7 @@ const Services = () => {
       description:
         "Connect with our support team for any queries or assistance related to our services and platform.",
       color: "text-teal-400",
-      route: "/chat-assistance",
+      route: "/chat",
     },
     {
       id: 9,

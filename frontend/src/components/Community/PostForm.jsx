@@ -37,13 +37,14 @@ const PostForm = ({ socket, user, token }) => {
   };
 
   return (
-    <div className="mb-10 p-4 sm:p-6 rounded-3xl backdrop-blur-xl bg-white/10 shadow-xl border border-white/20 w-full max-w-3xl mx-auto">
-      <div className="flex flex-col space-y-4">
+    <div className="mb-10 p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-white to-teal-50 shadow-lg border border-gray-200 w-full max-w-3xl mx-auto">
+      <div className="flex flex-col space-y-5">
         {/* Category select */}
+        <label className="text-sm font-medium text-gray-700">Category</label>
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="w-full p-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm sm:text-base"
+          className="w-full p-2 rounded-lg bg-white text-gray-800 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-400 text-sm sm:text-base"
         >
           <option value="general">General</option>
           <option value="nutrition">Nutrition</option>
@@ -52,13 +53,14 @@ const PostForm = ({ socket, user, token }) => {
         </select>
 
         {/* Textarea with embedded icon */}
+        <label className="text-sm font-medium text-gray-700">Your Thought</label>
         <div className="relative">
           <textarea
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="What's on your mind? Press Enter to send"
-            className="w-full p-4 pr-12 rounded-lg bg-gray-700 text-white placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none transition-all duration-300 text-sm sm:text-base"
+            className="w-full p-4 pr-12 rounded-lg bg-white text-gray-800 placeholder-gray-400 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-400 resize-none transition-all duration-300 text-sm sm:text-base"
             rows="3"
             disabled={isPosting}
           ></textarea>
@@ -66,7 +68,7 @@ const PostForm = ({ socket, user, token }) => {
             type="button"
             onClick={handlePostSubmit}
             disabled={isPosting || !newComment.trim()}
-            className="absolute bottom-3 right-3 text-blue-400 hover:text-blue-500 disabled:text-gray-500"
+            className="absolute bottom-3 right-3 text-teal-500 hover:text-teal-600 disabled:text-gray-400"
             title="Send"
           >
             {isPosting ? (
