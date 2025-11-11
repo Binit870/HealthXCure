@@ -8,7 +8,6 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Dashboard from './components/Dashboard/Dashboard';
 import Reports from './components/Reports/Reports';
 import NotFound from './components/NotFound';
-import Services from './components/Services';
 import DietPlanner from './components/Diet/DietPlanner';
 
 import SymptomChecker from './components/SymptomChecker/SymptomChecker';
@@ -56,7 +55,6 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/services" element={<Services />} />
           <Route path="/about" element={<About />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/terms" element={<TermsAndCondition />} />

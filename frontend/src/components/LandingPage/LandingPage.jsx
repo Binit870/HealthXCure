@@ -3,39 +3,38 @@ import "./LandingPage.css";
 
 import HeroSection from "./HeroSection";
 import ServicesSection from "./ServicesSection";
-import AssistantSection from "./AssistantSection";
 import DashboardSection from "./DashboardSection";
-import CommunitySection from "./CommunitySection";
-import ReportsSection from "./ReportsSection";
+import HealthCure from "./HealthCure";
 import ChatbotLauncher from "./ChatbotLauncher";
-
+import TransformHealth from "./TransformHealth";
 
 const LandingPage = () => {
   useEffect(() => {
     // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
         e.preventDefault();
-        const targetElement = document.querySelector(this.getAttribute('href'));
+        const targetElement = document.querySelector(this.getAttribute("href"));
         if (targetElement) {
-          targetElement.scrollIntoView({
-            behavior: 'smooth'
-          });
+          targetElement.scrollIntoView({ behavior: "smooth" });
         }
       });
     });
 
-    // Intersection Observer for fade-in animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
+    // Fade-in animation on scroll
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-    document.querySelectorAll('.fade-in-on-scroll').forEach(section => {
+    document.querySelectorAll(".fade-in-on-scroll").forEach((section) => {
       observer.observe(section);
     });
 
@@ -64,20 +63,32 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <div className="relative bg-gradient-to-br from-cyan-900 to-teal-900 min-h-screen pt-8 text-white">
-  <main className="container mx-auto px-4">
-    <HeroSection />
-    <ServicesSection />
-    <DashboardSection />
-    <AssistantSection />
-    <CommunitySection />
-    <ReportsSection />
-  </main>
+    <div
+      className="relative min-h-screen pt-8 text-gray-900 fade-bg"
+      style={{
+        background: "linear-gradient(180deg, #dbeafe 0%, #bfdbfe 100%)",
+      }}
+    >
+      <main className="container mx-auto px-4">
+        <HeroSection />
+        <ServicesSection />
+        <DashboardSection />
+        <HealthCure/>
+        <TransformHealth/>
+        
+      </main>
 
-  {/* ✅ Floating chatbot icon */}
-  <ChatbotLauncher />
-</div>
+      {/* Floating Chatbot */}
+      <ChatbotLauncher />
 
+      {/* Scroll-to-Top Button */}
+      <button
+        id="scrollToTopBtn"
+        className="fixed bottom-6 right-6 bg-gradient-to-r from-blue-600 to-sky-500 text-white p-3 rounded-full shadow-lg opacity-0 transition-all duration-300 hover:scale-110 hover:shadow-xl"
+      >
+        ↑
+      </button>
+    </div>
   );
 };
 
