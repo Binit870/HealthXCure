@@ -1,5 +1,5 @@
-import React from "react";
-import { HelpCircle } from "lucide-react";
+import React, { useState } from "react";
+import { HelpCircle, ChevronDown, ChevronUp } from "lucide-react";
 
 const faqs = [
   {
@@ -35,39 +35,58 @@ const faqs = [
 ];
 
 const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggleFAQ = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cyan-900 via-cyan-800 to-cyan-950 text-gray-200 px-6 py-12">
-      {/* Heading with Icon */}
+    <div className="min-h-screen bg-white text-gray-800 px-6 py-16">
+      {/* Heading */}
       <div className="flex items-center justify-center gap-3 mb-14">
-        <HelpCircle className="w-10 h-10 text-teal-400" />
+        <HelpCircle className="w-10 h-10 text-teal-500" />
         <h1
-          className="text-5xl md:text-6xl font-extrabold text-center 
-                     bg-gradient-to-r from-cyan-400 via-teal-400 to-green-400 
+          className="text-4xl md:text-5xl font-extrabold text-center 
+                     bg-gradient-to-r from-teal-500 to-cyan-600 
                      bg-clip-text text-transparent tracking-tight"
         >
           Frequently Asked Questions
         </h1>
       </div>
 
-      {/* Card Container */}
-      <div className="max-w-4xl mx-auto space-y-8">
+      {/* FAQ Container */}
+      <div className="max-w-4xl mx-auto space-y-6">
         {faqs.map((faq, index) => (
-          <section
+          <div
             key={index}
-            className="relative p-6 bg-gray-800 rounded-2xl border border-gray-700 
-                       shadow-lg shadow-cyan-600 transition-transform transform 
-                       hover:-translate-y-1 hover:shadow-cyan-400 overflow-hidden"
+            className="bg-gray-50 border border-gray-200 rounded-2xl shadow-sm hover:shadow-md 
+                       transition duration-200"
           >
-            {/* Glow */}
-            <div className="absolute inset-0 rounded-2xl 
-                            bg-gradient-to-r from-cyan-400 to-teal-400 
-                            opacity-0 hover:opacity-20 blur-xl transition duration-500 pointer-events-none"></div>
+            {/* Question Header */}
+            <button
+              onClick={() => toggleFAQ(index)}
+              className="w-full flex justify-between items-center p-5 text-left"
+            >
+              <h2 className="text-lg md:text-xl font-semibold text-teal-700">
+                {faq.question}
+              </h2>
+              {openIndex === index ? (
+                <ChevronUp className="w-6 h-6 text-teal-600" />
+              ) : (
+                <ChevronDown className="w-6 h-6 text-teal-600" />
+              )}
+            </button>
 
-            <h2 className="text-2xl font-semibold text-cyan-300 mb-3">
-              {faq.question}
-            </h2>
-            <p className="text-gray-300 text-lg leading-relaxed">{faq.answer}</p>
-          </section>
+            {/* Answer Section (Dropdown) */}
+            <div
+              className={`transition-all duration-300 overflow-hidden ${
+                openIndex === index ? "max-h-60 p-5 pt-0" : "max-h-0"
+              }`}
+            >
+              <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+            </div>
+          </div>
         ))}
       </div>
     </div>
