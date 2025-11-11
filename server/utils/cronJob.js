@@ -4,16 +4,19 @@ import User from "../models/User.js";
 import { healthMessages } from "./healthMessages.js";
 
 const startCronJob = (io) => {
-
+  // Runs every day at 9:00 AM IST
   cron.schedule(
-    "30 3 * * *", // 3:30 AM UTC = 9:00 AM IST
+    "0 9 * * *",
     async () => {
       try {
         const now = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
         console.log(`⏰ Running health notification job at ${now} (IST)`);
 
+        // Pick a random message
         const randomMessage =
           healthMessages[Math.floor(Math.random() * healthMessages.length)];
+
+        // Get all users
         const users = await User.find({});
 
         for (const user of users) {
@@ -23,6 +26,7 @@ const startCronJob = (io) => {
           });
           await notification.save();
 
+          // Emit notification to the user's socket room
           io.to(user._id.toString()).emit("newNotification", notification);
         }
 
@@ -33,7 +37,7 @@ const startCronJob = (io) => {
     },
     {
       scheduled: true,
-      timezone: "UTC", // Render uses UTC only
+      timezone: "Asia/Kolkata", // Run at 9:00 AM IST
     }
   );
 };

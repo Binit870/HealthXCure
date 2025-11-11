@@ -16,7 +16,7 @@ const MenuLinks = [
   
   { to: "/find-doctors", label: "Find Doctor", icon: FaUserMd },
   { to: "/symptom-checker", label: "Diagnosis", icon: FaStethoscope },
-  { to: "/reports", label: "Reports", icon: FaFileAlt },
+  { to: "/reports", label: "Report Analyzer", icon: FaFileAlt },
   {to: "/chat", label: "Chat With Assistant", icon: FaFileAlt},
  
  

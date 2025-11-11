@@ -20,18 +20,19 @@ import fitnessRoutes from "./routes/fitnessRoutes.js";
 import symptomRoutes from "./routes/symptomRoutes.js";
 
 dotenv.config();
+
 const __dirname = path.resolve();
 const app = express();
 const server = createServer(app);
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "http://localhost:5174",
-  
+  "http://localhost:5174",  
   "https://healthxcure.netlify.app",
 ];
 
 app.use(express.json());
+
 app.use(cors({
   origin: allowedOrigins,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -48,8 +49,6 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads"), {
     res.setHeader("Surrogate-Control", "no-store");
   }
 }));
-
-
 
 const io = new Server(server, {
   cors: { origin: allowedOrigins, methods: ["GET", "POST"], credentials: true },
