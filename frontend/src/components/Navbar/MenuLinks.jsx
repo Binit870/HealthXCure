@@ -3,26 +3,22 @@ import {
   FaChartBar, 
   FaUserMd, 
   FaStethoscope, 
-  FaFileAlt, 
-  FaUtensils, 
-  FaDumbbell, 
-  FaSignOutAlt, 
-  
+  FaFileMedicalAlt, 
+  FaComments, 
+  FaAppleAlt, 
+  FaRunning, 
+  FaSignOutAlt 
 } from "react-icons/fa";
 
 const MenuLinks = [
   { to: "/", label: "Home", icon: FaHome },
   { to: "/dashboard", label: "Dashboard", icon: FaChartBar },
-  
-  { to: "/find-doctors", label: "Find Doctor", icon: FaUserMd },
-  { to: "/symptom-checker", label: "Diagnosis", icon: FaStethoscope },
-  { to: "/reports", label: "Report Analyzer", icon: FaFileAlt },
-  {to: "/chat", label: "Chat With Assistant", icon: FaFileAlt},
- 
- 
-  { to: "/diet-planner", label: "Diet Planner", icon: FaUtensils },
-  { to: "/fitness", label: "Fitness Planner", icon: FaDumbbell },
-
+  { to: "/find-doctors", label: "Find Doctors", icon: FaUserMd },
+  { to: "/symptom-checker", label: "Symptica", icon: FaStethoscope },
+  { to: "/reports", label: "Health Reports", icon: FaFileMedicalAlt }, // ✅ Better icon + name
+  { to: "/chat", label: "Chat with Cura", icon: FaComments },
+  { to: "/diet-planner", label: "Diet Buddy", icon: FaAppleAlt }, // 🍎 More fitting icon
+  { to: "/fitness", label: "Fitness Tracker", icon: FaRunning }, // 🏃‍♂️ Better name + icon
   { to: "/logout", label: "Logout", icon: FaSignOutAlt, isLogout: true }
 ];
 

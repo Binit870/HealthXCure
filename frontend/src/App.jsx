@@ -9,7 +9,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Reports from './components/Reports/Reports';
 import NotFound from './components/NotFound';
 import DietPlanner from './components/Diet/DietPlanner';
-
+import ChatbotLauncher from './pages/ChatWithAssistant/ChatbotLauncher';
 import SymptomChecker from './components/SymptomChecker/SymptomChecker';
 import FitnessPlanner from './components/Fitness/FitnessPlanner';
 import ContactSection from './components/LandingPage/ContactSection';
@@ -146,7 +146,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
-
+{normalizedPathname.toLowerCase() !== "/chat" && <ChatbotLauncher />}
       {!hideFooter && <Footer />}
     </div>
   );

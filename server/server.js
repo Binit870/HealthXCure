@@ -10,7 +10,7 @@ import startCronJob from "./utils/cronJob.js";
 
 import notificationRoutes from "./routes/notificationRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
-import aiRoutes from "./routes/chatRoutes.js";
+import chatRoutes from "./routes/chatRoutes.js";
 import doctorRoutes from "./routes/doctorRoutes.js";
 import dietRoutes from "./routes/dietRoutes.js";
 import communityRoutes from "./routes/communityRoutes.js";
@@ -65,7 +65,7 @@ io.on("connection", (socket) => {
 });
 
 app.use("/api/auth", authRoutes);
-app.use("/api/ai", aiRoutes);
+app.use("/api/ai", chatRoutes);
 app.use("/api/symptoms", symptomRoutes);
 app.use("/api", doctorRoutes);
 app.use("/api/diet", dietRoutes);

@@ -1,83 +1,88 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Shield, Clock, Award } from "lucide-react";
+import { FaArrowRight } from "react-icons/fa";
 
 const WhyChoose = () => {
   const features = [
     {
-      icon: <Shield size={40} />,
+      icon: <Shield size={36} />,
       title: "Secure & Private",
       desc: "Your personal health information is fully encrypted and handled with the highest privacy standards.",
-      shadow: "shadow-[0_8px_25px_0_rgba(59,130,246,0.3)]", // Blue
-      gradient: "from-sky-400 to-blue-600",
-      glow: "from-sky-300/40 to-blue-500/40",
+      color: "cyan",
+      bgLight: "bg-cyan-100",
+      textColor: "text-cyan-600",
+      border: "border-cyan-400",
+      gradient: "from-cyan-600 to-cyan-700",
     },
     {
-      icon: <Clock size={40} />,
+      icon: <Clock size={36} />,
       title: "24/7 Availability",
       desc: "Access your health dashboard, reports, and insights anytime — anywhere in the world.",
-      shadow: "shadow-[0_8px_25px_0_rgba(34,197,94,0.3)]", // Green
-      gradient: "from-emerald-400 to-green-600",
-      glow: "from-emerald-300/40 to-green-500/40",
+      color: "emerald",
+      bgLight: "bg-emerald-100",
+      textColor: "text-emerald-600",
+      border: "border-emerald-400",
+      gradient: "from-emerald-600 to-emerald-700",
     },
     {
-      icon: <Award size={40} />,
+      icon: <Award size={36} />,
       title: "Certified Experts",
       desc: "We connect you with verified healthcare professionals and trusted wellness partners.",
-      shadow: "shadow-[0_8px_25px_0_rgba(249,115,22,0.3)]", // Orange
-      gradient: "from-orange-400 to-amber-600",
-      glow: "from-orange-300/40 to-amber-500/40",
+      color: "orange",
+      bgLight: "bg-orange-100",
+      textColor: "text-orange-600",
+      border: "border-orange-400",
+      gradient: "from-orange-600 to-amber-700",
     },
   ];
 
   return (
-    <section className="py-20 bg-[#dbeeff] text-[#0b2545] text-center relative overflow-hidden">
-      {/* Clean Heading Section */}
-      <div className="relative mb-14">
-        <h2 className="text-4xl md:text-5xl font-extrabold tracking-wide text-[#0b3d91]">
-          Why Choose <span className="text-sky-600">HealthXCure?</span>
-        </h2>
+    <section
+      id="why-choose"
+      className="py-16 rounded-3xl shadow-2xl p-8 mb-16 
+                 relative overflow-hidden max-w-screen-2xl mx-auto bg-teal-100"
+    >
+      <div className="relative z-10">
+        {/* Heading */}
+        <h3 className="text-4xl font-extrabold text-gray-900 text-center mb-12">
+          Why <span className="text-teal-700 text-shadow-md">Choose Us</span> ?
+        </h3>
 
-        <p className="text-[#406080] text-lg mt-6 max-w-2xl mx-auto leading-relaxed">
-          HealthXCure is designed to make healthcare more intelligent, secure, and
-          accessible — helping you manage your well-being through innovation and trust.
-        </p>
-      </div>
-
-      {/* Feature Cards */}
-      <div className="grid gap-10 md:grid-cols-3 max-w-6xl mx-auto px-6">
-        {features.map((item, i) => (
-          <div
-            key={i}
-            className={`group relative bg-white rounded-2xl p-8 border border-sky-100 
-                        transition-all duration-300 hover:-translate-y-2 hover:bg-sky-50 ${item.shadow}`}
-          >
-            {/* Glow behind cards */}
+        {/* Feature Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {features.map((feature, i) => (
             <div
-              className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${item.glow} 
-                          opacity-40 blur-2xl transition-all duration-700`}
-            ></div>
-
-            {/* Icon */}
-            <div
-              className={`relative flex items-center justify-center w-20 h-20 mx-auto mb-6 
-                          rounded-full bg-gradient-to-tr ${item.gradient} text-white 
-                          shadow-lg transition-transform duration-700 
-                          group-hover:scale-110`}
+              key={i}
+              className={`card rounded-3xl p-8 shadow-md flex flex-col items-center text-center 
+                          bg-gray-50 ${feature.border} border text-gray-900 
+                          transition transform hover:scale-105 hover:shadow-xl`}
             >
-              {item.icon}
+              <div
+                className={`w-16 h-16 ${feature.bgLight} rounded-full flex items-center justify-center 
+                            mb-4 text-3xl ${feature.textColor}`}
+              >
+                {feature.icon}
+              </div>
+              <h4 className="text-2xl font-semibold mb-2">{feature.title}</h4>
+              <p className="text-gray-600">{feature.desc}</p>
+
+              
             </div>
+          ))}
+        </div>
 
-            {/* Title */}
-            <h3 className="text-xl font-semibold mb-3 text-[#0b3d91] relative z-10">
-              {item.title}
-            </h3>
-
-            {/* Description */}
-            <p className="text-[#406080] text-base relative z-10 leading-relaxed">
-              {item.desc}
-            </p>
-          </div>
-        ))}
+        {/* CTA Button */}
+        <div className="mt-12 text-center">
+          <Link
+            to="/about"
+            className="inline-flex items-center gap-2 px-6 py-3 text-lg font-semibold text-white 
+                       bg-emerald-700 rounded-full shadow-md 
+                       hover:scale-105 hover:shadow-xl transition"
+          >
+            Explore More <FaArrowRight className="text-white text-lg" />
+          </Link>
+        </div>
       </div>
     </section>
   );

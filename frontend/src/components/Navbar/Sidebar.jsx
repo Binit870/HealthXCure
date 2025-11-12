@@ -26,7 +26,7 @@ const Sidebar = ({
     {/* Sidebar Panel */}
     <div
       ref={sidebarRef}
-      className={`fixed top-0 left-0 h-full w-64 bg-gray-900 text-white shadow-lg 
+      className={`fixed top-0 left-0 h-full w-64 bg-teal-900 text-white shadow-lg 
         transform transition-transform duration-300 z-40 
         ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
     >
@@ -64,14 +64,14 @@ const Sidebar = ({
                         handleLogout();
                         handleLinkClick();
                       }}
-                      className="flex items-center space-x-2 py-2 w-full text-left hover:bg-gray-800 rounded"
+                      className="flex items-center space-x-2 py-2 w-full text-left hover:text-teal-400 rounded"
                     >
                       <Icon /> <span>{label}</span>
                     </button>
                   ) : (
                     <Link
                       to={to}
-                      className="flex items-center space-x-2 py-2 hover:bg-gray-800 rounded"
+                      className="flex items-center space-x-2 py-2 hover:text-teal-400 rounded"
                       onClick={handleLinkClick}
                     >
                       <Icon /> <span>{label}</span>

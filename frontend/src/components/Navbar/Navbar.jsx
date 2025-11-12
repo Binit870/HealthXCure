@@ -54,41 +54,41 @@ const Navbar = () => {
   return (
     <>
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 w-full z-50 bg-teal-800 border-b border-white/20 shadow-md">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3 lg:py-4">
-          {/* Left: Logo & Toggle */}
-          <div className="flex items-center space-x-4">
-            <button
-              onClick={toggleSidebar}
-              className="text-white text-2xl hover:text-teal-400 transition"
-            >
-              <FaBars />
-            </button>
+      <nav className="fixed top-0 left-0 w-full z-50 bg-teal-700 border-b border-white/20 shadow-md h-16 sm:h-20 flex items-center">
+  <div className="max-w-7xl mx-auto flex items-center justify-between w-full px-6 py-3 lg:py-4">
+    {/* Left: Logo & Toggle */}
+    <div className="flex items-center space-x-4">
+      <button
+        onClick={toggleSidebar}
+        className="text-white text-2xl hover:text-teal-200 transition"
+      >
+        <FaBars />
+      </button>
 
-            <Link
-              to="/"
-              className="flex items-center space-x-2 text-2xl font-bold text-white hover:text-cyan-400 transition"
-            >
-              <IoFitnessOutline className="text-cyan-400 text-3xl" />
-              <span className="tracking-wide">HealthXCure</span>
-            </Link>
-          </div>
+      <Link
+        to="/"
+        className="flex items-center space-x-2 text-2xl font-bold text-white hover:text-teal-200 transition"
+      >
+        <IoFitnessOutline className="text-teal-200 text-3xl" />
+        <span className="tracking-wide">HealthXCure</span>
+      </Link>
+    </div>
 
           {/* Center: Nav Links */}
           <div className="hidden lg:flex items-center space-x-10 text-white font-medium">
-            <Link to="/" className="hover:text-cyan-400 transition-colors">
+            <Link to="/" className="hover:text-teal-200 transition-colors">
               Home
             </Link>
-            <Link to="/symptom-checker" className="hover:text-cyan-400 transition-colors">
-              Diagnosis
+            <Link to="/symptom-checker" className="hover:text-teal-200 transition-colors">
+              Symptica
             </Link>
-            <Link to="/find-doctors" className="hover:text-cyan-400 transition-colors">
+            <Link to="/find-doctors" className="hover:text-teal-200 transition-colors">
               Doctors
             </Link>
-            <Link to="/diet-planner" className="hover:text-cyan-400 transition-colors">
-              DietCure
+            <Link to="/diet-planner" className="hover:text-teal-200 transition-colors">
+              DietBuddy
             </Link>
-            <Link to="/community" className="hover:text-cyan-400 transition-colors">
+            <Link to="/community" className="hover:text-teal-200 transition-colors">
               Community
             </Link>
           </div>
@@ -108,7 +108,7 @@ const Navbar = () => {
               <div className="flex items-center space-x-4">
                 <Link
                   to="/notifications"
-                  className="relative text-white text-xl hover:text-cyan-400 transition"
+                  className="relative text-white text-xl hover:text-teal-200 transition"
                 >
                   <FaBell />
                 </Link>

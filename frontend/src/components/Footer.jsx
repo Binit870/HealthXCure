@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
-  FaFacebookF,
-  FaTwitter,
+
   FaInstagram,
-  FaLinkedinIn,
+  FaLinkedin,
+  FaFacebook,
   FaStethoscope,
   FaUserMd,
   FaAppleAlt,
@@ -17,6 +17,7 @@ import {
   FaFileContract,
 } from "react-icons/fa";
 import { IoFitnessOutline } from "react-icons/io5";
+import { SiX } from "react-icons/si";
 
 const Footer = () => {
   return (
@@ -36,7 +37,7 @@ const Footer = () => {
 
         {/* Services Section */}
         <div>
-          <h4 className="text-lg font-semibold mb-4 text-gray-800">Services</h4>
+          <h4 className="text-lg font-semibold mb-4 text-teal-800">Services</h4>
           <ul className="space-y-2 text-sm">
             <li>
               <Link to="/symptom-checker" className="hover:text-teal-600 flex items-center space-x-2">
@@ -57,7 +58,7 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link to="/report-analysis" className="hover:text-teal-600 flex items-center space-x-2">
+              <Link to="/reports" className="hover:text-teal-600 flex items-center space-x-2">
                 <FaFileMedicalAlt className="text-teal-500" />
                 <span>Report Analysis</span>
               </Link>
@@ -67,7 +68,7 @@ const Footer = () => {
 
         {/* Company Section */}
         <div>
-          <h4 className="text-lg font-semibold mb-4 text-gray-800">Company</h4>
+          <h4 className="text-lg font-semibold mb-4 text-teal-800">Company</h4>
           <ul className="space-y-2 text-sm">
             <li>
               <Link to="/about" className="hover:text-teal-600 flex items-center space-x-2">
@@ -98,7 +99,7 @@ const Footer = () => {
 
         {/* Legal + Socials Section */}
         <div>
-          <h4 className="text-lg font-semibold mb-4 text-gray-800">Legal</h4>
+          <h4 className="text-lg font-semibold mb-4 text-teal-800">Legal</h4>
           <ul className="space-y-2 text-sm mb-6">
             <li>
               <Link to="/privacy-policy" className="hover:text-teal-600 flex items-center space-x-2">
@@ -114,38 +115,46 @@ const Footer = () => {
             </li>
           </ul>
 
-          <h4 className="text-lg font-semibold mb-3 text-gray-800">Follow Us</h4>
-          <div className="flex space-x-4">
-            <Link
-              to="/facebook"
-              className="p-2 bg-teal-50 rounded-full hover:bg-teal-100 transition"
+          <h4 className="text-lg font-semibold mb-3 text-teal-800">Follow Us</h4>
+          <div className="flex text-2xl space-x-4">
+            <a
+              href="https://www.facebook.com/profile.php?id=61581851285563"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-500 transition-transform transform hover:scale-110"
             >
-              <FaFacebookF className="text-teal-600" />
-            </Link>
-            <Link
-              to="/twitter"
-              className="p-2 bg-teal-50 rounded-full hover:bg-teal-100 transition"
+              <FaFacebook />
+            </a>
+            <a
+              href="https://www.instagram.com/healthcure775/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-pink-500 transition-transform transform hover:scale-110"
             >
-              <FaTwitter className="text-teal-600" />
-            </Link>
-            <Link
-              to="/instagram"
-              className="p-2 bg-teal-50 rounded-full hover:bg-teal-100 transition"
+              <FaInstagram />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/healthcure-jamshedpur-2994a8389/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-700 transition-transform transform hover:scale-110"
             >
-              <FaInstagram className="text-teal-600" />
-            </Link>
-            <Link
-              to="/linkedin"
-              className="p-2 bg-teal-50 rounded-full hover:bg-teal-100 transition"
+              <FaLinkedin />
+            </a>
+            <a
+              href="https://x.com/HealthCure59238"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-black transition-transform transform hover:scale-110"
             >
-              <FaLinkedinIn className="text-teal-600" />
-            </Link>
+              <SiX/>
+            </a>
           </div>
         </div>
       </div>
 
       {/* Bottom Line */}
-      <div className="mt-10 text-center border-t border-gray-200 pt-6 text-sm text-gray-500">
+      <div className="mt-6 text-center border-t border-gray-200 pt-4 text-2xl  text-teal-800">
         © 2025 HealthXCure. All rights reserved.
       </div>
     </footer>
