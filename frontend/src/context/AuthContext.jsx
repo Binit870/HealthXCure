@@ -115,20 +115,24 @@ useEffect(() => {
   };
 
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        token,
-        login,
-        googleAuth,
-        logout,
-        signup,
-        updateUser,
-        loading,
-        setUser,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
+  <AuthContext.Provider
+    value={{
+      user,
+      token,
+      login,
+      googleAuth,
+      logout,
+      signup,
+      updateUser,
+      loading,
+      setUser,
+      isLoggedIn: !!token && !!user, // ✅ Add this
+    }}
+  >
+    {children}
+  </AuthContext.Provider>
+);
+
+    
+  
 };

@@ -84,21 +84,29 @@ const ChatMessages = ({ messages, setMessages, speakingText, setSpeakingText }) 
             }`}
           >
             {msg.sender === "bot" ? (
-              <ReactMarkdown
-                remarkPlugins={[remarkGfm]}
-                components={{
-                  strong: ({ children }) => (
-                    <strong className="text-blue-600 font-semibold">{children}</strong>
-                  ),
-                  ul: ({ children }) => (
-                    <ul className="list-disc list-inside space-y-1">{children}</ul>
-                  ),
-                  li: ({ children }) => <li>{children}</li>,
-                  p: ({ children }) => <p className="mb-1">{children}</p>,
-                }}
-              >
-                {msg.text}
-              </ReactMarkdown>
+              <div className="prose prose-sm sm:prose-base max-w-none text-gray-900">
+  <ReactMarkdown
+    remarkPlugins={[remarkGfm]}
+    components={{
+      strong: ({ children }) => (
+        <strong className="text-blue-600 font-semibold">{children}</strong>
+      ),
+      a: ({ href, children }) => (
+        <a href={href} className="text-blue-500 underline hover:text-blue-700" target="_blank" rel="noopener noreferrer">
+          {children}
+        </a>
+      ),
+      ul: ({ children }) => (
+        <ul className="list-disc list-inside my-2 space-y-1">{children}</ul>
+      ),
+      li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+      p: ({ children }) => <p className="mb-2 leading-relaxed">{children}</p>,
+    }}
+  >
+    {msg.text}
+  </ReactMarkdown>
+</div>
+
             ) : (
               <span>{msg.text}</span>
             )}

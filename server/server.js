@@ -10,7 +10,7 @@ import startCronJob from "./utils/cronJob.js";
 
 import notificationRoutes from "./routes/notificationRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
-import aiRoutes from "./routes/chatRoutes.js";
+import chatRoutes from "./routes/chatRoutes.js";
 import doctorRoutes from "./routes/doctorRoutes.js";
 import dietRoutes from "./routes/dietRoutes.js";
 import communityRoutes from "./routes/communityRoutes.js";
@@ -20,18 +20,19 @@ import fitnessRoutes from "./routes/fitnessRoutes.js";
 import symptomRoutes from "./routes/symptomRoutes.js";
 
 dotenv.config();
+
 const __dirname = path.resolve();
 const app = express();
 const server = createServer(app);
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "http://localhost:5174",
-  
+  "http://localhost:5174",  
   "https://healthxcure.netlify.app",
 ];
 
 app.use(express.json());
+
 app.use(cors({
   origin: allowedOrigins,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -49,8 +50,6 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads"), {
   }
 }));
 
-
-
 const io = new Server(server, {
   cors: { origin: allowedOrigins, methods: ["GET", "POST"], credentials: true },
 });
@@ -66,7 +65,7 @@ io.on("connection", (socket) => {
 });
 
 app.use("/api/auth", authRoutes);
-app.use("/api/ai", aiRoutes);
+app.use("/api/ai", chatRoutes);
 app.use("/api/symptoms", symptomRoutes);
 app.use("/api", doctorRoutes);
 app.use("/api/diet", dietRoutes);

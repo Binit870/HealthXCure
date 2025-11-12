@@ -126,23 +126,24 @@ const DietPlanner = () => {
   };
 
   return (
-   <div className="min-h-screen bg-gradient-to-br from-cyan-900 via-cyan-800 to-cyan-950 px-4 sm:px-6 md:px-10 lg:px-20 py-10 flex flex-col items-center justify-center font-sans relative overflow-x-hidden">
+   <div className="min-h-screen bg-teal-100 px-4 sm:px-6 md:px-10 lg:px-20 py-10 flex flex-col items-center justify-center font-sans relative overflow-x-hidden">
   {/* Title */}
   <motion.h1
-    initial={{ opacity: 0, y: -40, scale: 0.9 }}
-    animate={{ opacity: 1, y: 0, scale: 1 }}
-    transition={{
-      duration: 1,
-      ease: "easeOut",
-      type: "spring",
-      stiffness: 120,
-    }}
-    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-center tracking-tight text-emerald-400 drop-shadow-lg"
-    style={{ fontFamily: "'Poppins', sans-serif" }}
-  >
-    <GiForkKnifeSpoon className="inline mr-3 animate-pulse" />
-    Your Personal Diet Guru
-  </motion.h1>
+  initial={{ opacity: 0, y: -40, scale: 0.9 }}
+  animate={{ opacity: 1, y: 0, scale: 1 }}
+  transition={{
+    duration: 1,
+    ease: "easeOut",
+    type: "spring",
+    stiffness: 120,
+  }}
+  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-center tracking-tight text-teal-800 drop-shadow-lg"
+  style={{ fontFamily: "'Montserrat', sans-serif" }}
+>
+  <GiForkKnifeSpoon className="inline mr-3 animate-pulse" />
+  YourDietBuddy
+</motion.h1>
+
 
   {/* Action Buttons */}
   <div className="relative sm:absolute top-4 sm:top-6 right-0 sm:right-6 z-20 flex flex-col sm:flex-row gap-2 sm:gap-4 mb-4 sm:mb-8 w-full sm:w-auto justify-end">
@@ -151,7 +152,7 @@ const DietPlanner = () => {
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.97 }}
       onClick={fetchHistory}
-      className="flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-3 bg-gray-800 text-cyan-300 rounded-full shadow-lg hover:shadow-xl transition-all font-medium border-2 border-cyan-300 text-sm sm:text-base"
+      className="flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-3 bg-gray-100 text-teal-800 rounded-full shadow-lg hover:shadow-xl transition-all font-medium border-2 border-teal-800 text-sm sm:text-base"
     >
       <FaHistory />
       History
@@ -162,7 +163,7 @@ const DietPlanner = () => {
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.97 }}
       onClick={handleBackToForm}
-      className="flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-3 bg-gray-800 text-green-400 rounded-full shadow-lg hover:shadow-xl transition-all font-medium border border-green-500 text-sm sm:text-base"
+      className="flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-3 bg-gray-100 text-green-800 rounded-full shadow-lg hover:shadow-xl transition-all font-medium border border-green-800 text-sm sm:text-base"
     >
       <FaPlusCircle />
       New Plan

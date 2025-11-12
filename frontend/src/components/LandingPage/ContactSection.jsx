@@ -1,10 +1,22 @@
 import React, { useState } from "react";
-
+import { ToastContainer, toast } from "react-toastify";
+import {
+  FaPhoneAlt,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaClock,
+  FaInstagram,
+  FaLinkedin,
+  FaFacebook,
+} from "react-icons/fa";
+import "react-toastify/dist/ReactToastify.css";
+import { SiX } from "react-icons/si";
 const ContactSection = () => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     const form = e.target;
     const data = new FormData(form);
@@ -17,109 +29,212 @@ const ContactSection = () => {
       });
 
       if (response.ok) {
-        setIsSubmitted(true);
+        toast.success("✅ Message sent successfully!", { position: "top-right" });
         form.reset();
-        setTimeout(() => setIsSubmitted(false), 4000);
       } else {
-        alert("❌ Oops! Something went wrong. Please try again.");
+        toast.error("❌ Something went wrong. Please try again.", {
+          position: "top-right",
+        });
       }
     } catch (error) {
-      alert("❌ Error: Unable to send message.");
+      toast.error("⚠️ Error: Unable to send message.", { position: "top-right" });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
     <section
       id="contact"
-      className="min-h-screen flex items-center justify-center bg-white p-6"
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-teal-100 to-teal-300 p-6"
     >
-      <div
-        className="w-full max-w-2xl bg-white rounded-3xl shadow-2xl transition duration-300 p-10 border border-gray-200
-          hover:shadow-xl"
-      >
-        <h3 className="text-4xl font-extrabold text-gray-900 text-center mb-10">
-          Get in Touch with Us
-        </h3>
+      <div className="flex flex-col lg:flex-row w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl border border-gray-200">
+        {/* Left: Contact Info Card */}
+        <div className="lg:w-1/2 w-full bg-gradient-to-br from-teal-700 to-teal-600 text-white p-10 flex flex-col justify-between">
+         <div>
+  <h3 className="text-6xl font-extrabold mb-10 text-center text-white tracking-wide">
+    Contact Info
+  </h3>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Name Input */}
-          <div>
-            <label
-              htmlFor="name"
-              className="block text-gray-800 font-semibold mb-2"
-            >
-              Your Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              className="w-full p-4 rounded-xl border border-gray-300 bg-gray-50 text-gray-800 placeholder-gray-500 
-                focus:outline-none focus:ring-2 focus:ring-cyan-400 transition 
-                hover:border-cyan-400"
-              placeholder="Enter your name"
-              required
-            />
+  <div className="space-y-10 text-xl">
+    {/* Address */}
+    <div className="flex items-start gap-6">
+      <FaMapMarkerAlt className="text-teal-200 text-5xl mt-2" />
+      <div>
+        <p className="font-semibold text-3xl text-white">Our Office</p>
+        <p className="text-teal-100 text-2xl leading-relaxed">
+          164, Near Brilliant Academy
+          <br /> Haludbani, Namotola
+          <br /> Jamshedpur, Jharkhand 831002
+        </p>
+      </div>
+    </div>
+
+    {/* Phone */}
+    <div className="flex items-start gap-6">
+      <FaPhoneAlt className="text-teal-200 text-4xl mt-2" />
+      <div>
+        <p className="font-semibold text-3xl text-white">Phone</p>
+        <p className="text-teal-100 text-2xl">+91 87098 08570</p>
+      </div>
+    </div>
+
+    {/* Email */}
+    <div className="flex items-start gap-6">
+      <FaEnvelope className="text-teal-200 text-4xl mt-2" />
+      <div>
+        <p className="font-semibold text-3xl text-white">Email</p>
+        <p className="text-teal-100 text-2xl">healthcure775@gmail.com</p>
+      </div>
+    </div>
+
+    {/* Support Hours */}
+    <div className="flex items-start gap-6">
+      <FaClock className="text-teal-200 text-4xl mt-2" />
+      <div>
+        <p className="font-semibold text-3xl text-white">Support Hours</p>
+        <p className="text-teal-100 text-2xl">Mon - Sat: 9 AM - 6 PM</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+          {/* Social Media Icons */}
+          <div className="flex justify-center gap-6 mt-10 text-5xl">
+            <a
+                          href="https://www.facebook.com/profile.php?id=61581851285563"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:text-blue-500 transition-transform transform hover:scale-110"
+                        >
+                          <FaFacebook />
+                        </a>
+                        <a
+                          href="https://www.instagram.com/healthcure775/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:text-pink-500 transition-transform transform hover:scale-110"
+                        >
+                          <FaInstagram />
+                        </a>
+                        <a
+                          href="https://www.linkedin.com/in/healthcure-jamshedpur-2994a8389/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:text-blue-700 transition-transform transform hover:scale-110"
+                        >
+                          <FaLinkedin />
+                        </a>
+                        <a
+                          href="https://x.com/HealthCure59238"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:text-black transition-transform transform hover:scale-110"
+                        >
+                          <SiX  />
+                        </a>
           </div>
+        </div>
 
-          {/* Email Input + Success Message inline */}
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-gray-800 font-semibold mb-2"
-            >
-              Your Email
-            </label>
-            <div className="flex items-center gap-3">
+        {/* Right: Contact Form Card */}
+        <div className="lg:w-1/2 w-full bg-white p-10 flex flex-col justify-center">
+          <h3 className="text-4xl font-extrabold text-teal-700 text-center mb-8">
+            Get in Touch
+          </h3>
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Name Input */}
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-teal-800 font-semibold mb-2"
+              >
+                Your Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                className="w-full p-4 rounded-xl border border-gray-300 bg-gray-50 text-gray-800 
+                  focus:outline-none focus:ring-2 focus:ring-teal-400 transition hover:border-teal-400"
+                placeholder="Enter your name"
+                required
+              />
+            </div>
+
+            {/* Email Input */}
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-teal-800 font-semibold mb-2"
+              >
+                Your Email
+              </label>
               <input
                 type="email"
                 id="email"
                 name="email"
-                className="flex-1 p-4 rounded-xl border border-gray-300 bg-gray-50 text-gray-800 placeholder-gray-500 
-                  focus:outline-none focus:ring-2 focus:ring-cyan-400 transition 
-                  hover:border-cyan-400"
+                className="w-full p-4 rounded-xl border border-gray-300 bg-gray-50 text-gray-800 
+                  focus:outline-none focus:ring-2 focus:ring-teal-400 transition hover:border-teal-400"
                 placeholder="Enter your email"
                 required
               />
-
-              {isSubmitted && (
-                <span className="bg-green-600 text-white text-sm font-bold px-3 py-2 rounded-lg shadow-md animate-fade-in">
-                  ✅ Sent!
-                </span>
-              )}
             </div>
-          </div>
 
-          {/* Message Input */}
-          <div>
-            <label
-              htmlFor="message"
-              className="block text-gray-800 font-semibold mb-2"
+            {/* Subject Input */}
+            <div>
+              <label
+                htmlFor="subject"
+                className="block text-teal-800 font-semibold mb-2"
+              >
+                Subject
+              </label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                className="w-full p-4 rounded-xl border border-gray-300 bg-gray-50 text-gray-800 
+                  focus:outline-none focus:ring-2 focus:ring-teal-400 transition hover:border-teal-400"
+                placeholder="Enter the subject"
+                required
+              />
+            </div>
+
+            {/* Message Input */}
+            <div>
+              <label
+                htmlFor="message"
+                className="block text-teal-800 font-semibold mb-2"
+              >
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                className="w-full p-4 rounded-xl border border-gray-300 bg-gray-50 text-gray-800 
+                  focus:outline-none focus:ring-2 focus:ring-teal-400 transition hover:border-teal-400"
+                placeholder="Type your message here..."
+                required
+              ></textarea>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className={`w-full bg-teal-600 text-white font-bold py-4 rounded-xl shadow-lg 
+                hover:bg-teal-800 hover:shadow-2xl transition 
+                ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""}`}
             >
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              className="w-full p-4 rounded-xl border border-gray-300 bg-gray-50 text-gray-800 placeholder-gray-500 
-                focus:outline-none focus:ring-2 focus:ring-cyan-400 transition 
-                hover:border-cyan-400"
-              placeholder="Type your message here..."
-              required
-            ></textarea>
-          </div>
-
-          {/* Button */}
-          <button
-            type="submit"
-            className="w-full bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold py-4 rounded-xl shadow-lg 
-              hover:from-blue-500 hover:to-blue-400 hover:shadow-2xl"
-          >
-            Send Message
-          </button>
-        </form>
+              {isSubmitting ? "Sending..." : "Send Message"}
+            </button>
+          </form>
+        </div>
       </div>
+
+      <ToastContainer />
     </section>
   );
 };

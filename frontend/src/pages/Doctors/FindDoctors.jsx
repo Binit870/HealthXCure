@@ -148,7 +148,7 @@ const FindDoctors = () => {
   
   // --- RENDER ---
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-8 overflow-y-auto"> 
+    <div className="min-h-screen bg-teal-100 p-4 md:p-8 overflow-y-auto"> 
       <h2 className="text-3xl font-bold text-teal-600 text-center mb-6">
         🩺 Find Doctors
       </h2>

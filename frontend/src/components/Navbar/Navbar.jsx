@@ -15,7 +15,6 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-
   const handleLinkClick = () => setIsSidebarOpen(false);
   const handleSearchChange = (e) => setSearchQuery(e.target.value);
 
@@ -32,7 +31,6 @@ const Navbar = () => {
     }
   };
 
-  // Close sidebar on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {
@@ -43,7 +41,6 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isSidebarOpen]);
 
-  // ✅ Show nothing until loading completes
   if (loading) {
     return (
       <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-3xl bg-white/10 border-b border-white/20 shadow-md">
@@ -56,33 +53,50 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Navbar Container */}
-      <nav className="fixed top-0 left-0 w-full z-50 bg-emerald-700 border-b border-white/20 shadow-md">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
-          {/* Left Section: Logo + Sidebar Toggle */}
-          <div className="flex items-center space-x-4">
-            <button onClick={toggleSidebar} className="text-white text-xl">
-              <FaBars />
-            </button>
-            <Link to="/" className="flex items-center space-x-2 text-2xl font-bold text-white">
-              <IoFitnessOutline className="text-cyan-400" />
-              <span>HealthXCure</span>
+      {/* Navbar */}
+      <nav className="fixed top-0 left-0 w-full z-50 bg-teal-700 border-b border-white/20 shadow-md h-16 sm:h-20 flex items-center">
+  <div className="max-w-7xl mx-auto flex items-center justify-between w-full px-6 py-3 lg:py-4">
+    {/* Left: Logo & Toggle */}
+    <div className="flex items-center space-x-4">
+      <button
+        onClick={toggleSidebar}
+        className="text-white text-2xl hover:text-teal-200 transition"
+      >
+        <FaBars />
+      </button>
+
+      <Link
+        to="/"
+        className="flex items-center space-x-2 text-2xl font-bold text-white hover:text-teal-200 transition"
+      >
+        <IoFitnessOutline className="text-teal-200 text-3xl" />
+        <span className="tracking-wide">HealthXCure</span>
+      </Link>
+    </div>
+
+          {/* Center: Nav Links */}
+          <div className="hidden lg:flex items-center space-x-10 text-white font-medium">
+            <Link to="/" className="hover:text-teal-200 transition-colors">
+              Home
+            </Link>
+            <Link to="/symptom-checker" className="hover:text-teal-200 transition-colors">
+              Symptica
+            </Link>
+            <Link to="/find-doctors" className="hover:text-teal-200 transition-colors">
+              Doctors
+            </Link>
+            <Link to="/diet-planner" className="hover:text-teal-200 transition-colors">
+              DietBuddy
+            </Link>
+            <Link to="/community" className="hover:text-teal-200 transition-colors">
+              Community
             </Link>
           </div>
 
-          {/* Center Section: Desktop Links */}
-          <div className="hidden lg:flex space-x-8 text-white font-medium">
-            <Link to="/" className="hover:text-cyan-400 transition-colors">Home</Link>
-            <Link to="/symptom-checker" className="hover:text-cyan-400 transition-colors">Diagnosis</Link>
-            <Link to="/find-doctors" className="hover:text-cyan-400 transition-colors">Doctors</Link>
-            <Link to="/reports" className="hover:text-cyan-400 transition-colors">ScanCure</Link>
-            <Link to="/diet-planner" className="hover:text-cyan-400 transition-colors">DietCure</Link>
-            <Link to="/community" className="hover:text-cyan-400 transition-colors">Community</Link>
-          </div>
-
-          {/* Right Section: Search + Auth/Notifications */}
+          {/* Right: Search + Auth */}
           <div className="flex items-center space-x-4">
-            <div className="hidden md:block">
+            {/* SearchBar only on md and above, and hidden when sidebar open */}
+            <div className={`hidden md:flex items-center ${isSidebarOpen ? "hidden" : ""}`}>
               <SearchBar
                 searchQuery={searchQuery}
                 onChange={handleSearchChange}
@@ -92,26 +106,31 @@ const Navbar = () => {
 
             {token ? (
               <div className="flex items-center space-x-4">
-                {/* Notification Bell */}
                 <Link
                   to="/notifications"
-                  className="relative text-white text-xl hover:text-cyan-400 transition-colors"
+                  className="relative text-white text-xl hover:text-teal-200 transition"
                 >
                   <FaBell />
                 </Link>
                 <button
                   onClick={logout}
-                  className="hidden md:block px-4 py-2 rounded-2xl bg-white/20 text-white hover:bg-white/30 transition-colors"
+                  className="hidden md:block px-4 py-2 rounded-2xl bg-white/20 text-white hover:bg-white/30 transition"
                 >
                   Logout
                 </button>
               </div>
             ) : (
               <div className="flex items-center space-x-2 md:space-x-4">
-                <Link to="/login" className="px-3 py-1 md:px-4 md:py-2 rounded-2xl bg-white/20 text-white hover:bg-white/30 transition-colors">
+                <Link
+                  to="/login"
+                  className="px-3 py-1 md:px-4 md:py-2 rounded-2xl bg-white/20 text-white hover:bg-white/30 transition"
+                >
                   Login
                 </Link>
-                <Link to="/signup" className="px-3 py-1 md:px-4 md:py-2 rounded-2xl bg-white/20 text-white hover:bg-white/30 transition-colors">
+                <Link
+                  to="/signup"
+                  className="px-3 py-1 md:px-4 md:py-2 rounded-2xl bg-white/20 text-white hover:bg-white/30 transition"
+                >
                   Signup
                 </Link>
               </div>

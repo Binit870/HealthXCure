@@ -11,11 +11,9 @@ const DietForm = ({ formData, setFormData, generatePlan, handleFileChange, loadi
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="bg-cyan-600/80 backdrop-blur-xl px-4 sm:px-6 md:px-8 py-6 sm:py-8 rounded-3xl shadow-2xl w-full max-w-4xl border border-gray-700 relative overflow-hidden"
+      className="bg-white backdrop-blur-xl px-4 sm:px-6 md:px-8 py-6 sm:py-8 rounded-3xl shadow-2xl w-full max-w-4xl border border-gray-400 relative overflow-hidden"
     >
-      {/* Glow Decorations */}
-      <div className="absolute -top-12 -left-12 w-48 h-48 bg-cyan-400/20 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-teal-400/20 rounded-full blur-3xl animate-pulse"></div>
+     
 
       {/* Age, Gender, Height, Weight */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6 relative z-10">
@@ -25,18 +23,18 @@ const DietForm = ({ formData, setFormData, generatePlan, handleFileChange, loadi
           placeholder="Age"
           value={formData.age}
           onChange={(e) => setFormData({ ...formData, age: e.target.value })}
-          className="p-4 bg-gray-800 border border-cyan-700 text-white rounded-xl focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all text-sm sm:text-base w-full"
+          className="p-4 bg-white border border-teal-700 text-black rounded-xl  transition-all text-sm sm:text-base w-full"
         />
 
         <motion.select
           variants={itemVariants}
           value={formData.gender}
           onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-          className="p-4 bg-gray-800 border border-gray-700 text-white rounded-xl focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all text-sm sm:text-base w-full"
+          className="p-4 bg-white border border-teal-700 text-black rounded-xl  transition-all text-sm sm:text-base w-full"
         >
-          <option className="bg-gray-900 text-white">Male</option>
-          <option className="bg-gray-900 text-white">Female</option>
-          <option className="bg-gray-900 text-white">Other</option>
+          <option className="bg-white text-black">Male</option>
+          <option className="bg-white text-black">Female</option>
+          <option className="bg-white text-black">Other</option>
         </motion.select>
 
         <motion.input
@@ -45,7 +43,7 @@ const DietForm = ({ formData, setFormData, generatePlan, handleFileChange, loadi
           placeholder="Height (cm)"
           value={formData.height}
           onChange={(e) => setFormData({ ...formData, height: e.target.value })}
-          className="p-4 bg-gray-800 border border-gray-700 text-white rounded-xl focus:ring-2 focus:ring-teal-400 focus:border-transparent transition-all text-sm sm:text-base w-full"
+          className="p-4 bg-white border border-teal-700 text-black rounded-xl transition-all text-sm sm:text-base w-full"
         />
 
         <motion.input
@@ -54,7 +52,7 @@ const DietForm = ({ formData, setFormData, generatePlan, handleFileChange, loadi
           placeholder="Weight (kg)"
           value={formData.weight}
           onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
-          className="p-4 bg-gray-800 border border-gray-700 text-white rounded-xl focus:ring-2 focus:ring-teal-400 focus:border-transparent transition-all text-sm sm:text-base w-full"
+          className="p-4 bg-white border border-teal-700 text-black  rounded-xl  transition-all text-sm sm:text-base w-full"
         />
       </div>
 
@@ -64,23 +62,23 @@ const DietForm = ({ formData, setFormData, generatePlan, handleFileChange, loadi
           variants={itemVariants}
           value={formData.goal}
           onChange={(e) => setFormData({ ...formData, goal: e.target.value })}
-          className="p-4 bg-gray-800 border border-gray-700 text-white rounded-xl focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all text-sm sm:text-base w-full"
+          className="p-4 bg-white border border-teal-700 text-black  rounded-xl  transition-all text-sm sm:text-base w-full"
         >
-          <option className="bg-gray-900 text-white">Weight Loss</option>
-          <option className="bg-gray-900 text-white">Muscle Gain</option>
-          <option className="bg-gray-900 text-white">Balanced Nutrition</option>
+          <option className="bg-white text-black">Weight Loss</option>
+          <option className="bg-white text-black">Muscle Gain</option>
+          <option className="bg-white text-black">Balanced Nutrition</option>
         </motion.select>
 
         <motion.select
           variants={itemVariants}
           value={formData.dietType}
           onChange={(e) => setFormData({ ...formData, dietType: e.target.value })}
-          className="p-4 bg-gray-800 border border-gray-700 text-white rounded-xl focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all text-sm sm:text-base w-full"
+          className="p-4 bg-white border border-teal-700 text-black  rounded-xl transition-all text-sm sm:text-base w-full"
         >
-          <option className="bg-gray-900 text-white">Vegetarian</option>
-          <option className="bg-gray-900 text-white">Vegan</option>
+          <option className="bg-white text-black">Vegetarian</option>
+          <option className="bg-white text-black">Vegan</option>
           
-          <option className="bg-gray-900 text-white">Non-Vegetarian</option>
+          <option className="bg-white text-black">Non-Vegetarian</option>
         </motion.select>
       </div>
 
@@ -90,13 +88,13 @@ const DietForm = ({ formData, setFormData, generatePlan, handleFileChange, loadi
         <select
           value={formData.reason}
           onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
-          className="w-full p-4 bg-gray-800 border border-gray-700 text-white rounded-xl focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all text-sm sm:text-base"
+          className="w-full p-4 bg-white border border-teal-700 text-black  rounded-xl transition-all text-sm sm:text-base"
         >
-          <option className="bg-gray-900 text-white">General Health</option>
-          <option className="bg-gray-900 text-white">Diabetes</option>
+          <option className="bg-white text-black">General Health</option>
+          <option className="bg-white text-black">Diabetes</option>
           
-          <option className="bg-gray-900 text-white">Heart Health</option>
-          <option className="bg-gray-900 text-white">Other</option>
+          <option className="bg-white text-black">Heart Health</option>
+          <option className="bg-white text-black">Other</option>
         </select>
       </motion.div>
 
@@ -107,7 +105,7 @@ const DietForm = ({ formData, setFormData, generatePlan, handleFileChange, loadi
           type="number"
           value={formData.days}
           onChange={(e) => setFormData({ ...formData, days: e.target.value })}
-          className="w-full p-4 bg-gray-800 border border-gray-700 text-white rounded-xl focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all text-sm sm:text-base"
+          className="w-full p-4 bg-white border border-teal-700 text-black  rounded-xl transition-all text-sm sm:text-base"
           min="1"
         />
       </motion.div>
@@ -119,7 +117,7 @@ const DietForm = ({ formData, setFormData, generatePlan, handleFileChange, loadi
         onChange={(e) => setFormData({ ...formData, preferences: e.target.value })}
         placeholder="Extra notes (allergies, cuisine preferences...)"
         rows="3"
-        className="w-full p-4 bg-gray-800 border border-gray-700 text-white rounded-xl mb-6 focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all resize-y text-sm sm:text-base"
+        className="w-full p-4 bg-white border border-teal-700 text-black  rounded-xl transition-all resize-y text-sm sm:text-base"
       />
 
       {/* Diseases */}
@@ -129,7 +127,7 @@ const DietForm = ({ formData, setFormData, generatePlan, handleFileChange, loadi
         onChange={(e) => setFormData({ ...formData, diseases: e.target.value })}
         placeholder="Any medical conditions? (e.g., Hypertension, Celiac Disease...)"
         rows="3"
-        className="w-full p-4 bg-gray-800 border border-gray-700 text-white rounded-xl mb-6 focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all resize-y text-sm sm:text-base"
+        className="w-full p-4 bg-white border border-teal-700 text-black  rounded-xl transition-all resize-y text-sm sm:text-base"
       />
 
       {/* Symptoms */}
@@ -139,7 +137,7 @@ const DietForm = ({ formData, setFormData, generatePlan, handleFileChange, loadi
         onChange={(e) => setFormData({ ...formData, symptoms: e.target.value })}
         placeholder="Not feeling well? Describe your symptoms..."
         rows="3"
-        className="w-full p-4 bg-gray-800 border border-gray-700 text-white rounded-xl mb-6 focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all resize-y text-sm sm:text-base"
+        className="w-full p-4 bg-white border border-teal-700 text-black  rounded-xl transition-all resize-y text-sm sm:text-base"
       />
 
       
@@ -150,7 +148,7 @@ const DietForm = ({ formData, setFormData, generatePlan, handleFileChange, loadi
         whileTap={{ scale: 0.98 }}
         onClick={generatePlan}
         disabled={loading}
-        className="w-full bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold py-4 rounded-xl shadow-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed text-lg flex items-center justify-center"
+        className="w-full bg-teal-800 text-white font-bold py-4 rounded-xl shadow-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed text-lg flex items-center justify-center"
       >
         {loading ? (
           <span className="flex items-center">
@@ -158,7 +156,7 @@ const DietForm = ({ formData, setFormData, generatePlan, handleFileChange, loadi
             Generating Your Plan...
           </span>
         ) : (
-          "✨ Generate My Personalized Diet Plan"
+          "✨ Generate"
         )}
      
 
