@@ -230,16 +230,7 @@ const ChatbotLauncher = () => {
         </div>
       </Draggable>
 
-      <ToastContainer
-        position="top-right"
-        autoClose={2500}
-        hideProgressBar={false}
-        closeOnClick
-        pauseOnHover
-        draggable
-        theme="colored"
-      />
-    </>
+      </>
   );
 };
 

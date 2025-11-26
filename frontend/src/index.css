@@ -96,15 +96,15 @@ html {
 
 .Toastify__toast {
   background: #ffffff !important;
-  color: #0f766e !important; /* nice green */
-  border: 1px solid #14b8a6 !important; /* teal/green border */
+  color: #5cf344 !important; /* nice green */
+  border: 1px solid #3fec1c !important; /* teal/green border */
   font-weight: 600;
 }
 
 .Toastify__close-button {
-  color: #0f766e !important;
+  color: #071401 !important;
 }
 
 .Toastify__progress-bar {
-  background: #14b8a6 !important; /* green progress */
+  background: #215602 !important; /* green progress */
 }
