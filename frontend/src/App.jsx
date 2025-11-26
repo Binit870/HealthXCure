@@ -1,5 +1,6 @@
 import React from 'react';
-import { Toaster } from "react-hot-toast";
+
+import { ToastContainer } from 'react-toastify';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer';
@@ -12,7 +13,7 @@ import DietPlanner from './components/Diet/DietPlanner';
 import ChatbotLauncher from './pages/ChatWithAssistant/ChatbotLauncher';
 import SymptomChecker from './components/SymptomChecker/SymptomChecker';
 import FitnessPlanner from './components/Fitness/FitnessPlanner';
-import ContactSection from './components/LandingPage/ContactSection';
+import Contact from './pages/Contact';
 import Community from './components/Community/Community';
 import Notification from './pages/Notification';
 import Login from './pages/Login';
@@ -25,6 +26,7 @@ import FAQ from './pages/FAQ';
 import TermsAndCondition from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Help from './pages/Help';
+import "react-toastify/dist/ReactToastify.css";
 
 import ScrollToTop from './ScrollToTop';
 
@@ -46,9 +48,11 @@ function App() {
     <div className="flex flex-col min-h-screen font-inter">
       <ScrollToTop />
       {!hideNavbar && <Navbar />}
-
+<ToastContainer position="top-right" />
       <div className={`flex-grow flex flex-col ${!hideNavbar ? 'pt-16' : ''}`}>
-        <Toaster position="top-center" />
+        {/* <Toaster position="top-right" /> */}
+        
+
         <Routes>
           {/* Public Pages */}
           
@@ -60,7 +64,7 @@ function App() {
           <Route path="/terms" element={<TermsAndCondition />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/help" element={<Help />} />
-          <Route path="/contact" element={<ContactSection />} />
+          <Route path="/contact" element={<Contact/>} />
 
 
 

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useAuth } from "../context/AuthContext.jsx";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { FaHeartbeat } from "react-icons/fa";
-import toast, { Toaster } from "react-hot-toast";
+import  { toast } from "react-toastify";
 
 const Signup = () => {
   const { signup, googleAuth } = useAuth();

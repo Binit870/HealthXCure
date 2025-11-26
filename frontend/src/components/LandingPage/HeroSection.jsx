@@ -26,6 +26,7 @@ const HeroSection = () => {
       {/* Background Image */}
       <img
         src={healthImage}
+        loading="lazy"
         alt="Health and Wellness"
         className="absolute inset-0 w-full h-full object-cover"
       />

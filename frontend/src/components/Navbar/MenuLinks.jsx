@@ -18,7 +18,7 @@ const MenuLinks = [
   { to: "/reports", label: "Health Reports", icon: FaFileMedicalAlt }, // ✅ Better icon + name
   { to: "/chat", label: "Chat with Cura", icon: FaComments },
   { to: "/diet-planner", label: "Diet Buddy", icon: FaAppleAlt }, // 🍎 More fitting icon
-  { to: "/fitness", label: "Fitness Tracker", icon: FaRunning }, // 🏃‍♂️ Better name + icon
+  { to: "/fitness", label: "MetricFit Planner", icon: FaRunning }, // 🏃‍♂️ Better name + icon
   { to: "/logout", label: "Logout", icon: FaSignOutAlt, isLogout: true }
 ];
 

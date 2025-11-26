@@ -2,7 +2,8 @@ import Fitness from "../models/Fitness.js";
 
 export const generateFitnessPlan = async (req, res) => {
   try {
-    const { userId, height, weight } = req.body;
+    const { userId, height, weight, preferredExercises, weeklyGoal, targetWeight } = req.body;
+
     if (!height || !weight) {
       return res.status(400).json({ message: "Height and weight are required" });
     }
@@ -11,73 +12,130 @@ export const generateFitnessPlan = async (req, res) => {
     const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(1);
 
     let category = "";
-    let plan = [];
-    let calories = "";
+    let basePlan = {};
 
+    // ---------- BASE WORKOUT PLAN BY BMI ----------
     if (bmi < 18.5) {
       category = "Underweight";
-      plan = [
-        { name: "Strength Training (3x/week)" },
-        { name: "Yoga for flexibility" },
-        { name: "Weightlifting basics" },
-      ];
-      calories = "🍽️ Aim for 2200–2500 kcal/day with protein-rich foods.";
-    } else if (bmi >= 18.5 && bmi <= 24.9) {
+      basePlan = {
+        warmup: [
+          { name: "Light Jog", duration_seconds: 60 },
+          { name: "Arm Circles", duration_seconds: 40 }
+        ],
+        main_workout: [
+          { name: "Strength Training", sets: 3, reps_or_duration: "10–12 reps", rest_seconds: 60 },
+          { name: "Yoga Flexibility", duration_seconds: 120 }
+        ],
+        cooldown: [
+          { name: "Light Stretching", duration_seconds: 60 }
+        ]
+      };
+    } else if (bmi <= 24.9) {
       category = "Normal";
-      plan = [
-        { name: "Cardio (running/cycling)" },
-        { name: "Strength Training (2x/week)" },
-        { name: "Stretching & Yoga" },
-      ];
-      calories = "🍽️ Maintain around 2000–2200 kcal/day with a balanced diet.";
-    } else if (bmi >= 25 && bmi <= 29.9) {
+      basePlan = {
+        warmup: [
+          { name: "Jump Rope", duration_seconds: 60 },
+          { name: "Dynamic Stretch", duration_seconds: 40 }
+        ],
+        main_workout: [
+          { name: "Running / Cycling", duration_seconds: 600 },
+          { name: "Strength Training", sets: 2, reps_or_duration: "12 reps", rest_seconds: 50 }
+        ],
+        cooldown: [
+          { name: "Yoga Stretches", duration_seconds: 90 }
+        ]
+      };
+    } else if (bmi <= 29.9) {
       category = "Overweight";
-      plan = [
-        { name: "Brisk Walking (daily)" },
-        { name: "Cycling / HIIT (3-4x/week)" },
-        { name: "Bodyweight Training" },
-      ];
-      calories = "🍽️ Reduce to ~1800 kcal/day, focusing on lean proteins & veggies.";
+      basePlan = {
+        warmup: [
+          { name: "Fast Marching", duration_seconds: 60 },
+          { name: "Shoulder Rolls", duration_seconds: 40 }
+        ],
+        main_workout: [
+          { name: "Brisk Walking", duration_seconds: 900 },
+          { name: "HIIT Cycling", duration_seconds: 300 }
+        ],
+        cooldown: [
+          { name: "Slow Stretching", duration_seconds: 90 }
+        ]
+      };
     } else {
       category = "Obese";
-      plan = [
-        { name: "Walking (daily, low impact)" },
-        { name: "Swimming (safe cardio)" },
-        { name: "Resistance Bands" },
-      ];
-      calories = "🍽️ Stick to 1500–1700 kcal/day, consult a nutritionist.";
+      basePlan = {
+        warmup: [
+          { name: "Slow Walking", duration_seconds: 60 }
+        ],
+        main_workout: [
+          { name: "Swimming (low impact)", duration_seconds: 600 },
+          { name: "Resistance Band Training", sets: 2, reps_or_duration: "10 reps" }
+        ],
+        cooldown: [
+          { name: "Deep Breathing Stretch", duration_seconds: 90 }
+        ]
+      };
     }
+
+    const caloriesGuide = {
+      Underweight: "🍽️ Aim for 2200–2500 kcal/day with protein-rich foods.",
+      Normal: "🍽️ Maintain 2000–2200 kcal/day with balanced meals.",
+      Overweight: "🍽️ Reduce to ~1800 kcal/day, focus on lean proteins & veggies.",
+      Obese: "🍽️ Stick to 1500–1700 kcal/day and consult a nutritionist."
+    };
+
+    const calories = caloriesGuide[category];
+
+    // ---------- USER-PREFERRED EXERCISE MATCHING ----------
+    const exerciseMap = {
+      yoga: { name: "Yoga Session", duration_seconds: 300 },
+      cycling: { name: "Cycling", duration_seconds: 600 },
+      running: { name: "Running", duration_seconds: 600 },
+      walk: { name: "Brisk Walk", duration_seconds: 900 },
+      weightlifting: { name: "Weightlifting", sets: 3, reps_or_duration: "8 reps", rest_seconds: 60 },
+      cardio: { name: "Cardio Circuit", duration_seconds: 480 },
+      stretching: { name: "Stretch Routine", duration_seconds: 180 }
+    };
+
+    const preferredList = [];
+
+    if (preferredExercises) {
+      const userWords = preferredExercises.toLowerCase().split(" ");
+      userWords.forEach(word => {
+        if (exerciseMap[word]) preferredList.push(exerciseMap[word]);
+      });
+    }
+
+    const plan = {
+      warmup: basePlan.warmup,
+      main_workout: [...basePlan.main_workout, ...preferredList],
+      cooldown: basePlan.cooldown,
+      preferred: preferredList
+    };
 
     const tips = [
       "💧 Stay hydrated: drink at least 2-3 liters of water daily.",
       "🥗 Eat more whole foods like fruits, vegetables, and lean protein.",
-      "🛌 Sleep at least 7–8 hours every night for better recovery.",
-      "🚶 Take small breaks during work to stretch and move around.",
-      "🏃 Consistency beats intensity — small steps daily matter!",
+      "🛌 Sleep at least 7–8 hours every night.",
+      "🚶 Take breaks during work to stretch.",
+      "🏃 Consistency is the key to progress."
     ];
+
     const tip = tips[Math.floor(Math.random() * tips.length)];
 
-    // ✅ Save in DB if userId is provided
+    // Save to DB
     if (userId) {
-      const fitnessData = new Fitness({
-        userId,
-        height,
-        weight,
-        bmi,
-        category,
-        plan,
-        calories,
-        tip,
-      });
-      await fitnessData.save();
+      await new Fitness({
+        userId, height, weight, bmi, category,
+        calories, plan, targetWeight, weeklyGoal, preferredExercises
+      }).save();
     }
 
-    res.json({ bmi, category, plan, calories, tip });
+    res.json({ bmi, category, calories, plan, tip });
   } catch (err) {
-    console.error(err);
     res.status(500).json({ message: "Server error" });
   }
 };
+
 
 // 📌 Save a new fitness entry (UPDATED)
 export const saveFitnessData = async (req, res) => {

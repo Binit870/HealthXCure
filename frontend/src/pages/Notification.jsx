@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import io from "socket.io-client";
 import API, { SOCKET_URL } from "../utils/Api";
-import toast from "react-hot-toast";
+import {toast} from "react-toastify";
 import {
   FaBell,
   FaCheck,

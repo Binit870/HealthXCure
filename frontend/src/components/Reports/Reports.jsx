@@ -105,7 +105,7 @@ const Reports = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-gray-800 flex flex-col items-center p-4 md:p-8 py-12 font-sans relative overflow-hidden">
+    <div className="min-h-screen bg-teal-100 text-gray-800 flex flex-col items-center p-4 md:p-8 py-12 font-sans relative overflow-hidden">
       {/* Floating background glow (REMOVED: To keep the background simple white) */}
       
       <motion.div
@@ -118,9 +118,9 @@ const Reports = () => {
         {/* Header with clear button */}
         <div className="mb-4 flex flex-col items-center justify-center text-center space-y-2">
           <div className="flex items-center justify-center space-x-3">
-            <MdDescription className="text-teal-500 text-3xl md:text-4xl" />
+            <MdDescription className="text-teal-700 text-3xl md:text-4xl" />
             {/* Title uses a strong teal color */}
-            <h1 className="text-3xl md:text-4xl font-extrabold text-teal-600">
+            <h1 className="text-3xl md:text-4xl font-extrabold text-teal-800">
               Medical Report Analyzer
             </h1>
           </div>

@@ -2,24 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-section {
-  scroll-margin-top: 80px; /* adjust this to your navbar height */
+/* ===========================
+   Global Fixes & Resets
+   =========================== */
+
+/* Fix select dropdown overflow on mobile */
+select option {
+  white-space: normal !important;
+  overflow-wrap: break-word !important;
 }
-/* For Chrome, Safari, Edge */
-::-webkit-scrollbar {
+
+/* Scroll margin for anchored sections */
+section {
+  scroll-margin-top: 80px; /* adjust to navbar height */
+}
+
+/* Hide scrollbars globally (default) */
+html::-webkit-scrollbar {
   display: none;
 }
-
-/* For Firefox */
 html {
-  scrollbar-width: none; /* hide scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge (old) */
 }
 
-/* For IE/Edge (old) */
-html {
-  -ms-overflow-style: none; /* hide scrollbar */
+/* ===========================
+   Scoped Scrollbar Styles
+   =========================== */
+
+/* Show scrollbar only where `.scrollbar-show` is applied */
+.scrollbar-show::-webkit-scrollbar {
+  width: 8px !important;
+  display: block !important;
 }
-/* src/index.css or global stylesheet */
+
+.scrollbar-show::-webkit-scrollbar-thumb {
+  background: #14b8a6; /* teal */
+  border-radius: 10px;
+}
+
+.scrollbar-show::-webkit-scrollbar-track {
+  background: #e5e7eb; /* light gray */
+}
+
+.scrollbar-show {
+  scrollbar-width: thin !important; /* Firefox */
+  scrollbar-color: #14b8a6 #e5e7eb !important;
+}
+
+/* ===========================
+   Animations & Effects
+   =========================== */
 
 .pulse-shadow {
   animation: pulse-shadow 2s infinite alternate;
@@ -39,14 +72,39 @@ html {
 }
 
 /* Animation delays for blob background */
-.animation-delay-0 { animation-delay: 0s; }
-.animation-delay-2000 { animation-delay: 2s; }
-.animation-delay-4000 { animation-delay: 4s; }
+.animation-delay-0 {
+  animation-delay: 0s;
+}
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
 
-/* Fix for mix-blend-mode for blob animations */
+/* Mix-blend-mode fixes for blob animations */
 .mix-blend-multiply {
   mix-blend-mode: multiply;
 }
 .mix-blend-screen {
   mix-blend-mode: screen;
+}
+
+/* ===========================
+   Toastify Custom Styles
+   =========================== */
+
+.Toastify__toast {
+  background: #ffffff !important;
+  color: #0f766e !important; /* nice green */
+  border: 1px solid #14b8a6 !important; /* teal/green border */
+  font-weight: 600;
+}
+
+.Toastify__close-button {
+  color: #0f766e !important;
+}
+
+.Toastify__progress-bar {
+  background: #14b8a6 !important; /* green progress */
 }

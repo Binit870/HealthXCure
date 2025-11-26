@@ -83,10 +83,8 @@ const SymptomChecker = () => {
 
   return (
     <div
-      className="relative min-h-screen flex flex-col items-center justify-start px-4 sm:px-6 md:px-8 py-10 sm:py-16 text-gray-800 overflow-hidden"
-      style={{
-        background: "linear-gradient(180deg, #F9FEFF 0%, #F3F8FF 100%)",
-      }}
+      className="relative min-h-screen bg-teal-100 flex flex-col items-center justify-start px-4 sm:px-6 md:px-8 py-10 sm:py-16 text-gray-800 overflow-hidden"
+      
     >
       <ToastContainer position="top-right" autoClose={3000} theme="light" />
       <div className="absolute top-10 left-8 w-28 h-28 bg-teal-100/40 rounded-full blur-3xl animate-pulse"></div>
@@ -113,13 +111,13 @@ const SymptomChecker = () => {
                 initial={{ opacity: 0, y: -30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="flex flex-col items-center text-center bg-white border border-gray-100 rounded-3xl p-6 sm:p-10 shadow-lg shadow-gray-200/50 w-full max-w-4xl"
+                className="flex flex-col items-center text-center bg-white border border-teal-300 rounded-3xl p-6 sm:p-10 shadow-lg shadow-gray-200/50 w-full max-w-4xl"
               >
-                <FaStethoscope className="text-6xl mb-4 text-teal-600" />
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-2 text-teal-600">
+                <FaStethoscope className="text-6xl mb-4 text-teal-800" />
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-2 text-teal-800">
                   Symptica
                 </h1>
-                <p className="text-base sm:text-lg text-gray-500 mb-8 max-w-2xl">
+                <p className="text-base sm:text-lg text-teal-900 mb-8 max-w-2xl">
                   Enter your symptoms and let AI analyze possible conditions.
                 </p>
 
