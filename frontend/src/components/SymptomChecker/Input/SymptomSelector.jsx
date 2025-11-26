@@ -65,7 +65,7 @@ const SymptomSelector = ({
     };
 
     return (
-        <div className="border border-white/50 rounded-2xl p-4 mb-4 bg-white/80 text-gray-800 shadow-lg">
+        <div className="border border-teal/50 rounded-2xl p-4 mb-4 bg-white/80 text-teal-800 shadow-lg">
             <h3 className="text-sm sm:text-base font-semibold mb-2">
                 Quick-Select Common Symptoms 👇
             </h3>
@@ -77,7 +77,7 @@ const SymptomSelector = ({
                 {symptomOptions.map((symptom, index) => (
                     <label
                         key={index}
-                        className="flex items-center gap-2 text-sm sm:text-base cursor-pointer hover:text-green-700 transition"
+                        className="flex items-center gap-2 text-sm sm:text-base cursor-pointer hover:text-teal-700 transition"
                     >
                         <input
                             type="checkbox"
@@ -85,7 +85,7 @@ const SymptomSelector = ({
                             checked={checkedSymptoms.includes(symptom)}
                             // Updated to use symptom in handler
                             onChange={() => handleCheckboxChange(symptom)}
-                            className="accent-green-500 w-4 h-4"
+                            className="accent-teal-500 w-4 h-4"
                         />
                         {symptom}
                     </label>

@@ -51,18 +51,18 @@ const SymptomHistory = ({ setShowHistory }) => {
       transition={{ duration: 0.7, ease: "easeOut" }}
       className="mt-6 sm:mt-12 w-full max-w-5xl rounded-2xl sm:rounded-3xl 
                  p-4 sm:p-6 md:p-10 backdrop-blur-lg bg-white/30 
-                 border border-white/30 shadow-2xl text-gray-900"
+                 border border-white/30 shadow-2xl text-teal-900"
     >
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold flex items-center gap-3 text-gray-900 drop-shadow-sm">
-          <FaHistory className="text-3xl sm:text-4xl md:text-5xl text-cyan-500" />
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold flex items-center gap-3 text-teal-900 drop-shadow-sm">
+          <FaHistory className="text-3xl sm:text-4xl md:text-5xl text-teal-500" />
           Your Symptom History
         </h2>
 
         <button
           onClick={() => setShowHistory(false)}
-          className="w-full sm:w-auto px-5 sm:px-6 py-2 bg-gradient-to-r from-cyan-500 via-teal-500 to-blue-500 
+          className="w-full sm:w-auto px-5 sm:px-6 py-2 bg-teal-500 
                      text-white font-bold rounded-full shadow-md hover:opacity-90 transition-all 
                      flex items-center justify-center gap-2 text-sm sm:text-base"
         >
@@ -71,12 +71,12 @@ const SymptomHistory = ({ setShowHistory }) => {
       </div>
 
       {/* Status */}
-      {loading && <p className="text-gray-700 text-center text-sm sm:text-base">Loading history...</p>}
+      {loading && <p className="text-teal-700 text-center text-sm sm:text-base">Loading history...</p>}
       {error && <p className="text-red-500 text-center text-sm sm:text-base">{error}</p>}
 
       {/* Empty State */}
       {!loading && history.length === 0 ? (
-        <p className="text-gray-700 text-center text-sm sm:text-base">
+        <p className="text-teal-700 text-center text-sm sm:text-base">
           No history available yet. Start by checking your first symptom!
         </p>
       ) : (
@@ -97,20 +97,20 @@ const SymptomHistory = ({ setShowHistory }) => {
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                   <div className="flex items-center gap-3 sm:gap-4">
                     <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center 
-                                    rounded-lg sm:rounded-xl bg-cyan-100 text-xl sm:text-2xl 
-                                    text-cyan-600 shadow-inner">
+                                    rounded-lg sm:rounded-xl bg-teal-100 text-xl sm:text-2xl 
+                                    text-teal-600 shadow-inner">
                       <FaVirus />
                     </div>
                     <div>
-                      <h3 className="text-lg sm:text-xl font-semibold text-gray-900">Symptoms</h3>
-                      <p className="text-xs sm:text-sm text-gray-700 leading-relaxed break-words max-w-xs sm:max-w-md">
+                      <h3 className="text-lg sm:text-xl font-semibold text-teal-900">Symptoms</h3>
+                      <p className="text-xs sm:text-sm text-teal-700 leading-relaxed break-words max-w-xs sm:max-w-md">
                         {item.symptoms.join(", ")}
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-3 sm:gap-4 self-end sm:self-auto">
-                    <span className="text-gray-600 text-xs sm:text-sm font-medium whitespace-nowrap">
+                    <span className="text-teal-600 text-xs sm:text-sm font-medium whitespace-nowrap">
                       {new Date(item.createdAt).toLocaleDateString()}
                     </span>
 
@@ -132,7 +132,7 @@ const SymptomHistory = ({ setShowHistory }) => {
                         e.stopPropagation();
                         toggleExpand(index);
                       }}
-                      className="text-base sm:text-lg text-cyan-600 cursor-pointer"
+                      className="text-base sm:text-lg text-teal-600 cursor-pointer"
                     >
                       <FaChevronDown />
                     </motion.div>
@@ -149,7 +149,7 @@ const SymptomHistory = ({ setShowHistory }) => {
                       transition={{ duration: 0.4 }}
                       className="mt-4 sm:mt-6 border-t pt-4 sm:pt-6 border-gray-200 overflow-hidden"
                     >
-                      <strong className="text-base sm:text-lg text-cyan-700">
+                      <strong className="text-base sm:text-lg text-teal-700">
                         Possible Conditions:
                       </strong>
                       <ul className="mt-3 sm:mt-4 space-y-3 sm:space-y-4">
@@ -161,7 +161,7 @@ const SymptomHistory = ({ setShowHistory }) => {
                               className="bg-white/60 p-3 sm:p-4 rounded-lg border border-gray-200 backdrop-blur-sm"
                             >
                               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2 gap-2">
-  <span className="text-cyan-700 text-sm sm:text-base font-semibold">
+  <span className="text-teal-700 text-sm sm:text-base font-semibold">
     {result.name}
   </span>
   {renderUrgency(result.urgency)}
@@ -174,13 +174,13 @@ const SymptomHistory = ({ setShowHistory }) => {
 </p>
 
 <p className="text-xs sm:text-sm text-gray-800 mt-1">
-  <strong className="text-cyan-700">Doctor:</strong>{" "}
+  <strong className="text-teal-700">Doctor:</strong>{" "}
   {result.recommended_doctor || "Specialist (based on symptoms)"}
 </p>
 
 {result.first_step && (
   <p className="text-xs sm:text-sm text-gray-800 mt-1">
-    <strong className="text-cyan-700">First Step:</strong> {result.first_step}
+    <strong className="text-teal-700">First Step:</strong> {result.first_step}
   </p>
 )}
 

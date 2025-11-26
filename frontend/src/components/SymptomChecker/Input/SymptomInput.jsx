@@ -62,13 +62,13 @@ const SymptomInput = ({
           value={age}
           onChange={(e) => setAge(e.target.value)}
           className="w-full rounded-full p-3 bg-white/90 text-gray-800 placeholder-gray-500 
-          focus:outline-none focus:ring-2 focus:ring-green-400 shadow-md text-sm sm:text-base"
+          focus:outline-none focus:ring-2 focus:ring-teal-400 shadow-md text-sm sm:text-base"
         />
         <select
           value={gender}
           onChange={(e) => setGender(e.target.value)}
           className="w-full rounded-full p-3 bg-white/90 text-gray-800 
-          focus:outline-none focus:ring-2 focus:ring-green-400 shadow-md text-sm sm:text-base"
+          focus:outline-none focus:ring-2 focus:ring-teal-400 shadow-md text-sm sm:text-base"
         >
           <option value="" disabled>
             Select Gender
@@ -86,8 +86,8 @@ const SymptomInput = ({
       />
 
       {/* 💬 Combined Display Box */}
-      <div className="w-full border border-white/50 rounded-2xl p-4 mb-4 bg-white/80 text-gray-800 shadow-lg">
-        <p className="text-gray-600 text-sm font-medium mb-2">
+      <div className="w-full border border-teal/50 rounded-2xl p-4 mb-4 bg-white/80 text-teal-800 shadow-lg">
+        <p className="text-teal-600 text-sm font-medium mb-2">
           Selected & Typed Symptoms 👇
         </p>
 
@@ -104,7 +104,7 @@ const SymptomInput = ({
                   className={`${
                     checkedSymptoms.includes(symptom)
                       ? "bg-blue-100 text-blue-800"
-                      : "bg-green-100 text-green-800"
+                      : "bg-teal-100 text-green-800"
                   } font-semibold py-1 px-3 rounded-full flex items-center gap-2 
                   text-xs sm:text-sm shadow-sm`}
                 >
@@ -132,7 +132,7 @@ const SymptomInput = ({
           value={symptomsInput}
           onChange={(e) => setSymptomsInput(e.target.value)}
           onKeyDown={handleInputKeyDown}
-          className="w-full bg-transparent border-b border-gray-300 focus:border-green-400 
+          className="w-full bg-transparent border-b border-teal-300 focus:border-teal-400 
           focus:outline-none text-gray-800 text-sm sm:text-base pb-1"
         />
       </div>
@@ -152,9 +152,9 @@ const SymptomInput = ({
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="w-full border border-white/50 rounded-2xl p-4 mt-4 bg-white/80 text-gray-800 shadow-lg"
+        className="w-full border border-teal/50 rounded-2xl p-4 mt-4 bg-white/80 text-teal-800 shadow-lg"
       >
-        <label className="block text-gray-700 text-sm font-medium mb-1">
+        <label className="block text-teal-700 text-sm font-medium mb-1">
           Do you take any medication?
         </label>
         <input
@@ -162,7 +162,7 @@ const SymptomInput = ({
           placeholder="Type medication name or 'No'"
           value={medication}
           onChange={(e) => setMedication(e.target.value)}
-          className="w-full bg-white/90 border border-gray-300 rounded-lg p-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-400"
+          className="w-full bg-teal/90 border border-gray-300 rounded-lg p-2 text-sm text-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-400"
         />
       </motion.div>
 
@@ -171,9 +171,9 @@ const SymptomInput = ({
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="w-full border border-white/50 rounded-2xl p-4 mt-4 bg-white/80 text-gray-800 shadow-lg"
+        className="w-full border border-teal/50 rounded-2xl p-4 mt-4 bg-white/80 text-teal-800 shadow-lg"
       >
-        <label className="block text-gray-700 text-sm font-medium mb-1">
+        <label className="block text-teal-700 text-sm font-medium mb-1">
            Any other specification you want to tell or not listed?
         </label>
         <textarea
@@ -181,7 +181,7 @@ const SymptomInput = ({
           value={otherInfo}
           onChange={(e) => setOtherInfo(e.target.value)}
           rows={3}
-          className="w-full bg-white/90 border border-gray-300 rounded-lg p-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-400 resize-none"
+          className="w-full bg-white/90 border border-gray-300 rounded-lg p-2 text-sm text-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-400 resize-none"
         />
       </motion.div>
     </motion.div>

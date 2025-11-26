@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaBell, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import API from "../../utils/Api";
 import moment from "moment";
-import { toast } from "react-hot-toast"; // ✅ You already use react-hot-toast elsewhere
+import {toast } from "react-toastify";
 
 const NotificationSection = ({ user }) => {
   const [notifications, setNotifications] = useState([]);

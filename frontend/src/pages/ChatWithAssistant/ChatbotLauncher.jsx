@@ -93,7 +93,7 @@ const ChatbotLauncher = () => {
           {!isOpen && (
             <button
               onClick={() => setIsOpen(true)}
-              className="bg-green-50 border border-green-300 shadow-md rounded-full p-3 hover:bg-green-100 transition-all"
+              className="bg-green-50 border border-teal-300 shadow-md rounded-full p-3 hover:bg-teal-100 transition-all"
               title="Chat with Cura"
             >
               <img
@@ -110,9 +110,9 @@ const ChatbotLauncher = () => {
 
           {/* Chat Popup */}
           {isOpen && (
-            <div className="fixed bottom-24 right-6 w-[340px] h-[460px] bg-white border border-green-300 rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-fadeIn">
+            <div className="fixed bottom-24 right-6 w-[340px] h-[460px] bg-white border border-teal-300 rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-fadeIn">
               {/* Header */}
-              <div className="bg-green-600 text-white p-4 flex justify-between items-center">
+              <div className="bg-teal-600 text-white p-4 flex justify-between items-center">
                 <div className="flex items-center gap-2">
                   <FaRobot className="text-white text-xl" />
                   <h4 className="font-semibold text-lg">
@@ -128,7 +128,7 @@ const ChatbotLauncher = () => {
               </div>
 
               {/* Chat Messages */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gradient-to-b from-green-50 to-white">
+              <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gradient-to-b from-teal-50 to-white">
                 {messages.length === 0 && (
                   <p className="text-teal-900 text-sm text-center mt-10">
                     Start chatting with Cura about your health!
@@ -140,7 +140,7 @@ const ChatbotLauncher = () => {
                     key={index}
                     className={`px-4 py-2 rounded-2xl text-sm leading-relaxed shadow-sm ${
                       msg.sender === "user"
-                        ? "bg-green-100 border border-green-300 text-right ml-auto rounded-br-none"
+                        ? "bg-teal-100 border border-teal-300 text-right ml-auto rounded-br-none"
                         : "bg-teal-100  border border-teal-300 text-left mr-auto rounded-bl-none"
                     }`}
                     style={{
@@ -156,7 +156,7 @@ const ChatbotLauncher = () => {
                           if (/^[-•]/.test(line.trim())) {
                             return (
                               <div key={i} className="flex items-start gap-1">
-                                <span className="text-green-600 mt-[2px]">•</span>
+                                <span className="text-teal-600 mt-[2px]">•</span>
                                 <span>{line.replace(/^[-•]\s*/, "")}</span>
                               </div>
                             );
@@ -171,7 +171,7 @@ const ChatbotLauncher = () => {
                                       href={part}
                                       target="_blank"
                                       rel="noopener noreferrer"
-                                      className="text-green-700 underline hover:text-green-900"
+                                      className="text-teal-700 underline hover:text-teal-900"
                                     >
                                       {part}
                                     </a>
@@ -207,12 +207,12 @@ const ChatbotLauncher = () => {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Type a message..."
-                  className="border border-gray-300 rounded-full px-3 py-2 text-sm w-[78%] focus:outline-none focus:ring-1 focus:ring-green-400"
+                  className="border border-gray-300 rounded-full px-3 py-2 text-sm w-[78%] focus:outline-none focus:ring-1 focus:ring-teal-400"
                 />
                 <button
                   onClick={sendMessage}
                   disabled={isLoading}
-                  className="bg-green-500 text-white p-3 rounded-full hover:bg-green-600 disabled:opacity-50 transition-transform hover:scale-105"
+                  className="bg-teal-500 text-white p-3 rounded-full hover:bg-teal-600 disabled:opacity-50 transition-transform hover:scale-105"
                 >
                   <FaPaperPlane className="text-lg" />
                 </button>
@@ -221,7 +221,7 @@ const ChatbotLauncher = () => {
               {/* Open Full Chat */}
               <button
                 onClick={() => navigate("/chat")}
-                className="text-center w-full py-2 bg-gray-100 text-green-700 font-semibold border-t hover:bg-gray-200"
+                className="text-center w-full py-2 bg-teal-700 text-gray-100 font-semibold border-t hover:bg-teal-900"
               >
                 Open Full Chat
               </button>
@@ -231,7 +231,7 @@ const ChatbotLauncher = () => {
       </Draggable>
 
       <ToastContainer
-        position="bottom-right"
+        position="top-right"
         autoClose={2500}
         hideProgressBar={false}
         closeOnClick

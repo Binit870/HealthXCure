@@ -12,7 +12,7 @@ const ReportResult = ({ result, selectedHistoryItem }) => {
       exit={{ opacity: 0, y: 20 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       // White box with teal shadow and border
-      className="mt-10 p-6 md:p-10 bg-white rounded-2xl border border-teal-200 shadow-xl hover:shadow-teal-300/50 transition-all duration-300"
+      className="mt-10 p-6 md:p-10 bg-teal-50 rounded-2xl border border-teal-200   transition-all duration-300"
     >
       {/* Header */}
       <h2 className="text-2xl md:text-3xl font-extrabold text-teal-600 text-center mb-6">

@@ -12,7 +12,7 @@ const SymptomDisclaimer = ({ show, onClose }) => (
       >
         <div
           // Added responsive padding and rounded corners for better mobile adaptation.
-          className="bg-white/90 p-6 sm:p-8 rounded-2xl sm:rounded-3xl max-w-lg w-full text-gray-800 shadow-2xl relative"
+          className="bg-white/90 p-6 sm:p-8 rounded-2xl sm:rounded-3xl max-w-lg w-full text-teal-800 shadow-2xl relative"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Adjusted font size for responsiveness */}

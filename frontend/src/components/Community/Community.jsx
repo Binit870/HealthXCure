@@ -94,12 +94,12 @@ const Community = () => {
   }
 
   return (
-    <section className="py-16 px-4 md:px-8 lg:px-16 min-h-screen bg-gradient-to-br from-teal-50 via-white to-teal-100 text-gray-800">
+    <section className="py-16 px-4 md:px-8 lg:px-16 min-h-screen bg-teal-100 text-gray-800">
       <div className="max-w-3xl mx-auto">
         <h2 className="text-4xl font-bold text-center text-teal-700 mb-4 drop-shadow-sm">
           🌿 Community Forum
         </h2>
-        <p className="text-center text-gray-600 mb-10 text-lg">
+        <p className="text-center text-teal-900 mb-10 text-lg">
           Share your thoughts, ask questions, and connect with others on their health journey.
         </p>
 
@@ -111,8 +111,8 @@ const Community = () => {
               onClick={() => setCategory(cat)}
               className={`px-4 py-2 text-sm rounded-full transition-all duration-300 shadow-sm ${
                 category === cat
-                  ? "bg-teal-600 text-white"
-                  : "bg-white text-gray-700 border border-gray-300 hover:bg-teal-100"
+                  ? "bg-teal-700 text-white"
+                  : "bg-white text-gray-700 border border-gray-300 hover:bg-teal-700 hover:text-white"
               }`}
             >
               {cat.charAt(0).toUpperCase() + cat.slice(1)}
@@ -125,7 +125,7 @@ const Community = () => {
           <PostForm socket={socket} user={user} token={token} />
         ) : (
           <div className="text-center p-6 rounded-xl bg-white border border-gray-200 shadow-md mb-10">
-            <p className="text-base text-gray-700">Log in to share your thoughts. ✨</p>
+            <p className="text-base text-teal-900">Log in to share your thoughts. ✨</p>
           </div>
         )}
 

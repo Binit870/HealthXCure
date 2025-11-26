@@ -70,7 +70,7 @@ const PainAreaSelector = ({
   };
 
   return (
-    <div className="border border-white/50 rounded-2xl p-4 mb-4 bg-white/80 text-gray-800 shadow-lg">
+    <div className="border border-teal/50 rounded-2xl p-4 mb-4 bg-white/80 text-teal-800 shadow-lg">
       <h3 className="text-sm sm:text-base font-semibold mb-2">
         Do you have pain anywhere?
       </h3>
@@ -85,7 +85,7 @@ const PainAreaSelector = ({
             setPainDescriptions({});
           }
         }}
-        className="w-full mb-3 rounded-full p-2 bg-white text-gray-800 border border-gray-300 focus:ring-2 focus:ring-green-400 text-sm sm:text-base"
+        className="w-full mb-3 rounded-full p-2 bg-white text-teal-800 border border-gray-300 focus:ring-2 focus:ring-teal-400 text-sm sm:text-base"
       >
         <option value="">Select...</option>
         <option value="No">No</option>
@@ -99,12 +99,12 @@ const PainAreaSelector = ({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <p className="text-xs text-gray-600 mb-2">Select pain areas 👇</p>
+          <p className="text-xs text-teal-600 mb-2">Select pain areas 👇</p>
 
           <div ref={dropdownRef} className="relative mb-3">
             {/* Dropdown Button */}
             <button
-              className="w-full p-2 bg-white border border-gray-300 rounded-lg flex justify-between items-center text-gray-800 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="w-full p-2 bg-white border border-teal-300 rounded-lg flex justify-between items-center text-gray-800 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-400"
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             >
               {checkedPainAreas.length
@@ -121,16 +121,16 @@ const PainAreaSelector = ({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -5 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-48 overflow-y-auto"
+                  className="absolute z-10 mt-1 w-full bg-white border border-teal-300 rounded-lg shadow-lg max-h-48 overflow-y-auto"
                 >
                   {painAreas.map((area, index) => (
                     <div
                       key={index}
                       onClick={() => handleSelectPainArea(area)}
-                      className={`px-3 py-2 text-sm cursor-pointer hover:bg-green-100 ${
+                      className={`px-3 py-2 text-sm cursor-pointer hover:bg-teal-100 ${
                         checkedPainAreas.includes(area)
-                          ? "bg-green-50 font-semibold text-green-700"
-                          : "text-gray-700"
+                          ? "bg-teal-50 font-semibold text-teal-700"
+                          : "text-teal-700"
                       }`}
                     >
                       {area}
@@ -149,9 +149,9 @@ const PainAreaSelector = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="mb-3 border border-gray-200 rounded-lg p-3 bg-gray-50"
+              className="mb-3 border border-teal-200 rounded-lg p-3 bg-gray-50"
             >
-              <label className="block text-xs sm:text-sm text-gray-700 mb-1 font-medium">
+              <label className="block text-xs sm:text-sm text-teal-700 mb-1 font-medium">
                 Describe the pain in your {area.toLowerCase()}:
               </label>
               <input
@@ -161,10 +161,10 @@ const PainAreaSelector = ({
                   handlePainDescriptionChange(area, e.target.value)
                 }
                 placeholder="e.g., sharp, dull, throbbing..."
-                className="w-full rounded-lg p-2 border border-gray-300 focus:ring-2 focus:ring-green-400 text-gray-800 text-sm sm:text-base mb-2"
+                className="w-full rounded-lg p-2 border border-teal-300 focus:ring-2 focus:ring-teal-400 text-teal-800 text-sm sm:text-base mb-2"
               />
 
-              <label className="block text-xs sm:text-sm text-gray-700 mb-1 font-medium">
+              <label className="block text-xs sm:text-sm text-teal-700 mb-1 font-medium">
                 Duration of pain:
               </label>
               <input
@@ -174,7 +174,7 @@ const PainAreaSelector = ({
                   handlePainDurationChange(area, e.target.value)
                 }
                 placeholder="e.g., 2 days, 1 week..."
-                className="w-full rounded-lg p-2 border border-gray-300 focus:ring-2 focus:ring-green-400 text-gray-800 text-sm sm:text-base"
+                className="w-full rounded-lg p-2 border border-teal-300 focus:ring-2 focus:ring-teal-400 text-teal-800 text-sm sm:text-base"
               />
 
               <button

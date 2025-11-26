@@ -6,7 +6,7 @@ import UserProfileSection from "./UserProfileSection";
 import HistorySection from "./HistorySection";
 import NotificationSection from "./NotificationSection";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import {toast } from "react-toastify";
 
 const Dashboard = () => {
   const { user, token, updateUser, loading } = useAuth();
@@ -96,7 +96,7 @@ const Dashboard = () => {
   return (
     <section
       id="dashboard"
-      className="relative pt-20 min-h-screen px-6 md:px-10 text-gray-800 overflow-hidden bg-gradient-to-b from-teal-50 to-white"
+      className="relative pt-20 min-h-screen px-6 md:px-10 text-gray-800 overflow-hidden bg-teal-100 "
     >
       <div className="max-w-4xl mx-auto flex flex-col items-center space-y-10 pb-20">
         {/* Profile Centered */}

@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { useAuth } from "../context/AuthContext.jsx";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { FaHeartbeat } from "react-icons/fa";
-import toast from "react-hot-toast";
-
+import {toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
   const { login, googleAuth } = useAuth();
   const navigate = useNavigate();
