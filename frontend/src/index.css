@@ -96,8 +96,8 @@ html {
 
 .Toastify__toast {
   background: #ffffff !important;
-  color: #5cf344 !important; /* nice green */
-  border: 1px solid #3fec1c !important; /* teal/green border */
+  color: #279c56 !important; /* nice green */
+  border: 1px solid #279c56 !important; /* teal/green border */
   font-weight: 600;
 }
 
@@ -106,5 +106,5 @@ html {
 }
 
 .Toastify__progress-bar {
-  background: #215602 !important; /* green progress */
+  background: #279c56 !important; /* green progress */
 }

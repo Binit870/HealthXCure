@@ -6,7 +6,6 @@ import UserProfileSection from "./UserProfileSection";
 import HistorySection from "./HistorySection";
 import NotificationSection from "./NotificationSection";
 import { useNavigate } from "react-router-dom";
-import {toast } from "react-toastify";
 
 const Dashboard = () => {
   const { user, token, updateUser, loading } = useAuth();
@@ -32,9 +31,7 @@ const Dashboard = () => {
         setDietHistory(Array.isArray(dietRes.data) ? dietRes.data : []);
         setSymptomHistory(Array.isArray(symptomRes.data.history) ? symptomRes.data.history : []);
         setReportHistory(Array.isArray(reportRes.data) ? reportRes.data : []);
-      } catch (error) {
-        toast.error("Failed to fetch history");
-      }
+      } catch (error) {}
     };
 
     fetchHistory();
@@ -42,19 +39,12 @@ const Dashboard = () => {
 
   const handleImageUpload = async (event) => {
     const file = event.target.files?.[0];
-    if (!user?._id) {
-      toast.error("Please log in again to upload your image.");
-      return;
-    }
-    if (!file) {
-      toast.error("Please select an image to upload.");
-      return;
-    }
+    if (!user?._id) return;
+    if (!file) return;
 
     setUploading(true);
     const formData = new FormData();
     formData.append("profileImage", file);
-    const loadingToastId = toast.loading("Uploading profile image...");
 
     try {
       const res = await API.post(`/user/${user._id}/profile-image`, formData, {
@@ -65,13 +55,9 @@ const Dashboard = () => {
       if (updatedUser.profileImageUrl) {
         setProfileImageUrl(updatedUser.profileImageUrl);
         updateUser({ ...updatedUser });
-        toast.success("Profile image updated successfully!", { id: loadingToastId });
-      } else {
-        toast.error("Upload successful, but image URL missing.", { id: loadingToastId });
       }
       setIsEditingProfileImage(false);
     } catch (err) {
-      toast.error("Failed to upload image. Please try again.", { id: loadingToastId });
     } finally {
       setUploading(false);
     }
@@ -99,7 +85,6 @@ const Dashboard = () => {
       className="relative pt-20 min-h-screen px-6 md:px-10 text-gray-800 overflow-hidden bg-teal-100 "
     >
       <div className="max-w-4xl mx-auto flex flex-col items-center space-y-10 pb-20">
-        {/* Profile Centered */}
         <UserProfileSection
           user={user}
           uploading={uploading}
@@ -109,7 +94,6 @@ const Dashboard = () => {
           profileImageUrl={profileImageUrl}
         />
 
-        {/* Quick Actions */}
         <div className="w-full max-w-3xl bg-white rounded-3xl shadow-lg border border-teal-100 p-6 text-center">
           <h5 className="text-2xl font-bold text-teal-700 mb-5 flex justify-center items-center gap-2">
             <FaHeartbeat /> Quick Actions
@@ -136,12 +120,10 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Notifications */}
         <div className="w-full max-w-3xl">
           <NotificationSection user={user} />
         </div>
 
-        {/* History Sections */}
         <div className="w-full max-w-3xl space-y-8">
           <HistorySection
             title="Diet History"

@@ -47,7 +47,7 @@ const Login = () => {
 
   return (
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 via-white to-green-100 p-6">
+      <div className="min-h-screen flex items-center justify-center bg-teal-100 p-6">
         <motion.div
           initial="hidden"
           animate="visible"

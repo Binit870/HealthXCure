@@ -100,7 +100,7 @@ const DietForm = ({ formData, setFormData, generatePlan, handleFileChange, loadi
 
       {/* Days */}
       <motion.div variants={itemVariants} className="mb-6 relative z-10 w-full">
-        <label className="block mb-2 font-semibold text-white text-sm sm:text-base">Number of Days</label>
+        <label className="block mb-2 font-semibold text-black text-sm sm:text-base">Number of Days</label>
         <input
           type="number"
           value={formData.days}

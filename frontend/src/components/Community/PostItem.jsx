@@ -36,7 +36,9 @@ const PostItem = ({ post, user, handleDeletePost }) => {
         )}
       </div>
 
-      <p className="text-gray-700 text-sm sm:text-base whitespace-pre-line">{post.content}</p>
+      <p className="text-gray-700 text-sm sm:text-base whitespace-pre-line">
+        {post.content}
+      </p>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { FileCheck } from "lucide-react";
 
 const TermsAndConditions = () => {
   return (
-    <div className="min-h-screen bg-white text-gray-800 px-6 py-16">
+    <div className="min-h-screen bg-teal-100 text-gray-800 px-6 py-16">
       {/* Heading with Icon */}
       <div className="flex items-center justify-center gap-3 mb-14">
         <FileCheck className="w-10 h-10 text-teal-500" />
