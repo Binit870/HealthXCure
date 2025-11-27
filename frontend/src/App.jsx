@@ -48,14 +48,14 @@ function App() {
     <div className="flex flex-col min-h-screen font-inter">
       <ScrollToTop />
       {!hideNavbar && <Navbar />}
-<ToastContainer position="top-right" />
+      <ToastContainer position="top-right" />
       <div className={`flex-grow flex flex-col ${!hideNavbar ? 'pt-16' : ''}`}>
         {/* <Toaster position="top-right" /> */}
-        
+
 
         <Routes>
           {/* Public Pages */}
-          
+
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
@@ -64,7 +64,7 @@ function App() {
           <Route path="/terms" element={<TermsAndCondition />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/help" element={<Help />} />
-          <Route path="/contact" element={<Contact/>} />
+          <Route path="/contact" element={<Contact />} />
 
 
 
@@ -150,7 +150,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
-{normalizedPathname.toLowerCase() !== "/chat" && <ChatbotLauncher />}
+      {normalizedPathname.toLowerCase() !== "/chat" && <ChatbotLauncher />}
       {!hideFooter && <Footer />}
     </div>
   );

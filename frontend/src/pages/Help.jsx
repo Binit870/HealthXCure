@@ -41,13 +41,13 @@ const helpTopics = [
 
 const Help = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cyan-900 via-cyan-800 to-cyan-950 text-gray-200 px-6 py-12">
+    <div className="min-h-screen bg-teal-100 text-teal-800 px-6 py-12">
       {/* Heading */}
       <div className="flex items-center justify-center gap-3 mb-10">
-        <FaQuestionCircle className="w-10 h-10 text-green-400" />
+        <FaQuestionCircle className="w-10 h-10 text-green-700" />
         <h1
           className="text-5xl md:text-6xl font-extrabold text-center 
-                     bg-gradient-to-r from-green-400 via-blue-400 to-purple-500 
+                     bg-green-700
                      bg-clip-text text-transparent tracking-tight"
         >
           Help & Support
@@ -59,22 +59,22 @@ const Help = () => {
         {helpTopics.map((topic, i) => (
           <section
             key={i}
-            className="relative p-6 bg-gray-800 rounded-2xl border border-gray-700 
-                       shadow-lg shadow-cyan-600 transition-transform transform 
-                       hover:-translate-y-1 hover:shadow-cyan-400 overflow-hidden"
+            className="relative p-6 bg-teal-800 rounded-2xl border border-teal-700 
+                       shadow-lg shadow-teal-600 transition-transform transform 
+                       hover:-translate-y-1 hover:shadow-teal-400 overflow-hidden"
           >
             {/* Glow */}
             <div className="absolute inset-0 rounded-2xl 
-                            bg-gradient-to-r from-cyan-400 to-teal-400 
+                            bg-teal-400 
                             opacity-0 hover:opacity-20 blur-xl transition duration-500 pointer-events-none"></div>
 
             {/* Title with Icon */}
-            <h2 className="text-2xl font-semibold text-cyan-400 mb-3 flex items-center">
+            <h2 className="text-2xl font-semibold text-teal-400 mb-3 flex items-center">
               {topic.icon} {topic.title}
             </h2>
 
             {/* Description */}
-            <p className="text-gray-300 leading-relaxed">{topic.text}</p>
+            <p className="text-teal-300 leading-relaxed">{topic.text}</p>
           </section>
         ))}
       </div>

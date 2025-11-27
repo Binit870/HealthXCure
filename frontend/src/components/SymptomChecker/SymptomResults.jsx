@@ -11,7 +11,7 @@ const getPossibilityLevel = (score) => {
 
 const SymptomResults = ({ results }) => (
   <div className="relative w-full max-w-4xl z-10 p-6 md:p-8 rounded-2xl border border-white/10 
-                  bg-gradient-to-br from-teal-600/40 via-cyan-600/40 to-emerald-600/40 
+                  bg-teal-100 
                   backdrop-blur-lg shadow-2xl">
     {/* Header */}
     <div className="w-full flex flex-col items-center mb-8">
@@ -33,7 +33,7 @@ const SymptomResults = ({ results }) => (
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: index * 0.1 }}
             className="relative w-full overflow-hidden rounded-2xl shadow-lg 
-                       bg-gradient-to-br from-emerald-700/70 via-teal-600/70 to-cyan-700/70
+                       bg-teal-700
                        border border-white/20 p-6 backdrop-blur-md transition-all hover:scale-[1.01]"
           >
             <div className="relative flex flex-col gap-3 z-10">

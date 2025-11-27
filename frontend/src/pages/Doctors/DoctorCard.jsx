@@ -95,14 +95,7 @@ const DoctorCard = ({ doc }) => {
             </button>
           )}
 
-          {doc.lat && doc.lng && (
-            <button
-              className="flex-1 bg-orange-500 hover:bg-orange-600 text-white px-5 py-3 rounded-xl text-sm font-medium"
-              onClick={() => setShowModal(true)}
-            >
-              View on Map
-            </button>
-          )}
+          
         </div>
       </div>
 

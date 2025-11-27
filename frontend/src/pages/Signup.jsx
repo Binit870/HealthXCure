@@ -47,8 +47,8 @@ const Signup = () => {
 
   return (
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 via-white to-green-100 p-4 relative">
-        <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
+      <div className="min-h-screen flex items-center justify-center bg-teal-100 p-4 relative">
+       
 
         <motion.div
           initial="hidden"

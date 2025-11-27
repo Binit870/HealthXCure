@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaPaperPlane, FaSpinner } from "react-icons/fa";
 import API from "../../utils/Api";
+import { toast } from "react-toastify";
 
 const PostForm = ({ socket, user, token }) => {
   const [newComment, setNewComment] = useState("");
@@ -21,9 +22,10 @@ const PostForm = ({ socket, user, token }) => {
       socket.emit("postComment", response.data);
       setNewComment("");
       setCategory("general");
+      toast.success("Your post is live!");
     } catch (err) {
       console.error("Failed to post comment:", err);
-      alert("Failed to share your thought. Please try again.");
+      toast.error("Failed to share your thought.");
     } finally {
       setIsPosting(false);
     }
@@ -52,7 +54,7 @@ const PostForm = ({ socket, user, token }) => {
           <option value="health">Health</option>
         </select>
 
-        {/* Textarea with embedded icon */}
+        {/* Textarea */}
         <label className="text-sm font-medium text-teal-900">Your Thought</label>
         <div className="relative">
           <textarea

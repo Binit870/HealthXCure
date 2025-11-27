@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { FaSpinner } from "react-icons/fa";
 import { io } from "socket.io-client";
 import API, { SOCKET_URL } from "../../utils/Api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import PostForm from "./PostForm";
 import PostList from "./PostList";
@@ -35,6 +37,7 @@ const Community = () => {
       } catch (err) {
         console.error("Failed to fetch community posts:", err);
         setError("Failed to load community posts. Please try again later.");
+        toast.error("Failed to load community posts.");
         setLoading(false);
       }
     };
@@ -63,14 +66,13 @@ const Community = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
         setPosts(posts.filter((post) => post._id !== postId));
+        toast.success("Post deleted.");
       } catch (err) {
         console.error(
           "Failed to delete post:",
           err.response?.data?.message || err.message
         );
-        alert(
-          "Failed to delete post. Please try again. You can only delete your own posts."
-        );
+        toast.error("Failed to delete post. You can only delete your own posts.");
       }
     }
   };
@@ -89,12 +91,15 @@ const Community = () => {
       <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-red-50 to-white text-red-500">
         <h3 className="text-2xl font-semibold">Error</h3>
         <p className="text-gray-600 mt-2">{error}</p>
+        <ToastContainer />
       </div>
     );
   }
 
   return (
     <section className="py-16 px-4 md:px-8 lg:px-16 min-h-screen bg-teal-100 text-gray-800">
+      <ToastContainer />
+
       <div className="max-w-3xl mx-auto">
         <h2 className="text-4xl font-bold text-center text-teal-700 mb-4 drop-shadow-sm">
           🌿 Community Forum
@@ -120,7 +125,6 @@ const Community = () => {
           ))}
         </div>
 
-        {/* Post Form or Login Prompt */}
         {user ? (
           <PostForm socket={socket} user={user} token={token} />
         ) : (
@@ -129,7 +133,6 @@ const Community = () => {
           </div>
         )}
 
-        {/* Post List */}
         <PostList posts={posts} user={user} handleDeletePost={handleDeletePost} />
       </div>
     </section>
