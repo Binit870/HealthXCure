@@ -10,10 +10,11 @@ The system integrates modern web technologies and offers a seamless, intuitive, 
 |     Name        |          Role        |
 |-----------------|----------------------|
 | Binit Patra     | Full Stack Developer |
+| Aditya Singh    | Full Stack Developer |
 | Arjun Singh     | Backend Developer    |
 | Ayush Kumar     | UI/UX Developer      |
 | Sagar Malind    | UI/UX & Developer    |
-| Raghunath Soren | Tester / Developer   |
+| Raghunath Soren | Frontend Developer   |
 
 *(Replace the placeholders with your actual team names.)*
 
