@@ -13,10 +13,10 @@ The system integrates modern web technologies and offers a seamless, intuitive, 
 | Aditya Singh    | Full Stack Developer |
 | Arjun Singh     | Backend Developer    |
 | Ayush Kumar     | UI/UX Developer      |
-| Sagar Malind    | UI/UX & Developer    |
+| Sagar Malind    | Frontend Developer   |
 | Raghunath Soren | Frontend Developer   |
 
-*(Replace the placeholders with your actual team names.)*
+
 
 ---
 
@@ -31,11 +31,11 @@ Arka Jain University
 
 HealthXCure aims to simplify access to healthcare-related information by enabling users to:
 
-- Search for doctors based on state, city, specialization, or location
-- Explore nearby doctors using geolocation
+- Search for doctors based on state, city, or specialization
+- Check your symptoms and get results from AI for possible dieases
 - Participate in a community forum with real-time updates
 - Access health & nutrition resources
-- Use an interactive map to get directions and routes to medical specialists
+
 
 This project was developed as part of an academic initiative showcasing teamwork, modern development practices, and applied problem-solving.
 

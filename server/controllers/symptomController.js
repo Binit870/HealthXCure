@@ -25,7 +25,7 @@ export const checkSymptoms = async (req, res) => {
       return res.status(400).json({ error: "Please provide both age and gender." });
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
 
     // 🧠 Enhanced Prompt with Context
     const prompt = `

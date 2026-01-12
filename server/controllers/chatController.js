@@ -17,7 +17,7 @@ export const chatWithAI = async (req, res) => {
       return res.status(400).json({ error: "Message is required" });
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
 
     const prompt = `
 You are **Cura**, a friendly and knowledgeable AI Health Assistant.
